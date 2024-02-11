@@ -25,6 +25,7 @@ export const MenuButton = styled.button`
   margin: auto;
   background-color: transparent;
   cursor: pointer;
+  border: none;
 
   @media (max-width: ${({ theme }) => themes.breakpoint.mobile}) {
     animation: ${slideFromRight} 1s ease-out;
@@ -48,7 +49,7 @@ export const HamburgerIcon = styled.div`
   height: 3px;
   background-color: #333;
   margin: 5px 0;
-  transition: transform 0.7s ease; /* Smooth transition for icon animation */
+  transition: transform 0.7s ease, opacity .9s ease; /* Smooth transition for icon animation */
   border-radius: 5px;
 
   /* Rotate the icon to create an X when the menu is open */

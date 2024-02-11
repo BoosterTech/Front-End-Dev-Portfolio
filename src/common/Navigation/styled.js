@@ -18,7 +18,7 @@ export const StyledList = styled.ul`
   list-style: none;
   align-items: center;
   background-color: ${({ theme }) => themes.color.navigationBackground};
-  padding: 2rem 6rem;
+  padding: 1rem 6rem;
   margin-top: 0;
   gap: 2rem;
   font-weight: 700;
