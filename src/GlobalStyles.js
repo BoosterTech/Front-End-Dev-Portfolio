@@ -13,5 +13,8 @@ html{
 
 body{
     background-color: ${({ theme }) => themes.color.background};
+    font-size: 17px ;
+    max-width: 100vw;
+    margin: auto;
 }
 `;
