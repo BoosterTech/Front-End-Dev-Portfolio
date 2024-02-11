@@ -1,12 +1,22 @@
-import { FirstListItem, StyledList, StyledListItem } from "./styled";
+import MobileMenu from "./MobileMenu";
+import {
+  FirstListItem,
+  PCmenuContainer,
+  StyledList,
+  StyledListItem,
+} from "./styled";
+import { menuItems } from "./menuItems";
 
 export const Navigation = () => {
   return (
     <StyledList>
       <FirstListItem>Derek.dev</FirstListItem>
-      <StyledListItem>Home</StyledListItem>
-      <StyledListItem>Projects</StyledListItem>
-      <StyledListItem>Contact</StyledListItem>
+      <PCmenuContainer>
+        {menuItems.map((item, index) => (
+          <StyledListItem key={index}>{item}</StyledListItem>
+        ))}
+      </PCmenuContainer>
+      <MobileMenu items={menuItems} />
     </StyledList>
   );
 };
