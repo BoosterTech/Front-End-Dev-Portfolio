@@ -18,9 +18,9 @@ const MobileMenu = ({ items }) => {
     <MobileMenuContainer>
       {" "}
       <MenuButton onClick={toggleMenu}>
-        <HamburgerIcon isOpen={isOpen} />
-        <HamburgerIcon isOpen={isOpen} />
-        <HamburgerIcon isOpen={isOpen} />
+        {[...Array(3)].map((index) => (
+          <HamburgerIcon key={index} isOpen={isOpen} />
+        ))}
       </MenuButton>
       {isOpen && (
         <MenuList>

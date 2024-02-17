@@ -24,6 +24,8 @@ export const StyledList = styled.ul`
   font-weight: 700;
   font-size: 1.2rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Grey shadow */
+ 
+ 
 
   @media (max-width: ${({ theme }) => themes.breakpoint.mobile}) {
     flex-direction: column;
@@ -36,6 +38,7 @@ export const StyledListItem = styled.li`
   border: 1px solid transparent;
   padding: 2px 20px;
   border-radius: 50px;
+  transition: all 0.3s ease ;
 
   &:hover {
     border: 1px solid #1693e4;
@@ -45,7 +48,7 @@ export const StyledListItem = styled.li`
   }
 
   @media (max-width: ${({ theme }) => themes.breakpoint.mobile}) {
-    animation: ${slideFromLeft} 1 1s forwards;
+    animation: ${slideFromLeft} 1s forwards;
   }
 `;
 
