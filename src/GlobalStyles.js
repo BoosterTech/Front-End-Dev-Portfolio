@@ -14,7 +14,12 @@ html{
 body{
     background-color: ${({ theme }) => themes.color.background};
     font-size: 17px ;
-    max-width: 100vw;
+    max-width: 90%;
     margin: auto;
+    padding:0 10px;
+
+    @media (max-width: ${({ theme }) => themes.breakpoint.mobile}) {
+     text-align: center;
+  }
 }
 `;

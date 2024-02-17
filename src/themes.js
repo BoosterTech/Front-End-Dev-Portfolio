@@ -6,6 +6,7 @@ export const themes = {
     navigationFontHover: "#139DF7",
   },
   breakpoint: {
+    smallPC: "1350px",
     mobile: "767px",
   },
 };
