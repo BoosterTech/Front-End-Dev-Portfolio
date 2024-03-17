@@ -12,7 +12,10 @@ to{
 }
 `;
 
-export const StyledList = styled.ul`
+export const StyledList = styled.nav`
+  position: sticky;
+  top: 0;
+  z-index: 100;
   display: flex;
   flex-direction: row;
   list-style: none;
@@ -24,8 +27,7 @@ export const StyledList = styled.ul`
   font-weight: 700;
   font-size: 1.2rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Grey shadow */
- 
- 
+  transition: all 0.5s ease;
 
   @media (max-width: ${({ theme }) => themes.breakpoint.mobile}) {
     flex-direction: column;
@@ -38,7 +40,7 @@ export const StyledListItem = styled.li`
   border: 1px solid transparent;
   padding: 2px 20px;
   border-radius: 50px;
-  transition: all 0.3s ease ;
+  transition: all 0.3s ease;
 
   &:hover {
     border: 1px solid #1693e4;

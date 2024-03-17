@@ -7,7 +7,7 @@ import {
 } from "./styled";
 import { menuItems } from "./menuItems";
 
-export const Navigation = () => {
+const Navigation = () => {
   return (
     <StyledList>
       <FirstListItem>Derek.dev</FirstListItem>
@@ -20,3 +20,5 @@ export const Navigation = () => {
     </StyledList>
   );
 };
+
+export default Navigation;
