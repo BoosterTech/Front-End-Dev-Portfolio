@@ -14,25 +14,14 @@ const imageBorderAnimation = keyframes`
 }
 `;
 
-// const wavingHandAnimation = keyframes`
-// 0%{
-//   transform: rotate(0);
-// }
-// 50%{
-//   transform: rotate(70deg);
-// }
-// 100%{
-//   transform: rotate(0);
-// }
-// `;
-
 export const HomeWrapper = styled.section`
   margin: 150px auto;
   padding: 15px;
-  width: 50%;
+  width: 65%;
 
   @media (max-width: ${({ theme }) => themes.breakpoint.mobile}) {
     width: 100%;
+    padding: 0;
   }
 `;
 
@@ -155,7 +144,7 @@ export const TechStackItem = styled.img`
   transition: transform 0.5s ease, height 3s ease;
 
   &:hover {
-    transform: scale(1.7);
+    transform: scale(1.6);
   }
 
   @media (max-width: ${({ theme }) => themes.breakpoint.mobile}) {
@@ -164,7 +153,7 @@ export const TechStackItem = styled.img`
     height: 30px;
 
     &:hover {
-    transform: scale(2.3);
-  }
+      transform: scale(2.3);
+    }
   }
 `;

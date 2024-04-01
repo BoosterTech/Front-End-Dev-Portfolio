@@ -20,7 +20,9 @@ import reduxSagaIcon from "../../../images/reduxSagaIcon.jpg";
 import styledComponentsicon from "../../../images/styledComponentsIcon.jpg";
 import axiosIcon from "../../../images/axiosIcon.jpg";
 import reduxToolkitIcon from "../../../images/reduxToolkitIcon.jpg";
-import About from "../about";
+import { ExpandableSkillsetcontainer } from "./ExpandableSkillsetContainer";
+import { useTheme } from "styled-components";
+import React from "react";
 
 const techStackIcons = [
   reactIcon,
@@ -32,20 +34,22 @@ const techStackIcons = [
 ];
 
 const Home = () => {
+  const theme = useTheme();
+
   return (
     <HomeWrapper>
       <ContentImageContainer>
         <ContentContainer>
           <ContentHeader>
-            Front-End React
-            <br />
-            Developer{" "}
+            {theme.home.contentHeader.split("\n").map((line, index) => (
+              <React.Fragment key={index}>
+                {line}
+                <br />
+              </React.Fragment>
+            ))}
             <HeaderImage src={wavingHandImage} alt="headerImage.png" />
           </ContentHeader>
-          <HeaderParagraph>
-            Hi, I'm Dariusz Podczasik. A passionate Front-End React Developer
-            based in Trim, Ireland.
-          </HeaderParagraph>
+          <HeaderParagraph>{theme.home.headerParagraph}</HeaderParagraph>
         </ContentContainer>
         <ImageContainer>
           <ProfileImage src={profileImage} alt="profileImage.png" />
@@ -56,9 +60,11 @@ const Home = () => {
         {techStackIcons.map((item, index) => (
           <TechStackItem key={index} src={item} />
         ))}
+
+        <ExpandableSkillsetcontainer />
       </TechStackContainer>
-      <About />
     </HomeWrapper>
   );
 };
+
 export default Home;
