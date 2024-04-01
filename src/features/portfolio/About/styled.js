@@ -9,6 +9,22 @@ to{
     transform: rotate(360deg);
 }`;
 
+export const Wrapper = styled.article`
+  display: flex;
+  flex-direction: row;
+  max-width: 100%;
+  height: auto;
+ 
+  margin-top: 170px;
+  justify-content: center;
+  align-items: center;
+
+  @media (max-width: ${({ theme }) => themes.breakpoint.smallPC}) {
+    flex-direction: column;
+    margin: 100px auto;
+  }
+`;
+
 export const ImageContainer = styled.div`
   position: relative;
   transition: all 3s ease;
@@ -18,7 +34,6 @@ export const ImageContainer = styled.div`
     margin: 0;
     padding: 0;
   }
-  
 `;
 
 export const StyledSVG = styled.svg`
@@ -38,29 +53,15 @@ export const Image = styled.img`
   border-radius: 100%;
 `;
 
-export const Wrapper = styled.section`
-  display: flex;
-  flex-direction: row;
-  max-width: 100%;
-  height: auto;
-  padding: 15px;
-  margin-top: 200px;
-  justify-content: center;
-  align-items: center;
-
-  @media (max-width: ${({ theme }) => themes.breakpoint.smallPC}) {
-    flex-direction: column;
-    margin: 100px auto;
-  }
-`;
-
 export const Header = styled.h1`
+  font-size: 1.4em;
   font-weight: bold;
   color: #0b93f3;
-  margin: 0;
+  margin:0 0 25px 0;
 `;
 
 export const SubHeader = styled.h2`
+  font-size: 1.7em;
   font-weight: bold;
   color: #000000;
 `;

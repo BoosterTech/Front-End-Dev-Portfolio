@@ -5,11 +5,10 @@ import {
   Header,
   ImageContainer,
   Image,
-  SubHeader,
   Wrapper,
 } from "./styled";
 
-export const About = () => {
+const About = () => {
   return (
     <Wrapper>
       <ImageContainer>
@@ -18,11 +17,28 @@ export const About = () => {
       </ImageContainer>
       <ContentContainer>
         <Header>ABOUT ME</Header>
-        <SubHeader> Front-end Developer based in Trim, Ireland. </SubHeader>
-        Hello, I'm Derek. <br />I am dedicated to crafting intuitive and
-        engaging user interfaces and experiences. My expertise lies in
-        leveraging React/Redux with Styled Components to deliver seamless and
-        visually appealing solutions.
+        <p>
+          Hi, I'm Derek, Frontend Developer dedicated to crafting exceptional
+          user interfaces and experiences.
+        </p>
+        My primary focus revolves around leveraging cutting-edge technologies to
+        deliver polished solutions that resonate with users.
+        <br />
+        React serves as the cornerstone of my development approach, facilitating
+        the creation of dynamic, multi-page applications with seamless
+        navigation and optimized performance.
+        <br /> Additionally, Styled-Components offers a pragmatic approach to
+        styling, allowing me to streamline the design process and maintain
+        consistency across projects.
+        <br />
+        Furthermore, Redux & Axios enhance the development workflow, promoting
+        code integrity and scalability.
+        <br /> This robust stack empowers me to efficiently develop
+        high-performance, responsive web applications that meet the demands of
+        today's digital landscape. <br />
+        Driven by a passion for clean and intuitive design, I ensure that every
+        interface I create not only meets but exceeds user expectations.
+        <p> Best regards,</p>
       </ContentContainer>
     </Wrapper>
   );

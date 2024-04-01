@@ -1,6 +1,7 @@
 import React from "react";
 import { StyledSVG } from "./styled";
 
+
 const FrontEndSpinner = () => {
   return (
     <StyledSVG
