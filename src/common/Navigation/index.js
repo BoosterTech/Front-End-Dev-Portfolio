@@ -6,11 +6,16 @@ import {
   StyledListItem,
 } from "./styled";
 import { menuItems } from "./menuItems";
+import { LanguageSwitch } from "../LanguageSwitch";
 
 const Navigation = () => {
   return (
     <StyledList>
-      <FirstListItem>Derek.dev</FirstListItem>
+      <FirstListItem>
+        <span>Derek.dev</span>
+        <LanguageSwitch />
+      </FirstListItem>
+
       <PCmenuContainer>
         {menuItems.map((item, index) => (
           <StyledListItem key={index}>{item}</StyledListItem>

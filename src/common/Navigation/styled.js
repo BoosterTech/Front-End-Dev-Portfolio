@@ -26,8 +26,8 @@ export const StyledList = styled.nav`
   gap: 2rem;
   font-weight: 700;
   font-size: 1.2rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Grey shadow */
-  transition: all 0.5s ease;
+  box-shadow: -1px -4px 29px 4px #c9c7c8;
+  transition: all 1s ease;
 
   @media (max-width: ${({ theme }) => themes.breakpoint.mobile}) {
     flex-direction: column;
@@ -55,6 +55,9 @@ export const StyledListItem = styled.li`
 `;
 
 export const FirstListItem = styled(StyledListItem)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-right: auto;
 
   &:hover {
@@ -64,6 +67,8 @@ export const FirstListItem = styled(StyledListItem)`
 
   @media (max-width: ${({ theme }) => themes.breakpoint.mobile}) {
     margin: auto;
+    flex-direction: column-reverse;
+    gap:15px;
   }
 `;
 
