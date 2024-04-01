@@ -5,13 +5,19 @@ import Contact from "./features/portfolio/Contact";
 import Projects from "./features/portfolio/Projects";
 import Footer from "./features/portfolio/Footer";
 import { Main } from "./GlobalStyles";
-import { ScrollWatcher } from "./features/portfolio/ScrollWatcher/styled";
+import { ScrollWatcher } from "./common/ScrollWatcher/styled";
+import { useSelector } from "react-redux";
+import { selectIsLanguageEnglish } from "./common/languageSlice";
+import { ThemeProvider } from "styled-components";
+import { themeEnglish, themePolish } from "./themes";
 
 const App = () => {
+  const isLanguageEnglish = useSelector(selectIsLanguageEnglish);
+
   return (
-    <>
+    <ThemeProvider theme={isLanguageEnglish ? themeEnglish : themePolish}>
       <Navigation />
-      <ScrollWatcher/>
+      <ScrollWatcher />
       <Main>
         <Home />
         <About />
@@ -19,7 +25,7 @@ const App = () => {
         <Contact />
       </Main>
       <Footer />
-    </>
+    </ThemeProvider>
   );
 };
 
