@@ -15,7 +15,7 @@ const MobileMenu = ({ items }) => {
   };
 
   return (
-    <MobileMenuContainer>
+    <MobileMenuContainer expanded={isOpen}>
       {" "}
       <MenuButton onClick={toggleMenu}>
         {[...Array(3)].map((index) => (
