@@ -23,7 +23,7 @@ export const LanguageSwitch = () => {
         <Text1 isCurrent={isLanguageEnglish}>PL</Text1>
         <Box>
           <IconWrapper moveToRight={isLanguageEnglish}>
-            <Icon1 src={IRLIcon} alt="flagIcon" isCurrent={isLanguageEnglish} />
+            <Icon1 src={IRLIcon} alt="flagIcon" isCurrent={isLanguageEnglish}/>
 
             <Icon2 src={PLIcon} alt="flagIcon" isCurrent={isLanguageEnglish} />
           </IconWrapper>

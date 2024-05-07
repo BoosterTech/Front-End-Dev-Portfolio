@@ -17,7 +17,7 @@ export const Button = styled.button`
 
 export const Text1 = styled.span`
   font-size: 12px;
-  margin: 0 11px;
+  margin-left:11px;
   color: black;
 
   ${({ isCurrent }) =>
@@ -31,14 +31,15 @@ export const Text1 = styled.span`
 
 export const Text2 = styled(Text1)`
   font-size: 12px;
-  color: inherit;
+  color: black;
+  z-index: 1;
 
   ${({ isCurrent }) =>
     isCurrent &&
     css`
-      font-size: 15px;
-      font-weight: bold;
-      color: #298EDD;
+      
+      font-weight: bolder;
+   
     `}
 `;
 
@@ -62,7 +63,7 @@ export const IconWrapper = styled.span`
   ${({ moveToRight }) =>
     moveToRight &&
     css`
-      transform: translateX(20px);
+      transform: translateX(55px);
     `}
 `;
 
