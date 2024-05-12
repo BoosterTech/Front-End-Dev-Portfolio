@@ -12,11 +12,10 @@ export const ScrollWatcher = styled.div`
   position: fixed;
   top: 0;
   z-index: 100;
-  background-color: #3D6AF5;
+  background-color: #3d6af5;
   width: 100%;
   scale: 0.2;
 
   animation: ${scrollWatcherAnimation} linear;
   animation-timeline: scroll(y);
-
 `;

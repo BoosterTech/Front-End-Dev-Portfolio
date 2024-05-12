@@ -9,20 +9,20 @@ export const themes = {
     smallPC: "1350px",
     mobile: "767px",
   },
-};
 
-export const themeEnglish = {
-  home: {
-    contentHeader: "Front-End React\n Developer",
-    headerParagraph:
-      "Hi, I'm Dariusz Podczasik. A passionate Front-End React Developer based in Trim, Ireland.",
+  English: {
+    home: {
+      contentHeader: "Front-End React\n Developer",
+      headerParagraph:
+        "Hi, I'm Dariusz Podczasik. A passionate Front-End React Developer based in Trim, Ireland.",
+    },
   },
-};
 
-export const themePolish = {
-  home: {
-    contentHeader: "Front-End React\n Deweloper",
-    headerParagraph:
-      "Witam, jestem Dariusz Podczasik. Programista Front-Endu w React, mieszkający w Trim w Irlandii.",
+  Polish: {
+    home: {
+      contentHeader: "Front-End React\n Deweloper",
+      headerParagraph:
+        "Witam, jestem Dariusz Podczasik. Programista Front-Endu w React, mieszkający w Trim w Irlandii.",
+    },
   },
 };

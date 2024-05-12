@@ -6,7 +6,7 @@ import {
   StyledListItem,
 } from "./styled";
 import { menuItems } from "./menuItems";
-import { LanguageSwitch } from "../../components/LanguageSwitch";
+import { LanguageSwitch } from "../../common/LanguageSwitch";
 
 const Navigation = () => {
   return (

@@ -6,16 +6,16 @@ import Projects from "./features/portfolio/Projects";
 import Footer from "./features/portfolio/Footer";
 import { Main } from "./GlobalStyles";
 import { ScrollWatcher } from "./common/ScrollWatcher/styled";
-import { useSelector } from "react-redux";
-import { selectIsLanguageEnglish } from "./common/languageSlice";
 import { ThemeProvider } from "styled-components";
-import { themeEnglish, themePolish } from "./themes";
+import { useSelector } from "react-redux";
+import { selectLanguage } from "./Redux/languageSlice";
+import { themes } from "./themes";
 
 const App = () => {
-  const isLanguageEnglish = useSelector(selectIsLanguageEnglish);
+  const languageState = useSelector(selectLanguage);
 
   return (
-    <ThemeProvider theme={isLanguageEnglish ? themeEnglish : themePolish}>
+    <ThemeProvider theme={themes[languageState]}>
       <Navigation />
       <ScrollWatcher />
       <Main>
