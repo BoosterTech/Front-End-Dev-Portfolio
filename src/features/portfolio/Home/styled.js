@@ -107,12 +107,11 @@ export const TechStackContainer = styled.div`
   justify-content: space-evenly;
   max-width: inherit;
   height: auto;
-  margin: 40px auto auto;
+  margin: 40px auto 40px auto;
   flex-wrap: wrap;
   gap: 30px;
   align-items: center;
   border: 1px solid #9aa4ab;
-  border-bottom: 1px solid #9aa4ab;
   border-radius: 15px;
   padding: 30px 20px;
   transition: all 3s ease;

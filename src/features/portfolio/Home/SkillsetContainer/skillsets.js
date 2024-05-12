@@ -1,5 +1,5 @@
 const skillsets = [
-  "Semantic & accessible HTML",
+  "HTML - Semantic & accessible ",
   "Responsive Web desing",
   "Teamwork",
   "Markdown",
@@ -7,6 +7,7 @@ const skillsets = [
   "CSS BEM convention",
   "CSS Grid",
   "CSS Flexbox",
+  "CSS: Animations/Keyframes",
   "React",
   "React Router",
   "Redux-Saga",
@@ -19,6 +20,7 @@ const skillsets = [
   "Promises, Async/Await",
   "GitHub Pull Requests & Review",
   "Trello",
+  "Figma",
   "Scrum",
   "NPM",
   "Git",

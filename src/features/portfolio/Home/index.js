@@ -9,7 +9,6 @@ import {
   ProfileImage,
   TechStackContainer,
   TechStackItem,
-  TechStackHeader,
 } from "./styled";
 
 import wavingHandImage from "../../../images/wavingHand.png";
@@ -20,7 +19,7 @@ import reduxSagaIcon from "../../../images/reduxSagaIcon.jpg";
 import styledComponentsicon from "../../../images/styledComponentsIcon.jpg";
 import axiosIcon from "../../../images/axiosIcon.jpg";
 import reduxToolkitIcon from "../../../images/reduxToolkitIcon.jpg";
-import { ExpandableSkillsetcontainer } from "./ExpandableSkillsetContainer";
+import { SkillsetContainer } from "./SkillsetContainer";
 import { useTheme } from "styled-components";
 import React from "react";
 
@@ -56,13 +55,11 @@ const Home = () => {
         </ImageContainer>
       </ContentImageContainer>
       <TechStackContainer>
-        <TechStackHeader>Tech Stack</TechStackHeader>
         {techStackIcons.map((item, index) => (
           <TechStackItem key={index} src={item} />
         ))}
-
-        <ExpandableSkillsetcontainer />
       </TechStackContainer>
+      <SkillsetContainer />
     </HomeWrapper>
   );
 };
