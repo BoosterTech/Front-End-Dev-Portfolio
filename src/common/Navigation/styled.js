@@ -20,14 +20,25 @@ export const StyledList = styled.nav`
   flex-direction: row;
   list-style: none;
   align-items: center;
+  justify-content: center;
   background-color: ${({ theme }) => themes.color.navigationBackground};
-  padding: 1rem 6rem;
+  padding: 1rem;
   margin-top: 0;
   gap: 2rem;
   font-weight: 700;
   font-size: 1.2rem;
   box-shadow: -1px -4px 29px 4px #c9c7c8;
   transition: all 1s ease;
+  flex-grow: 1;
+
+  &:second-child {
+    justify-content: flex-start;
+    flex-grow: 1;
+  }
+
+  &:last-child {
+    justify-content: flex-end;
+  }
 
   @media (max-width: ${({ theme }) => themes.breakpoint.mobile}) {
     flex-direction: column;
@@ -54,21 +65,12 @@ export const StyledListItem = styled.li`
   }
 `;
 
-export const FirstListItem = styled(StyledListItem)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+export const DevWrapper = styled(StyledListItem)`
   margin-right: auto;
 
   &:hover {
     background-color: #f4f6f7;
     cursor: pointer;
-  }
-
-  @media (max-width: ${({ theme }) => themes.breakpoint.mobile}) {
-    margin: auto;
-    flex-direction: column-reverse;
-    gap:15px;
   }
 `;
 
