@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createSelector } from "@reduxjs/toolkit";
 
 const languageSlice = createSlice({
   name: "language",
@@ -6,21 +6,19 @@ const languageSlice = createSlice({
     language: "English",
   },
   reducers: {
-    setEnglish: (state) => {
-      state.language = "English";
-    },
-    setPolish: (state) => {
-      state.language = "Polish";
-    },
-    setSpanish: (state) => {
-      state.language = "Spanish";
+    setLanguage: (state, { payload: newState }) => {
+      state.language = newState;
     },
   },
 });
 
-export const { toogleLanguage } = languageSlice.actions;
+export const { setLanguage } = languageSlice.actions;
 
 const selectLanguageState = (state) => state.language;
-export const selectLanguage = (state) => selectLanguageState(state).language;
+
+export const selectLanguage = createSelector(
+  [selectLanguageState],
+  (setting) => setting.language
+);
 
 export default languageSlice.reducer;
