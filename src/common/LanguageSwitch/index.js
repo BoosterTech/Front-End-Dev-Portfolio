@@ -1,7 +1,7 @@
 import { Wrapper, Icon, IconsWrapper } from "./styled";
-import PLIcon from "./PolandIcon.png";
-import IRLIcon from "./IrelandIcon.png";
-import ESPIcon from "./SpainIcon.png";
+import PLIcon from "../../images/PolandIcon.png";
+import IRLIcon from "../../images/IrelandIcon.png";
+import ESPIcon from "../../images/SpainIcon.png";
 
 export const LanguageSwitch = () => {
   return (
