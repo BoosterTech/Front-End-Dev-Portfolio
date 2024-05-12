@@ -1,27 +1,27 @@
 import MobileMenu from "./MobileMenu";
 import {
-  FirstListItem,
+  DevWrapper,
   PCmenuContainer,
   StyledList,
   StyledListItem,
 } from "./styled";
 import { menuItems } from "./menuItems";
-import { LanguageSwitch } from "../LanguageSwitch";
+import { LanguageSwitch } from "../../components/LanguageSwitch";
 
 const Navigation = () => {
   return (
     <StyledList>
-      <FirstListItem>
+      <LanguageSwitch />
+      <DevWrapper>
         <span>Derek.dev</span>
-        <LanguageSwitch />
-      </FirstListItem>
+      </DevWrapper>
 
       <PCmenuContainer>
         {menuItems.map((item, index) => (
           <StyledListItem key={index}>{item}</StyledListItem>
         ))}
       </PCmenuContainer>
-      <MobileMenu items={menuItems} />
+      {/* <MobileMenu items={menuItems} /> */}
     </StyledList>
   );
 };
