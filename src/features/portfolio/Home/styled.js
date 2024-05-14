@@ -15,7 +15,7 @@ const imageBorderAnimation = keyframes`
 `;
 
 export const HomeWrapper = styled.section`
-  margin: 150px auto;
+  margin: 100px auto;
   padding: 15px;
   width: 65%;
 
