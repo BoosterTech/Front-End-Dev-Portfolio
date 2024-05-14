@@ -28,6 +28,7 @@ export const ListContainer = styled.ul`
   border-radius: 15px;
   padding: 32px 0 0 0;
   display: grid;
+  align-items: center;
   grid-template-columns: 1fr 1fr 1fr;
   font-size: 18px;
   gap: 10px 3px;
