@@ -15,7 +15,7 @@ export const Wrapper = styled.article`
   max-width: 100%;
   height: auto;
  
-  margin-top: 70px;
+  margin-top: 0;
   justify-content: center;
   align-items: center;
 
