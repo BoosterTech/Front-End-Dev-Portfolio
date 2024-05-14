@@ -1,6 +1,6 @@
-const skillsets = [
+export const skillsets = [
   "HTML - Semantic & accessible ",
-  "Responsive Web desing",
+  "Responsive Web design",
   "Teamwork",
   "Markdown",
   "Immutability",
@@ -26,4 +26,11 @@ const skillsets = [
   "Git",
 ];
 
-export default skillsets;
+export const toLearn = [
+  "TypeScript",
+  "React Native",
+  "React Testing",
+  "Next.js",
+  "Three.js",
+  "Python",
+];
