@@ -14,16 +14,18 @@ export const Icon = styled.img`
   top: 1;
   left: 1;
   height: 25px;
-  margin: 0 15px;
+  margin: 4px 10px;
   border: 1px solid black;
   border-radius: 100%;
   padding: 1px;
+  transition: all .3s ease;
 
   &:hover {
     cursor: pointer;
     border: 1px solid #298edd;
+    transform: scale(1.4);
   }
   &:active {
-    transform: scale(0.9);
+    transform: scale(1.4);
   }
 `;
