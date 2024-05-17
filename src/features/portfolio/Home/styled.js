@@ -46,7 +46,7 @@ export const ContentContainer = styled.div`
 export const ContentHeader = styled.h1`
   font-size: 2.8rem;
   font-weight: 900;
-  padding: 15px;
+  padding: 5px;
   cursor: none;
   transition: all 2s ease-in-out;
 
@@ -65,9 +65,10 @@ export const ContentHeader = styled.h1`
 
 export const HeaderImage = styled.img`
   display: inline-block;
-  width: 50px;
+  width: 45px;
   height: auto;
   margin-bottom: 0;
+  margin-left: 2px;
   transform-origin: bottom;
   transition: transform 3s ease;
 `;
