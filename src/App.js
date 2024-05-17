@@ -15,7 +15,7 @@ const App = () => {
   const languageState = useSelector(selectLanguage);
 
   return (
-    <ThemeProvider theme={themes[languageState]}>
+    <ThemeProvider theme={themes}>
       <Navigation />
       <ScrollWatcher />
       <Main>
