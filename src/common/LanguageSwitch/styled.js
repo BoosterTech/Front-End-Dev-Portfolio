@@ -18,14 +18,17 @@ export const Icon = styled.img`
   border: 1px solid black;
   border-radius: 100%;
   padding: 1px;
-  transition: all .3s ease;
+  transition: all 0.3s ease;
 
   &:hover {
     cursor: pointer;
-    border: 1px solid #298edd;
     transform: scale(1.4);
   }
-  &:active {
-    transform: scale(1.4);
-  }
+
+  ${(props) =>
+    props.isActive &&
+    css`
+      border: 1px solid #298edd;
+      transform: scale(1.4);
+    `}
 `;
