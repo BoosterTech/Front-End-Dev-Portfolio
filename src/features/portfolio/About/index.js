@@ -7,8 +7,14 @@ import {
   Image,
   Wrapper,
 } from "./styled";
+import { useSelector } from "react-redux";
+import { useTheme } from "styled-components";
+import { selectLanguage } from "../../../Redux/languageSlice";
 
 const About = () => {
+  const language = useSelector(selectLanguage);
+  const theme = useTheme();
+
   return (
     <Wrapper>
       <ImageContainer>
@@ -16,29 +22,12 @@ const About = () => {
         <Image src={imageOverlay} alt="frontEndImage.jpg" />
       </ImageContainer>
       <ContentContainer>
-        <Header>ABOUT ME</Header>
-        <p>
-          Hi, I'm Derek, Frontend Developer dedicated to crafting exceptional
-          user interfaces and experiences.
-        </p>
-        My primary focus revolves around leveraging cutting-edge technologies to
-        deliver polished solutions that resonate with users.
-        <br />
-        React serves as the cornerstone of my development approach, facilitating
-        the creation of dynamic, multi-page applications with seamless
-        navigation and optimized performance.
-        <br /> Additionally, Styled-Components offers a pragmatic approach to
-        styling, allowing me to streamline the design process and maintain
-        consistency across projects.
-        <br />
-        Furthermore, Redux & Axios enhance the development workflow, promoting
-        code integrity and scalability.
-        <br /> This robust stack empowers me to efficiently develop
-        high-performance, responsive web applications that meet the demands of
-        today's digital landscape. <br />
-        Driven by a passion for clean and intuitive design, I ensure that every
-        interface I create not only meets but exceeds user expectations.
-        <p> Best regards,</p>
+        <Header>{theme[language].about.aboutMeHeader}</Header>
+        <div
+          dangerouslySetInnerHTML={{
+            __html: theme[language].about.aboutMeParagraph,
+          }}
+        />
       </ContentContainer>
     </Wrapper>
   );
