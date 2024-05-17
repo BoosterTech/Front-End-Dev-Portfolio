@@ -8,12 +8,18 @@ import {
 } from "./styled";
 
 import headerImage from "../../../images/fingerPointingDown.jpg";
+import { useSelector } from "react-redux";
+import { selectLanguage } from "../../../Redux/languageSlice";
+import { useTheme } from "styled-components";
 
 const Contact = () => {
+  const language = useSelector(selectLanguage);
+  const theme = useTheme();
+
   return (
     <Wrapper>
       <Header>
-        Let's collaborate to bring visions to life!
+        {theme[language].contact.contactParagraph}
         <HeaderImage src={headerImage} />{" "}
       </Header>
       <IconsWrapper>
