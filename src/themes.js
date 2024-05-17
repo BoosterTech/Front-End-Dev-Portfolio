@@ -56,7 +56,7 @@ export const themes = {
       React jest podstawą mojego podejścia do rozwoju, umożliwiając tworzenie dynamicznych, wielostronicowych aplikacji z płynną nawigacją i optymalizowaną wydajnością.<br/>
       Dodatkowo, Styled-Components oferuje pragmatyczne podejście do stylizacji, pozwalając mi usprawnić proces projektowania i utrzymać spójność w projektach.<br/>
       Ponadto, Redux i Axios ulepszają przepływ pracy podczas tworzenia kodu, promując integralność kodu i skalowalność.<br/>
-      Ten solidny stos technologiczny umożliwia mi efektywne tworzenie wydajnych, responsywnych aplikacji internetowych, które spełniają wymagania dzisiejszego cyfrowego krajobrazu.<br/>
+      Ten solidny stos technologiczny umożliwia mi efektywne tworzenie wydajnych, responsywnych aplikacji internetowych, które spełniają wymagania dzisiejszego cyfrowego świata.<br/>
       Napędzany pasją do czystego i intuicyjnego projektowania, dbam o to, aby każdy interfejs, który tworzę, nie tylko spełniał, ale przekraczał oczekiwania użytkowników.
       <p>Z poważaniem,
         
