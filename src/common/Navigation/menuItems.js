@@ -1,1 +1,5 @@
-export const menuItems = ["Home", "About", "Projects", "Contact"];
+export const menuItems = {
+  English: ["Home", "About", "Projects", "Contact"],
+  Polish: ["Strona główna", "O mnie", "Projekty", "Kontakt"],
+  Spanish: ["Inicio", "Acerca de", "Proyectos", "Contacto"],
+};
