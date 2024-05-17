@@ -7,8 +7,11 @@ import {
 } from "./styled";
 import { menuItems } from "./menuItems";
 import { LanguageSwitch } from "../../common/LanguageSwitch";
+import { useSelector } from "react-redux";
+import { selectLanguage } from "../../Redux/languageSlice";
 
 const Navigation = () => {
+  const language = useSelector(selectLanguage);
   return (
     <StyledList>
       <LanguageSwitch />
@@ -17,7 +20,7 @@ const Navigation = () => {
       </DevWrapper>
 
       <PCmenuContainer>
-        {menuItems.map((item, index) => (
+        {menuItems[language].map((item, index) => (
           <StyledListItem key={index}>{item}</StyledListItem>
         ))}
       </PCmenuContainer>
