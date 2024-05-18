@@ -1,13 +1,6 @@
 import { icons } from "./contactIcons";
-import {
-  ContactIconStyled,
-  IconsWrapper,
-  Header,
-  Wrapper,
-  HeaderImage,
-} from "./styled";
+import { ContactIconStyled, IconsWrapper, Header, Wrapper } from "./styled";
 
-import headerImage from "../../../images/fingerPointingDown.jpg";
 import { useSelector } from "react-redux";
 import { selectLanguage } from "../../../Redux/languageSlice";
 import { useTheme } from "styled-components";
@@ -18,10 +11,7 @@ const Contact = () => {
 
   return (
     <Wrapper>
-      <Header>
-        {theme[language].contact.contactParagraph}
-        <HeaderImage src={headerImage} />{" "}
-      </Header>
+      <Header>{theme[language].contact.contactParagraph}</Header>
       <IconsWrapper>
         {icons.map((icon) => (
           <ContactIconStyled key={icon.id} src={icon.iconURL} />
