@@ -85,25 +85,25 @@ export const skillsets = {
 export const toLearn = {
   English: [
     "TypeScript",
+    "Next.js",
     "React Native",
     "React Testing",
-    "Next.js",
     "Three.js",
     "Python",
   ],
   Polish: [
     "TypeScript",
+    "Next.js",
     "React Native",
     "Testowanie React",
-    "Next.js",
     "Three.js",
     "Python",
   ],
   Spanish: [
     "TypeScript",
+    "Next.js",
     "React Native",
     "Pruebas React",
-    "Next.js",
     "Three.js",
     "Python",
   ],
