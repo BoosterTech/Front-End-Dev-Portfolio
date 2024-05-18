@@ -26,7 +26,7 @@ export const Icon = styled.img`
   }
 
   ${(props) =>
-    props.isActive &&
+    props.$isActive &&
     css`
       border: 1px solid #298edd;
       transform: scale(1.4);
