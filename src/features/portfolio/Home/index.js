@@ -22,6 +22,8 @@ import reduxToolkitIcon from "../../../images/reduxToolkitIcon.jpg";
 import { SkillsetContainer } from "./SkillsetContainer";
 import { useTheme } from "styled-components";
 import React from "react";
+import { useSelector } from "react-redux";
+import { selectLanguage } from "../../../Redux/languageSlice";
 
 const techStackIcons = [
   reactIcon,
@@ -34,21 +36,26 @@ const techStackIcons = [
 
 const Home = () => {
   const theme = useTheme();
+  const language = useSelector(selectLanguage);
 
   return (
     <HomeWrapper>
       <ContentImageContainer>
         <ContentContainer>
           <ContentHeader>
-            {theme.home.contentHeader.split("\n").map((line, index) => (
-              <React.Fragment key={index}>
-                {line}
-                <br />
-              </React.Fragment>
-            ))}
+            {theme[language].home.contentHeader
+              .split("\n")
+              .map((line, index) => (
+                <React.Fragment key={index}>
+                  {line}
+                  <br />
+                </React.Fragment>
+              ))}
             <HeaderImage src={wavingHandImage} alt="headerImage.png" />
           </ContentHeader>
-          <HeaderParagraph>{theme.home.headerParagraph}</HeaderParagraph>
+          <HeaderParagraph>
+            {theme[language].home.headerParagraph}
+          </HeaderParagraph>
         </ContentContainer>
         <ImageContainer>
           <ProfileImage src={profileImage} alt="profileImage.png" />
