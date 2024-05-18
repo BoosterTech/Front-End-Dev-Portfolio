@@ -66,6 +66,7 @@ export const IconsWrapper = styled.div`
   height: 70px;
   max-width: 100%;
   justify-content: center;
+  margin-top: 15px;
 
   @media (max-width: ${({ theme }) => themes.breakpoint.mobile}) {
     height: 50px;
