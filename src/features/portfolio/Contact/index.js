@@ -14,7 +14,15 @@ const Contact = () => {
       <Header>{theme[language].contact.contactParagraph}</Header>
       <IconsWrapper>
         {icons.map((icon) => (
-          <ContactIconStyled key={icon.id} src={icon.iconURL} />
+          <a
+            style={{ display: "flex" }}
+            key={icon.id}
+            href={icon.link}
+            target="blank"
+            rel="noopener noreferre"
+          >
+            <ContactIconStyled key={icon.id} src={icon.iconURL} />
+          </a>
         ))}
       </IconsWrapper>
     </Wrapper>
