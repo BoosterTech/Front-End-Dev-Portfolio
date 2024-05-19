@@ -24,6 +24,9 @@ export const ProjectWrapper = styled.div`
   width: 100%;
   padding: 0;
   justify-content: center;
+  margin-bottom: 50px;
+
+  padding-bottom: 50px;
 `;
 
 export const ProjectIcon = styled.img`
@@ -33,7 +36,7 @@ export const ProjectIcon = styled.img`
 `;
 
 export const ProjectHeader = styled.h2`
-margin-top: 0;
+  margin-top: 0;
   font-size: 1.6em;
   width: 100%;
   text-align: center;
@@ -52,11 +55,17 @@ export const ProjectDescription = styled.div`
   margin: auto;
   margin-top: 0;
   text-align: left;
+
+  ${(props) =>
+    props.inverted &&
+    `
+     order: -10;
+  `}
 `;
 
 export const LinkContainer = styled.div`
-display: flex;
-flex-direction: column;
+  display: flex;
+  flex-direction: column;
   text-align: center;
   gap: 10px;
   margin-top: 60px;
@@ -69,9 +78,7 @@ export const ProjectLink = styled.a`
   color: #0066af;
   font-weight: bold;
   text-decoration: none;
-border: 1px solid white;
-
-
+  border: 1px solid white;
 
   &:hover {
     cursor: pointer;
