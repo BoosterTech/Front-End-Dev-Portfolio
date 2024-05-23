@@ -13,11 +13,12 @@ const Tile = ({
   imageURL,
   GitHubPagesURL,
   GitHubRepoURL,
+  inverted,
 }) => {
   return (
     <ProjectWrapper>
       <ProjectImage src={imageURL} alt={`${title}_image`} />
-      <ProjectDescription>
+      <ProjectDescription inverted={inverted}>
         <ProjectHeader>{title}</ProjectHeader>
         <div
           dangerouslySetInnerHTML={{
