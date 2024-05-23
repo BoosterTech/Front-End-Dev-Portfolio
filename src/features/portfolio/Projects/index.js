@@ -19,6 +19,7 @@ const Projects = () => {
           imageURL={project.imageURL}
           GitHubPagesURL={project.GitHubPagesURL}
           GitHubRepoURL={project.GitHubRepoURL}
+          inverted={project.inverted}
         />
       ))}
     </Wrapper>
