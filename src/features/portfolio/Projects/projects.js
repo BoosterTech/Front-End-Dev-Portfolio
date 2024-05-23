@@ -1,5 +1,5 @@
 import movieBrowserImage from "../../../images/movieBrowserProject.png";
-import tasksListImage from "../../../images/tasksList.png";
+import tasksListImage from "../../../images/tasksListProject.png";
 
 const projects = [
   {
