@@ -43,9 +43,10 @@ export const ProjectHeader = styled.h2`
 `;
 
 export const ProjectImage = styled.img`
-  width: 600px;
+  height: 500px;
+  max-width: 47%;
   padding: 20px;
-  border-radius: 30px;
+  border-radius: 10px;
   box-shadow: 0px 4px 12px 0px grey;
 `;
 
@@ -55,12 +56,7 @@ export const ProjectDescription = styled.div`
   margin: auto;
   margin-top: 0;
   text-align: left;
-
-  ${(props) =>
-    props.inverted &&
-    `
-     order: -10;
-  `}
+  order: ${(props) => (props.inverted ? -1 : 1)};
 `;
 
 export const LinkContainer = styled.div`
