@@ -1,5 +1,6 @@
 import movieBrowserImage from "../../../images/movieBrowserProject.png";
 import tasksListImage from "../../../images/tasksListProject.png";
+import currencyConverterImage from "../../../images/currencyConverterProject.png";
 
 const projects = [
   {
@@ -29,10 +30,24 @@ const projects = [
                    Whether for personal use or team project management, this tool provides a seamless way to keep track of tasks and ensure nothing falls through the cracks.`,
     imageURL: `${tasksListImage}`,
     GitHubPagesURL:
-      "https://github.com/BoosterTech/To-Do-List-Redux-Saga-Module-14.git",
+      "https://boostertech.github.io/To-Do-List-Redux-Saga-Module-14/#/todo-list-module-14/tasks",
     GitHubRepoURL:
       "https://github.com/BoosterTech/To-Do-List-Redux-Saga-Module-14.git",
     inverted: true,
+  },
+  {
+    title: `Currency Converter`,
+    description: `<p>&nbsp&nbsp This comprehensive currency converter is powered by data sourced directly from the European Central Bank.</p>
+     Seamlessly integrated, it provides real-time exchange rates, ensuring accuracy and reliability in currency conversions.
+     <p> Whether you're planning a trip abroad, managing international transactions, or simply curious about currency values,
+      this platform empowers you to effortlessly convert any currency to another with confidence.</p> 
+    With a user-friendly interface and access to a wide range of currencies, that currency converter is your go-to tool for navigating the global economy. `,
+    imageURL: `${currencyConverterImage}`,
+    GitHubPagesURL:
+      "https://github.com/BoosterTech/Currency-Converter-Fetch-Module-12.git",
+    GitHubRepoURL:
+      "https://github.com/BoosterTech/Currency-Converter-Fetch-Module-12.git",
+    inverted: false,
   },
 ];
 
