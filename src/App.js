@@ -10,19 +10,22 @@ import { ThemeProvider } from "styled-components";
 import { useSelector } from "react-redux";
 import { selectLanguage } from "./Redux/languageSlice";
 import { themes } from "./themes";
+import { menuItems } from "./common/Navigation/menuItems";
 
 const App = () => {
-  const languageState = useSelector(selectLanguage);
+  const language = useSelector(selectLanguage);
+  
+
 
   return (
     <ThemeProvider theme={themes}>
       <Navigation />
       <ScrollWatcher />
       <Main>
-        <Home id="home" />
-        <About id="about" />
-        <Projects id="projects" />
-        <Contact id="contact" />
+        <Home id={menuItems[language][0].toLowerCase()} />
+        <About id={menuItems[language][1].toLowerCase()} />
+        <Projects id={menuItems[language][2].toLowerCase()} />
+        <Contact id={menuItems[language][3].toLowerCase()} />
       </Main>
       <Footer />
     </ThemeProvider>
