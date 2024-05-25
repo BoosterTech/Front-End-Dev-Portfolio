@@ -34,7 +34,7 @@ const Navigation = () => {
         {menuItems[language].map((item, index) => (
           <Link
             activeClass="active"
-            to={item.replace(/\s+/g, "").toLowerCase()} // convert item to lowercase and remove spaces
+            to={item.toLowerCase()} // convert item to lowercase and remove spaces
             spy={true}
             smooth={true}
             offset={-70}
