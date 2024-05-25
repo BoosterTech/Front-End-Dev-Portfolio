@@ -40,8 +40,7 @@ export const HeaderImage = styled.img`
 export const Wrapper = styled.section`
   max-width: 100%;
   max-height: 300px;
-  background-color: white;
-  box-shadow: -1px -4px 29px 4px #c9c7c8;
+  background-color: #F2F0F6;
   padding: 25px 100px;
   transition: transform 3s ease;
 
