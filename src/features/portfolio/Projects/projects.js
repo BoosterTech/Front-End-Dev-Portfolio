@@ -30,6 +30,16 @@ const projects = [
   `,
     },
     imageURL: `${movieBrowserImage}`,
+    GitHubPagesURLTag: {
+      English: "Go to the Website",
+      Polish: "Przejdź do Strony",
+      Spanish: "Ir al Sitio Web",
+    },
+    GitHubRepoURLTag: {
+      English: "Go to the GitHub Repository",
+      Polish: "Przejdź do Repozytorium GitHub",
+      Spanish: "Ir al Repositorio de GitHub",
+    },
     GitHubPagesURL: "https://boostertech.github.io/MovieBrowser/#/movies",
     GitHubRepoURL: "https://github.com/BoosterTech/MovieBrowser.git",
     inverted: false,
@@ -60,6 +70,16 @@ const projects = [
   `,
     },
     imageURL: `${tasksListImage}`,
+    GitHubPagesURLTag: {
+      English: "Go to the Website",
+      Polish: "Przejdź do Strony",
+      Spanish: "Ir al Sitio Web",
+    },
+    GitHubRepoURLTag: {
+      English: "Go to the GitHub Repository",
+      Polish: "Przejdź do Repozytorium GitHub",
+      Spanish: "Ir al Repositorio de GitHub",
+    },
     GitHubPagesURL:
       "https://boostertech.github.io/To-Do-List-Redux-Saga-Module-14/#/todo-list-module-14/tasks",
     GitHubRepoURL:
@@ -92,6 +112,16 @@ const projects = [
       `,
     },
     imageURL: `${currencyConverterImage}`,
+    GitHubPagesURLTag: {
+      English: "Go to the Website",
+      Polish: "Przejdź do Strony",
+      Spanish: "Ir al Sitio Web",
+    },
+    GitHubRepoURLTag: {
+      English: "Go to the GitHub Repository",
+      Polish: "Przejdź do Repozytorium GitHub",
+      Spanish: "Ir al Repositorio de GitHub",
+    },
     GitHubPagesURL:
       "https://github.com/BoosterTech/Currency-Converter-Fetch-Module-12.git",
     GitHubRepoURL:
@@ -133,10 +163,21 @@ const projects = [
       `,
     },
     imageURL: `${plasmaLibraryImage}`,
+    GitHubPagesURLTag: {
+      English: "Go to the Website",
+      Polish: "Przejdź do Strony",
+      Spanish: "Ir al Sitio Web",
+    },
+    GitHubRepoURLTag: {
+      English: "Go to the GitHub Repository",
+      Polish: "Przejdź do Repozytorium GitHub",
+      Spanish: "Ir al Repositorio de GitHub",
+    },
     GitHubPagesURL: "https://boostertech.github.io/Plasma-Library/",
     GitHubRepoURL: "https://github.com/BoosterTech/Plasma-Library.git",
     inverted: true,
   },
+  
 ];
 
 export default projects;
