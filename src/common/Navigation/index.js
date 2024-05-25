@@ -4,6 +4,7 @@ import {
   PCmenuContainer,
   StyledList,
   StyledListItem,
+  StyledScrollLink,
 } from "./styled";
 import { menuItems } from "./menuItems";
 import { LanguageSwitch } from "../../common/LanguageSwitch";
@@ -18,11 +19,11 @@ const Navigation = () => {
       <LanguageSwitch />
       <Link
         activeClass="active"
-        to={menuItems[language][0].replace(/\s+/g, "").toLowerCase()} // convert item to lowercase and remove spaces
+        to={menuItems[language][0].toLowerCase()} // convert item to lowercase and remove spaces
         spy={true}
         smooth={true}
         offset={-200}
-        duration={1000}
+        duration={700}
         key={1}
       >
         <DevWrapper>
@@ -32,17 +33,17 @@ const Navigation = () => {
 
       <PCmenuContainer>
         {menuItems[language].map((item, index) => (
-          <Link
+          <StyledScrollLink
             activeClass="active"
             to={item.toLowerCase()} // convert item to lowercase and remove spaces
             spy={true}
             smooth={true}
-            offset={-70}
-            duration={1000}
+            offset={index === menuItems[language].length - 1 ? -650 : -70}
+            duration={700}
             key={index}
           >
             <StyledListItem key={index}>{item}</StyledListItem>
-          </Link>
+          </StyledScrollLink>
         ))}
       </PCmenuContainer>
       {/* <MobileMenu items={menuItems} /> */}
