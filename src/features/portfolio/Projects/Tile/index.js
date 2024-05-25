@@ -16,6 +16,10 @@ const Tile = ({
   GitHubPagesURL,
   GitHubRepoURL,
   inverted,
+
+  GitHubPagesURLTag,
+  GitHubRepoURLTag,
+
 }) => {
   const language = useSelector(selectLanguage);
 
@@ -23,7 +27,7 @@ const Tile = ({
     <ProjectWrapper>
       <ProjectImage src={imageURL} alt={`${title}_image`} />
       <ProjectDescription $inverted={inverted}>
-        <ProjectHeader>{title}</ProjectHeader>
+        <ProjectHeader>{title[language]}</ProjectHeader>
         <div
           dangerouslySetInnerHTML={{
             __html: description[language],
@@ -31,12 +35,10 @@ const Tile = ({
         />
         <LinkContainer>
           <ProjectLink href={GitHubPagesURL} target="_blank">
-            {" "}
-            Go to the Website
+            {GitHubPagesURLTag[language]}
           </ProjectLink>
           <ProjectLink href={GitHubRepoURL} target="_blank">
-            {" "}
-            Go to the GitHub Repository
+            {GitHubRepoURLTag[language]}
           </ProjectLink>
         </LinkContainer>
       </ProjectDescription>
