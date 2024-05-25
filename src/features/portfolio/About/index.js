@@ -11,12 +11,12 @@ import { useSelector } from "react-redux";
 import { useTheme } from "styled-components";
 import { selectLanguage } from "../../../Redux/languageSlice";
 
-const About = () => {
+const About = ({id}) => {
   const language = useSelector(selectLanguage);
   const theme = useTheme();
 
   return (
-    <Wrapper>
+    <Wrapper id={id}>
       <ImageContainer>
         <FrontEndSpinner alt="frontEndSpinner.svg" />
         <Image src={imageOverlay} alt="frontEndImage.jpg" />

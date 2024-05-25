@@ -5,12 +5,12 @@ import { useSelector } from "react-redux";
 import { selectLanguage } from "../../../Redux/languageSlice";
 import { useTheme } from "styled-components";
 
-const Contact = () => {
+const Contact = ({id}) => {
   const language = useSelector(selectLanguage);
   const theme = useTheme();
 
   return (
-    <Wrapper>
+    <Wrapper id={id}>
       <Header>{theme[language].contact.contactParagraph}</Header>
       <IconsWrapper>
         {icons.map((icon) => (

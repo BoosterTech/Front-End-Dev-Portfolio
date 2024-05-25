@@ -3,9 +3,9 @@ import projects from "./projects";
 import Tile from "./Tile";
 import gitHubIcon from "../../../images/gitHubIcon.png";
 
-const Projects = () => {
+const Projects = ({id}) => {
   return (
-    <Wrapper>
+    <Wrapper id={id}>
       <ProjectIcon src={gitHubIcon} alt="GitHub Icon" />
       <Header>
         Portfolio

@@ -34,12 +34,12 @@ const techStackIcons = [
   styledComponentsicon,
 ];
 
-const Home = () => {
+const Home = ({id}) => {
   const theme = useTheme();
   const language = useSelector(selectLanguage);
 
   return (
-    <HomeWrapper>
+    <HomeWrapper id={id}>
       <ContentImageContainer>
         <ContentContainer>
           <ContentHeader>
