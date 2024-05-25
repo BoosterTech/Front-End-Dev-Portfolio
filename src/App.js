@@ -19,10 +19,10 @@ const App = () => {
       <Navigation />
       <ScrollWatcher />
       <Main>
-        <Home />
-        <About />
-        <Projects />
-        <Contact />
+        <Home id="home" />
+        <About id="about" />
+        <Projects id="projects" />
+        <Contact id="contact" />
       </Main>
       <Footer />
     </ThemeProvider>
