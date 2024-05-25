@@ -42,8 +42,11 @@ export const Wrapper = styled.section`
   max-height: 300px;
   background-color: #F2F0F6;
   padding: 25px 100px;
+  border-top: 1px solid #9aa4ab;
+  border-radius: 5%;
   transition: transform 3s ease;
   padding-top:100px;
+  
 
   &:hover{
     ${HeaderImage}{
