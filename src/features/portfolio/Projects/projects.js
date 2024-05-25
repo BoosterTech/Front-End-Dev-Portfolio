@@ -5,7 +5,11 @@ import plasmaLibraryImage from "../../../images/plasmaLibraryProject.png";
 
 const projects = [
   {
-    title: `Movies Browser`,
+    title: {
+      English: `Movies Browser`,
+      Polish: `Przeglądarka Filmów`,
+      Spanish: `Navegador de Películas`,
+    },
     description: {
       English: `<p>&nbsp&nbsp The Movie Browser is an intuitive web application designed to enhance your movie-watching experience
                 by allowing users to search for movies, cast, and crew members effortlessly.</p>
@@ -31,7 +35,11 @@ const projects = [
     inverted: false,
   },
   {
-    title: `Tasks List`,
+    title: {
+      English: `Tasks List`,
+      Polish: `Lista Zadań`,
+      Spanish: `Lista de Tareas`,
+    },
     description: {
       English: `<p>&nbsp&nbsp The "Tasks List" application is a robust and user-friendly task management tool designed to enhance productivity and organization. 
                 This project allows users to seamlessly add tasks to a dynamic list, track their completion status, and manage them with ease.
@@ -59,7 +67,11 @@ const projects = [
     inverted: true,
   },
   {
-    title: `Currency Converter`,
+    title: {
+      English: `Currency Converter`,
+      Polish: `Kalkulator Walut`,
+      Spanish: `Conversor de Divisas`,
+    },
     description: {
       English: `<p>&nbsp&nbsp This comprehensive currency converter is powered by data sourced directly from the European Central Bank.</p>
                 Seamlessly integrated, it provides real-time exchange rates, ensuring accuracy and reliability in currency conversions.
@@ -87,7 +99,11 @@ const projects = [
     inverted: false,
   },
   {
-    title: `Plasma Library`,
+    title: {
+      English: `Plasma Library`,
+      Polish: `Biblioteka Plazma`,
+      Spanish: `Biblioteca de Plasma`,
+    },
     description: {
       English: `<p>&nbsp&nbsp Welcome to my very first web development project 🙂</p>
                 <p>Marking the beginning of my journey into web development, this project is a testament to my early learning and growth. 
