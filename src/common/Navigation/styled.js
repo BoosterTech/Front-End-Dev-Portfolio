@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { themes } from "../../themes";
 import { keyframes } from "styled-components";
+import { Link } from "react-scroll";
 
 const slideFromLeft = keyframes`
 from{
@@ -52,6 +53,7 @@ export const StyledListItem = styled.li`
   padding: 2px 20px;
   border-radius: 50px;
   transition: all 0.3s ease;
+  transition: border 1s, background-color 1s, color 1s;
 
   &:hover {
     border: 1px solid #1693e4;
@@ -65,8 +67,18 @@ export const StyledListItem = styled.li`
   }
 `;
 
+export const StyledScrollLink = styled(Link)`
+  &.active ${StyledListItem} {
+    border: 1px solid #1693e4;
+    background-color: #b9e1fb;
+
+    color: black;
+  }
+`;
+
 export const DevWrapper = styled(StyledListItem)`
   margin-right: auto;
+  transition: all 0.3s ease;
 
   &:hover {
     background-color: #f4f6f7;
