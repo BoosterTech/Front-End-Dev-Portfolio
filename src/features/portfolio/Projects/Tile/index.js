@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import {
   LinkContainer,
   ProjectDescription,
@@ -6,6 +7,7 @@ import {
   ProjectLink,
   ProjectWrapper,
 } from "../styled";
+import { selectLanguage } from "../../../../Redux/languageSlice";
 
 const Tile = ({
   title,
@@ -15,6 +17,8 @@ const Tile = ({
   GitHubRepoURL,
   inverted,
 }) => {
+  const language = useSelector(selectLanguage);
+
   return (
     <ProjectWrapper>
       <ProjectImage src={imageURL} alt={`${title}_image`} />
@@ -22,7 +26,7 @@ const Tile = ({
         <ProjectHeader>{title}</ProjectHeader>
         <div
           dangerouslySetInnerHTML={{
-            __html: description,
+            __html: description[language],
           }}
         />
         <LinkContainer>
