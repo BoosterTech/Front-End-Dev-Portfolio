@@ -123,7 +123,7 @@ const projects = [
       Spanish: "Ir al Repositorio de GitHub",
     },
     GitHubPagesURL:
-      "https://github.com/BoosterTech/Currency-Converter-Fetch-Module-12.git",
+      "https://boostertech.github.io/Currency-Converter-Fetch-Module-12/",
     GitHubRepoURL:
       "https://github.com/BoosterTech/Currency-Converter-Fetch-Module-12.git",
     inverted: false,
