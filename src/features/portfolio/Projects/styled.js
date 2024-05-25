@@ -24,9 +24,8 @@ export const ProjectWrapper = styled.div`
   width: 100%;
   padding: 0;
   justify-content: center;
-  margin-bottom: 50px;
-
-  padding-bottom: 50px;
+  margin-bottom: 150px;
+    padding-bottom: 50px;
 `;
 
 export const ProjectIcon = styled.img`
@@ -54,9 +53,9 @@ export const ProjectDescription = styled.div`
   width: 40%;
   font-size: 1.2em;
   margin: auto;
-  margin-top: 0;
-  text-align: left;
-  order: ${(props) => (props.inverted ? -1 : 1)};
+  margin-top: 10px0;
+  text-align: center;
+  order: ${(props) => (props.$inverted ? -1 : 1)};
 `;
 
 export const LinkContainer = styled.div`
