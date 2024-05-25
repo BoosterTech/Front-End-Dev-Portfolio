@@ -43,6 +43,7 @@ export const Wrapper = styled.section`
   background-color: #F2F0F6;
   padding: 25px 100px;
   transition: transform 3s ease;
+  padding-top:100px;
 
   &:hover{
     ${HeaderImage}{

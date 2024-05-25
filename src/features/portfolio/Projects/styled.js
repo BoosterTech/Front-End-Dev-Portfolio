@@ -13,7 +13,7 @@ export const Header = styled.h1`
   font-size: 2.5em;
   color: #0066af;
   padding: 0 15px 15px 15px;
-  margin-bottom: 70px;
+  margin-bottom: 0;
   margin-top: 0;
 `;
 
@@ -24,8 +24,9 @@ export const ProjectWrapper = styled.div`
   width: 100%;
   padding: 0;
   justify-content: center;
-  margin-bottom: 150px;
-    padding-bottom: 50px;
+  margin-bottom: 0;
+  margin-top: 150px;
+  padding-bottom: 50px;
 `;
 
 export const ProjectIcon = styled.img`
