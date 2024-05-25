@@ -45,7 +45,7 @@ export const ProjectHeader = styled.h2`
 export const ProjectImage = styled.img`
   max-width: 100%;
   max-height: 500px;
-  padding: 20px;
+  padding: 5px;
   border-radius: 10px;
   box-shadow: 0px 4px 12px 0px grey;
 `;
