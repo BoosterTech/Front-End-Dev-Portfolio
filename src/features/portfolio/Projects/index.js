@@ -20,6 +20,9 @@ const Projects = () => {
           GitHubPagesURL={project.GitHubPagesURL}
           GitHubRepoURL={project.GitHubRepoURL}
           inverted={project.inverted}
+
+          GitHubPagesURLTag={project.GitHubPagesURLTag}
+          GitHubRepoURLTag={project.GitHubRepoURLTag}
         />
       ))}
     </Wrapper>
