@@ -18,7 +18,7 @@ const Tile = ({
   return (
     <ProjectWrapper>
       <ProjectImage src={imageURL} alt={`${title}_image`} />
-      <ProjectDescription inverted={inverted}>
+      <ProjectDescription $inverted={inverted}>
         <ProjectHeader>{title}</ProjectHeader>
         <div
           dangerouslySetInnerHTML={{
