@@ -1,6 +1,7 @@
 {
   "name": "front-end-portfolio",
   "version": "0.1.0",
+  "homepage": "https://boostertech.github.io/Front-End-Dev-Portfolio/",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.1",
