@@ -1,6 +1,7 @@
 import movieBrowserImage from "../../../images/movieBrowserProject.png";
 import tasksListImage from "../../../images/tasksListProject.png";
 import currencyConverterImage from "../../../images/currencyConverterProject.png";
+import plasmaLibraryImage from "../../../images/plasmaLibraryProject.png";
 
 const projects = [
   {
@@ -21,11 +22,7 @@ const projects = [
                   This project allows users to seamlessly add tasks to a dynamic list, track their completion status, and manage them with ease.
                    Key features include:</p>
 
-                  <p><strong>Task Addition</strong>: Quickly add new tasks to the list with a straightforward input interface.</p>
-                  <p><strong>Mark as Done/Undone</strong>: Easily toggle the completion status of tasks, marking them as done or reverting them to undone.</p>
-                  <p><strong>Mark All as Done</strong>: Use a single button to efficiently mark all tasks in the list as completed.</p>
-                  <p><strong>Hide Completed Tasks</strong>: Simplify the view by hiding tasks that have been marked as done, allowing users to focus on pending tasks.</p>
-                  <p><strong>Task Removal</strong>: Remove tasks from the list with a single click, ensuring the task list remains relevant and up-to-date.</p>
+                 
                    The "Tasks List" application is built with a clean, intuitive design, prioritizing user experience and productivity. 
                    Whether for personal use or team project management, this tool provides a seamless way to keep track of tasks and ensure nothing falls through the cracks.`,
     imageURL: `${tasksListImage}`,
@@ -49,6 +46,29 @@ const projects = [
       "https://github.com/BoosterTech/Currency-Converter-Fetch-Module-12.git",
     inverted: false,
   },
+  {
+    title: `Plasma Library`,
+    description: `<p>&nbsp&nbsp Welcome to my very first web development project 🙂</p>
+    <p>Marking the beginning of my journey into web development, this project is a testament to my early learning and growth. 
+    <p>The Plasma Library is a simple yet informative site primarily built using HTML and CSS, with a touch of JavaScript,
+    dedicated to the fascinating field of plasma physics.</p>
+    It includes links to three major books available for purchase as well as an array of publications.
+    <p>Despite having gained more knowledge and skills since then, I have chosen to preserve the original code of this project.
+    It remains untouched and as originally written, holding sentimental value as a reminder of my early steps into the world of mobile web application development.
+    <p>Explore the Plasma Library and enjoy a glimpse into the beginnings of my coding journey🚀</p>`,
+    imageURL: `${plasmaLibraryImage}`,
+    GitHubPagesURL: "https://boostertech.github.io/Plasma-Library/",
+    GitHubRepoURL: "https://github.com/BoosterTech/Plasma-Library.git",
+    inverted: true,
+  },
 ];
 
 export default projects;
+
+{
+  /* <p><strong>Task Addition</strong>: Quickly add new tasks to the list with a straightforward input interface.</p>
+                  <p><strong>Mark as Done/Undone</strong>: Easily toggle the completion status of tasks, marking them as done or reverting them to undone.</p>
+                  <p><strong>Mark All as Done</strong>: Use a single button to efficiently mark all tasks in the list as completed.</p>
+                  <p><strong>Hide Completed Tasks</strong>: Simplify the view by hiding tasks that have been marked as done, allowing users to focus on pending tasks.</p>
+                  <p><strong>Task Removal</strong>: Remove tasks from the list with a single click, ensuring the task list remains relevant and up-to-date.</p> */
+}
