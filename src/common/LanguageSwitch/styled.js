@@ -1,7 +1,12 @@
 import styled, { css } from "styled-components";
+import { themes } from "../../themes";
 
 export const Wrapper = styled.div`
   margin-right: auto;
+
+  @media (max-width: ${({ theme }) => themes.breakpoint.xs}) {
+margin: auto;
+  }
 `;
 
 export const IconsWrapper = styled.span`
