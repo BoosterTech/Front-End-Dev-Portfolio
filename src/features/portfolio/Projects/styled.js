@@ -5,7 +5,7 @@ export const Wrapper = styled.section`
   height: auto;
   text-align: center;
   padding: 15px 0px;
-  margin: 100px auto 5px auto;
+  margin: 0 auto 5px auto;
 `;
 
 export const Header = styled.h1`
