@@ -14,8 +14,9 @@ export const Wrapper = styled.article`
   flex-direction: row;
   max-width: 100%;
   height: auto;
- 
-  margin-top: 0;
+
+  padding-top: 100px;
+  padding-bottom: 150px;
   justify-content: center;
   align-items: center;
 
@@ -57,7 +58,7 @@ export const Header = styled.h1`
   font-size: 1.4em;
   font-weight: bold;
   color: #0b93f3;
-  margin:0 0 25px 0;
+  margin: 0 0 25px 0;
 `;
 
 export const SubHeader = styled.h2`
