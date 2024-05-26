@@ -61,6 +61,7 @@ export const ProjectDescription = styled.div`
 
 export const LinkContainer = styled.div`
   display: flex;
+
   flex-direction: column;
   text-align: center;
   gap: 10px;
@@ -69,16 +70,30 @@ export const LinkContainer = styled.div`
 `;
 
 export const ProjectLink = styled.a`
-  width: 100%;
+  width: auto;
+  max-width: auto;
   font-size: 1.2em;
   color: #0066af;
   font-weight: bold;
   text-decoration: none;
-  border: 1px solid white;
+`;
 
-  &:hover {
-    cursor: pointer;
-    border: 1px solid #0066af;
-    border-radius: 15px;
+export const LinkTag = styled.span`
+  width: auto;
+  position: relative;
+  &:after {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    bottom: 0;
+
+    left: 50%;
+    background-color: #0066aa;
+    transition: all 0.5s ease;
+    transform: translateX(-50%);
+  }
+  &:hover:after {
+    width: 100%;
   }
 `;
