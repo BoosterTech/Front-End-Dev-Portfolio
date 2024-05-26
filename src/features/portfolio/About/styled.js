@@ -20,9 +20,10 @@ export const Wrapper = styled.article`
   justify-content: center;
   align-items: center;
 
-  @media (max-width: ${({ theme }) => themes.breakpoint.smallPC}) {
+  @media (max-width: ${({ theme }) => themes.breakpoint.xs}) {
     flex-direction: column;
-    margin: 100px auto;
+    margin: 30px auto;
+    padding-bottom: 50px;
   }
 `;
 
@@ -30,8 +31,8 @@ export const ImageContainer = styled.div`
   position: relative;
   transition: all 3s ease;
 
-  @media (max-width: ${({ theme }) => themes.breakpoint.smallPC}) {
-    transform: scale(0.6);
+  @media (max-width: ${({ theme }) => themes.breakpoint.xs}) {
+    transform: scale(0.9);
     margin: 0;
     padding: 0;
   }
@@ -59,6 +60,10 @@ export const Header = styled.h1`
   font-weight: bold;
   color: #0b93f3;
   margin: 0 0 25px 0;
+
+  @media (max-width: ${({ theme }) => themes.breakpoint.xs}) {
+    font-size: 1.9em;
+  }
 `;
 
 export const SubHeader = styled.h2`
@@ -72,7 +77,9 @@ export const ContentContainer = styled.div`
   margin-left: 30px;
   transition: all 3s ease;
 
-  @media (max-width: ${({ theme }) => themes.breakpoint.smallPC}) {
+  @media (max-width: ${({ theme }) => themes.breakpoint.xs}) {
     margin: auto;
+    padding: 0;
+    text-align: center;
   }
 `;
