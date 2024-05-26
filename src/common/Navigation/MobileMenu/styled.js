@@ -18,7 +18,7 @@ export const MobileMenuContainer = styled.div`
   display: none;
   color: white;
 
-  @media (max-width: ${({ theme }) => themes.breakpoint.mobile}) {
+  @media (max-width: ${({ theme }) => themes.breakpoint.xs}) {
     display: block;
   }
 `;
