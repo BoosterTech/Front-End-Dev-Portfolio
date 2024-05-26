@@ -6,15 +6,13 @@ export const themes = {
     navigationFontHover: "#139DF7",
   },
   breakpoint: {
-    breakpoints: {
-      xs: "320px", // Extra small devices (phones)
-      sm: "375px", // Small devices (phones)
-      md: "600px", // Medium devices (tablets)
-      lg: "768px", // Large devices (tablets)
-      xl: "1024px", // Extra large devices (small laptops)
-      xxl: "1366px", // Larger desktops
-      xxxl: "1920px", // Ultra large desktops
-    },
+    xs: "320px", // Extra small devices (phones)
+    sm: "375px", // Small devices (phones)
+    md: "600px", // Medium devices (tablets)
+    lg: "768px", // Large devices (tablets)
+    xl: "1024px", // Extra large devices (small laptops)
+    xxl: "1366px", // Larger desktops
+    xxxl: "1920px", // Ultra large desktops
   },
 
   English: {
