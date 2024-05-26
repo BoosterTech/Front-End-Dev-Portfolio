@@ -19,7 +19,7 @@ export const HomeWrapper = styled.section`
   padding: 15px;
   width: 65%;
 
-  @media (max-width: ${({ theme }) => themes.breakpoint.mobile}) {
+  @media (max-width: ${({ theme }) => themes.breakpoint.xs}) {
     width: 100%;
     padding: 0;
   }
@@ -29,7 +29,7 @@ export const ContentImageContainer = styled.div`
   display: flex;
   flex-direction: row;
 
-  @media (max-width: ${({ theme }) => themes.breakpoint.smallPC}) {
+  @media (max-width: ${({ theme }) => themes.breakpoint.xs}) {
     flex-direction: column;
   }
 `;
@@ -37,7 +37,7 @@ export const ContentImageContainer = styled.div`
 export const ContentContainer = styled.div`
   width: auto;
 
-  @media (max-width: ${({ theme }) => themes.breakpoint.smallPC}) {
+  @media (max-width: ${({ theme }) => themes.breakpoint.xs}) {
     order: 2;
     text-align: center;
   }
@@ -58,7 +58,7 @@ export const ContentHeader = styled.h1`
     transform: rotate(0);
   }
 
-  @media (max-width: ${({ theme }) => themes.breakpoint.mobile}) {
+  @media (max-width: ${({ theme }) => themes.breakpoint.xs}) {
     font-size: 2rem;
   }
 `;
@@ -71,6 +71,11 @@ export const HeaderImage = styled.img`
   margin-left: 2px;
   transform-origin: bottom;
   transition: transform 3s ease;
+
+  @media (max-width: ${({ theme }) => themes.breakpoint.xs}) {
+    width: 45px;
+    margin: auto;
+  }
 `;
 
 export const HeaderParagraph = styled.p`
@@ -90,7 +95,7 @@ export const ImageContainer = styled.div`
   position: relative;
   animation: ${imageBorderAnimation} 11s ease-in-out infinite;
 
-  @media (max-width: ${({ theme }) => themes.breakpoint.smallPC}) {
+  @media (max-width: ${({ theme }) => themes.breakpoint.xs}) {
     order: 1;
     margin: auto;
   }
@@ -117,24 +122,24 @@ export const TechStackContainer = styled.div`
   padding: 30px 20px;
   transition: all 3s ease;
 
-  @media (max-width: ${({ theme }) => themes.breakpoint.mobile}) {
+  @media (max-width: ${({ theme }) => themes.breakpoint.xs}) {
     margin: auto;
     padding: 30px;
     width: fit-content;
   }
 `;
 
-export const TechStackHeader = styled.h3`
-  padding-right: 10px;
-  border-right: 1px solid #9aa4ab;
-  font-weight: 100;
+// export const TechStackHeader = styled.h3`
+//   padding-right: 10px;
+//   border-right: 1px solid #9aa4ab;
+//   font-weight: 100;
 
-  @media (max-width: ${({ theme }) => themes.breakpoint.mobile}) {
-    width: 100%;
-    border-right: none;
-    text-align: center;
-  }
-`;
+//   @media (max-width: ${({ theme }) => themes.breakpoint.xs}) {
+//     width: 100%;
+//     border-right: none;
+//     text-align: center;
+//   }
+// `;
 
 export const TechStackItem = styled.img`
   width: auto;
@@ -147,7 +152,7 @@ export const TechStackItem = styled.img`
     transform: scale(1.6);
   }
 
-  @media (max-width: ${({ theme }) => themes.breakpoint.mobile}) {
+  @media (max-width: ${({ theme }) => themes.breakpoint.xs}) {
     margin-bottom: 35px;
     text-align: center;
     height: 30px;
