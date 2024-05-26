@@ -41,7 +41,7 @@ export const StyledList = styled.nav`
     justify-content: flex-end;
   }
 
-  @media (max-width: ${({ theme }) => themes.breakpoint.mobile}) {
+  @media (max-width: ${({ theme }) => themes.breakpoint.xs}) {
     flex-direction: column;
   }
 `;
@@ -62,7 +62,7 @@ export const StyledListItem = styled.li`
     color: black;
   }
 
-  @media (max-width: ${({ theme }) => themes.breakpoint.mobile}) {
+  @media (max-width: ${({ theme }) => themes.breakpoint.xs}) {
     animation: ${slideFromLeft} 1s forwards;
   }
 `;
