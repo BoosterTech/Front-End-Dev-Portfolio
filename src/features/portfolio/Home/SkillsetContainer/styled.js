@@ -3,15 +3,19 @@ import styled from "styled-components";
 export const SkillsetWrapper = styled.div`
   margin-top: 20px;
   width: auto;
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.xs}) {
+    margin-top: 40px;
+  }
 `;
 
-export const SkillsetButton = styled.button`
-  display: block;
-  margin: 0 auto;
-  border: none;
-  font-weight: bold;
-  cursor: pointer;
-`;
+// export const SkillsetButton = styled.button`
+//   display: block;
+//   margin: 0 auto;
+//   border: none;
+//   font-weight: bold;
+//   cursor: pointer;
+// `;
 
 export const SkillsetHeader = styled.div`
   margin: 0 auto;
@@ -19,6 +23,10 @@ export const SkillsetHeader = styled.div`
   margin-top: 10px;
   font-size: 24px;
   font-weight: 1000;
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.xs}) {
+    font-size: 20px;
+  }
 `;
 
 export const ListContainer = styled.ul`
@@ -34,8 +42,8 @@ export const ListContainer = styled.ul`
   gap: 10px 3px;
   padding: 20px;
 
-  @media (max-width: ${({ theme }) => theme.breakpoint.tablet}px) {
-    grid-template-columns: 1fr 1fr;
+  @media (max-width: ${({ theme }) => theme.breakpoint.xs}) {
+    grid-template-columns: 1fr;
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.mobile}px) {
