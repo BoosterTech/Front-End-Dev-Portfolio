@@ -14,8 +14,6 @@ import { menuItems } from "./common/Navigation/menuItems";
 
 const App = () => {
   const language = useSelector(selectLanguage);
-  
-
 
   return (
     <ThemeProvider theme={themes}>
