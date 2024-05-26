@@ -64,6 +64,7 @@ export const StyledListItem = styled.li`
 
   @media (max-width: ${({ theme }) => themes.breakpoint.xs}) {
     animation: ${slideFromLeft} 1s forwards;
+    padding: 2px 15px;
   }
 `;
 
