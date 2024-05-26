@@ -6,15 +6,23 @@ export const Wrapper = styled.section`
   text-align: center;
   padding: 15px 0px;
   margin: 0 auto 5px auto;
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.xs}) {
+  }
 `;
 
 export const Header = styled.h1`
   font-weight: bolder;
   font-size: 2.5em;
   color: #0066af;
-  padding: 0 15px 15px 15px;
+  padding: 0 15px;
   margin-bottom: 0;
   margin-top: 0;
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.xs}) {
+    font-size: 3em;
+    padding: 0;
+  }
 `;
 
 export const ProjectWrapper = styled.div`
@@ -27,12 +35,23 @@ export const ProjectWrapper = styled.div`
   margin-bottom: 0;
   margin-top: 150px;
   padding-bottom: 50px;
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.xs}) {
+    flex-direction: column;
+    margin-top: 50px;
+  }
 `;
 
 export const ProjectIcon = styled.img`
   width: 150px;
   height: 150px;
   border-radius: 100%;
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.xs}) {
+    width: 100px;
+    height: 100px;
+  
+  }
 `;
 
 export const ProjectHeader = styled.h2`
@@ -40,6 +59,12 @@ export const ProjectHeader = styled.h2`
   font-size: 1.6em;
   width: 100%;
   text-align: center;
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.xs}) {
+    padding: 0;
+    margin-top: 20px;
+    font-size: 1.4em;
+  }
 `;
 
 export const ProjectImage = styled.img`
@@ -48,15 +73,26 @@ export const ProjectImage = styled.img`
   padding: 5px;
   border-radius: 10px;
   box-shadow: 0px 4px 12px 0px grey;
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.xs}) {
+    height: auto;
+    width: auto;
+  }
 `;
 
 export const ProjectDescription = styled.div`
   width: 40%;
   font-size: 1.2em;
   margin: auto;
-  margin-top: 10px0;
+  margin-top: 10px;
   text-align: center;
   order: ${(props) => (props.$inverted ? -1 : 1)};
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.xs}) {
+    max-width: 100%;
+    width: 100%;
+    order: 0;
+  }
 `;
 
 export const LinkContainer = styled.div`
