@@ -22,7 +22,7 @@ export const Wrapper = styled.article`
 
   @media (max-width: ${({ theme }) => themes.breakpoint.xs}) {
     flex-direction: column;
-    margin: 30px auto;
+    margin: 0 auto;
     padding-bottom: 50px;
   }
 `;
