@@ -28,7 +28,7 @@ export const Header = styled.div`
   font-size: 1.3em;
   font-weight: 900;
 
-  @media (max-width: ${({ theme }) => themes.breakpoint.mobile}) {
+  @media (max-width: ${({ theme }) => themes.breakpoint.xs}) {
     font-size: 1.1em;
   }
 `;
@@ -40,18 +40,23 @@ export const HeaderImage = styled.img`
 export const Wrapper = styled.section`
   max-width: 100%;
   max-height: 300px;
-  background-color: #F2F0F6;
+  background-color: #f2f0f6;
   padding: 25px 100px;
   border-top: 1px solid #9aa4ab;
   border-radius: 5%;
   transition: transform 3s ease;
-  padding-top:100px;
-  
+  padding-top: 100px;
 
-  &:hover{
-    ${HeaderImage}{
+  &:hover {
+    ${HeaderImage} {
       animation: ${headerImageAmination} 2s linear infinite;
     }
+  }
+
+  @media (max-width: ${({ theme }) => themes.breakpoint.xs}) {
+    border: none;
+    padding: 5px;
+    text-align: center;
   }
 `;
 
@@ -71,7 +76,7 @@ export const IconsWrapper = styled.div`
   justify-content: center;
   margin-top: 15px;
 
-  @media (max-width: ${({ theme }) => themes.breakpoint.mobile}) {
+  @media (max-width: ${({ theme }) => themes.breakpoint.xs}) {
     height: 50px;
   }
 `;
