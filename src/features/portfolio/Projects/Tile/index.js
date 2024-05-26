@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import {
   LinkContainer,
+  LinkTag,
   ProjectDescription,
   ProjectHeader,
   ProjectImage,
@@ -19,7 +20,6 @@ const Tile = ({
 
   GitHubPagesURLTag,
   GitHubRepoURLTag,
-
 }) => {
   const language = useSelector(selectLanguage);
 
@@ -35,10 +35,10 @@ const Tile = ({
         />
         <LinkContainer>
           <ProjectLink href={GitHubPagesURL} target="_blank">
-            {GitHubPagesURLTag[language]}
+            <LinkTag>{GitHubPagesURLTag[language]}</LinkTag>
           </ProjectLink>
           <ProjectLink href={GitHubRepoURL} target="_blank">
-            {GitHubRepoURLTag[language]}
+          <LinkTag>{GitHubRepoURLTag[language]}</LinkTag>
           </ProjectLink>
         </LinkContainer>
       </ProjectDescription>
