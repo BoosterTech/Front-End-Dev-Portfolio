@@ -19,7 +19,7 @@ const Navigation = () => {
       <LanguageSwitch />
       <Link
         activeClass="active"
-        to={menuItems[language][0].toLowerCase()} // convert item to lowercase and remove spaces
+        to={menuItems[language][0].toLowerCase()}
         spy={true}
         smooth={true}
         offset={-200}
@@ -35,10 +35,10 @@ const Navigation = () => {
         {menuItems[language].map((item, index) => (
           <StyledScrollLink
             activeClass="active"
-            to={item.toLowerCase()} // convert item to lowercase and remove spaces
+            to={item.toLowerCase()}
             spy={true}
             smooth={true}
-            offset={index === menuItems[language].length - 1 ? -650 : -70}
+            offset={index === menuItems[language].length - 1 ? -620 : -70}
             duration={700}
             key={index}
           >
