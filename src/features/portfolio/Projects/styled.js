@@ -39,6 +39,7 @@ export const ProjectWrapper = styled.div`
   @media (max-width: ${({ theme }) => theme.breakpoint.xs}) {
     flex-direction: column;
     margin-top: 50px;
+    border-bottom: 1px solid grey;
   }
 `;
 
