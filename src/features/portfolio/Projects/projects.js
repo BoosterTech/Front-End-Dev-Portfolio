@@ -141,7 +141,7 @@ const projects = [
                 dedicated to the fascinating field of plasma physics.</p>
                 It includes links to three major books available for purchase as well as an array of publications.
                 <p>Despite having gained more knowledge and skills since then, I have chosen to preserve the original code of this project.
-                It remains untouched and as originally written, holding sentimental value as a reminder of my early steps into the world of mobile web application development.
+                It remains untouched and as originally written, holding sentimental value as a reminder of my early steps into the world of web application development.
                 <p>Explore the Plasma Library and enjoy a glimpse into the beginnings of my coding journey🚀</p>`,
       Polish: `<p>&nbsp&nbsp Witaj w moim pierwszym projekcie związanym z tworzeniem stron internetowych 🙂</p>
                <p>Oznacza to początek mojej drogi w rozwijaniu umiejętności związanych z tworzeniem stron internetowych. Ten projekt jest świadectwem mojego wczesnego uczenia się i rozwoju.</p>
