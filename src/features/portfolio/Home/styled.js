@@ -19,7 +19,7 @@ export const HomeWrapper = styled.section`
   padding: 15px;
   width: 65%;
 
-  @media (max-width: ${({ theme }) => themes.breakpoint.xs}) {
+  @media (max-width: ${({ theme }) => themes.breakpoint.xxl}) {
     width: 100%;
     padding: 0;
   }
@@ -122,11 +122,14 @@ export const TechStackContainer = styled.div`
   padding: 30px 20px;
   transition: all 3s ease;
 
-  @media (max-width: ${({ theme }) => themes.breakpoint.xs}) {
+  @media (max-width: ${({ theme }) => themes.breakpoint.techStack}) {
     margin: auto;
     padding: 30px;
     width: fit-content;
+   
   }
+
+
 `;
 
 // export const TechStackHeader = styled.h3`
