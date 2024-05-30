@@ -37,19 +37,18 @@ export const ListContainer = styled.ul`
   padding: 32px 0 0 0;
   display: grid;
   align-items: center;
+  justify-content: center;
   grid-template-columns: 1fr 1fr 1fr;
   font-size: 18px;
   gap: 10px 3px;
   padding: 20px;
 
-  @media (max-width: ${({ theme }) => theme.breakpoint.xs}) {
-    grid-template-columns: 1fr;
+  @media (max-width: ${({ theme }) => theme.breakpoint.xl}) {
+    grid-template-columns: 1fr 1fr;
   }
 
-  @media (max-width: ${({ theme }) => theme.breakpoint.mobile}px) {
+  @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
     grid-template-columns: 1fr;
-    font-size: 14px;
-    padding-top: 12px;
   }
 `;
 
