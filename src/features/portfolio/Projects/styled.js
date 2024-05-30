@@ -19,7 +19,7 @@ export const Header = styled.h1`
   margin-bottom: 0;
   margin-top: 0;
 
-  @media (max-width: ${({ theme }) => theme.breakpoint.xs}) {
+  @media (max-width: ${({ theme }) => theme.breakpoint.xxl}) {
     font-size: 3em;
     padding: 0;
   }
@@ -31,15 +31,17 @@ export const ProjectWrapper = styled.div`
   height: auto;
   width: 100%;
   padding: 0;
-  justify-content: center;
   margin-bottom: 0;
   margin-top: 150px;
   padding-bottom: 50px;
+  gap: 10px;
 
-  @media (max-width: ${({ theme }) => theme.breakpoint.xs}) {
+  @media (max-width: ${({ theme }) => theme.breakpoint.xxxl}) {
     flex-direction: column;
     margin-top: 50px;
     border-bottom: 1px solid grey;
+    justify-content: center;
+    align-items: center;
   }
 `;
 
@@ -51,33 +53,40 @@ export const ProjectIcon = styled.img`
   @media (max-width: ${({ theme }) => theme.breakpoint.xs}) {
     width: 100px;
     height: 100px;
-  
   }
 `;
 
 export const ProjectHeader = styled.h2`
   margin-top: 0;
-  font-size: 1.6em;
+  font-size: 2em;
   width: 100%;
   text-align: center;
 
+  @media (max-width: ${({ theme }) => theme.breakpoint.xxxl}) {
+    margin-top: 20px;
+    font-size: 2em;
+  }
+
   @media (max-width: ${({ theme }) => theme.breakpoint.xs}) {
     padding: 0;
-    margin-top: 20px;
     font-size: 1.4em;
   }
 `;
 
 export const ProjectImage = styled.img`
   max-width: 100%;
-  max-height: 500px;
+  width: 50%;
+  max-height: 100%;
+  height: 100%;
   padding: 5px;
   border-radius: 10px;
   box-shadow: 0px 4px 12px 0px grey;
+  margin-left: ${(props) => (props.$inverted ? "auto" : "-30px")};
 
-  @media (max-width: ${({ theme }) => theme.breakpoint.xs}) {
+  @media (max-width: ${({ theme }) => theme.breakpoint.xxxl}) {
     height: auto;
-    width: auto;
+    width: 50%;
+    margin-left: 0;
   }
 `;
 
@@ -89,7 +98,7 @@ export const ProjectDescription = styled.div`
   text-align: center;
   order: ${(props) => (props.$inverted ? -1 : 1)};
 
-  @media (max-width: ${({ theme }) => theme.breakpoint.xs}) {
+  @media (max-width: ${({ theme }) => theme.breakpoint.xxxl}) {
     max-width: 100%;
     width: 100%;
     order: 0;
