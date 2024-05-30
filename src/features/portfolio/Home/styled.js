@@ -29,7 +29,7 @@ export const ContentImageContainer = styled.div`
   display: flex;
   flex-direction: row;
 
-  @media (max-width: ${({ theme }) => themes.breakpoint.xs}) {
+  @media (max-width: ${({ theme }) => themes.breakpoint.xl2}) {
     flex-direction: column;
   }
 `;
@@ -37,7 +37,7 @@ export const ContentImageContainer = styled.div`
 export const ContentContainer = styled.div`
   width: auto;
 
-  @media (max-width: ${({ theme }) => themes.breakpoint.xs}) {
+  @media (max-width: ${({ theme }) => themes.breakpoint.xl2}) {
     order: 2;
     text-align: center;
   }
@@ -72,7 +72,7 @@ export const HeaderImage = styled.img`
   transform-origin: bottom;
   transition: transform 3s ease;
 
-  @media (max-width: ${({ theme }) => themes.breakpoint.xs}) {
+  @media (max-width: ${({ theme }) => themes.breakpoint.xl2}) {
     width: 45px;
     margin: auto;
   }
@@ -95,7 +95,7 @@ export const ImageContainer = styled.div`
   position: relative;
   animation: ${imageBorderAnimation} 11s ease-in-out infinite;
 
-  @media (max-width: ${({ theme }) => themes.breakpoint.xs}) {
+  @media (max-width: ${({ theme }) => themes.breakpoint.xl2}) {
     order: 1;
     margin: auto;
   }
@@ -155,7 +155,7 @@ export const TechStackItem = styled.img`
     transform: scale(1.6);
   }
 
-  @media (max-width: ${({ theme }) => themes.breakpoint.xs}) {
+  @media (max-width: ${({ theme }) => themes.breakpoint.xl2}) {
     margin-bottom: 35px;
     text-align: center;
     height: 30px;
