@@ -20,7 +20,7 @@ export const Wrapper = styled.article`
   justify-content: center;
   align-items: center;
 
-  @media (max-width: ${({ theme }) => themes.breakpoint.xs}) {
+  @media (max-width: ${({ theme }) => themes.breakpoint.xl2}) {
     flex-direction: column;
     margin: 0 auto;
     padding-bottom: 50px;
