@@ -1,34 +1,29 @@
-import { useState } from "react";
-import {
-  HamburgerIcon,
-  MenuButton,
-  MenuItem,
-  MenuList,
-  MobileMenuContainer,
-} from "./styled";
+import { MenuItem, MenuList, MobileMenuContainer } from "./styled";
 
-const MobileMenu = ({ items }) => {
-  const [isOpen, setIsOpen] = useState(false);
+import { FaHome, FaUser, FaProjectDiagram, FaEnvelope } from "react-icons/fa";
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
-
+const MobileMenu = () => {
   return (
-    <MobileMenuContainer expanded={isOpen}>
-      {" "}
-      <MenuButton onClick={toggleMenu}>
-        {[...Array(3)].map((index) => (
-          <HamburgerIcon key={index} isOpen={isOpen} />
-        ))}
-      </MenuButton>
-      {isOpen && (
-        <MenuList>
-          {items.map((item, index) => (
-            <MenuItem key={index}>{item}</MenuItem>
-          ))}
-        </MenuList>
-      )}
+    <MobileMenuContainer>
+      <MenuList>
+        <MenuItem>
+          {" "}
+          <FaHome />
+        </MenuItem>
+
+        <MenuItem>
+          {" "}
+          <FaUser />
+        </MenuItem>
+        <MenuItem>
+          {" "}
+          <FaProjectDiagram />
+        </MenuItem>
+        <MenuItem>
+          {" "}
+          <FaEnvelope />
+        </MenuItem>
+      </MenuList>
     </MobileMenuContainer>
   );
 };
