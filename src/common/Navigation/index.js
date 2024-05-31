@@ -1,4 +1,4 @@
-// import MobileMenu from "./MobileMenu";
+import MobileMenu from "./MobileMenu";
 import {
   DevWrapper,
   PCmenuContainer,
@@ -31,7 +31,7 @@ const Navigation = () => {
         </DevWrapper>
       </Link>
 
-      <PCmenuContainer>
+      {/* <PCmenuContainer>
         {menuItems[language].map((item, index) => (
           <StyledScrollLink
             activeClass="active"
@@ -45,8 +45,8 @@ const Navigation = () => {
             <StyledListItem key={index}>{item}</StyledListItem>
           </StyledScrollLink>
         ))}
-      </PCmenuContainer>
-      {/* <MobileMenu items={menuItems} /> */}
+      </PCmenuContainer> */}
+      <MobileMenu />
     </StyledList>
   );
 };
