@@ -31,6 +31,7 @@ export const Header = styled.div`
   @media (max-width: ${({ theme }) => themes.breakpoint.xs}) {
     font-size: 1.1em;
   }
+  
 `;
 
 export const HeaderImage = styled.img`
@@ -42,10 +43,10 @@ export const Wrapper = styled.section`
   max-height: 300px;
   background-color: #f2f0f6;
   padding: 25px 100px;
-  border-top: 1px solid #9aa4ab;
+  border-top: 1px solid darkgrey;
   border-radius: 5%;
   transition: transform 3s ease;
-  padding-top: 100px;
+
 
   &:hover {
     ${HeaderImage} {
@@ -53,10 +54,10 @@ export const Wrapper = styled.section`
     }
   }
 
-  @media (max-width: ${({ theme }) => themes.breakpoint.xs}) {
-    border: none;
+  @media (max-width: ${({ theme }) => themes.breakpoint.xxxl}) {
     padding: 5px;
     text-align: center;
+    border: none;
   }
 `;
 
@@ -76,7 +77,7 @@ export const IconsWrapper = styled.div`
   justify-content: center;
   margin-top: 15px;
 
-  @media (max-width: ${({ theme }) => themes.breakpoint.xs}) {
+  @media (max-width: ${({ theme }) => themes.breakpoint.xl2}) {
     height: 50px;
   }
 `;
