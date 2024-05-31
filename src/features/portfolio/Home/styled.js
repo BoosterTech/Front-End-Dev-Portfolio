@@ -58,8 +58,16 @@ export const ContentHeader = styled.h1`
     transform: rotate(0);
   }
 
-  @media (max-width: ${({ theme }) => themes.breakpoint.xs}) {
+  @media (max-width: ${({ theme }) => themes.breakpoint.md}) {
     font-size: 2rem;
+  }
+
+  @media (max-width: ${({ theme }) => themes.breakpoint.sm}) {
+    font-size: 1.73em;
+  }
+  @media (max-width: ${({ theme }) => themes.breakpoint.xs}) {
+    font-size: 1.28em;
+  
   }
 `;
 
@@ -122,27 +130,10 @@ export const TechStackContainer = styled.div`
   padding: 30px 20px;
   transition: all 3s ease;
 
-  @media (max-width: ${({ theme }) => themes.breakpoint.techStack}) {
-    margin: auto;
-    padding: 30px;
-    width: fit-content;
-   
+  @media (max-width: ${({ theme }) => themes.breakpoint.lg}) {
+    display: none;
   }
-
-
 `;
-
-// export const TechStackHeader = styled.h3`
-//   padding-right: 10px;
-//   border-right: 1px solid #9aa4ab;
-//   font-weight: 100;
-
-//   @media (max-width: ${({ theme }) => themes.breakpoint.xs}) {
-//     width: 100%;
-//     border-right: none;
-//     text-align: center;
-//   }
-// `;
 
 export const TechStackItem = styled.img`
   width: auto;
