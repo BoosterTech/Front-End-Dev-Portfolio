@@ -43,6 +43,10 @@ export const ProjectWrapper = styled.div`
     justify-content: center;
     align-items: center;
   }
+  
+  @media (max-width: ${({ theme }) => theme.breakpoint.xl}) {
+    margin-top: 0;
+  }
 `;
 
 export const ProjectIcon = styled.img`
@@ -87,6 +91,10 @@ export const ProjectImage = styled.img`
     height: auto;
     width: 50%;
     margin-left: 0;
+
+    @media (max-width: ${({ theme }) => theme.breakpoint.xl}) {
+      display: none;
+    }
   }
 `;
 
