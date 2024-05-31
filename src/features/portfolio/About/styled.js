@@ -23,7 +23,8 @@ export const Wrapper = styled.article`
   @media (max-width: ${({ theme }) => themes.breakpoint.xl2}) {
     flex-direction: column;
     margin: 0 auto;
-    padding-bottom: 50px;
+    padding-bottom: 10px;
+    padding-top: 10px;
   }
 `;
 
@@ -31,7 +32,7 @@ export const ImageContainer = styled.div`
   position: relative;
   transition: all 3s ease;
 
-  @media (max-width: ${({ theme }) => themes.breakpoint.xs}) {
+  @media (max-width: ${({ theme }) => themes.breakpoint.xl2}) {
     transform: scale(0.9);
     margin: 0;
     padding: 0;
@@ -61,7 +62,7 @@ export const Header = styled.h1`
   color: #0b93f3;
   margin: 0 0 25px 0;
 
-  @media (max-width: ${({ theme }) => themes.breakpoint.xs}) {
+  @media (max-width: ${({ theme }) => themes.breakpoint.xl2}) {
     font-size: 1.9em;
   }
 `;
@@ -77,7 +78,7 @@ export const ContentContainer = styled.div`
   margin-left: 30px;
   transition: all 3s ease;
 
-  @media (max-width: ${({ theme }) => themes.breakpoint.xs}) {
+  @media (max-width: ${({ theme }) => themes.breakpoint.xl2}) {
     margin: auto;
     padding: 0;
     text-align: center;
