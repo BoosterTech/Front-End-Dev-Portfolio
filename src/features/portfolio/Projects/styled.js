@@ -3,9 +3,12 @@ import styled from "styled-components";
 export const Wrapper = styled.section`
   width: 100%;
   height: auto;
-  padding: 15px 0px;
+  padding: 15px 15px;
   margin: 0 auto 5px auto;
-  font-size: 1.2rem;
+  font-size: 1rem;
+  background-color: white;
+  box-shadow: 0px 4px 12px 0px grey;
+  border-radius: 5px;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
     font-size: 1rem;
@@ -14,10 +17,10 @@ export const Wrapper = styled.section`
 
 export const Header = styled.h1`
   font-weight: bolder;
-  font-size: 2.5em;
+  font-size: 2.1em;
   color: #0066af;
   padding: 0 15px;
-  margin-bottom: 0;
+  margin-bottom: 25px;
   margin-top: 0;
   text-align: center;
 
@@ -33,18 +36,18 @@ export const ProjectWrapper = styled.div`
   width: 100%;
   padding: 0;
   margin-bottom: 0;
-  margin-top: 150px;
+  margin-top: 100px;
   padding-bottom: 50px;
   gap: 10px;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.xxxxl}) {
-    gap: 100px;
+    gap: 10px;
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.xxxl}) {
     flex-direction: column;
     margin-top: 50px;
-    border-bottom: 1px solid grey;
+    border-bottom: ${(props) => (props.border ? "1px solid grey" : "none")};
     justify-content: center;
     align-items: center;
     gap: 30px;
@@ -70,44 +73,43 @@ export const ProjectIcon = styled.img`
 
 export const ProjectHeader = styled.h2`
   margin-top: 0;
-  font-size: 3rem;
+  font-size: 2rem;
   width: 100%;
   text-align: center;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.xxxl}) {
-    font-size: 2em;
+    font-size: 1.6rem;
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
     padding: 0;
-    font-size: 1.4em;
+    font-size: 1.2em;
   }
 `;
 
 export const ProjectImage = styled.img`
   max-width: 100%;
-  width: 50%;
+  width: 45%;
   max-height: 100%;
   height: 100%;
   padding: 5px;
   border-radius: 10px;
   box-shadow: 0px 4px 12px 0px grey;
-  margin-left: ${(props) => (props.$inverted ? "auto" : "-30px")};
+  margin: auto;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.xxxl}) {
     height: auto;
     width: 50%;
-    margin-left: 0;
+  }
 
-    @media (max-width: ${({ theme }) => theme.breakpoint.xl}) {
-      display: none;
-    }
+  @media (max-width: ${({ theme }) => theme.breakpoint.xl}) {
+    display: none;
   }
 `;
 
 export const ProjectDescription = styled.div`
   width: 40%;
-  font-size: 1.2em;
+  font-size: 1em;
   margin: auto;
   margin-top: 10px;
   text-align: left;
@@ -127,12 +129,16 @@ export const LinkContainer = styled.div`
   gap: 10px;
   margin-top: 60px;
   padding: 10px;
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
+    margin-top: 30px;
+  }
 `;
 
 export const ProjectLink = styled.a`
   width: auto;
   max-width: auto;
-  font-size: 1.2em;
+  font-size: 1em;
   color: #0066af;
   font-weight: bold;
   text-decoration: none;
