@@ -41,8 +41,15 @@ export const StyledList = styled.nav`
     justify-content: flex-end;
   }
 
-  @media (max-width: ${({ theme }) => themes.breakpoint.xs}) {
+  @media (max-width: ${({ theme }) => themes.breakpoint.lg}) {
+    padding: 0.5rem;
+    height: auto;
+    gap: 1rem;
+  }
+
+  @media (max-width: ${({ theme }) => themes.breakpoint.md}) {
     flex-direction: column;
+    gap: 0.5rem;
   }
 `;
 
@@ -85,14 +92,19 @@ export const DevWrapper = styled(StyledListItem)`
     background-color: #f4f6f7;
     cursor: pointer;
   }
+
+  @media (max-width: ${({ theme }) => themes.breakpoint.lg}) {
+    display: none;
+  }
 `;
 
-export const PCmenuContainer = styled(StyledList)`
+export const MenuContainer = styled(StyledList)`
+  display: flex;
+  flex-direction: row;
   padding: 0;
   border: none;
   box-shadow: none;
 
-  @media (max-width: ${({ theme }) => themes.breakpoint.mobile}) {
-    display: none;
+  @media (max-width: ${({ theme }) => themes.breakpoint.lg}) {
   }
 `;
