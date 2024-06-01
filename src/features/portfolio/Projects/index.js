@@ -3,14 +3,11 @@ import projects from "./projects";
 import Tile from "./Tile";
 import gitHubIcon from "../../../images/gitHubIcon.png";
 
-const Projects = ({id}) => {
+const Projects = ({ id }) => {
   return (
     <Wrapper id={id}>
       <ProjectIcon src={gitHubIcon} alt="GitHub Icon" />
-      <Header>
-        Portfolio
-    
-      </Header>
+      <Header>Portfolio</Header>
       {projects.map((project, index) => (
         <Tile
           key={index}
@@ -20,7 +17,7 @@ const Projects = ({id}) => {
           GitHubPagesURL={project.GitHubPagesURL}
           GitHubRepoURL={project.GitHubRepoURL}
           inverted={project.inverted}
-
+          border={project.border}
           GitHubPagesURLTag={project.GitHubPagesURLTag}
           GitHubRepoURLTag={project.GitHubRepoURLTag}
         />
