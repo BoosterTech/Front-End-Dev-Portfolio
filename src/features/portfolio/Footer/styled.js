@@ -14,6 +14,6 @@ export const TextContainer = styled.h2`
   font-size: 1.1rem;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
-    font-size: 0.7rem;
+    font-size: 0.6rem;
   }
 `;
