@@ -64,7 +64,7 @@ const Navigation = () => {
         to={menuItems[language][0].toLowerCase()}
         spy={true}
         smooth={true}
-        offset={-121}
+        offset={-120}
         duration={700}
         key={1}
         onClick={handleClick}
