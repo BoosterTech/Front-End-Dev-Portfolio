@@ -51,7 +51,7 @@ export const themes = {
     home: {
       contentHeader: "Programista Front-Endu w React",
       headerParagraph:
-        "Witam, jestem Dariusz Podczasik. Programista Front-Endu w React, mieszkający w Trim w Irlandii.",
+        "Witam, nazywam się Dariusz Podczasik. Jestem Programistą Front-Endu w React, mieszkającym w Trim w Irlandii.",
       skillsetHeader: "Moje Umiejętności",
       learnNextHeader: "Czego Uczę Się Dalej",
     },
@@ -60,10 +60,10 @@ export const themes = {
       aboutMeParagraph: `
       <p>Witam, jestem Derek, Frontend Developerem, który skupia się na tworzeniu wyjątkowych interfejsów użytkownika i doświadczeń.</p>
       Moje główne zainteresowania koncentrują się na wykorzystaniu najnowocześniejszych technologii do dostarczania dopracowanych rozwiązań, które rezonują z użytkownikami.<br/>
-      React jest podstawą mojego podejścia do rozwoju, umożliwiając tworzenie dynamicznych, wielostronicowych aplikacji z płynną nawigacją i optymalizowaną wydajnością.<br/>
+      React jest podstawą mojego podejścia do projektu, umożliwiając tworzenie dynamicznych, wielostronicowych aplikacji z płynną nawigacją i optymalną wydajnością.<br/>
       Dodatkowo, Styled-Components oferuje pragmatyczne podejście do stylizacji, pozwalając mi usprawnić proces projektowania i utrzymać spójność w projektach.<br/>
       Ponadto, Redux i Axios ulepszają przepływ pracy podczas tworzenia kodu, promując integralność kodu i skalowalność.<br/>
-      Ten solidny stos technologiczny umożliwia mi efektywne tworzenie wydajnych, responsywnych aplikacji internetowych, które spełniają wymagania dzisiejszego cyfrowego świata.<br/>
+      Ten solidny stos technologiczny umożliwia mi efektywne tworzenie wydajnych, responsywnych aplikacji internetowych, które spełniają wymagania dzisiejszego świata cyfrowego .<br/>
       Napędzany pasją do czystego i intuicyjnego projektowania, dbam o to, aby każdy interfejs, który tworzę, nie tylko spełniał, ale przekraczał oczekiwania użytkowników.
       <p>Z poważaniem,
         
