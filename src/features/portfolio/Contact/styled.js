@@ -12,12 +12,11 @@ export const Header = styled.div`
   font-weight: 900;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
-    font-size: .7em;
+    font-size: 0.7em;
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.sm}) {
-    font-size: .58em;
-  
+    font-size: 0.58em;
   }
 `;
 
