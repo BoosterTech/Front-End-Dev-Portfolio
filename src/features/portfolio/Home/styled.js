@@ -18,6 +18,7 @@ export const HomeWrapper = styled.section`
   margin: 100px auto 0 auto;
   padding: 15px;
   width: 65%;
+  font-size: 1rem;
 
   @media (max-width: ${({ theme }) => themes.breakpoint.xxl}) {
     width: 100%;
@@ -66,8 +67,7 @@ export const ContentHeader = styled.h1`
     font-size: 1.73em;
   }
   @media (max-width: ${({ theme }) => themes.breakpoint.xs}) {
-    font-size: 1.28em;
-  
+    font-size: 1rem;
   }
 `;
 
@@ -89,7 +89,11 @@ export const HeaderImage = styled.img`
 export const HeaderParagraph = styled.p`
   padding: 10px 10px;
   font-weight: 500;
-  font-size: larger;
+  font-size: 1.2rem;
+
+  @media (max-width: ${({ theme }) => themes.breakpoint.md}) {
+    font-size: 1rem;
+  }
 `;
 
 export const ImageContainer = styled.div`
