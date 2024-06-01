@@ -21,11 +21,11 @@ export const Header = styled.div`
 
 export const Wrapper = styled.section`
   display: block;
-  margin: auto;
+  margin: 15px auto 0;
   max-width: 100%;
   max-height: 300px;
   background-color: inherit;
-  padding: 25px 100px;
+  padding: 40px 100px 10px;
   transition: transform 3s ease;
   font-size: 1rem;
 
@@ -47,13 +47,14 @@ export const FooterWrapper = styled.div`
 export const IconsWrapper = styled.div`
   display: flex;
   gap: 30px;
-  height: 70px;
+  height: 50px;
   max-width: 100%;
   justify-content: center;
-  margin-top: 15px;
+  margin-top: 5px;
 
-  @media (max-width: ${({ theme }) => theme.breakpoint.xl2}) {
-    height: 50px;
+  @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
+    height: 35px;
+    gap: 10px;
   }
 `;
 
