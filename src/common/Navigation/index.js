@@ -24,6 +24,27 @@ const Navigation = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const activeLinks = document.querySelectorAll(".active");
+      activeLinks.forEach((link) => {
+        // Check if the link's target section is not in view
+        const targetSection = document.getElementById(
+          link.getAttribute("to")
+        );
+        if (targetSection) {
+          const rect = targetSection.getBoundingClientRect();
+          if (rect.top < 0 || rect.bottom > window.innerHeight) {
+            // If the target section is not in view, remove the active class
+            link.classList.remove("active");
+          }
+        }
+      });
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const getIcon = (item) => {
     switch (item) {
       case "Home":
