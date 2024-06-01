@@ -92,6 +92,12 @@ export const DevWrapper = styled(StyledListItem)`
     background-color: #f4f6f7;
     cursor: pointer;
   }
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
+    font-size: 0.6rem;
+  }
+
+
 `;
 
 export const MenuContainer = styled(StyledList)`
