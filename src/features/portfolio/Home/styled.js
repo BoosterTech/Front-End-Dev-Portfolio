@@ -117,6 +117,15 @@ export const ImageContainer = styled.div`
   @media (max-width: ${({ theme }) => theme.breakpoint.xl2}) {
     order: 1;
     margin: auto;
+    width: 220px;
+    min-width: 220px;
+    height: 220px;
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
+    width: 150px;
+    min-width: 150px;
+    height: 150px;
   }
 `;
 
