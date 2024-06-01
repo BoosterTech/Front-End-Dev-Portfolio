@@ -82,6 +82,10 @@ export const ProjectHeader = styled.h2`
     font-size: 1.6rem;
   }
 
+  @media (max-width: ${({ theme }) => theme.breakpoint.xl}) {
+    margin-top: 20px;
+  }
+
   @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
     padding: 0;
     font-size: 1.2em;
