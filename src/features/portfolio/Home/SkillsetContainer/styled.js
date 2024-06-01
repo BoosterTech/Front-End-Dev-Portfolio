@@ -9,23 +9,15 @@ export const SkillsetWrapper = styled.div`
   }
 `;
 
-// export const SkillsetButton = styled.button`
-//   display: block;
-//   margin: 0 auto;
-//   border: none;
-//   font-weight: bold;
-//   cursor: pointer;
-// `;
-
 export const SkillsetHeader = styled.div`
   margin: 0 auto;
   text-align: center;
   margin-top: 10px;
-  font-size: 24px;
+  font-size: 1.5rem;
   font-weight: 1000;
 
-  @media (max-width: ${({ theme }) => theme.breakpoint.xs}) {
-    font-size: 20px;
+  @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
+    font-size: 1.1rem;
   }
 `;
 
@@ -39,7 +31,7 @@ export const ListContainer = styled.ul`
   align-items: center;
   justify-content: center;
   grid-template-columns: 1fr 1fr 1fr;
-  font-size: 18px;
+  font-size: 1.2rem;
   gap: 10px 3px;
   padding: 20px;
 
@@ -49,6 +41,7 @@ export const ListContainer = styled.ul`
 
   @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
     grid-template-columns: 1fr;
+    font-size: 1rem;
   }
 `;
 
