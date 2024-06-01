@@ -75,7 +75,7 @@ const Navigation = () => {
               windowWidth < 600 && index === menuItems[language].length - 4
                 ? -120
                 : index === menuItems[language].length - 1
-                ? -600
+                ? -730
                 : -80
             }
             duration={700}
