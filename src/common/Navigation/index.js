@@ -55,7 +55,7 @@ const Navigation = () => {
         to={menuItems[language][0].toLowerCase()}
         spy={true}
         smooth={true}
-        offset={-200}
+        offset={-121}
         duration={700}
         key={1}
       >
@@ -75,8 +75,8 @@ const Navigation = () => {
               windowWidth < 600 && index === menuItems[language].length - 4
                 ? -120
                 : index === menuItems[language].length - 1
-                ? -730
-                : -80
+                ? -600
+                : -100
             }
             duration={700}
             key={index}
