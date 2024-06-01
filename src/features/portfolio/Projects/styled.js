@@ -1,10 +1,12 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.section`
-  width: 100%;
+  display: block;
+  max-width: 100%;
   height: auto;
   padding: 15px 15px;
-  margin: 0 auto 5px auto;
+  margin: auto;
+  /* margin: 0 auto 15px auto; */
   font-size: 1rem;
   background-color: white;
   box-shadow: 0px 4px 12px 0px grey;
