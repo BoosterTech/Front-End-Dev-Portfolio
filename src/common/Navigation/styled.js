@@ -94,7 +94,7 @@ export const DevWrapper = styled(StyledListItem)`
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
-    font-size: 0.6rem;
+    font-size: 0.7rem;
   }
 
 
