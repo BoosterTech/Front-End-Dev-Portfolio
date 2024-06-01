@@ -7,8 +7,8 @@ import {
 } from "./styled";
 import { menuItems } from "./menuItems";
 import { LanguageSwitch } from "../../common/LanguageSwitch";
-import { useSelector } from "react-redux";
-import { selectLanguage } from "../../Redux/languageSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { selectLanguage, setLanguage } from "../../Redux/languageSlice";
 import { Link } from "react-scroll";
 import { useEffect, useState } from "react";
 import { FaEnvelope, FaHome, FaProjectDiagram, FaUser } from "react-icons/fa";
@@ -19,8 +19,13 @@ const Navigation = () => {
   const breakpointMD = parseInt(themes.breakpoint.md, 10);
 
   const language = useSelector(selectLanguage);
+  const dispatch = useDispatch();
 
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  const handleClick = () => {
+    dispatch(setLanguage("English"));
+  };
 
   useEffect(() => {
     const handleResize = () => setWindowWidth(window.innerWidth);
@@ -62,6 +67,7 @@ const Navigation = () => {
         offset={-121}
         duration={700}
         key={1}
+        onClick={handleClick}
       >
         <DevWrapper>
           <span>Derek.dev</span>
