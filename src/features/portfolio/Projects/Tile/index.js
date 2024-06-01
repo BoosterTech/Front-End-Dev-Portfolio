@@ -25,7 +25,7 @@ const Tile = ({
   const language = useSelector(selectLanguage);
 
   return (
-    <ProjectWrapper border={border}>
+    <ProjectWrapper $border={border}>
       <ProjectImage src={imageURL} alt={`${title}_image`} />
       <ProjectDescription $inverted={inverted}>
         <ProjectHeader>{title[language]}</ProjectHeader>

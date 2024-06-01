@@ -6,7 +6,6 @@ export const Wrapper = styled.section`
   height: auto;
   padding: 15px 15px;
   margin: auto;
-  /* margin: 0 auto 15px auto; */
   font-size: 1rem;
   background-color: white;
   box-shadow: 0px 4px 12px 0px grey;
@@ -49,7 +48,7 @@ export const ProjectWrapper = styled.div`
   @media (max-width: ${({ theme }) => theme.breakpoint.xxxl}) {
     flex-direction: column;
     margin-top: 50px;
-    border-bottom: ${(props) => (props.border ? "1px solid grey" : "none")};
+    border-bottom: ${({$border}) => ($border ? "1px solid grey" : "none")};
     justify-content: center;
     align-items: center;
     gap: 30px;
