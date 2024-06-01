@@ -5,7 +5,7 @@ export const Wrapper = styled.div`
   color: white;
   max-width: 100%;
   text-align: center;
-  margin: 0;
+  margin: 10px 0 0;
 `;
 
 export const TextContainer = styled.h2`
