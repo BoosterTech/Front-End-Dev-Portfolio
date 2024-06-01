@@ -6,9 +6,9 @@ import plasmaLibraryImage from "../../../images/plasmaLibraryProject.png";
 const projects = [
   {
     title: {
-      English: `Movies Browser`,
-      Polish: `Przeglądarka Filmów`,
-      Spanish: `Navegador de Películas`,
+      English: `🎥 Movies Browser `,
+      Polish: `🎥 Przeglądarka Filmów `,
+      Spanish: `🎥 Navegador de Películas `,
     },
     description: {
       English: `<p>&nbsp&nbsp The Movie Browser is an intuitive web application designed to enhance your movie-watching experience
@@ -46,9 +46,9 @@ const projects = [
   },
   {
     title: {
-      English: `Tasks List`,
-      Polish: `Lista Zadań`,
-      Spanish: `Lista de Tareas`,
+      English: `📝Tasks List`,
+      Polish: `📝Lista Zadań`,
+      Spanish: `📝Lista de Tareas`,
     },
     description: {
       English: `<p>&nbsp&nbsp The "Tasks List" application is a robust and user-friendly task management tool designed to enhance productivity and organization. 
@@ -88,9 +88,9 @@ const projects = [
   },
   {
     title: {
-      English: `Currency Converter`,
-      Polish: `Kalkulator Walut`,
-      Spanish: `Conversor de Divisas`,
+      English: `💱Currency Converter`,
+      Polish: `💱Kalkulator Walut`,
+      Spanish: `💱Conversor de Divisas`,
     },
     description: {
       English: `<p>&nbsp&nbsp This comprehensive currency converter is powered by data sourced directly from the European Central Bank.</p>
@@ -130,9 +130,9 @@ const projects = [
   },
   {
     title: {
-      English: `Plasma Library`,
-      Polish: `Biblioteka Plazma`,
-      Spanish: `Biblioteca de Plasma`,
+      English: `⚛️Plasma Library`,
+      Polish: `⚛️Biblioteka Plazma`,
+      Spanish: `⚛️Biblioteca de Plasma`,
     },
     description: {
       English: `<p>&nbsp&nbsp Welcome to my very first web development project 🙂</p>
@@ -177,7 +177,6 @@ const projects = [
     GitHubRepoURL: "https://github.com/BoosterTech/Plasma-Library.git",
     inverted: true,
   },
-  
 ];
 
 export default projects;
