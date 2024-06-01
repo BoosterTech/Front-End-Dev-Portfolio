@@ -122,11 +122,11 @@ export const ImageContainer = styled.div`
     height: 220px;
   }
 
-  @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
+  /* @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
     width: 150px;
     min-width: 150px;
     height: 150px;
-  }
+  } */
 `;
 
 export const ProfileImage = styled.img`
