@@ -37,8 +37,10 @@ export const IconsWrapper = styled.div`
   display: flex;
   gap: 30px;
   height: 50px;
+  width: 100vw;
   max-width: 100%;
   justify-content: center;
+  align-items: center;
   margin-top: 5px;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
@@ -48,11 +50,17 @@ export const IconsWrapper = styled.div`
 `;
 
 export const ContactIconStyled = styled.img`
-  max-width: auto;
+  max-width: 50px;
+  max-height: 50px;
   padding: 5px;
-
   transition: transform 0.3s ease, scale 3s ease;
   border-radius: 100%;
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
+    max-width: 40px;
+    max-height: 40px;
+  
+  }
 
   &:hover {
     transform: scale(1.2);
