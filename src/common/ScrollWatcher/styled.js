@@ -8,12 +8,12 @@ to{
 `;
 
 export const ScrollWatcher = styled.div`
-  height: 1px;
+  height: 2px;
   position: fixed;
   top: 0;
   z-index: 100;
   background-color: #3d6af5;
-  width: 100%;
+  width: 110%;
   scale: 0.2;
 
   animation: ${scrollWatcherAnimation} linear;
