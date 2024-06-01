@@ -1,5 +1,4 @@
 import styled, { keyframes } from "styled-components";
-import { themes } from "../../../themes";
 
 const spin = keyframes`
 from{
@@ -19,9 +18,9 @@ export const Wrapper = styled.article`
   padding-bottom: 100px;
   justify-content: center;
   align-items: center;
-  font-size: 1.2rem;
+  font-size: 1rem;
 
-  @media (max-width: ${({ theme }) => themes.breakpoint.xl2}) {
+  @media (max-width: ${({ theme }) => theme.breakpoint.xl2}) {
     flex-direction: column;
     margin: 0 auto;
     padding-bottom: 10px;
@@ -34,7 +33,7 @@ export const ImageContainer = styled.div`
   position: relative;
   transition: all 3s ease;
 
-  @media (max-width: ${({ theme }) => themes.breakpoint.xl2}) {
+  @media (max-width: ${({ theme }) => theme.breakpoint.xl2}) {
     transform: scale(0.7);
     margin: 0;
     padding: 0;
@@ -64,7 +63,7 @@ export const Header = styled.h1`
   color: #0b93f3;
   margin: 0 0 25px 0;
 
-  @media (max-width: ${({ theme }) => themes.breakpoint.xl2}) {
+  @media (max-width: ${({ theme }) => theme.breakpoint.xl2}) {
     font-size: 1.3em;
     text-align: center;
   }
@@ -76,7 +75,7 @@ export const ContentContainer = styled.div`
   transition: all 3s ease;
   text-align: left;
 
-  @media (max-width: ${({ theme }) => themes.breakpoint.xl2}) {
+  @media (max-width: ${({ theme }) => theme.breakpoint.xl2}) {
     margin: auto;
     padding: 0;
   }
