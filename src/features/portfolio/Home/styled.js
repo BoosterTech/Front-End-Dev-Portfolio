@@ -158,7 +158,6 @@ export const TechStackItem = styled.img`
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.xl2}) {
-    margin-bottom: 35px;
     text-align: center;
     height: 30px;
 
