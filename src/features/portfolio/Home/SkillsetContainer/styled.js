@@ -31,7 +31,7 @@ export const ListContainer = styled.ul`
   align-items: center;
   justify-content: center;
   grid-template-columns: 1fr 1fr 1fr;
-  font-size: 1.2rem;
+  font-size: 1rem;
   gap: 10px 3px;
   padding: 20px;
 
