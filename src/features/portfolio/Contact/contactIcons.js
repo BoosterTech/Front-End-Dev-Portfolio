@@ -13,7 +13,7 @@ export const icons = [
   {
     iconURL: linkedInIcon,
     id: "linkedIn",
-    link: "www.linkedin.com/in/Dariusz-Podczasik",
+    link: "https://www.linkedin.com/in/Dariusz-Podczasik",
   },
   {
     iconURL: emailIcon,
