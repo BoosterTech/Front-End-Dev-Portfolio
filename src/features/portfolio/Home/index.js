@@ -34,7 +34,7 @@ const techStackIcons = [
   styledComponentsicon,
 ];
 
-const Home = ({id}) => {
+const Home = ({ id }) => {
   const theme = useTheme();
   const language = useSelector(selectLanguage);
 
@@ -46,10 +46,7 @@ const Home = ({id}) => {
             {theme[language].home.contentHeader
               .split("\n")
               .map((line, index) => (
-                <React.Fragment key={index}>
-                  {line}
-                  <br />
-                </React.Fragment>
+                <React.Fragment key={index}>{line}</React.Fragment>
               ))}
             <HeaderImage src={wavingHandImage} alt="headerImage.png" />
           </ContentHeader>
