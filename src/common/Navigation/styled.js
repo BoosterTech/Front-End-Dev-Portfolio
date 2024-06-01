@@ -78,7 +78,6 @@ export const StyledScrollLink = styled(Link)`
   &.active ${StyledListItem} {
     border: 1px solid #1693e4;
     background-color: #b9e1fb;
-
     color: black;
   }
 `;
@@ -96,8 +95,6 @@ export const DevWrapper = styled(StyledListItem)`
   @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
     font-size: 0.7rem;
   }
-
-
 `;
 
 export const MenuContainer = styled(StyledList)`
