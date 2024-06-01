@@ -16,15 +16,17 @@ export const Wrapper = styled.article`
   height: auto;
 
   padding-top: 100px;
-  padding-bottom: 150px;
+  padding-bottom: 100px;
   justify-content: center;
   align-items: center;
+  font-size: 1.2rem;
 
   @media (max-width: ${({ theme }) => themes.breakpoint.xl2}) {
     flex-direction: column;
     margin: 0 auto;
     padding-bottom: 10px;
     padding-top: 10px;
+    font-size: 1rem;
   }
 `;
 
@@ -33,7 +35,7 @@ export const ImageContainer = styled.div`
   transition: all 3s ease;
 
   @media (max-width: ${({ theme }) => themes.breakpoint.xl2}) {
-    transform: scale(0.9);
+    transform: scale(0.7);
     margin: 0;
     padding: 0;
   }
@@ -63,24 +65,19 @@ export const Header = styled.h1`
   margin: 0 0 25px 0;
 
   @media (max-width: ${({ theme }) => themes.breakpoint.xl2}) {
-    font-size: 1.9em;
+    font-size: 1.3em;
+    text-align: center;
   }
-`;
-
-export const SubHeader = styled.h2`
-  font-size: 1.7em;
-  font-weight: bold;
-  color: #000000;
 `;
 
 export const ContentContainer = styled.div`
   padding: 15px;
   margin-left: 30px;
   transition: all 3s ease;
+  text-align: left;
 
   @media (max-width: ${({ theme }) => themes.breakpoint.xl2}) {
     margin: auto;
     padding: 0;
-    text-align: center;
   }
 `;
