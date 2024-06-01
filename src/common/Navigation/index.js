@@ -12,8 +12,12 @@ import { selectLanguage } from "../../Redux/languageSlice";
 import { Link } from "react-scroll";
 import { useEffect, useState } from "react";
 import { FaEnvelope, FaHome, FaProjectDiagram, FaUser } from "react-icons/fa";
+import { useTheme } from "styled-components";
+import { themes } from "../../themes";
 
 const Navigation = () => {
+
+
   const language = useSelector(selectLanguage);
 
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -22,27 +26,6 @@ const Navigation = () => {
     const handleResize = () => setWindowWidth(window.innerWidth);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const activeLinks = document.querySelectorAll(".active");
-      activeLinks.forEach((link) => {
-        // Check if the link's target section is not in view
-        const targetSection = document.getElementById(
-          link.getAttribute("to")
-        );
-        if (targetSection) {
-          const rect = targetSection.getBoundingClientRect();
-          if (rect.top < 0 || rect.bottom > window.innerHeight) {
-            // If the target section is not in view, remove the active class
-            link.classList.remove("active");
-          }
-        }
-      });
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const getIcon = (item) => {
@@ -96,7 +79,7 @@ const Navigation = () => {
               windowWidth < 600 && index === menuItems[language].length - 4
                 ? -120
                 : index === menuItems[language].length - 1
-                ? -600
+                ? -745
                 : -100
             }
             duration={700}
