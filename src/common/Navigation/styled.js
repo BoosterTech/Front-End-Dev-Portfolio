@@ -86,14 +86,11 @@ export const StyledScrollLink = styled(Link)`
 export const DevWrapper = styled(StyledListItem)`
   margin-right: auto;
   transition: all 0.3s ease;
+  border: 1px solid #c9c7c8;
 
   &:hover {
     background-color: #f4f6f7;
     cursor: pointer;
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
-    display: none;
   }
 `;
 
@@ -103,7 +100,4 @@ export const MenuContainer = styled(StyledList)`
   padding: 0;
   border: none;
   box-shadow: none;
-
-  @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
-  }
 `;
