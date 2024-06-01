@@ -3,11 +3,12 @@ import styled from "styled-components";
 export const Wrapper = styled.section`
   width: 100%;
   height: auto;
-  text-align: center;
   padding: 15px 0px;
   margin: 0 auto 5px auto;
+  font-size: 1.2rem;
 
-  @media (max-width: ${({ theme }) => theme.breakpoint.xs}) {
+  @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
+    font-size: 1rem;
   }
 `;
 
@@ -18,9 +19,9 @@ export const Header = styled.h1`
   padding: 0 15px;
   margin-bottom: 0;
   margin-top: 0;
+  text-align: center;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.xxl}) {
-    font-size: 3em;
     padding: 0;
   }
 `;
@@ -36,14 +37,19 @@ export const ProjectWrapper = styled.div`
   padding-bottom: 50px;
   gap: 10px;
 
+  @media (max-width: ${({ theme }) => theme.breakpoint.xxxxl}) {
+    gap: 100px;
+  }
+
   @media (max-width: ${({ theme }) => theme.breakpoint.xxxl}) {
     flex-direction: column;
     margin-top: 50px;
     border-bottom: 1px solid grey;
     justify-content: center;
     align-items: center;
+    gap: 30px;
   }
-  
+
   @media (max-width: ${({ theme }) => theme.breakpoint.xl}) {
     margin-top: 0;
   }
@@ -53,25 +59,26 @@ export const ProjectIcon = styled.img`
   width: 150px;
   height: 150px;
   border-radius: 100%;
+  display: block;
+  margin: auto;
 
-  @media (max-width: ${({ theme }) => theme.breakpoint.xs}) {
-    width: 100px;
-    height: 100px;
+  @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
+    width: 90px;
+    height: 90px;
   }
 `;
 
 export const ProjectHeader = styled.h2`
   margin-top: 0;
-  font-size: 2em;
+  font-size: 3rem;
   width: 100%;
   text-align: center;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.xxxl}) {
-    margin-top: 20px;
     font-size: 2em;
   }
 
-  @media (max-width: ${({ theme }) => theme.breakpoint.xs}) {
+  @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
     padding: 0;
     font-size: 1.4em;
   }
@@ -103,7 +110,7 @@ export const ProjectDescription = styled.div`
   font-size: 1.2em;
   margin: auto;
   margin-top: 10px;
-  text-align: center;
+  text-align: left;
   order: ${(props) => (props.$inverted ? -1 : 1)};
 
   @media (max-width: ${({ theme }) => theme.breakpoint.xxxl}) {
