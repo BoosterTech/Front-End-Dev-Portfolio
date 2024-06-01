@@ -4,7 +4,7 @@ import { themes } from "../../themes";
 export const Wrapper = styled.div`
   margin-right: auto;
 
-  @media (max-width: ${({ theme }) => themes.breakpoint.xs}) {
+  @media (max-width: ${({ theme }) => themes.breakpoint.lg}) {
     margin: auto;
   }
 `;
@@ -13,8 +13,6 @@ export const IconsWrapper = styled.span`
   padding: 1px;
   border-radius: 16px;
   width: 48px;
-
-
 `;
 
 export const Icon = styled.img`
@@ -39,7 +37,7 @@ export const Icon = styled.img`
       transform: scale(1.4);
     `}
 
-    @media (max-width: ${({ theme }) => themes.breakpoint.xs}) {  
+  @media (max-width: ${({ theme }) => themes.breakpoint.lg}) {
     width: 15px;
     height: 15px;
   }
