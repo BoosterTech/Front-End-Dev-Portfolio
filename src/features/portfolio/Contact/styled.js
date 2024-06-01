@@ -1,4 +1,3 @@
-import { themes } from "../../../themes";
 import styled from "styled-components";
 
 export const Header = styled.div`
@@ -8,27 +7,27 @@ export const Header = styled.div`
   align-items: center;
   padding: 10px;
   color: black;
-  font-size: 1.3rem;
+  font-size: 1rem;
   font-weight: 900;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
-    font-size: 0.7em;
+    font-size: 0.7rem;
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.sm}) {
-    font-size: 0.52em;
+    font-size: 0.52rem;
   }
 `;
 
 export const Wrapper = styled.section`
+  display: block;
+  margin: auto;
   max-width: 100%;
   max-height: 300px;
-  background-color: #f2f0f6;
+  background-color: inherit;
   padding: 25px 100px;
-  border-top: 1px solid darkgrey;
-  border-radius: 5%;
   transition: transform 3s ease;
-  font-size: 1.2em;
+  font-size: 1rem;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.xxxl}) {
     padding: 5px;
