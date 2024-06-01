@@ -13,13 +13,13 @@ export const themes = {
     xl: "1024px", // Extra large devices (small laptops)
     xl2: "1100px", // Large laptops and desktops
     xxl: "1366px", // Larger desktops
-    xxxl:"1800px", // Large desktops
+    xxxl: "1800px", // Large desktops
     xxxxl: "1920px", // Ultra large desktops
   },
 
   English: {
     home: {
-      contentHeader: "Front-End React\n Developer",
+      contentHeader: "Front-End React Developer",
       headerParagraph:
         "Hi, I'm Dariusz Podczasik. A passionate Front-End React Developer based in Trim, Ireland.",
       skillsetHeader: "My Skillset Includes",
