@@ -10,11 +10,8 @@ export const LanguageSwitch = () => {
   const dispatch = useDispatch();
   const language = useSelector(selectLanguage);
 
-  const [isActive, setIsActive] = useState(language);
-
   const handleClick = (language) => () => {
     dispatch(setLanguage(language));
-    setIsActive(language);
   };
 
   return (
@@ -24,19 +21,19 @@ export const LanguageSwitch = () => {
           src={IRLIcon}
           alt="IRLflagIcon"
           onClick={handleClick("English")}
-          $isActive={isActive === "English"}
+          $isActive={language === "English"}
         />
         <Icon
           src={PLIcon}
           alt="PLflagIcon"
           onClick={handleClick("Polish")}
-          $isActive={isActive === "Polish"}
+          $isActive={language === "Polish"}
         />
         <Icon
           src={ESPIcon}
           alt="ESPflagIcon"
           onClick={handleClick("Spanish")}
-          $isActive={isActive === "Spanish"}
+          $isActive={language === "Spanish"}
         />
       </IconsWrapper>
     </Wrapper>
