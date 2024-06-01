@@ -1,14 +1,13 @@
 import styled from "styled-components";
 
 export const Header = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
+  text-align: center;
+  margin: auto;
+  padding: 80px 0 10px;
   color: black;
   font-size: 1rem;
   font-weight: 900;
+  white-space: nowrap;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
     font-size: 0.7rem;
@@ -20,28 +19,18 @@ export const Header = styled.div`
 `;
 
 export const Wrapper = styled.section`
-  display: block;
-  margin: 15px auto 0;
   max-width: 100%;
   max-height: 300px;
+  height: auto;
   background-color: inherit;
-  padding: 40px 100px 10px;
+  padding: 60px auto 10px;
   transition: transform 3s ease;
   font-size: 1rem;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.xxxl}) {
-    padding: 5px;
     text-align: center;
     border: none;
   }
-`;
-
-export const FooterWrapper = styled.div`
-  display: flex;
-  background-color: grey;
-  height: 100px;
-  max-width: 50%;
-  margin: 0;
 `;
 
 export const IconsWrapper = styled.div`
