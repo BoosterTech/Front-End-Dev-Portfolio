@@ -16,7 +16,7 @@ export const Header = styled.div`
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.sm}) {
-    font-size: 0.58em;
+    font-size: 0.52em;
   }
 `;
 
