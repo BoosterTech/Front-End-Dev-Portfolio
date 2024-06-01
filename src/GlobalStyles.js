@@ -1,5 +1,4 @@
 import { createGlobalStyle } from "styled-components";
-import { themes } from "./themes";
 import styled from "styled-components";
 
 export const GlobalStyles = createGlobalStyle`
@@ -13,14 +12,10 @@ html{
 }
 
 body{
-    background-color: ${({ theme }) => themes.color.background};
-    font-size: 17px ;
+    background-color: ${({ theme }) => theme.color.background};
+    font-size: 16px ;
     max-width: 100%;
     margin: auto;
-
-    @media (max-width: ${({ theme }) => themes.breakpoint.mobile}) {
-     text-align: center;
-  }
 }
 `;
 
