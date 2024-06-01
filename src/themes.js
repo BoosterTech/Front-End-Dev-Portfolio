@@ -58,7 +58,7 @@ export const themes = {
     about: {
       aboutMeHeader: "O Mnie",
       aboutMeParagraph: `
-      <p>Witam, jestem Derek, Frontend Developerem, który skupia się na tworzeniu wyjątkowych interfejsów użytkownika i doświadczeń.</p>
+      <p>Witam, nazywam się Derek i jestem Frontend React Developerem, który skupia się na tworzeniu wyjątkowych interfejsów użytkownika i doświadczeń.</p>
       Moje główne zainteresowania koncentrują się na wykorzystaniu najnowocześniejszych technologii do dostarczania dopracowanych rozwiązań, które rezonują z użytkownikami.<br/>
       React jest podstawą mojego podejścia do projektu, umożliwiając tworzenie dynamicznych, wielostronicowych aplikacji z płynną nawigacją i optymalną wydajnością.<br/>
       Dodatkowo, Styled-Components oferuje pragmatyczne podejście do stylizacji, pozwalając mi usprawnić proces projektowania i utrzymać spójność w projektach.<br/>
