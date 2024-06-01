@@ -122,7 +122,6 @@ export const ProjectDescription = styled.div`
 
 export const LinkContainer = styled.div`
   display: flex;
-
   flex-direction: column;
   text-align: center;
   gap: 10px;
@@ -137,6 +136,14 @@ export const ProjectLink = styled.a`
   color: #0066af;
   font-weight: bold;
   text-decoration: none;
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
+    font-size: 0.85em;
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.sm}) {
+    font-size: 0.7em;
+  }
 `;
 
 export const LinkTag = styled.span`
