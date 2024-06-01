@@ -1,10 +1,9 @@
 import styled, { css } from "styled-components";
-import { themes } from "../../themes";
 
 export const Wrapper = styled.div`
   margin-right: auto;
 
-  @media (max-width: ${({ theme }) => themes.breakpoint.lg}) {
+  @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
     margin: auto;
   }
 `;
@@ -37,7 +36,7 @@ export const Icon = styled.img`
       transform: scale(1.4);
     `}
 
-  @media (max-width: ${({ theme }) => themes.breakpoint.lg}) {
+  @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
     width: 15px;
     height: 15px;
   }
