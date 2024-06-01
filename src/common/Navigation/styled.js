@@ -61,11 +61,13 @@ export const StyledListItem = styled.li`
   transition: all 0.3s ease;
   transition: border 1s, background-color 1s, color 1s;
 
-  &:hover {
-    border: 1px solid #1693e4;
-    background-color: #b9e1fb;
-    cursor: pointer;
-    color: black;
+  @media (hover: hover) {
+    &:hover {
+      border: 1px solid #1693e4;
+      background-color: #b9e1fb;
+      cursor: pointer;
+      color: black;
+    }
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.xs}) {
