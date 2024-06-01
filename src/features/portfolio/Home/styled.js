@@ -14,7 +14,7 @@ const imageBorderAnimation = keyframes`
 `;
 
 export const HomeWrapper = styled.section`
-  margin: 100px auto 0 auto;
+  margin: 50px auto 0 auto;
   padding: 15px;
   width: 65%;
   font-size: 1rem;
