@@ -1,6 +1,6 @@
 import {
   DevWrapper,
-  PCmenuContainer,
+  MenuContainer,
   StyledList,
   StyledListItem,
   StyledScrollLink,
@@ -64,14 +64,20 @@ const Navigation = () => {
         </DevWrapper>
       </Link>
 
-      <PCmenuContainer>
+      <MenuContainer>
         {menuItems[language].map((item, index) => (
           <StyledScrollLink
             activeClass="active"
             to={item.toLowerCase()}
             spy={true}
             smooth={true}
-            offset={index === menuItems[language].length - 1 ? -620 : -70}
+            offset={
+              windowWidth < 600 && index === menuItems[language].length - 4
+                ? -120
+                : index === menuItems[language].length - 1
+                ? -620
+                : -80
+            }
             duration={700}
             key={index}
           >
@@ -80,7 +86,7 @@ const Navigation = () => {
             </StyledListItem>
           </StyledScrollLink>
         ))}
-      </PCmenuContainer>
+      </MenuContainer>
     </StyledList>
   );
 };
