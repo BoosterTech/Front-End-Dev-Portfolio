@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { themes } from "../../themes";
 import { keyframes } from "styled-components";
 import { Link } from "react-scroll";
 
@@ -22,12 +21,12 @@ export const StyledList = styled.nav`
   list-style: none;
   align-items: center;
   justify-content: center;
-  background-color: ${({ theme }) => themes.color.navigationBackground};
+  background-color: ${({ theme }) => theme.color.navigationBackground};
   padding: 1rem;
   margin-top: 0;
   gap: 2rem;
   font-weight: 700;
-  font-size: 1.2rem;
+  font-size: 1.05rem;
   box-shadow: -1px -4px 29px 4px #c9c7c8;
   transition: all 1s ease;
   flex-grow: 1;
@@ -41,20 +40,20 @@ export const StyledList = styled.nav`
     justify-content: flex-end;
   }
 
-  @media (max-width: ${({ theme }) => themes.breakpoint.lg}) {
+  @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
     padding: 0.5rem;
     height: auto;
     gap: 1rem;
   }
 
-  @media (max-width: ${({ theme }) => themes.breakpoint.md}) {
+  @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
     flex-direction: column;
     gap: 0.5rem;
   }
 `;
 
 export const StyledListItem = styled.li`
-  color: ${({ theme }) => themes.color.navigationFontColor};
+  color: ${({ theme }) => theme.color.navigationFontColor};
   transition: color 0.3s ease;
   border: 1px solid transparent;
   padding: 2px 20px;
@@ -69,7 +68,7 @@ export const StyledListItem = styled.li`
     color: black;
   }
 
-  @media (max-width: ${({ theme }) => themes.breakpoint.xs}) {
+  @media (max-width: ${({ theme }) => theme.breakpoint.xs}) {
     animation: ${slideFromLeft} 1s forwards;
     padding: 2px 15px;
   }
@@ -93,7 +92,7 @@ export const DevWrapper = styled(StyledListItem)`
     cursor: pointer;
   }
 
-  @media (max-width: ${({ theme }) => themes.breakpoint.lg}) {
+  @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
     display: none;
   }
 `;
@@ -105,6 +104,6 @@ export const MenuContainer = styled(StyledList)`
   border: none;
   box-shadow: none;
 
-  @media (max-width: ${({ theme }) => themes.breakpoint.lg}) {
+  @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
   }
 `;
