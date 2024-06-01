@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.js": "/Front-End-Dev-Portfolio/static/js/main.356a7fc0.js",
+    "main.js": "/Front-End-Dev-Portfolio/static/js/main.ec68b10b.js",
     "static/js/592.f2abfe8c.chunk.js": "/Front-End-Dev-Portfolio/static/js/592.f2abfe8c.chunk.js",
     "static/media/profileImage.png": "/Front-End-Dev-Portfolio/static/media/profileImage.efd5377ced6f45e3b5f0.png",
     "static/media/plasmaLibraryProject.png": "/Front-End-Dev-Portfolio/static/media/plasmaLibraryProject.cc0083dc7e73cd55a507.png",
@@ -15,10 +15,10 @@
     "static/media/wavingHand.png": "/Front-End-Dev-Portfolio/static/media/wavingHand.1bae5fcfb51082b5c2b4.png",
     "static/media/IrelandIcon.png": "/Front-End-Dev-Portfolio/static/media/IrelandIcon.3747c6f6a4b9b4964184.png",
     "index.html": "/Front-End-Dev-Portfolio/index.html",
-    "main.356a7fc0.js.map": "/Front-End-Dev-Portfolio/static/js/main.356a7fc0.js.map",
+    "main.ec68b10b.js.map": "/Front-End-Dev-Portfolio/static/js/main.ec68b10b.js.map",
     "592.f2abfe8c.chunk.js.map": "/Front-End-Dev-Portfolio/static/js/592.f2abfe8c.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.356a7fc0.js"
+    "static/js/main.ec68b10b.js"
   ]
 }
