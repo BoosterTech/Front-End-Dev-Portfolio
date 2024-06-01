@@ -42,7 +42,7 @@ export const IconsWrapper = styled.div`
   margin-top: 5px;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
-    height: 35px;
+    height: 40px;
     gap: 10px;
   }
 `;
