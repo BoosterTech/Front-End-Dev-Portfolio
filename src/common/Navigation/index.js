@@ -12,11 +12,11 @@ import { selectLanguage } from "../../Redux/languageSlice";
 import { Link } from "react-scroll";
 import { useEffect, useState } from "react";
 import { FaEnvelope, FaHome, FaProjectDiagram, FaUser } from "react-icons/fa";
-import { useTheme } from "styled-components";
 import { themes } from "../../themes";
 
 const Navigation = () => {
-
+  const breakpointXL = parseInt(themes.breakpoint.xl, 10);
+  const breakpointMD = parseInt(themes.breakpoint.md, 10);
 
   const language = useSelector(selectLanguage);
 
@@ -76,7 +76,8 @@ const Navigation = () => {
             spy={true}
             smooth={true}
             offset={
-              windowWidth < 600 && index === menuItems[language].length - 4
+              windowWidth < breakpointMD &&
+              index === menuItems[language].length - 4
                 ? -120
                 : index === menuItems[language].length - 1
                 ? -745
@@ -86,7 +87,7 @@ const Navigation = () => {
             key={index}
           >
             <StyledListItem key={index}>
-              {windowWidth < 1024 ? getIcon(item) : item}
+              {windowWidth < breakpointXL ? getIcon(item) : item}
             </StyledListItem>
           </StyledScrollLink>
         ))}
