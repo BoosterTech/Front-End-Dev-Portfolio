@@ -1,22 +1,5 @@
-import styled, { keyframes } from "styled-components";
 import { themes } from "../../../themes";
-
-const headerImageAmination = keyframes`
-0%{
-  transform: translateY(0);
-}
-
-30%{
-  transform: translateY(-5px);
-}
-
-70%{
-  transform: translateY(+10px);
-}
-100%{
-  transform: translateY(0);
-}
-`;
+import styled from "styled-components";
 
 export const Header = styled.div`
   display: flex;
@@ -25,17 +8,17 @@ export const Header = styled.div`
   align-items: center;
   padding: 10px;
   color: black;
-  font-size: 1.3em;
+  font-size: 1.3rem;
   font-weight: 900;
 
-  @media (max-width: ${({ theme }) => themes.breakpoint.xs}) {
-    font-size: 1.1em;
+  @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
+    font-size: .7em;
   }
-  
-`;
 
-export const HeaderImage = styled.img`
-  width: 50px;
+  @media (max-width: ${({ theme }) => theme.breakpoint.sm}) {
+    font-size: .58em;
+  
+  }
 `;
 
 export const Wrapper = styled.section`
@@ -46,15 +29,9 @@ export const Wrapper = styled.section`
   border-top: 1px solid darkgrey;
   border-radius: 5%;
   transition: transform 3s ease;
+  font-size: 1.2em;
 
-
-  &:hover {
-    ${HeaderImage} {
-      animation: ${headerImageAmination} 2s linear infinite;
-    }
-  }
-
-  @media (max-width: ${({ theme }) => themes.breakpoint.xxxl}) {
+  @media (max-width: ${({ theme }) => theme.breakpoint.xxxl}) {
     padding: 5px;
     text-align: center;
     border: none;
@@ -77,7 +54,7 @@ export const IconsWrapper = styled.div`
   justify-content: center;
   margin-top: 15px;
 
-  @media (max-width: ${({ theme }) => themes.breakpoint.xl2}) {
+  @media (max-width: ${({ theme }) => theme.breakpoint.xl2}) {
     height: 50px;
   }
 `;
