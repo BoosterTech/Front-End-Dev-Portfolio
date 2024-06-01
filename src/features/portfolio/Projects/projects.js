@@ -176,6 +176,7 @@ const projects = [
     GitHubPagesURL: "https://boostertech.github.io/Plasma-Library/",
     GitHubRepoURL: "https://github.com/BoosterTech/Plasma-Library.git",
     inverted: true,
+    border: false,
   },
 ];
 
