@@ -26,14 +26,14 @@ export const Icon = styled.img`
 
   &:hover {
     cursor: pointer;
-    transform: scale(1.4);
+    transform: scale(1.6);
   }
 
   ${(props) =>
     props.$isActive &&
     css`
       border: 1px solid #298edd;
-      transform: scale(1.4);
+      transform: scale(1.6);
     `}
 
   @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
