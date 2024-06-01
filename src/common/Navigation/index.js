@@ -86,7 +86,7 @@ const Navigation = () => {
               index === menuItems[language].length - 4
                 ? -120
                 : index === menuItems[language].length - 1
-                ? -550
+                ? 0
                 : -100
             }
             duration={700}
