@@ -20,10 +20,10 @@ const App = () => {
       <Navigation />
       <ScrollWatcher />
       <Main>
-        <Home id={menuItems[language][0].toLowerCase()} />
-        <About id={menuItems[language][1].toLowerCase()} />
-        <Projects id={menuItems[language][2].toLowerCase()} />
-        <Contact id={menuItems[language][3].toLowerCase()} />
+        <Home id={menuItems[language][0].name.toLowerCase()} />
+        <About id={menuItems[language][1].name.toLowerCase()} />
+        <Projects id={menuItems[language][2].name.toLowerCase()} />
+        <Contact id={menuItems[language][3].name.toLowerCase()} />
       </Main>
       <Footer />
     </ThemeProvider>

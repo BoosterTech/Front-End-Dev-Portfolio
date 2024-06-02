@@ -61,10 +61,10 @@ const Navigation = () => {
       <LanguageSwitch />
       <Link
         activeClass="active"
-        to={menuItems[language][0].toLowerCase()}
+        to={menuItems[language][0].name.toLowerCase()}
         spy={true}
         smooth={true}
-        offset={-120}
+        offset={menuItems[language][0].offset}
         duration={700}
         key={1}
         onClick={handleClick}
@@ -78,22 +78,15 @@ const Navigation = () => {
         {menuItems[language].map((item, index) => (
           <StyledScrollLink
             activeClass="active"
-            to={item.toLowerCase()}
+            to={item.name.toLowerCase()}
             spy={true}
             smooth={true}
-            offset={
-              windowWidth < breakpointMD &&
-              index === menuItems[language].length - 4
-                ? -120
-                : index === menuItems[language].length - 1
-                ? 0
-                : -100
-            }
+            offset={item.offset}
             duration={700}
             key={index}
           >
             <StyledListItem key={index}>
-              {windowWidth < breakpointXL ? getIcon(item) : item}
+              {windowWidth < breakpointXL ? getIcon(item.name) : item.name}
             </StyledListItem>
           </StyledScrollLink>
         ))}
