@@ -19,7 +19,7 @@ const projects = [
       Polish: `<p>&nbsp&nbsp Przeglądarka filmów to intuicyjna aplikacja internetowa zaprojektowana w celu usprawnienia Twojego doświadczenia z oglądaniem filmów, 
                 pozwalająca użytkownikom na łatwe wyszukiwanie filmów, obsady i ekipy.</p>
                <p>Ten czterotygodniowy projekt został opracowany jako projekt końcowy podczas kursu "YouCode" z programowania front-endu i oparty był na profesjonalnym projekcie graficznym.</p>
-                &nbspZespół trzech programistów współpracował, aby stworzyć elegancki i przyjazny interfejs użytkownika, który zapewnia szczegółowe informacje na temat szerokiej gamy filmów i związanej z nim obsady. <br>
+                 Zespół trzech programistów współpracował, aby stworzyć elegancki i przyjazny interfejs użytkownika, który zapewnia szczegółowe informacje na temat szerokiej gamy filmów i związanej z nim obsady. <br>
                 <p>Aplikacja jest zaprojektowana z utrzymaniem optymalnej wydajności dla różnych urządzeń i jest stale rozwijana i ulepszana.</p>
   `,
       Spanish: `<p>&nbsp&nbsp El Navegador de Películas es una aplicación web intuitiva diseñada para mejorar tu experiencia de ver películas,
@@ -57,7 +57,7 @@ const projects = [
                 The "Tasks List" application is built with a clean, intuitive design, prioritizing user experience and productivity. 
                  Whether for personal use or team project management, this tool provides a seamless way to keep track of tasks and ensure nothing falls through the cracks.`,
       Polish: `<p>&nbsp&nbsp Aplikacja "Lista Zadań" to solidne i przyjazne użytkownikowi narzędzie do zarządzania zadaniami, zaprojektowane w celu zwiększenia produktywności i organizacji. 
-                projekt pozwala użytkownikom płynnie dodawać zadania do dynamicznej listy, śledzić ich stan wykonania i łatwo nimi zarządzać.
+                Projekt pozwala użytkownikom płynnie dodawać zadania do dynamicznej listy, śledzić ich stan wykonania i łatwo nimi zarządzać.
                 </p>
                 Aplikacja "Lista Zadań" została stworzona z czystym, intuicyjnym designem, priorytetowo traktującym doświadczenie użytkownika i produktywność.
                 Czy to do użytku osobistego czy do zarządzania projektami zespołowymi, to narzędzie zapewnia płynny sposób śledzenia zadań i zapewnienia, że nic nie umknie uwadze.`,
@@ -148,7 +148,7 @@ const projects = [
                <p>"Biblioteka Plazma" to prosta, ale informacyjna strona internetowa, zbudowana głównie przy użyciu HTML i CSS, z odrobiną JavaScriptu,
                poświęcona fascynującej dziedzinie fizyki plazmowej.</p>
                Zawiera ona linki do trzech głównych książek dostępnych do zakupu, a także szereg publikacji.
-               <p>Mimo że zdobyłem więcej wiedzy i umiejętności od tamtego czasu, zdecydowałem się zachować oryginalny kod tego projektu.
+               <p>Mimo, że zdobyłem więcej wiedzy i umiejętności od tamtego czasu, zdecydowałem się zachować oryginalny kod tego projektu.
                Pozostaje on nietknięty i zgodny z oryginalnymi założeniami, co ma dla mnie wartość sentymentalną jako przypomnienie o moich początkowych krokach w świecie tworzenia aplikacji internetowych.</p>
                <p>Zapraszam do eksploracji "Biblioteki Plazma" i cieszenia się wglądem w początki mojej przygody z kodowaniem 🚀</p>
       `,
