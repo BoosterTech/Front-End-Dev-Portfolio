@@ -4,7 +4,7 @@ export const Wrapper = styled.section`
   display: block;
   max-width: 100%;
   height: auto;
-  padding: 15px 15px;
+  padding: 35px 15px;
   margin: auto;
   font-size: 1rem;
   background-color: white;
@@ -18,15 +18,38 @@ export const Wrapper = styled.section`
 
 export const Header = styled.h1`
   font-weight: bolder;
-  font-size: 2.1em;
+  font-size: 3.1em;
   color: #0066af;
-  padding: 0 15px;
-  margin-bottom: 25px;
-  margin-top: 0;
+  padding: 5px 150px;
+  margin: 0px auto 110px auto;
   text-align: center;
+  box-shadow: 0px 8px 12px 0px #dbd9d7;
+  border-radius: 30px;
+  max-width: fit-content;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.xxl}) {
-    padding: 0;
+    padding: 3px 50px;
+    margin-bottom: 50px;
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.xl}) {
+    font-size: 2.6rem;
+    margin-bottom: 30px;
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
+    font-size: 2.1rem;
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.sm}) {
+    font-size: 1.8rem;
+    padding: 0px 20px;
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.xxs}) {
+    font-size: 1.5rem;
+    padding: 0px 10px;
+    margin-bottom: 15px;
   }
 `;
 
@@ -48,10 +71,11 @@ export const ProjectWrapper = styled.div`
   @media (max-width: ${({ theme }) => theme.breakpoint.xxxl}) {
     flex-direction: column;
     margin-top: 50px;
-    border-bottom: ${({$border}) => ($border ? "1px solid grey" : "none")};
+    border-bottom: ${({ $border }) => ($border ? "1px solid grey" : "none")};
     justify-content: center;
     align-items: center;
     gap: 30px;
+    padding-bottom: 40px;
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.xl}) {
