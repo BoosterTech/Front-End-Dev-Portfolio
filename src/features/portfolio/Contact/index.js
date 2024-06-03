@@ -5,28 +5,24 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectLanguage } from "../../../Redux/languageSlice";
 import { useTheme } from "styled-components";
 import { useEffect, useRef } from "react";
-import {
-  selectContactVisibility,
-  setContactVisibility,
-} from "../../../Redux/generalSlice";
+import { setContactVisibility } from "../../../Redux/generalSlice";
 
 const Contact = ({ id }) => {
   const language = useSelector(selectLanguage);
   const theme = useTheme();
   const contactRef = useRef("");
 
-  const isContactVisible = useSelector(selectContactVisibility);
   const dispatch = useDispatch();
 
   useEffect(() => {
+    const currentRef = contactRef.current;
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach(({ isIntersecting }) => {
           if (isIntersecting) {
-            console.log("Contact section is visible");
             dispatch(setContactVisibility(true));
           } else {
-            console.log("Contact section is not visible");
             dispatch(setContactVisibility(false));
           }
         });
@@ -34,18 +30,16 @@ const Contact = ({ id }) => {
       { threshold: 1 }
     );
 
-    if (contactRef.current) {
-      observer.observe(contactRef.current);
-      console.log("Contact section is being observed ref");
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (contactRef.current) {
-        observer.unobserve(contactRef.current);
-        console.log("Contact section is not being observed ref");
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
-  }, []);
+  }, [dispatch]);
 
   return (
     <Wrapper id={id} ref={contactRef}>
