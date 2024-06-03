@@ -4,7 +4,6 @@ import IRLIcon from "../../images/IrelandIcon.png";
 import ESPIcon from "../../images/SpainIcon.png";
 import { useDispatch, useSelector } from "react-redux";
 import { selectLanguage, setLanguage } from "../../Redux/languageSlice";
-import { useState } from "react";
 
 export const LanguageSwitch = () => {
   const dispatch = useDispatch();
