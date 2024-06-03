@@ -181,11 +181,3 @@ const projects = [
 ];
 
 export default projects;
-
-{
-  /* <p><strong>Task Addition</strong>: Quickly add new tasks to the list with a straightforward input interface.</p>
-                  <p><strong>Mark as Done/Undone</strong>: Easily toggle the completion status of tasks, marking them as done or reverting them to undone.</p>
-                  <p><strong>Mark All as Done</strong>: Use a single button to efficiently mark all tasks in the list as completed.</p>
-                  <p><strong>Hide Completed Tasks</strong>: Simplify the view by hiding tasks that have been marked as done, allowing users to focus on pending tasks.</p>
-                  <p><strong>Task Removal</strong>: Remove tasks from the list with a single click, ensuring the task list remains relevant and up-to-date.</p> */
-}
