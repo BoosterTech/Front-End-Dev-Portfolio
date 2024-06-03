@@ -1,5 +1,5 @@
 const offsetHome = -120;
-const offsetAbout = -140;
+const offsetAbout = -120;
 const offsetProjects = -100;
 const offsetContact = 0;
 
