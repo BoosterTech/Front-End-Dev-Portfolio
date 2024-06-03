@@ -82,6 +82,14 @@ export const StyledScrollLink = styled(Link)`
     background-color: #b9e1fb;
     color: black;
   }
+
+  ${(props) =>
+    props.$isContactVisible &&
+    `${StyledListItem}{
+      border: 1px solid #1693e4;
+      background-color: #b9e1fb;
+      color: black;
+  `}
 `;
 
 export const DevWrapper = styled(StyledListItem)`
