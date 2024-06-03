@@ -6,7 +6,7 @@ export const themes = {
     navigationFontHover: "#139DF7",
   },
   breakpoint: {
-    xxs: "280px", // Extra small devices (phones)
+    xxs:"280px", // Extra small devices (phones)
     xs: "320px", // Very small devices (phones)
     sm: "375px", // Small devices (phones)
     md: "600px", // Medium devices (tablets)
