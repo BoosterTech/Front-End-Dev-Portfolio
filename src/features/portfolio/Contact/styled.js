@@ -5,7 +5,7 @@ export const Header = styled.div`
   margin: auto;
   padding: 80px 0 10px;
   color: black;
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: 900;
   white-space: nowrap;
 
@@ -56,6 +56,7 @@ export const ContactIconStyled = styled.img`
   padding: 5px;
   transition: transform 0.3s ease, scale 3s ease;
   border-radius: 100%;
+  border: 1px solid transparent;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
     max-width: 40px;
