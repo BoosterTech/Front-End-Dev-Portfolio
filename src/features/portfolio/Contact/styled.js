@@ -20,10 +20,11 @@ export const Header = styled.div`
 
 export const Wrapper = styled.section`
   max-width: 100%;
-  max-height: 300px;
+  max-height: 500px;
   height: auto;
   background-color: inherit;
   padding: 60px auto 10px;
+  margin-bottom: 20px;
   transition: transform 3s ease;
   font-size: 1rem;
 
@@ -59,7 +60,6 @@ export const ContactIconStyled = styled.img`
   @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
     max-width: 40px;
     max-height: 40px;
-  
   }
 
   &:hover {
