@@ -1,6 +1,6 @@
 const offsetHome = -120;
-const offsetAbout = -60;
-const offsetProjects = -50;
+const offsetAbout = -140;
+const offsetProjects = -100;
 const offsetContact = 0;
 
 export const menuItems = {
