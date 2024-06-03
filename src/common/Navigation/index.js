@@ -13,25 +13,31 @@ import { Link } from "react-scroll";
 import { useEffect, useState } from "react";
 import { FaEnvelope, FaHome, FaProjectDiagram, FaUser } from "react-icons/fa";
 import { themes } from "../../themes";
+import { selectContactVisibility } from "../../Redux/generalSlice";
 
 const Navigation = () => {
   const breakpointXL = parseInt(themes.breakpoint.xl, 10);
-  const breakpointMD = parseInt(themes.breakpoint.md, 10);
 
+  const isContactVisible = useSelector(selectContactVisibility);
   const language = useSelector(selectLanguage);
   const dispatch = useDispatch();
 
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
-  const handleClick = () => {
-    dispatch(setLanguage("English"));
-  };
 
   useEffect(() => {
     const handleResize = () => setWindowWidth(window.innerWidth);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  const handleClick = () => {
+    dispatch(setLanguage("English"));
+  };
+
+  const getActiveClass = (index) => {
+    if (isContactVisible && menuItems[language].length - 1 === index)
+      return true;
+  };
 
   const getIcon = (item) => {
     switch (item) {
@@ -78,6 +84,7 @@ const Navigation = () => {
         {menuItems[language].map((item, index) => (
           <StyledScrollLink
             activeClass="active"
+            $isContactVisible={getActiveClass(index)}
             to={item.name.toLowerCase()}
             spy={true}
             smooth={true}
