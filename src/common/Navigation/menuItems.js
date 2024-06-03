@@ -1,7 +1,7 @@
 const offsetHome = -120;
 const offsetAbout = -60;
 const offsetProjects = -50;
-const offsetContact = -40;
+const offsetContact = 0;
 
 export const menuItems = {
   English: [
