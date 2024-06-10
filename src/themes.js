@@ -6,7 +6,7 @@ export const themes = {
     navigationFontHover: "#139DF7",
   },
   breakpoint: {
-    xxs:"280px", // Extra small devices (phones)
+    xxs: "280px", // Extra small devices (phones)
     xs: "320px", // Very small devices (phones)
     sm: "375px", // Small devices (phones)
     md: "600px", // Medium devices (tablets)
@@ -20,7 +20,7 @@ export const themes = {
 
   English: {
     home: {
-      contentHeader: "Front-End React Developer",
+      contentHeader: "Front-End Developer <React/>",
       headerParagraph:
         "Hi, I'm Dariusz Podczasik. A passionate Front-End React Developer based in Trim, Ireland.",
       skillsetHeader: "My Skillset Includes",
@@ -50,7 +50,7 @@ export const themes = {
 
   Polish: {
     home: {
-      contentHeader: "Programista Front-Endu w React",
+      contentHeader: "Programista Front-Endu <React/>",
       headerParagraph:
         "Witam, nazywam się Dariusz Podczasik. Jestem Programistą Front-Endu, mieszkającym w Trim w Irlandii.",
       skillsetHeader: "Moje Umiejętności",
@@ -81,7 +81,7 @@ export const themes = {
 
   Spanish: {
     home: {
-      contentHeader: "Desarrollador Front-End React",
+      contentHeader: "Desarrollador Front-End <React/>",
       headerParagraph:
         "Hola, soy Dariusz Podczasik. Un apasionado desarrollador Front-End React con sede en Trim, Irlanda.",
       skillsetHeader: "Mis Habilidades Incluyen",
