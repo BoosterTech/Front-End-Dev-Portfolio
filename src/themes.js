@@ -31,7 +31,7 @@ export const themes = {
       aboutMeParagraph: `
         <p>Hi, I'm Derek, a Frontend Developer dedicated to crafting exceptional user interfaces and experiences.</p>
          My primary focus revolves around leveraging cutting-edge technologies to deliver polished solutions that resonate with users.<br/>
-         React serves as the cornerstone of my development approach, facilitating the creation of dynamic, multi-page applications with seamless navigation and optimized performance.<br/>
+         React serves as the cornerstone of my development approach, facilitating the creation of dynamic, single-page applications with seamless navigation and optimized performance.<br/>
          Additionally, Styled-Components offers a pragmatic approach to styling, allowing me to streamline the design process and maintain consistency across projects.<br/>
          Furthermore, Redux and Axios enhance the development workflow, promoting code integrity and scalability.<br/>
          This robust stack empowers me to efficiently develop high-performance, responsive web applications that meet the demands of today's digital landscape.<br/>
@@ -61,7 +61,7 @@ export const themes = {
       aboutMeParagraph: `
       <p>Witam, mam na imię Darek i jestem Frontend Developerem, który skupia się na tworzeniu wyjątkowych interfejsów użytkownika i doświadczeń.</p>
       Moje główne zainteresowania koncentrują się na wykorzystaniu najnowocześniejszych technologii do dostarczania dopracowanych rozwiązań, które rezonują z użytkownikami.<br/>
-      React jest podstawą mojego podejścia do projektu, umożliwiając tworzenie dynamicznych, wielostronicowych aplikacji z płynną nawigacją i optymalną wydajnością.<br/>
+      React jest podstawą mojego podejścia do projektu, umożliwiając tworzenie dynamicznych, jednostronicowych aplikacji z płynną nawigacją i optymalną wydajnością.<br/>
       Dodatkowo, Styled-Components oferuje pragmatyczne podejście do stylizacji, pozwalając mi usprawnić proces projektowania i utrzymać spójność w projektach.<br/>
       Ponadto, Redux i Axios ulepszają przepływ pracy podczas tworzenia kodu, promując integralność kodu i skalowalność.<br/>
       Ten solidny stos technologiczny umożliwia mi efektywne tworzenie wydajnych, responsywnych aplikacji internetowych, które spełniają wymagania dzisiejszego świata cyfrowego.<br/>
@@ -92,7 +92,7 @@ export const themes = {
       aboutMeParagraph: `
       <p>Hola, soy Derek, un Desarrollador de Frontend dedicado a crear interfaces de usuario y experiencias excepcionales.</p>
       Mi enfoque principal gira en torno a aprovechar las tecnologías de vanguardia para entregar soluciones pulidas que resuenen con los usuarios.<br/>
-      React sirve como la piedra angular de mi enfoque de desarrollo, facilitando la creación de aplicaciones dinámicas de múltiples páginas con navegación fluida y rendimiento optimizado.<br/>
+      React sirve como la piedra angular de mi enfoque de desarrollo, facilitando la creación de aplicaciones dinámicas de una sola página con navegación fluida y rendimiento optimizado.<br/>
       Además, Styled-Components ofrece un enfoque pragmático para el estilo, lo que me permite agilizar el proceso de diseño y mantener la consistencia en los proyectos.<br/>
       Además, Redux y Axios mejoran el flujo de trabajo de desarrollo, promoviendo la integridad del código y la escalabilidad.<br/>
       Esta sólida pila me permite desarrollar de manera eficiente aplicaciones web de alto rendimiento y responsivas que satisfacen las demandas del panorama digital de hoy.<br/>
