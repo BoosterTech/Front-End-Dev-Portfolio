@@ -19,6 +19,8 @@ import reduxSagaIcon from "../../../images/reduxSagaIcon.jpg";
 import styledComponentsicon from "../../../images/styledComponentsIcon.jpg";
 import axiosIcon from "../../../images/axiosIcon.jpg";
 import reduxToolkitIcon from "../../../images/reduxToolkitIcon.jpg";
+import reactRouterIcon from "../../../images/reactRouterIcon.png";
+
 import { SkillsetContainer } from "./SkillsetContainer";
 import { useTheme } from "styled-components";
 import React from "react";
@@ -31,7 +33,9 @@ const techStackIcons = [
   reduxSagaIcon,
   reduxToolkitIcon,
   axiosIcon,
+  reactRouterIcon,
   styledComponentsicon,
+  
 ];
 
 const Home = ({ id }) => {
