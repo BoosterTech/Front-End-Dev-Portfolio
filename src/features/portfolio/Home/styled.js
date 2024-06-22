@@ -153,6 +153,10 @@ export const TechStackContainer = styled.div`
   @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
     display: none;
   }
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.xl}) {
+    gap: 20px;
+  }
 `;
 
 export const TechStackItem = styled.img`
@@ -162,16 +166,20 @@ export const TechStackItem = styled.img`
   border-radius: 5px;
   transition: transform 0.5s ease, height 3s ease;
 
-  &:hover {
-    transform: scale(1.6);
+  @media (hover: hover) {
+    &:hover {
+      transform: scale(1.6);
+    }
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.xl2}) {
     text-align: center;
     height: 30px;
 
-    &:hover {
-      transform: scale(2.3);
+    @media (hover: hover) {
+      &:hover {
+        transform: scale(2.3);
+      }
     }
   }
 `;
