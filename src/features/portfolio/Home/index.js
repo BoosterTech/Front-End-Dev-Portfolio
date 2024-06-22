@@ -27,20 +27,20 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { selectLanguage } from "../../../Redux/languageSlice";
 
-const techStackIcons = [
-  reactIcon,
-  reduxIcon,
-  reduxSagaIcon,
-  reduxToolkitIcon,
-  axiosIcon,
-  reactRouterIcon,
-  styledComponentsicon,
-  
-];
-
 const Home = ({ id }) => {
   const theme = useTheme();
   const language = useSelector(selectLanguage);
+
+  const techStackIcons = [
+    reactIcon,
+    reduxIcon,
+    reduxSagaIcon,
+    reduxToolkitIcon,
+    axiosIcon,
+    reactRouterIcon,
+    styledComponentsicon,
+    
+  ];
 
   return (
     <HomeWrapper id={id}>
