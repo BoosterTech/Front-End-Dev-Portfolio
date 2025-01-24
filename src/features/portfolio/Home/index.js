@@ -19,7 +19,7 @@ import styledComponentsicon from "../../../images/styledComponentsIcon.jpg";
 import axiosIcon from "../../../images/axiosIcon.jpg";
 import reduxToolkitIcon from "../../../images/reduxToolkitIcon.jpg";
 import reactRouterIcon from "../../../images/reactRouterIcon.png";
-import firebaseIcon from "../../../images/firebaseIcon.png";
+import supabaseIcon from  "../../../images/supabaseIcon.png";
 import nextIcon from "../../../images/nextIcon.png";
 import oAuthIcon from "../../../images/oAuthIcon.png";
 import reactQueryIcon from "../../../images/reactQueryIcon.png";
@@ -47,7 +47,7 @@ const Home = ({ id }) => {
     reactRouterIcon,
     styledComponentsicon,
     nextIcon,
-    firebaseIcon,
+    supabaseIcon,
     oAuthIcon,
     reactQueryIcon,
     vercelIcon,
