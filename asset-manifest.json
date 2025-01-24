@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.js": "/Front-End-Dev-Portfolio/static/js/main.b7834b2c.js",
+    "main.js": "/Front-End-Dev-Portfolio/static/js/main.403d45c0.js",
     "static/js/592.f2abfe8c.chunk.js": "/Front-End-Dev-Portfolio/static/js/592.f2abfe8c.chunk.js",
     "static/media/profileImage.png": "/Front-End-Dev-Portfolio/static/media/profileImage.efd5377ced6f45e3b5f0.png",
     "static/media/plasmaLibraryProject.png": "/Front-End-Dev-Portfolio/static/media/plasmaLibraryProject.cc0083dc7e73cd55a507.png",
@@ -10,16 +10,19 @@
     "static/media/reactRouterIcon.png": "/Front-End-Dev-Portfolio/static/media/reactRouterIcon.ab5367380895481ed7ac.png",
     "static/media/reduxIcon.png": "/Front-End-Dev-Portfolio/static/media/reduxIcon.170eb0c41f493b345628.png",
     "static/media/linkedInIcon.png": "/Front-End-Dev-Portfolio/static/media/linkedInIcon.cd71fb396f73fb1f27d4.png",
+    "static/media/firebaseIcon.png": "/Front-End-Dev-Portfolio/static/media/firebaseIcon.b5bc04b758417e1c6f33.png",
     "static/media/reduxToolkitIcon.jpg": "/Front-End-Dev-Portfolio/static/media/reduxToolkitIcon.8c4d364996572ff81ab7.jpg",
     "static/media/tasksListProject.png": "/Front-End-Dev-Portfolio/static/media/tasksListProject.6aac1de246e320b05622.png",
     "static/media/whatsappIcon.png": "/Front-End-Dev-Portfolio/static/media/whatsappIcon.d16d172553923f980d1a.png",
     "static/media/wavingHand.png": "/Front-End-Dev-Portfolio/static/media/wavingHand.1bae5fcfb51082b5c2b4.png",
+    "static/media/jwtIcon.png": "/Front-End-Dev-Portfolio/static/media/jwtIcon.9e8cbff93e4d683f00d4.png",
     "static/media/IrelandIcon.png": "/Front-End-Dev-Portfolio/static/media/IrelandIcon.3747c6f6a4b9b4964184.png",
+    "static/media/oAuthIcon.png": "/Front-End-Dev-Portfolio/static/media/oAuthIcon.4f10cd74f296a51770bf.png",
     "index.html": "/Front-End-Dev-Portfolio/index.html",
-    "main.b7834b2c.js.map": "/Front-End-Dev-Portfolio/static/js/main.b7834b2c.js.map",
+    "main.403d45c0.js.map": "/Front-End-Dev-Portfolio/static/js/main.403d45c0.js.map",
     "592.f2abfe8c.chunk.js.map": "/Front-End-Dev-Portfolio/static/js/592.f2abfe8c.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.b7834b2c.js"
+    "static/js/main.403d45c0.js"
   ]
 }
