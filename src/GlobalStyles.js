@@ -15,10 +15,11 @@ html{
 
 body{
     background-color: ${({ theme }) => theme.color.background};
-    font-size: 16px ;
+    font-size: 19px ;
     max-width: 100%;
     margin: auto;
-    animation: ${slowEntry} 1s ease;
+    animation: ${slowEntry} .5s ease;
+    line-height: 1.2;
 }
 `;
 
