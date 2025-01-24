@@ -13,7 +13,7 @@ export const SkillsetHeader = styled.div`
   margin: 0 auto;
   text-align: center;
   margin-top: 10px;
-  font-size: 1.5rem;
+  /* font-size: 1.5rem; */
   font-weight: 1000;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
@@ -31,7 +31,7 @@ export const ListContainer = styled.ul`
   align-items: center;
   justify-content: center;
   grid-template-columns: 1fr 1fr 1fr;
-  font-size: 1rem;
+  /* font-size: 1rem; */
   gap: 10px 3px;
   padding: 20px;
 

@@ -17,7 +17,7 @@ export const HomeWrapper = styled.section`
   margin: 30px auto 0 auto;
   padding: 15px;
   width: 65%;
-  font-size: 1rem;
+  /* font-size: 1rem; */
 
   @media (max-width: ${({ theme }) => theme.breakpoint.xxl}) {
     width: 100%;
@@ -43,7 +43,7 @@ export const ContentContainer = styled.div`
 `;
 
 export const ContentHeader = styled.h1`
-  font-size: 1.7rem;
+  /* font-size: 1.7rem; */
   font-weight: 900;
   padding: 5px;
   cursor: none;
@@ -145,7 +145,7 @@ export const TechStackContainer = styled.div`
   flex-wrap: wrap;
   gap: 30px;
   align-items: center;
-  border: 1px solid #9aa4ab;
+  /* border: 1px solid #9aa4ab; */
   border-radius: 15px;
   padding: 30px 20px;
   transition: all 3s ease;
@@ -160,6 +160,7 @@ export const TechStackContainer = styled.div`
 `;
 
 export const TechStackItem = styled.img`
+padding: 3px;
   width: auto;
   height: 50px;
   border: 1px solid black;

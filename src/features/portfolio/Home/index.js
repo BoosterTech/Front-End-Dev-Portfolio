@@ -15,11 +15,18 @@ import wavingHandImage from "../../../images/wavingHand.png";
 import profileImage from "../../../images/profileImage.png";
 import reactIcon from "../../../images/reactIcon.png";
 import reduxIcon from "../../../images/reduxIcon.png";
-import reduxSagaIcon from "../../../images/reduxSagaIcon.jpg";
 import styledComponentsicon from "../../../images/styledComponentsIcon.jpg";
 import axiosIcon from "../../../images/axiosIcon.jpg";
 import reduxToolkitIcon from "../../../images/reduxToolkitIcon.jpg";
 import reactRouterIcon from "../../../images/reactRouterIcon.png";
+import firebaseIcon from "../../../images/firebaseIcon.png";
+import nextIcon from "../../../images/nextIcon.png";
+import oAuthIcon from "../../../images/oAuthIcon.png";
+import reactQueryIcon from "../../../images/reactQueryIcon.png";
+import vercelIcon from "../../../images/vercelIcon.png";
+import jwtIcon from "../../../images/jwtIcon.png";
+import tailwindIcon from "../../../images/tailwindIcon.png";
+import typeScriptIcon from "../../../images/typeScriptIcon.png";
 
 import { SkillsetContainer } from "./SkillsetContainer";
 import { useTheme } from "styled-components";
@@ -34,12 +41,19 @@ const Home = ({ id }) => {
   const techStackIcons = [
     reactIcon,
     reduxIcon,
-    reduxSagaIcon,
+
     reduxToolkitIcon,
     axiosIcon,
     reactRouterIcon,
     styledComponentsicon,
-    
+    nextIcon,
+    firebaseIcon,
+    oAuthIcon,
+    reactQueryIcon,
+    vercelIcon,
+    jwtIcon,
+    tailwindIcon,
+    typeScriptIcon,
   ];
 
   return (

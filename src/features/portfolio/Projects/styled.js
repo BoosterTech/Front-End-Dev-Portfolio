@@ -6,7 +6,7 @@ export const Wrapper = styled.section`
   height: auto;
   padding: 35px 15px;
   margin: auto;
-  font-size: 1rem;
+  /* font-size: 1rem; */
   background-color: white;
   box-shadow: 0px 4px 12px 0px grey;
   border-radius: 5px;
