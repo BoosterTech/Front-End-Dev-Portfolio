@@ -160,7 +160,7 @@ const projects = [
     },
     GitHubPagesURL: "https://boostertech.github.io/react-quiz/",
     GitHubRepoURL: "https://github.com/BoosterTech/react-quiz.git",
-    inverted: false,
+    inverted: true,
     border: false,
   },
   {
@@ -210,7 +210,7 @@ const projects = [
     },
     GitHubPagesURL: "https://boostertech.github.io/Plasma-Library/",
     GitHubRepoURL: "https://github.com/BoosterTech/Plasma-Library.git",
-    inverted: true,
+    inverted: false,
     border: false,
   },
   {
@@ -246,7 +246,7 @@ const projects = [
     },
     GitHubPagesURL: "https://boostertech.github.io/eat-n-split/",
     GitHubRepoURL: "https://github.com/BoosterTech/eat-n-split.git",
-    inverted: false,
+    inverted: true,
     border: false,
   },
 ];
