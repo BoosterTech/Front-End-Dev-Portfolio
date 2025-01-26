@@ -2,6 +2,8 @@ import movieBrowserImage from "../../../images/movieBrowserProject.png";
 import tasksListImage from "../../../images/tasksListProject.png";
 import currencyConverterImage from "../../../images/currencyConverterProject.png";
 import plasmaLibraryImage from "../../../images/plasmaLibraryProject.png";
+import reactQuizImage from "../../../images/react-quiz-project.png";
+import eatNsplitmage from "../../../images/eat-n-split-project.png";
 
 const projects = [
   {
@@ -130,6 +132,39 @@ const projects = [
   },
   {
     title: {
+      English: `❓React Quiz App`,
+      Polish: `❓React Quiz App`,
+      Spanish: `❓React Quiz App`,
+    },
+    description: {
+      English: `<p>&nbsp&nbsp Welcome to my React Quiz App! </p>
+                          <p>The React Quiz App is a quiz with 30 questions focused on React concepts. Built using React and the useReducer hook, the app tracks user answers, moves through questions, and calculates the final score. The use of useReducer efficiently manages the state of the quiz, making it easy to scale.</p>
+                          `,
+      Polish: `<p>&nbsp&nbsp Witaj w mojej aplikacji React Quiz! </p>
+                         <p>React Quiz App to quiz składający się z 30 pytań związanych z koncepcjami React. Aplikacja została stworzona przy użyciu React i hooka useReducer, który zarządza odpowiedziami użytkownika, umożliwia przechodzenie przez pytania i oblicza ostateczny wynik. Zastosowanie useReducer efektywnie zarządza stanem quizu, co sprawia, że aplikacja jest łatwa do skalowania.</p>
+                        `,
+      Spanish: `<p>&nbsp&nbsp ¡Bienvenido a mi React Quiz App! </p>
+                          <p>React Quiz App es una aplicación de preguntas con 30 preguntas centradas en conceptos de React. Construida con React y el hook useReducer, la aplicación realiza un seguimiento de las respuestas del usuario, avanza a través de las preguntas y calcula la puntuación final. El uso de useReducer gestiona eficientemente el estado del quiz, lo que facilita su escalabilidad.</p>
+                          `,
+    },
+    imageURL: `${reactQuizImage}`,
+    GitHubPagesURLTag: {
+      English: "Go to the Website",
+      Polish: "Przejdź do Strony",
+      Spanish: "Ir al Sitio Web",
+    },
+    GitHubRepoURLTag: {
+      English: "Go to the GitHub Repository",
+      Polish: "Przejdź do Repozytorium GitHub",
+      Spanish: "Ir al Repositorio de GitHub",
+    },
+    GitHubPagesURL: "https://boostertech.github.io/react-quiz/",
+    GitHubRepoURL: "https://github.com/BoosterTech/react-quiz.git",
+    inverted: false,
+    border: false,
+  },
+  {
+    title: {
       English: `⚛️Plasma Library`,
       Polish: `⚛️Biblioteka Plazma`,
       Spanish: `⚛️Biblioteca de Plasma`,
@@ -160,7 +195,7 @@ const projects = [
                 <p>A pesar de haber adquirido más conocimientos y habilidades desde entonces, he elegido conservar el código original de este proyecto.
                 Permanece intacto y tal como fue escrito originalmente, teniendo un valor sentimental como un recordatorio de mis primeros pasos en el mundo del desarrollo de aplicaciones web móviles.</p>
                 <p>Explora la Biblioteca de Plasma y disfruta de un vistazo a los inicios de mi viaje en la programación 🚀</p>
-      `,
+                `,
     },
     imageURL: `${plasmaLibraryImage}`,
     GitHubPagesURLTag: {
@@ -176,6 +211,42 @@ const projects = [
     GitHubPagesURL: "https://boostertech.github.io/Plasma-Library/",
     GitHubRepoURL: "https://github.com/BoosterTech/Plasma-Library.git",
     inverted: true,
+    border: false,
+  },
+  {
+    title: {
+      English: `🍴Eat-n-split💶`,
+      Polish: `🍴Eat-n-split💶`,
+      Spanish: `🍴Eat-n-split💶`,
+    },
+    description: {
+      English: `<p>&nbsp&nbsp Welcome to Eat-N-Split! </p>
+                <p>Eat-N-Split is a user-friendly web application designed to simplify the process of splitting bills among friends or group members. Whether you're dining out, sharing a meal, or participating in any group activity with shared costs, this app ensures that everyone pays their fair share with ease.</p>
+                <p>The app allows users to enter the total amount of a bill, specify the number of people splitting it, and automatically calculates how much each person owes. Built using React.js for a dynamic, responsive experience and Styled Components for a sleek, customizable interface, Eat-N-Split makes managing group payments quick, hassle-free, and enjoyable.</p>
+                <p>Ideal for group outings, dinners, or any situation where multiple people share expenses, Eat-N-Split eliminates the need for manual calculations and ensures fairness for everyone involved.</p>`,
+      Polish: `<p>&nbsp&nbsp Witaj w Eat-N-Split! </p>
+               <p>Eat-N-Split to aplikacja internetowa zaprojektowana w celu uproszczenia procesu dzielenia rachunków wśród przyjaciół lub członków grupy. Niezależnie od tego, czy jesz na mieście, dzielisz posiłek, czy bierzesz udział w grupowej aktywności, aplikacja zapewnia, że każdy płaci swoją sprawiedliwą część.</p>
+               <p>Aplikacja umożliwia użytkownikom wpisanie całkowitej kwoty rachunku, określenie liczby osób dzielących rachunek, a następnie automatycznie oblicza, ile każda osoba ma do zapłacenia. Zbudowana przy użyciu React.js dla dynamicznego, responsywnego doświadczenia i Styled Components, aby stworzyć elegancki, łatwy do dostosowania interfejs, Eat-N-Split sprawia, że zarządzanie płatnościami grupowymi jest szybkie, bezproblemowe i przyjemne.</p>
+               <p>Idealna na wspólne wyjścia, kolacje lub wszelkie sytuacje, w których kilka osób dzieli wydatki, Eat-N-Split eliminuje potrzebę ręcznych obliczeń i zapewnia sprawiedliwość dla wszystkich zaangażowanych.</p>`,
+      Spanish: `<p>&nbsp&nbsp ¡Bienvenido a Eat-N-Split! </p>
+                <p>Eat-N-Split es una aplicación web fácil de usar diseñada para simplificar el proceso de dividir las cuentas entre amigos o miembros de un grupo. Ya sea que estés comiendo fuera, compartiendo una comida o participando en cualquier actividad grupal con gastos compartidos, esta aplicación asegura que todos paguen su parte justa con facilidad.</p>
+                <p>La aplicación permite a los usuarios ingresar el monto total de la cuenta, especificar la cantidad de personas que la dividirán y automáticamente calcula cuánto debe pagar cada persona. Construido con React.js para una experiencia dinámica y receptiva y Styled Components para una interfaz elegante y personalizable, Eat-N-Split hace que administrar pagos grupales sea rápido, sin complicaciones y agradable.</p>
+                <p>Ideal para salidas en grupo, cenas o cualquier situación en la que varias personas compartan gastos, Eat-N-Split elimina la necesidad de cálculos manuales y asegura que todos paguen de manera justa.</p>`,
+    },
+    imageURL: `${eatNsplitmage}`,
+    GitHubPagesURLTag: {
+      English: "Go to the Website",
+      Polish: "Przejdź do Strony",
+      Spanish: "Ir al Sitio Web",
+    },
+    GitHubRepoURLTag: {
+      English: "Go to the GitHub Repository",
+      Polish: "Przejdź do Repozytorium GitHub",
+      Spanish: "Ir al Repositorio de GitHub",
+    },
+    GitHubPagesURL: "https://boostertech.github.io/eat-n-split/",
+    GitHubRepoURL: "https://github.com/BoosterTech/eat-n-split.git",
+    inverted: false,
     border: false,
   },
 ];
