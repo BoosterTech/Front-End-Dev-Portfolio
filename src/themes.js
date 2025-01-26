@@ -61,7 +61,7 @@ export const themes = {
 
   Polish: {
     home: {
-      contentHeader: "Programista Front-Endu <React/>",
+      contentHeader: "Programista Front-Endu <React | Next/>",
       headerParagraph:
         "Witam, nazywam się Dariusz Podczasik. Jestem Programistą Front-Endu, mieszkającym w Trim w Irlandii.",
       skillsetHeader: "Moje Umiejętności",
@@ -101,7 +101,7 @@ export const themes = {
 
   Spanish: {
     home: {
-      contentHeader: "Desarrollador Front-End <React/>",
+      contentHeader: "Desarrollador Front-End <React | Next/>",
       headerParagraph:
         "Hola, soy Dariusz Podczasik. Un apasionado desarrollador Front-End React con sede en Trim, Irlanda.",
       skillsetHeader: "Mis Habilidades Incluyen",
