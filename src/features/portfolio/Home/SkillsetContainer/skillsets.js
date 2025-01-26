@@ -127,7 +127,7 @@ export const skillsets = {
 };
 
 export const toLearn = {
-  English: ["React Testing", "React Native", "Three.js"],
-  Polish: ["Testowanie React", "React Native", "Three.js"],
-  Spanish: ["Pruebas React", "React Native", "Three.js"],
+  English: ["React Testing", "React Native", "Three.js", "Node.js"],
+  Polish: ["Testowanie React", "React Native", "Three.js", "Node.js"],
+  Spanish: ["Pruebas React", "React Native", "Three.js", "Node.js"],
 };
