@@ -87,6 +87,7 @@ const projects = [
     GitHubRepoURL:
       "https://github.com/BoosterTech/To-Do-List-Redux-Saga-Module-14.git",
     inverted: true,
+    border: true,
   },
   {
     title: {
@@ -129,6 +130,7 @@ const projects = [
     GitHubRepoURL:
       "https://github.com/BoosterTech/Currency-Converter-Fetch-Module-12.git",
     inverted: false,
+    border: true,
   },
   {
     title: {
@@ -161,7 +163,7 @@ const projects = [
     GitHubPagesURL: "https://boostertech.github.io/react-quiz/",
     GitHubRepoURL: "https://github.com/BoosterTech/react-quiz.git",
     inverted: true,
-    border: false,
+    border: true,
   },
   {
     title: {
@@ -211,7 +213,7 @@ const projects = [
     GitHubPagesURL: "https://boostertech.github.io/Plasma-Library/",
     GitHubRepoURL: "https://github.com/BoosterTech/Plasma-Library.git",
     inverted: false,
-    border: false,
+    border: true,
   },
   {
     title: {
