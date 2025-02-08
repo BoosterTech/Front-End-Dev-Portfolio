@@ -95,7 +95,7 @@ export const themes = {
     },
     footer: {
       footerParagraph:
-        "Copyright© 2024 Dariusz Podczasik. Wszelkie prawa zastrzeżone.",
+        "Copyright© 2024 Dariusz Podczasik",
     },
   },
 
