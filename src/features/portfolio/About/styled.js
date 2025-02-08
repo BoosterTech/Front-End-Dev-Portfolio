@@ -18,11 +18,11 @@ export const Wrapper = styled.article`
   padding-bottom: 100px;
   justify-content: center;
   align-items: center;
-  /* font-size: 1rem; */
+  margin-bottom: 111px;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.xl2}) {
     flex-direction: column;
-    margin: 0 auto;
+    /* margin: 0 auto; */
     padding-bottom: 10px;
     padding-top: 10px;
     font-size: 1rem;
