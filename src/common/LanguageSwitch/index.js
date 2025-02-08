@@ -1,6 +1,6 @@
 import { Wrapper, Icon, IconsWrapper } from "./styled";
 import PLIcon from "../../images/PolandIcon.png";
-import IRLIcon from "../../images/IrelandIcon.png";
+import IRLIcon from "../../images/englishIcon.png";
 import ESPIcon from "../../images/SpainIcon.png";
 import { useDispatch, useSelector } from "react-redux";
 import { selectLanguage, setLanguage } from "../../Redux/languageSlice";
