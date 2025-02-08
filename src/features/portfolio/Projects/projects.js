@@ -4,6 +4,7 @@ import currencyConverterImage from "../../../images/currencyConverterProject.png
 import plasmaLibraryImage from "../../../images/plasmaLibraryProject.png";
 import reactQuizImage from "../../../images/react-quiz-project.png";
 import eatNsplitmage from "../../../images/eat-n-split-project.png";
+import fastReactPizzaImage from "../../../images/fast-react-pizza.png";
 
 const projects = [
   {
@@ -249,6 +250,42 @@ const projects = [
     GitHubPagesURL: "https://boostertech.github.io/eat-n-split/",
     GitHubRepoURL: "https://github.com/BoosterTech/eat-n-split.git",
     inverted: true,
+    border: true,
+  },
+  {
+    title: {
+      English: `🍕 Fast React Pizza Co. `,
+      Polish: `🍕 Fast React Pizza Co.`,
+      Spanish: `🍕 Fast React Pizza Co.`,
+    },
+    description: {
+      English: `<p>&nbsp&nbsp Welcome to The Pizza Order App! </p>
+                <p>The Pizza Order App is a web application that allows users to order their favorite pizzas quickly and efficiently. Users can browse a selection of pizzas and proceed to checkout seamlessly.</p>
+                <p>Built with a focus on user experience, the app provides a smooth and intuitive interface for placing orders. Craving a classic Margherita or others, The Pizza App ensures a hassle-free ordering process.</p>
+                <p>Ideal for pizza lovers who want a convenient way to satisfy their cravings, this app makes ordering pizza as easy as a few clicks.</p>`,
+      Polish: `<p>&nbsp&nbsp Witaj w The Pizza Order App! </p>
+               <p>The Pizza Order App to aplikacja internetowa, która umożliwia użytkownikom szybkie i efektywne zamawianie swoich ulubionych pizz. Użytkownicy mogą przeglądać dostępne pizze i przechodzić do płatności bezproblemowo.</p>
+               <p>Zbudowana z myślą o wygodzie użytkownika, aplikacja oferuje płynny i intuicyjny interfejs do składania zamówień. Marzysz o klasycznej Marghericie lub innych? The Pizza App zapewnia bezproblemowy proces zamawiania.</p>
+               <p>Idealna dla miłośników pizzy, którzy chcą wygodnie zaspokoić swoje zachcianki, ta aplikacja sprawia, że zamawianie pizzy jest tak proste, jak kilka kliknięć.</p>`,
+      Spanish: `<p>&nbsp&nbsp ¡Bienvenido a The Pizza Order App! </p>
+                <p>The Pizza Order App es una aplicación web que permite a los usuarios pedir sus pizzas favoritas de manera rápida y eficiente. Los usuarios pueden explorar una selección de pizzas y proceder al pago sin problemas.</p>
+                <p>Diseñada con un enfoque en la experiencia del usuario, la aplicación ofrece una interfaz fluida e intuitiva para realizar pedidos. ¿Antojo de una clásica Margarita u otras? The Pizza App garantiza un proceso de pedido sin complicaciones.</p>
+                <p>Ideal para los amantes de la pizza que buscan una forma conveniente de satisfacer sus antojos, esta aplicación hace que pedir pizza sea tan fácil como unos pocos clics.</p>`,
+    },
+    imageURL: `${fastReactPizzaImage}`,
+    GitHubPagesURLTag: {
+      English: "Go to the Website",
+      Polish: "Przejdź do Strony",
+      Spanish: "Ir al Sitio Web",
+    },
+    GitHubRepoURLTag: {
+      English: "Go to the GitHub Repository",
+      Polish: "Przejdź do Repozytorium GitHub",
+      Spanish: "Ir al Repositorio de GitHub",
+    },
+    GitHubPagesURL: "https://boostertech.github.io/fast-pizza-co",
+    GitHubRepoURL: "https://github.com/BoosterTech/fast-pizza-co.git",
+    inverted: false,
     border: false,
   },
 ];
