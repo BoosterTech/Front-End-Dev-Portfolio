@@ -96,7 +96,7 @@ export const HeaderImage = styled.img`
 export const HeaderParagraph = styled.p`
   padding: 10px 10px;
   font-weight: 500;
-  font-size: 1.1rem;
+  font-size: 1.4rem;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
     font-size: 1rem;

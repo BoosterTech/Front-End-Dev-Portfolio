@@ -17,7 +17,7 @@ export const IconsWrapper = styled.span`
 export const Icon = styled.img`
   top: 1;
   left: 1;
-  height: 25px;
+  height: 28px;
   margin: 4px 10px;
   border: 1px solid black;
   border-radius: 100%;
@@ -37,7 +37,7 @@ export const Icon = styled.img`
     `}
 
   @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
-    width: 15px;
-    height: 15px;
+    width: 20px;
+    height: 20px;
   }
 `;

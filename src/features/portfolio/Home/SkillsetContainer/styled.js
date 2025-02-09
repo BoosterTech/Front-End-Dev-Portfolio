@@ -13,8 +13,8 @@ export const SkillsetHeader = styled.div`
   margin: 0 auto;
   text-align: center;
   margin-top: 10px;
-  /* font-size: 1.5rem; */
   font-weight: 1000;
+  font-size: 1.6rem;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
     font-size: 1.1rem;

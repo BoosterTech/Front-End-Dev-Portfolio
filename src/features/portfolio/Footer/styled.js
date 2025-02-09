@@ -11,10 +11,10 @@ export const Wrapper = styled.div`
 export const TextContainer = styled.h2`
   margin: 0;
   padding: 7px;
-  font-size: .8rem;
+  font-size: 1rem;
   font-weight: 100;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
-    font-size: 0.5rem;
+    font-size: 0.9rem;
   }
 `;

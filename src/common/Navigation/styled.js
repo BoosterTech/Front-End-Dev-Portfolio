@@ -26,7 +26,7 @@ export const StyledList = styled.nav`
   margin-top: 0;
   gap: 2rem;
   font-weight: 700;
-  font-size: 1.05rem;
+  font-size: 1.4rem;
   box-shadow: -1px -4px 29px 4px #c9c7c8;
   transition: all 1s ease;
   flex-grow: 1;

@@ -5,7 +5,7 @@ export const Header = styled.div`
   margin: auto;
   padding: 80px 0 10px;
   color: black;
-  /* font-size: 1.2rem; */
+  font-size: 1.4rem;
   font-weight: 900;
   white-space: nowrap;
 

@@ -19,10 +19,10 @@ export const Wrapper = styled.article`
   justify-content: center;
   align-items: center;
   margin-bottom: 111px;
+  font-size: 1%.4;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.xl2}) {
     flex-direction: column;
-    /* margin: 0 auto; */
     padding-bottom: 10px;
     padding-top: 10px;
     font-size: 1rem;
@@ -58,13 +58,13 @@ export const Image = styled.img`
 `;
 
 export const Header = styled.h1`
-  font-size: 1.4em;
+  font-size: 2.8rem;
   font-weight: bold;
   color: #0b93f3;
   margin: 0 0 25px 0;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.xl2}) {
-    font-size: 1.3em;
+    font-size: 1.8rem;
     text-align: center;
   }
 `;
