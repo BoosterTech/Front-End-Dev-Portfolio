@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.js": "/Front-End-Dev-Portfolio/static/js/main.11c87c60.js",
+    "main.js": "/Front-End-Dev-Portfolio/static/js/main.d093b30a.js",
     "static/js/592.f2abfe8c.chunk.js": "/Front-End-Dev-Portfolio/static/js/592.f2abfe8c.chunk.js",
     "static/media/profileImage.png": "/Front-End-Dev-Portfolio/static/media/profileImage.efd5377ced6f45e3b5f0.png",
     "static/media/plasmaLibraryProject.png": "/Front-End-Dev-Portfolio/static/media/plasmaLibraryProject.cc0083dc7e73cd55a507.png",
@@ -22,10 +22,10 @@
     "static/media/jwtIcon.png": "/Front-End-Dev-Portfolio/static/media/jwtIcon.9e8cbff93e4d683f00d4.png",
     "static/media/oAuthIcon.png": "/Front-End-Dev-Portfolio/static/media/oAuthIcon.4f10cd74f296a51770bf.png",
     "index.html": "/Front-End-Dev-Portfolio/index.html",
-    "main.11c87c60.js.map": "/Front-End-Dev-Portfolio/static/js/main.11c87c60.js.map",
+    "main.d093b30a.js.map": "/Front-End-Dev-Portfolio/static/js/main.d093b30a.js.map",
     "592.f2abfe8c.chunk.js.map": "/Front-End-Dev-Portfolio/static/js/592.f2abfe8c.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.11c87c60.js"
+    "static/js/main.d093b30a.js"
   ]
 }
