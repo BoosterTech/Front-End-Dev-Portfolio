@@ -5,8 +5,47 @@ import plasmaLibraryImage from "../../../images/plasmaLibraryProject.png";
 import reactQuizImage from "../../../images/react-quiz-project.png";
 import eatNsplitmage from "../../../images/eat-n-split-project.png";
 import fastReactPizzaImage from "../../../images/fast-react-pizza.png";
+import paradiselodgeImage from "../../../images/paradiseLodge.png";
 
 const projects = [
+  {
+    title: {
+      English: `🏡 The Paradise Lodge - Luxury Cabin Booking Website`,
+      Polish: `🏡 The Paradise Lodge - Luksusowa Strona Rezerwacji Domków`,
+      Spanish: `🏡 The Paradise Lodge - Sitio Web de Reservas de Cabañas de Lujo`,
+    },
+    description: {
+      English: `<p>&nbsp&nbsp Welcome to The Paradise Lodge! </p>
+                <p>The Paradise Lodge is a luxury cabin booking platform designed for seamless exploration, reservation, and management of high-end stays. Users can browse stunning lodges, check real-time availability, and make secure bookings effortlessly.</p>
+                <p>With an intuitive interface and a robust booking management system, guests can modify reservations and personalize their experience with ease. Built for elegance and efficiency, The Paradise Lodge ensures a hassle-free gateway to luxury getaways.</p>
+                <p>Ideal for travelers seeking a perfect blend of nature and comfort, this platform makes booking a dream escape as simple as a few clicks.</p>`,
+      Polish: `<p>&nbsp&nbsp Witaj w The Paradise Lodge! </p>
+               <p>The Paradise Lodge to platforma rezerwacji luksusowych domków, zaprojektowana do łatwego przeglądania, rezerwowania i zarządzania pobytami w ekskluzywnych miejscach. Użytkownicy mogą przeglądać eleganckie domki, sprawdzać dostępność w czasie rzeczywistym i dokonywać bezpiecznych rezerwacji.</p>
+               <p>Dzięki intuicyjnemu interfejsowi i zaawansowanemu systemowi zarządzania rezerwacjami, goście mogą łatwo modyfikować swoje rezerwacje i dostosowywać pobyt do swoich potrzeb. The Paradise Lodge łączy nowoczesną technologię z luksusem, oferując bezproblemową organizację wymarzonych wakacji.</p>
+               <p>Idealna dla podróżników szukających połączenia komfortu i natury, ta platforma sprawia, że rezerwacja luksusowego wypoczynku jest łatwa jak kilka kliknięć.</p>`,
+      Spanish: `<p>&nbsp&nbsp ¡Bienvenido a The Paradise Lodge! </p>
+                <p>The Paradise Lodge es una plataforma de reservas de cabañas de lujo diseñada para explorar, reservar y gestionar estancias exclusivas de forma sencilla. Los usuarios pueden descubrir alojamientos impresionantes, verificar disponibilidad en tiempo real y realizar reservas seguras sin esfuerzo.</p>
+                <p>Con una interfaz intuitiva y un sólido sistema de gestión de reservas, los huéspedes pueden modificar sus reservas y personalizar su experiencia fácilmente. Diseñada para la comodidad y la eficiencia, The Paradise Lodge garantiza un acceso sin complicaciones a escapadas de lujo.</p>
+                <p>Ideal para viajeros que buscan la combinación perfecta entre naturaleza y confort, esta plataforma hace que reservar una escapada de ensueño sea tan fácil como unos pocos clics.</p>`,
+    },
+
+    imageURL: `${paradiselodgeImage}`,
+    GitHubPagesURLTag: {
+      English: "Go to the Website",
+      Polish: "Przejdź do Strony",
+      Spanish: "Ir al Sitio Web",
+    },
+    GitHubRepoURLTag: {
+      English: "Go to the GitHub Repository",
+      Polish: "Przejdź do Repozytorium GitHub",
+      Spanish: "Ir al Repositorio de GitHub",
+    },
+    GitHubPagesURL: "https://paradise-lodge-web.vercel.app",
+    GitHubRepoURL: "https://github.com/BoosterTech/ParadiseLodge-website.git",
+    inverted: true,
+    border: false,
+  },
+
   {
     title: {
       English: `🎥 Movies Browser `,
