@@ -15,7 +15,7 @@ html{
 
 body{
     background-color: ${({ theme }) => theme.color.background};
-    font-size: 21px ;
+    font-size: 18px ;
     max-width: 100%;
     margin: auto;
     animation: ${slowEntry} .5s ease;

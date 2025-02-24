@@ -55,7 +55,7 @@ export const themes = {
     },
     footer: {
       footerParagraph:
-        "Copyright© 2024 Dariusz Podczasik. All rights reserved.",
+        "Copyright© 2025",
     },
   },
 
@@ -98,7 +98,7 @@ Moim celem jest wykorzystywanie najnowszych technologii do tworzenia rozwiązań
       contactParagraph: "Współpracujmy, aby urzeczywistnić wizje!",
     },
     footer: {
-      footerParagraph: "Copyright© 2024 Dariusz Podczasik",
+      footerParagraph: "Copyright© 2025",
     },
   },
 
@@ -142,7 +142,7 @@ Mi enfoque principal es usar las últimas tecnologías para crear soluciones de 
     },
     footer: {
       footerParagraph:
-        "Copyright© 2024 Dariusz Podczasik. Todos los derechos reservados.",
+        "Copyright© 2025",
     },
   },
 };
