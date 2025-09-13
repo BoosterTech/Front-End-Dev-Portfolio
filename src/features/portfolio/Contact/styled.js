@@ -33,33 +33,46 @@ export const Wrapper = styled.section`
   padding: var(--spacing-3xl) 0;
   margin: var(--spacing-3xl) 0;
   text-align: center;
-  background: linear-gradient(135deg, var(--color-surface) 0%, var(--color-background) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--color-surface) 0%,
+    var(--color-background) 100%
+  );
   border-radius: var(--radius-xl);
   border: 1px solid var(--color-border);
   box-shadow: var(--shadow-lg);
   position: relative;
   overflow: hidden;
   animation: ${fadeInUp} 0.8s ease-out;
-  
+
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     height: 4px;
-    background: linear-gradient(90deg, var(--color-primary), var(--color-accent), var(--color-primary));
+    background: linear-gradient(
+      90deg,
+      var(--color-primary),
+      var(--color-accent),
+      var(--color-primary)
+    );
   }
-  
+
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 200px;
     height: 200px;
-    background: radial-gradient(circle, var(--color-primary) 0%, transparent 70%);
+    background: radial-gradient(
+      circle,
+      var(--color-primary) 0%,
+      transparent 70%
+    );
     opacity: 0.05;
     border-radius: 50%;
     z-index: 0;
@@ -75,24 +88,16 @@ export const Header = styled.h2`
   font-size: clamp(1.5rem, 4vw, 2.5rem);
   font-weight: 800;
   margin: 0 0 var(--spacing-2xl) 0;
-  background: linear-gradient(135deg, var(--color-text-primary), var(--color-primary));
+  background: linear-gradient(
+    135deg,
+    var(--color-text-primary),
+    var(--color-primary)
+  );
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   position: relative;
   z-index: 1;
-  
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100px;
-    height: 4px;
-    background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
-    border-radius: var(--radius-md);
-  }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
     font-size: clamp(1.2rem, 5vw, 1.8rem);
@@ -128,14 +133,18 @@ export const ContactIconStyled = styled.img`
   transition: all var(--transition-normal);
   cursor: pointer;
   animation: ${float} 3s ease-in-out infinite;
-  animation-delay: ${props => (props.index || 0) * 0.2}s;
-  
+  animation-delay: ${(props) => (props.index || 0) * 0.2}s;
+
   &:hover {
     transform: translateY(-8px) scale(1.1);
     border-color: var(--color-primary);
     box-shadow: var(--shadow-xl);
     animation: ${pulse} 1.5s infinite, ${float} 3s ease-in-out infinite;
-    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+    background: linear-gradient(
+      135deg,
+      var(--color-primary),
+      var(--color-accent)
+    );
     filter: brightness(1.1);
   }
 
@@ -149,4 +158,3 @@ export const ContactIconStyled = styled.img`
     height: 45px;
   }
 `;
-
