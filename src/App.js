@@ -18,7 +18,7 @@ const App = () => {
   return (
     <ThemeProvider theme={themes}>
       <Navigation />
-      <ScrollWatcher />
+      {/* <ScrollWatcher /> */}
       <Main>
         <Home id={menuItems[language][0].name.toLowerCase()} />
         <About id={menuItems[language][1].name.toLowerCase()} />
