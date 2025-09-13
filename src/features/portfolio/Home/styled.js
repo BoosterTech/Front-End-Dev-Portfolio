@@ -2,26 +2,15 @@ import styled from "styled-components";
 import { keyframes } from "styled-components";
 
 const imageBorderAnimation = keyframes`
-  0% {
-    border-radius: 65% 35% 67% 33% / 65% 36% 64% 35%;
-    transform: rotate(0deg);
-  }
-  25% {
-    border-radius: 45% 55% 40% 60% / 50% 45% 55% 50%;
-    transform: rotate(1deg);
-  }
-  50% {
-    border-radius: 34% 66% 31% 69% / 36% 61% 39% 64%;
-    transform: rotate(-1deg);
-  }
-  75% {
-    border-radius: 55% 45% 60% 40% / 55% 50% 50% 45%;
-    transform: rotate(0.5deg);
-  }
-  100% {
-    border-radius: 65% 35% 67% 33% / 65% 36% 64% 35%;
-    transform: rotate(0deg);
-  }
+   0%{
+  border-radius: 65% 35% 67% 33% / 65% 36% 64% 35%  ;
+}
+50%{
+   border-radius: 34% 66% 31% 69% / 36% 61% 39% 64%  ;
+}
+100%{
+    border-radius: 65% 35% 67% 33% / 65% 36% 64% 35%  ;
+}
 `;
 
 const fadeInUp = keyframes`
@@ -106,8 +95,13 @@ export const ContentHeader = styled.h1`
   color: var(--color-text-primary);
   line-height: 1.1;
   position: relative;
-  
-  background: linear-gradient(135deg, var(--color-text-primary) 0%, var(--color-primary) 50%, var(--color-accent) 100%);
+
+  background: linear-gradient(
+    135deg,
+    var(--color-text-primary) 0%,
+    var(--color-primary) 50%,
+    var(--color-accent) 100%
+  );
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -115,7 +109,8 @@ export const ContentHeader = styled.h1`
   animation: gradientShift 4s ease-in-out infinite;
 
   @keyframes gradientShift {
-    0%, 100% {
+    0%,
+    100% {
       background-position: 0% 50%;
     }
     50% {
@@ -163,16 +158,22 @@ export const ImageContainer = styled.div`
   width: 280px;
   height: 280px;
   position: relative;
-  animation: ${slideInRight} 0.8s ease-out 0.3s both, ${imageBorderAnimation} 12s ease-in-out infinite 1s;
-  
+  animation: ${slideInRight} 0.8s ease-out 0.3s both,
+    ${imageBorderAnimation} 12s ease-in-out infinite 1s;
+
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: -10px;
     left: -10px;
     right: -10px;
     bottom: -10px;
-    background: linear-gradient(45deg, var(--color-primary), var(--color-accent), var(--color-primary));
+    background: linear-gradient(
+      45deg,
+      var(--color-primary),
+      var(--color-accent),
+      var(--color-primary)
+    );
     border-radius: inherit;
     z-index: -1;
     opacity: 0.3;
@@ -183,7 +184,8 @@ export const ImageContainer = styled.div`
   @media (max-width: ${({ theme }) => theme.breakpoint.xl2}) {
     order: 1;
     margin: 0 auto var(--spacing-xl) auto;
-    animation: ${fadeInUp} 0.8s ease-out 0.2s both, ${imageBorderAnimation} 12s ease-in-out infinite 1s;
+    animation: ${fadeInUp} 0.8s ease-out 0.2s both,
+      ${imageBorderAnimation} 12s ease-in-out infinite 1s;
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.sm}) {
@@ -203,7 +205,7 @@ export const ProfileImage = styled.img`
   object-fit: cover;
   border-radius: inherit;
   transition: transform var(--transition-normal);
-  
+
   &:hover {
     transform: scale(1.05);
   }
@@ -223,18 +225,23 @@ export const TechStackContainer = styled.div`
   box-shadow: var(--shadow-sm);
   position: relative;
   overflow: hidden;
-  
+
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.1),
+      transparent
+    );
     transition: left 2s ease-in-out;
   }
-  
+
   &:hover::before {
     left: 100%;
   }
@@ -261,14 +268,18 @@ export const TechStackItem = styled.img`
   transition: all var(--transition-normal);
   cursor: pointer;
   animation: ${techStackFloat} 3s ease-in-out infinite;
-  animation-delay: ${props => (props.index || 0) * 0.1}s;
+  animation-delay: ${(props) => (props.index || 0) * 0.1}s;
 
   @media (hover: hover) {
     &:hover {
       transform: translateY(-8px) scale(1.1);
       border-color: var(--color-primary);
       box-shadow: var(--shadow-lg);
-      background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+      background: linear-gradient(
+        135deg,
+        var(--color-primary),
+        var(--color-accent)
+      );
       filter: brightness(1.1);
     }
   }
@@ -288,4 +299,3 @@ export const TechStackItem = styled.img`
     height: 35px;
   }
 `;
-
