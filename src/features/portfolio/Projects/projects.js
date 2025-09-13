@@ -11,24 +11,24 @@ import wtmMusicAIImage from "../../../images/wtmMusicAI.png";
 const projects = [
   {
     title: {
-      English: "🎵 WTM Music AI Gen - AI Music Generation Website",
-      Polish: "🎵 WTM Music AI Gen - Strona Generowania Muzyki AI",
-      Spanish: "🎵 WTM Music AI Gen - Sitio Web de Generación de Música con IA",
+      English: "🎵 WTM AI Music Generation Website",
+      Polish: "🎵 WTM AI Music Generation - Strona Generowania Muzyki AI",
+      Spanish: "🎵 WTM AI Music Generation - Sitio Web de Generación de Música con IA",
     },
     available: "web",
     description: {
-      English: `<p>&nbsp&nbsp Welcome to WTM Music AI Gen!</p>
-              <p>WTM Music AI Gen is a cutting-edge platform for generating original music using artificial intelligence. Users can select genres, customize musical styles, and instantly create unique tracks powered by advanced AI models.</p>
+      English: `<p>&nbsp&nbsp Welcome to WTM AI Music Generation!</p>
+              <p>WTM AI Music Generation is a cutting-edge platform for generating original music using artificial intelligence. Users can select genres, customize musical styles, and instantly create unique tracks powered by advanced AI models.</p>
               <p>With an interactive interface, real-time audio visualization, and seamless playback controls, users can explore, save, and share their musical creations. The platform also features a library for recent tracks and favorites, making music discovery and management effortless.</p>
-              <p>Perfect for musicians, creators, and enthusiasts, WTM Music AI Gen transforms your ideas into music with just a few clicks.</p>`,
-      Polish: `<p>&nbsp&nbsp Witaj w WTM Music AI Gen!</p>
-             <p>WTM Music AI Gen to nowoczesna platforma do generowania oryginalnej muzyki za pomocą sztucznej inteligencji. Użytkownicy mogą wybierać gatunki, dostosowywać style muzyczne i natychmiast tworzyć unikalne utwory dzięki zaawansowanym modelom AI.</p>
+              <p>Perfect for musicians, creators, and enthusiasts, WTM AI Music Generation transforms your ideas into music with just a few clicks.</p>`,
+      Polish: `<p>&nbsp&nbsp Witaj w WTM AI Music Generation!</p>
+             <p>WTM AI Music Generation to nowoczesna platforma do generowania oryginalnej muzyki za pomocą sztucznej inteligencji. Użytkownicy mogą wybierać gatunki, dostosowywać style muzyczne i natychmiast tworzyć unikalne utwory dzięki zaawansowanym modelom AI.</p>
              <p>Dzięki interaktywnemu interfejsowi, wizualizacji dźwięku w czasie rzeczywistym i wygodnym kontrolom odtwarzania, użytkownicy mogą odkrywać, zapisywać i udostępniać swoje muzyczne kreacje. Platforma oferuje także bibliotekę ostatnich utworów i ulubionych, ułatwiając zarządzanie muzyką.</p>
-             <p>Idealna dla muzyków, twórców i entuzjastów – WTM Music AI Gen zamienia pomysły w muzykę w kilka kliknięć.</p>`,
-      Spanish: `<p>&nbsp&nbsp ¡Bienvenido a WTM Music AI Gen!</p>
-              <p>WTM Music AI Gen es una plataforma avanzada para generar música original utilizando inteligencia artificial. Los usuarios pueden elegir géneros, personalizar estilos musicales y crear pistas únicas al instante gracias a modelos de IA de última generación.</p>
+             <p>Idealna dla muzyków, twórców i entuzjastów – WTM AI Music Generation zamienia pomysły w muzykę w kilka kliknięć.</p>`,
+      Spanish: `<p>&nbsp&nbsp ¡Bienvenido a WTM AI Music Generation!</p>
+              <p>WTM AI Music Generation es una plataforma avanzada para generar música original utilizando inteligencia artificial. Los usuarios pueden elegir géneros, personalizar estilos musicales y crear pistas únicas al instante gracias a modelos de IA de última generación.</p>
               <p>Con una interfaz interactiva, visualización de audio en tiempo real y controles de reproducción intuitivos, los usuarios pueden explorar, guardar y compartir sus creaciones musicales. La plataforma también incluye una biblioteca para pistas recientes y favoritas, facilitando la gestión y el descubrimiento musical.</p>
-              <p>Perfecta para músicos, creadores y entusiastas, WTM Music AI Gen convierte tus ideas en música con solo unos clics.</p>`,
+              <p>Perfecta para músicos, creadores y entusiastas, WTM AI Music Generation convierte tus ideas en música con solo unos clics.</p>`,
     },
     imageURL: `${wtmMusicAIImage}`,
     GitHubPagesURLTag: {
