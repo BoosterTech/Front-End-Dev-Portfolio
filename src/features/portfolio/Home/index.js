@@ -39,21 +39,20 @@ const Home = ({ id }) => {
   const language = useSelector(selectLanguage);
 
   const techStackIcons = [
-    reactIcon,
-    reduxIcon,
-
-    reduxToolkitIcon,
-    axiosIcon,
-    reactRouterIcon,
-    styledComponentsicon,
-    nextIcon,
-    supabaseIcon,
-    oAuthIcon,
-    reactQueryIcon,
-    vercelIcon,
-    jwtIcon,
-    tailwindIcon,
-    typeScriptIcon,
+    { src: reactIcon, name: "React" },
+    { src: reduxIcon, name: "Redux" },
+    { src: reduxToolkitIcon, name: "Redux Toolkit" },
+    { src: axiosIcon, name: "Axios" },
+    { src: reactRouterIcon, name: "React Router" },
+    { src: styledComponentsicon, name: "Styled Components" },
+    { src: nextIcon, name: "Next.js" },
+    { src: supabaseIcon, name: "Supabase" },
+    { src: oAuthIcon, name: "OAuth" },
+    { src: reactQueryIcon, name: "React Query" },
+    { src: vercelIcon, name: "Vercel" },
+    { src: jwtIcon, name: "JWT" },
+    { src: tailwindIcon, name: "Tailwind CSS" },
+    { src: typeScriptIcon, name: "TypeScript" },
   ];
 
   return (
@@ -66,24 +65,33 @@ const Home = ({ id }) => {
               .map((line, index) => (
                 <React.Fragment key={index}>{line}</React.Fragment>
               ))}
-            <HeaderImage src={wavingHandImage} alt="headerImage.png" />
+            <HeaderImage src={wavingHandImage} alt="Waving hand emoji" />
           </ContentHeader>
           <HeaderParagraph>
             {theme[language].home.headerParagraph}
           </HeaderParagraph>
         </ContentContainer>
         <ImageContainer>
-          <ProfileImage src={profileImage} alt="profileImage.png" />
+          <ProfileImage src={profileImage} alt="Dariusz Podczasik - Front-End Developer" />
         </ImageContainer>
       </ContentImageContainer>
+      
       <TechStackContainer>
         {techStackIcons.map((item, index) => (
-          <TechStackItem key={index} src={item} />
+          <TechStackItem 
+            key={index} 
+            src={item.src} 
+            alt={item.name}
+            title={item.name}
+            index={index}
+          />
         ))}
       </TechStackContainer>
+      
       <SkillsetContainer />
     </HomeWrapper>
   );
 };
 
 export default Home;
+

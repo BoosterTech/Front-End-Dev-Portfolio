@@ -1,10 +1,53 @@
 export const themes = {
   color: {
-    background: "#F2F0F6", // grey
-    navigationBackground: "#FFFFFF", // white
-    navigationFontColor: "#6A6A6A", // grey
-    navigationFontHover: "#139DF7",
+    // Legacy colors for backward compatibility
+    background: "var(--color-background)",
+    navigationBackground: "var(--color-surface)",
+    navigationFontColor: "var(--color-text-secondary)",
+    navigationFontHover: "var(--color-primary)",
+    
+    // Modern color system
+    primary: "var(--color-primary)",
+    primaryHover: "var(--color-primary-hover)",
+    secondary: "var(--color-secondary)",
+    accent: "var(--color-accent)",
+    surface: "var(--color-surface)",
+    textPrimary: "var(--color-text-primary)",
+    textSecondary: "var(--color-text-secondary)",
+    border: "var(--color-border)",
+    shadow: "var(--color-shadow)",
   },
+  
+  spacing: {
+    xs: "var(--spacing-xs)",
+    sm: "var(--spacing-sm)",
+    md: "var(--spacing-md)",
+    lg: "var(--spacing-lg)",
+    xl: "var(--spacing-xl)",
+    "2xl": "var(--spacing-2xl)",
+    "3xl": "var(--spacing-3xl)",
+  },
+  
+  radius: {
+    sm: "var(--radius-sm)",
+    md: "var(--radius-md)",
+    lg: "var(--radius-lg)",
+    xl: "var(--radius-xl)",
+  },
+  
+  shadow: {
+    sm: "var(--shadow-sm)",
+    md: "var(--shadow-md)",
+    lg: "var(--shadow-lg)",
+    xl: "var(--shadow-xl)",
+  },
+  
+  transition: {
+    fast: "var(--transition-fast)",
+    normal: "var(--transition-normal)",
+    slow: "var(--transition-slow)",
+  },
+  
   breakpoint: {
     xxs: "280px", // Extra small devices (phones)
     xs: "320px", // Very small devices (phones)
@@ -34,10 +77,10 @@ export const themes = {
         I've been technology enthusiast since I was a child, and coding has always been a big part of that passion.
         Over the years, I've worked with C++, OpenGL, and MCU programming amongst others.<br/>
         Initially, coding was just a hobby for me, an expression of my creativity. As technology evolved, I decided to take it further and walk my path into advancement.<br/> I started learning React in January 2022 and quickly fell in love with it, diving deep into its capabilities..<br/>
-        <p>I'm eager to work with people who share my passion for technology and innovation. I’m excited to join a team where I can contribute my skills and continue to grow as a developer.<br/>
-        If you’re a startup looking to expand, I’d love to help you succeed with my hard work and dedication.</p>
+        <p>I'm eager to work with people who share my passion for technology and innovation. I'm excited to join a team where I can contribute my skills and continue to grow as a developer.<br/>
+        If you're a startup looking to expand, I'd love to help you succeed with my hard work and dedication.</p>
         <p>I'm committed to continuous learning, with a focus on becoming proficient in both front-end and back-end development.<br/> I also aim to extend my skills to mobile development using React Native for Android and iOS.</p>
-        <p>Looking ahead, I’m excited about the future and the opportunities it holds.</p>
+        <p>Looking ahead, I'm excited about the future and the opportunities it holds.</p>
         <p>Now, a little more about my work:<br/>
          My primary focus is using the latest technologies to create great solutions for users.</p>
         <p>* React is the main tool I use to build dynamic, single-page applications with smooth navigation and great performance.<br/>
@@ -84,7 +127,7 @@ Moim celem jest wykorzystywanie najnowszych technologii do tworzenia rozwiązań
 <p>* React to narzędzie, którego używam do budowania dynamicznych, jednokolumnowych aplikacji z płynna nawigacją i świetną wydajnością.<br/>
 * Next.js umożliwia renderowanie po stronie serwera i generowanie statycznych stron, co poprawia wydajność i SEO.<br/>
 * TypeScript zapewnia bezpieczeństwo i łatwość utrzymania mojego kodu, dzięki czemu jest niezawodny w bardziej złożonych projektach.<br/>
-* Tailwind CSS pomaga mi szybko stylizować strony w sposób elastyczny, oparty na podejściu „utility-first”.<br/>
+* Tailwind CSS pomaga mi szybko stylizować strony w sposób elastyczny, oparty na podejściu „utility-first".<br/>
 * Styled-Components to alternatywna metoda stylizacji komponentów, która również znajduje swoje miejsce w mojej pracy.<br/>
 * Redux i Axios są moimi sprzymierzeńcami w efektywnym zarządzaniu danymi.</p>
 
@@ -146,3 +189,4 @@ Mi enfoque principal es usar las últimas tecnologías para crear soluciones de 
     },
   },
 };
+

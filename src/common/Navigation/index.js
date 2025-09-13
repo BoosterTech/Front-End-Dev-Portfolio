@@ -7,6 +7,7 @@ import {
 } from "./styled";
 import { menuItems } from "./menuItems";
 import { LanguageSwitch } from "../../common/LanguageSwitch";
+import DarkModeToggle from "../../common/DarkModeToggle";
 import { useDispatch, useSelector } from "react-redux";
 import { selectLanguage, setLanguage } from "../../Redux/languageSlice";
 import { Link } from "react-scroll";
@@ -64,7 +65,11 @@ const Navigation = () => {
 
   return (
     <StyledList>
-      <LanguageSwitch />
+      <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-md)' }}>
+        <LanguageSwitch />
+        <DarkModeToggle />
+      </div>
+      
       <Link
         activeClass="active"
         to={menuItems[language][0].name.toLowerCase()}
@@ -103,3 +108,4 @@ const Navigation = () => {
 };
 
 export default Navigation;
+

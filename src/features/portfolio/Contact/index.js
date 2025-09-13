@@ -45,15 +45,20 @@ const Contact = ({ id }) => {
     <Wrapper id={id} ref={contactRef}>
       <Header>{theme[language].contact.contactParagraph}</Header>
       <IconsWrapper>
-        {icons.map((icon) => (
+        {icons.map((icon, index) => (
           <a
             style={{ display: "flex" }}
             key={icon.id}
             href={icon.link}
-            target="blank"
-            rel="noopener noreferre"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Contact via ${icon.name || 'social media'}`}
           >
-            <ContactIconStyled key={icon.id} src={icon.iconURL} />
+            <ContactIconStyled 
+              src={icon.iconURL} 
+              alt={`${icon.name || 'Contact'} icon`}
+              index={index}
+            />
           </a>
         ))}
       </IconsWrapper>
@@ -62,3 +67,4 @@ const Contact = ({ id }) => {
 };
 
 export default Contact;
+
