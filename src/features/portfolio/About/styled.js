@@ -167,28 +167,15 @@ export const Header = styled.h2`
 export const ContentContainer = styled.div`
   animation: ${fadeInRight} 0.8s ease-out 0.3s both;
 
-  p {
+  p, div {
     font-size: 1.1rem;
     line-height: 1.8;
     margin-bottom: var(--spacing-lg);
-    color: var(--color-text-secondary);
-
-    &:first-of-type {
-      font-size: 1.2rem;
-      font-weight: 500;
-      color: var(--color-text-primary);
-    }
+    color: var(--color-text-primary);
 
     &:last-of-type {
       margin-bottom: 0;
     }
-  }
-
-  /* Style for technology mentions */
-  p:contains("React"),
-  p:contains("Next.js"),
-  p:contains("TypeScript") {
-    position: relative;
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.xl2}) {
