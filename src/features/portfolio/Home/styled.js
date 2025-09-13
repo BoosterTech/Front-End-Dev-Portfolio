@@ -70,7 +70,11 @@ const techStackFloat = keyframes`
 `;
 
 export const HomeWrapper = styled.section`
-  padding: var(--spacing-3xl) 0;
+  padding: calc(var(--spacing-3xl) + 220px) 0 var(--spacing-3xl) 0 !important;
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
+    padding: calc(var(--spacing-2xl) + 220px) 0 var(--spacing-2xl) 0 !important;
+  }
   width: 100%;
   animation: ${fadeInUp} 0.8s ease-out;
 
