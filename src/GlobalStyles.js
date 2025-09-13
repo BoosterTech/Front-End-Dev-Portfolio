@@ -31,6 +31,7 @@ export const GlobalStyles = createGlobalStyle`
   --color-dark-shadow: rgba(0, 0, 0, 0.3);
   
   /* Spacing */
+  --spacing-xxs: 0.125rem;
   --spacing-xs: 0.25rem;
   --spacing-sm: 0.5rem;
   --spacing-md: 1rem;
