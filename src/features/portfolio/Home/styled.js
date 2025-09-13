@@ -133,14 +133,20 @@ export const ContentHeader = styled.h1`
   }
 
   &:hover img {
-    /* transform: rotate(20deg) scale(1.1); */
-        animation: ${waveHand} 4s infinite;
-
+    animation: ${waveHand} 4s infinite;
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
     font-size: clamp(2rem, 8vw, 2.5rem);
   }
+`;
+
+export const TechStackSpan = styled.div`
+  display: inline-block;
+  font-size: 0.5em;
+  font-weight: 600;
+  /* opacity: 0.8; */
+  /* margin-left: 0.5em; */
 `;
 
 export const HeaderImage = styled.img`

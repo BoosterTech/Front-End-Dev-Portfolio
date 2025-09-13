@@ -9,6 +9,7 @@ import {
   ProfileImage,
   TechStackContainer,
   TechStackItem,
+  TechStackSpan,
 } from "./styled";
 
 import wavingHandImage from "../../../images/wavingHand.png";
@@ -65,6 +66,9 @@ const Home = ({ id }) => {
               .map((line, index) => (
                 <React.Fragment key={index}>{line}</React.Fragment>
               ))}
+            <TechStackSpan>
+              {theme[language].home.contentHeaderTechStack}
+            </TechStackSpan>
             <HeaderImage src={wavingHandImage} alt="Waving hand emoji" />
           </ContentHeader>
           <HeaderParagraph>
@@ -75,7 +79,7 @@ const Home = ({ id }) => {
           <ProfileImage src={profileImage} alt="Dariusz Podczasik - Front-End Developer" />
         </ImageContainer>
       </ContentImageContainer>
-      
+
       <TechStackContainer>
         {techStackIcons.map((item, index) => (
           <TechStackItem 
@@ -87,7 +91,7 @@ const Home = ({ id }) => {
           />
         ))}
       </TechStackContainer>
-      
+
       <SkillsetContainer />
     </HomeWrapper>
   );
