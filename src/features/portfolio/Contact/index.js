@@ -27,17 +27,25 @@ const Contact = ({ id }) => {
           }
         });
       },
-      { threshold: 1 }
+      { threshold: 0 }
     );
 
     if (currentRef) {
       observer.observe(currentRef);
     }
 
+    const handleScroll = () => {
+      if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 2) {
+        dispatch(setContactVisibility(true));
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+
     return () => {
       if (currentRef) {
         observer.unobserve(currentRef);
       }
+      window.removeEventListener("scroll", handleScroll);
     };
   }, [dispatch]);
 

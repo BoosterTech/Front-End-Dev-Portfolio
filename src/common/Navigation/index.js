@@ -86,22 +86,27 @@ const Navigation = () => {
       </Link>
 
       <MenuContainer>
-        {menuItems[language].map((item, index) => (
-          <StyledScrollLink
-            activeClass="active"
-            $isContactVisible={getActiveClass(index)}
-            to={item.name.toLowerCase()}
-            spy={true}
-            smooth={true}
-            offset={item.offset}
-            duration={700}
-            key={index}
-          >
-            <StyledListItem key={index}>
-              {windowWidth < breakpointXL ? getIcon(item.name) : item.name}
-            </StyledListItem>
-          </StyledScrollLink>
-        ))}
+        {menuItems[language].map((item, index) => {
+          const isContact = index === menuItems[language].length - 1;
+          const forceActive = isContact && isContactVisible;
+          return (
+            <StyledScrollLink
+              activeClass="active"
+              className={forceActive ? "active" : undefined}
+              $isContactVisible={getActiveClass(index)}
+              to={item.name.toLowerCase()}
+              spy={true}
+              smooth={true}
+              offset={item.offset}
+              duration={700}
+              key={index}
+            >
+              <StyledListItem key={index}>
+                {windowWidth < breakpointXL ? getIcon(item.name) : item.name}
+              </StyledListItem>
+            </StyledScrollLink>
+          );
+        })}
       </MenuContainer>
     </StyledList>
   );
