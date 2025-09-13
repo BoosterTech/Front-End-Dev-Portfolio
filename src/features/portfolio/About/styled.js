@@ -69,7 +69,7 @@ export const Wrapper = styled.article`
   gap: var(--spacing-3xl);
   align-items: center;
   padding: var(--spacing-3xl) 0;
-  margin-bottom: var(--spacing-3xl);
+  margin-bottom: var(--spacing-md);
   position: relative;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.xl2}) {
