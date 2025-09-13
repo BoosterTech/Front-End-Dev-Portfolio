@@ -206,10 +206,10 @@ export const ProjectImage = styled.img`
 export const ProjectDescription = styled.div`
   animation: ${fadeInUp} 0.8s ease-out 0.3s both;
 
-  p {
+  p, div {
     font-size: 1.1rem;
     line-height: 1.7;
-    color: var(--color-text-secondary);
+    color: var(--color-text-primary);
     margin-bottom: var(--spacing-md);
 
     &:last-of-type {
