@@ -1,3 +1,171 @@
+export const skillDescriptions = {
+  English: {
+    "HTML - Semantic & accessible":
+      "Writing semantic and accessible HTML for all users.",
+    "Responsive Web design":
+      "Creating layouts that adapt to any device or screen size.",
+    Teamwork: "Collaborating effectively with other developers and designers.",
+    Markdown: "Using Markdown for documentation and content formatting.",
+    Immutability:
+      "Writing code that avoids unwanted mutations for reliability.",
+    "CSS BEM convention":
+      "Organizing CSS using the Block-Element-Modifier convention.",
+    "CSS Grid": "Building complex layouts with CSS Grid.",
+    "CSS Flexbox": "Aligning and distributing space with Flexbox.",
+    "CSS: Animations/Keyframes":
+      "Creating smooth animations using CSS keyframes.",
+    "React.js": "Building interactive UIs with React.",
+    "React Router": "Handling navigation in React apps.",
+    "Redux (Toolkit)": "Managing state efficiently with Redux Toolkit.",
+    "React Hooks": "Using hooks for state and lifecycle in React.",
+    "React Query": "Fetching, caching, and updating data in React apps.",
+    "React Suspense": "Handling async loading in React with Suspense.",
+    "Styled-Components": "Styling React components using CSS-in-JS.",
+    "Error handling": "Catching and handling errors gracefully.",
+    "Working with API (fetch, axios)":
+      "Communicating with APIs using fetch and axios.",
+    "JavaScript ES6+": "Writing modern JavaScript using ES6+ features.",
+    "Promises, Async/Await":
+      "Handling async code with Promises and async/await.",
+    "GitHub Pull Requests & Review":
+      "Collaborating and reviewing code on GitHub.",
+    "GitHub Team Collaboration": "Working together using GitHub tools.",
+    Trello: "Organizing tasks and projects with Trello.",
+    Figma: "Designing and prototyping with Figma.",
+    Scrum: "Working in agile teams using Scrum methodology.",
+    NPM: "Managing packages with NPM.",
+    Git: "Version-controlling code with Git.",
+    "Next.js App Router": "Routing pages in Next.js apps.",
+    "Next.js Static Generation & Server-Side Rendering":
+      "Optimizing performance and SEO with Next.js.",
+    "Next.js API Routes": "Creating backend endpoints in Next.js.",
+    "React Context API": "Sharing state across React components.",
+    TypeScript: "Writing safer code with TypeScript.",
+    "React DevTools": "Debugging React apps with DevTools.",
+    "CSS-in-JS": "Styling components using CSS-in-JS libraries.",
+    "Vercel Deployment": "Deploying apps easily with Vercel.",
+    Supabase: "Using Supabase for backend and authentication.",
+    "Tailwind CSS": "Styling apps quickly with Tailwind CSS.",
+    "CI/CD for React Apps": "Automating builds and deployments for React apps.",
+    "JWT Authentication": "Securing apps with JWT authentication.",
+    "OAuth2 Integration": "Integrating OAuth2 for secure login.",
+  },
+  Polish: {
+    "HTML - Semantyczny i dostępny":
+      "Pisanie HTML semantycznego i dostępnego dla wszystkich użytkowników.",
+    "Responsywny Web design":
+      "Tworzenie układów dopasowujących się do każdego urządzenia i rozdzielczości.",
+    "Praca zespołowa":
+      "Efektywna współpraca z innymi programistami i projektantami.",
+    Markdown: "Używanie Markdown do dokumentowania i formatowania treści.",
+    "Niezmienność (Immutability)":
+      "Pisanie kodu, który unika niepożądanych mutacji w celu zwiększenia niezawodności.",
+    "Konwencja BEM w CSS":
+      "Organizowanie CSS zgodnie z konwencją Block-Element-Modifier.",
+    "CSS Grid": "Budowanie rozbudowanych układów z użyciem CSS Grid.",
+    "CSS Flexbox":
+      "Wyrównywanie elementów i zarządzanie przestrzenią za pomocą Flexbox.",
+    "CSS: Animacje/Keyframes":
+      "Tworzenie płynnych animacji z wykorzystaniem klatek kluczowych CSS.",
+    "React.js": "Budowanie interaktywnych interfejsów użytkownika w React.",
+    "React Router": "Obsługiwanie nawigacji w aplikacjach React.",
+    "Redux (Toolkit)": "Efektywne zarządzanie stanem z użyciem Redux Toolkit.",
+    "React Hooks":
+      "Używanie hooków do zarządzania stanem i cyklem życia komponentów.",
+    "React Query":
+      "Pobieranie, buforowanie i aktualizowanie danych w aplikacjach React.",
+    "React Suspense":
+      "Obsługiwanie asynchronicznego ładowania z React Suspense.",
+    "Styled-Components": "Stylizowanie komponentów React za pomocą CSS-in-JS.",
+    "Obsługa błędów": "Wyłapywanie i obsługiwanie błędów w aplikacji.",
+    "Praca z API (fetch, axios)":
+      "Komunikacja z API przy użyciu fetch lub axios.",
+    "JavaScript ES6+": "Pisanie nowoczesnego kodu JavaScript z użyciem ES6+.",
+    "Promises, Async/Await":
+      "Obsługiwanie kodu asynchronicznego z użyciem Promises oraz async/await.",
+    "GitHub Pull Requests & Review":
+      "Współpraca i dokonywanie przeglądów kodu na GitHub.",
+    "GitHub współpraca zespołowa":
+      "Praca zespołowa z wykorzystaniem narzędzi GitHub.",
+    Trello: "Organizowanie zadań i projektów w Trello.",
+    Figma: "Projektowanie i tworzenie prototypów w Figma.",
+    Scrum: "Praca w zespołach agile z wykorzystaniem metodyki Scrum.",
+    NPM: "Zarządzanie pakietami za pomocą NPM.",
+    Git: "Kontrolowanie wersji kodu z użyciem Git.",
+    "Next.js App Router": "Zarządzanie routingiem stron w Next.js.",
+    "Next.js statyczna generacja i renderowanie po stronie serwera":
+      "Optymalizowanie wydajności i SEO w Next.js.",
+    "Next.js API Routes": "Tworzenie endpointów backendowych w Next.js.",
+    "React Context API": "Udostępnianie stanu pomiędzy komponentami React.",
+    TypeScript: "Pisanie bezpieczniejszego kodu w TypeScript.",
+    "React DevTools": "Debugowanie aplikacji React z użyciem DevTools.",
+    "CSS-in-JS": "Stylizowanie komponentów przy użyciu bibliotek CSS-in-JS.",
+    "Vercel Deployment": "Łatwe wdrażanie aplikacji na Vercel.",
+    Supabase: "Korzystanie z Supabase do backendu i autoryzacji.",
+    "Tailwind CSS": "Szybkie stylizowanie aplikacji z użyciem Tailwind CSS.",
+    "CI/CD dla aplikacji React":
+      "Automatyzowanie procesów budowania i wdrażania aplikacji.",
+    "Autentykacja JWT": "Zabezpieczanie aplikacji za pomocą JWT.",
+    "Integracja OAuth2": "Integracja OAuth2 dla bezpiecznego logowania.",
+  },
+  Spanish: {
+    "HTML - Semántico y accesible":
+      "Escritura de HTML semántico y accesible para todos los usuarios.",
+    "Diseño Web Responsivo":
+      "Creación de diseños que se adapten a cualquier dispositivo o pantalla.",
+    "Trabajo en equipo":
+      "Colaboración eficaz con otros desarrolladores y diseñadores.",
+    Markdown: "Uso de Markdown para documentación y formato de contenido.",
+    "Inmutabilidad (Immutability)":
+      "Escritura de código que evite mutaciones no deseadas para mayor fiabilidad.",
+    "Convención BEM en CSS":
+      "Organización de CSS siguiendo la convención Block-Element-Modifier.",
+    "CSS Grid": "Construcción de diseños complejos con CSS Grid.",
+    "CSS Flexbox": "Alineación y distribución de espacio con Flexbox.",
+    "CSS: Animaciones/Keyframes":
+      "Creación de animaciones fluidas usando keyframes de CSS.",
+    "React.js": "Desarrollo de interfaces interactivas con React.",
+    "React Router": "Gestión de la navegación en aplicaciones React.",
+    "Redux (Toolkit)": "Gestión eficiente del estado con Redux Toolkit.",
+    "React Hooks": "Uso de hooks para estado y ciclo de vida en React.",
+    "React Query":
+      "Obtención, almacenamiento en caché y actualización de datos en aplicaciones React.",
+    "React Suspense": "Manejo de carga asíncrona con React Suspense.",
+    "Styled-Components": "Estilización de componentes React usando CSS-in-JS.",
+    "Manejo de errores":
+      "Captura y manejo elegante de errores en la aplicación.",
+    "Trabajar con API (fetch, axios)":
+      "Comunicación con APIs usando fetch o axios.",
+    "JavaScript ES6+": "Escritura de código moderno en JavaScript con ES6+.",
+    "Promises, Async/Await":
+      "Manejo de código asíncrono con Promises y async/await.",
+    "GitHub Pull Requests y revisiones":
+      "Colaboración y revisión de código en GitHub.",
+    "GitHub colaboración en equipo":
+      "Trabajo en equipo usando herramientas de GitHub.",
+    Trello: "Organización de tareas y proyectos con Trello.",
+    Figma: "Diseño y creación de prototipos con Figma.",
+    Scrum: "Trabajo en equipos ágiles con metodología Scrum.",
+    NPM: "Gestión de paquetes con NPM.",
+    Git: "Control de versiones del código con Git.",
+    "Next.js App Router": "Gestión del enrutamiento de páginas en Next.js.",
+    "Next.js generación estática y renderizado del lado del servidor":
+      "Optimización del rendimiento y SEO con Next.js.",
+    "Next.js rutas API": "Creación de endpoints backend en Next.js.",
+    "React Context API": "Compartición de estado entre componentes React.",
+    TypeScript: "Escritura de código más seguro con TypeScript.",
+    "React DevTools": "Depuración de aplicaciones React con DevTools.",
+    "CSS-in-JS": "Estilización de componentes con librerías CSS-in-JS.",
+    "Despliegue en Vercel": "Despliegue sencillo de aplicaciones con Vercel.",
+    Supabase: "Uso de Supabase para backend y autenticación.",
+    "Tailwind CSS": "Estilización rápida de aplicaciones con Tailwind CSS.",
+    "CI/CD para apps React":
+      "Automatización de procesos de build y despliegue.",
+    "Autenticación JWT": "Protección de aplicaciones con autenticación JWT.",
+    "Integración OAuth2": "Integración de OAuth2 para inicio de sesión seguro.",
+  },
+};
+
 export const skillsets = {
   English: [
     "HTML - Semantic & accessible",
