@@ -5,13 +5,13 @@ export const Tooltip = styled.div`
   left: 50%;
   top: calc(100% + 2px);
   transform: translateX(-50%);
-  background: rgba(40,142,221,0.95);
+  background: rgba(40, 142, 221, 0.95);
   color: #fff;
   padding: 8px 16px;
   border-radius: 16px;
   font-size: 0.95em;
   white-space: pre-line;
-  box-shadow: 0 4px 16px rgba(40,142,221,0.18);
+  box-shadow: 0 4px 16px rgba(40, 142, 221, 0.18);
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.2s;
