@@ -1,13 +1,20 @@
 {
   "files": {
-    "main.js": "/Front-End-Dev-Portfolio/static/js/main.e43281b7.js",
+    "main.js": "/Front-End-Dev-Portfolio/static/js/main.ba3e762f.js",
     "static/js/592.f2abfe8c.chunk.js": "/Front-End-Dev-Portfolio/static/js/592.f2abfe8c.chunk.js",
     "static/media/paradiseLodge.png": "/Front-End-Dev-Portfolio/static/media/paradiseLodge.2fbb46d08dc786e2ec23.png",
+    "static/media/wtm3.png": "/Front-End-Dev-Portfolio/static/media/wtm3.be347413bf3df3098f30.png",
+    "static/media/wtm4.png": "/Front-End-Dev-Portfolio/static/media/wtm4.26cd6139bec10d3cb7c1.png",
+    "static/media/wtm2.png": "/Front-End-Dev-Portfolio/static/media/wtm2.7608a410b34158d96ecf.png",
+    "static/media/wtmMusicAI.png": "/Front-End-Dev-Portfolio/static/media/wtmMusicAI.7f5573d36e61d119a014.png",
+    "static/media/wtm5.png": "/Front-End-Dev-Portfolio/static/media/wtm5.bf05810dc19a0eef4b42.png",
     "static/media/profileImage.png": "/Front-End-Dev-Portfolio/static/media/profileImage.efd5377ced6f45e3b5f0.png",
     "static/media/plasmaLibraryProject.png": "/Front-End-Dev-Portfolio/static/media/plasmaLibraryProject.cc0083dc7e73cd55a507.png",
     "static/media/movieBrowserProject.png": "/Front-End-Dev-Portfolio/static/media/movieBrowserProject.ecf05bb5adcff520c1e3.png",
     "static/media/currencyConverterProject.png": "/Front-End-Dev-Portfolio/static/media/currencyConverterProject.5f226db8de4c8ecff51d.png",
     "static/media/fast-react-pizza.png": "/Front-End-Dev-Portfolio/static/media/fast-react-pizza.d978337e690ab14a0765.png",
+    "static/media/wtm6.png": "/Front-End-Dev-Portfolio/static/media/wtm6.904869db6516ae852815.png",
+    "static/media/comingSoon.png": "/Front-End-Dev-Portfolio/static/media/comingSoon.2c8406124ec9d768e851.png",
     "static/media/englishIcon.png": "/Front-End-Dev-Portfolio/static/media/englishIcon.364838433d8efda4b401.png",
     "static/media/frontEndImg.jpg": "/Front-End-Dev-Portfolio/static/media/frontEndImg.0bcaa9fe770108789aa6.jpg",
     "static/media/reactRouterIcon.png": "/Front-End-Dev-Portfolio/static/media/reactRouterIcon.ab5367380895481ed7ac.png",
@@ -23,10 +30,10 @@
     "static/media/jwtIcon.png": "/Front-End-Dev-Portfolio/static/media/jwtIcon.9e8cbff93e4d683f00d4.png",
     "static/media/oAuthIcon.png": "/Front-End-Dev-Portfolio/static/media/oAuthIcon.4f10cd74f296a51770bf.png",
     "index.html": "/Front-End-Dev-Portfolio/index.html",
-    "main.e43281b7.js.map": "/Front-End-Dev-Portfolio/static/js/main.e43281b7.js.map",
+    "main.ba3e762f.js.map": "/Front-End-Dev-Portfolio/static/js/main.ba3e762f.js.map",
     "592.f2abfe8c.chunk.js.map": "/Front-End-Dev-Portfolio/static/js/592.f2abfe8c.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.e43281b7.js"
+    "static/js/main.ba3e762f.js"
   ]
 }
