@@ -1,4 +1,27 @@
 import styled, { keyframes } from "styled-components";
+// Gradient animation from Home ContentHeader
+const gradientShift = keyframes`
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+`;
+
+const waveHand = keyframes`
+  0% { transform: rotate(0deg) scale(1.1); }
+  10% { transform: rotate(20deg) scale(1.1); }
+  20% { transform: rotate(-10deg) scale(1.1); }
+  30% { transform: rotate(20deg) scale(1.1); }
+  40% { transform: rotate(-10deg) scale(1.1); }
+  50% { transform: rotate(20deg) scale(1.1); }
+  60% { transform: rotate(-10deg) scale(1.1); }
+  70% { transform: rotate(20deg) scale(1.1); }
+  80% { transform: rotate(-10deg) scale(1.1); }
+  90% { transform: rotate(10deg) scale(1.1); }
+  100% { transform: rotate(0deg) scale(1.1); }
+`;
 
 const spin = keyframes`
   from {
@@ -114,41 +137,30 @@ export const Image = styled.img`
 `;
 
 export const Header = styled.h2`
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: clamp(2.5rem, 6vw, 4rem);
   font-weight: 800;
-  margin: 0 0 var(--spacing-xl) 0;
+  margin-bottom: var(--spacing-lg);
+  color: var(--color-text-primary);
+  line-height: 1.1;
+  position: relative;
   background: linear-gradient(
     135deg,
-    var(--color-primary),
-    var(--color-accent)
+    var(--color-text-primary) 0%,
+    var(--color-primary) 50%,
+    var(--color-accent) 100%
   );
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  position: relative;
+  background-size: 200% 200%;
+  animation: ${gradientShift} 4s ease-in-out infinite;
 
-  &::after {
-    content: "";
-    position: absolute;
-    bottom: -10px;
-    left: 0;
-    width: 60px;
-    height: 4px;
-    background: linear-gradient(
-      90deg,
-      var(--color-primary),
-      var(--color-accent)
-    );
-    border-radius: var(--radius-md);
+  &:hover img {
+    animation: ${waveHand} 4s infinite;
   }
 
-  @media (max-width: ${({ theme }) => theme.breakpoint.xl2}) {
-    text-align: center;
-
-    &::after {
-      left: 50%;
-      transform: translateX(-50%);
-    }
+  @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
+    font-size: clamp(2rem, 8vw, 2.5rem);
   }
 `;
 
