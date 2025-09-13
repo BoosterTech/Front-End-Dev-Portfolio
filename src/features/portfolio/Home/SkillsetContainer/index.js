@@ -18,7 +18,9 @@ export const SkillsetList = ({ skills, descriptions }) => {
     <ListContainer>
       {skills[language].map((skill, index) => {
         const hasDescription =
-          descriptions && descriptions[language] && descriptions[language][skill];
+          descriptions &&
+          descriptions[language] &&
+          descriptions[language][skill];
         return (
           <div
             style={{ position: "relative", display: "inline-block" }}
