@@ -6,18 +6,19 @@ import {
   Tooltip,
 } from "./styled";
 import { skillsets, toLearn, skillDescriptions } from "./skillsets";
+import { toLearnDescriptions } from "./skillsets";
 import { useTheme } from "styled-components";
 import { useSelector } from "react-redux";
 import { selectLanguage } from "../../../../Redux/languageSlice";
 
-export const SkillsetList = ({ skills }) => {
+export const SkillsetList = ({ skills, descriptions }) => {
   const language = useSelector(selectLanguage);
 
   return (
     <ListContainer>
       {skills[language].map((skill, index) => {
         const hasDescription =
-          skillDescriptions[language] && skillDescriptions[language][skill];
+          descriptions && descriptions[language] && descriptions[language][skill];
         return (
           <div
             style={{ position: "relative", display: "inline-block" }}
@@ -44,7 +45,7 @@ export const SkillsetList = ({ skills }) => {
               {skill}
               {hasDescription && (
                 <Tooltip className="tooltip">
-                  {skillDescriptions[language][skill]}
+                  {descriptions[language][skill]}
                 </Tooltip>
               )}
             </ListItem>
@@ -62,11 +63,11 @@ export const SkillsetContainer = () => {
   return (
     <SkillsetWrapper>
       <SkillsetHeader>{theme[language].home.skillsetHeader} 🛠️</SkillsetHeader>
-      <SkillsetList skills={skillsets} />
+      <SkillsetList skills={skillsets} descriptions={skillDescriptions} />
       <SkillsetHeader>
         {theme[language].home.learnNextHeader} 🚀{" "}
       </SkillsetHeader>
-      <SkillsetList skills={toLearn} />
+      <SkillsetList skills={toLearn} descriptions={toLearnDescriptions} />
     </SkillsetWrapper>
   );
 };
