@@ -1,3 +1,23 @@
+export const toLearnDescriptions = {
+  English: {
+    "React Testing":
+      "Learn to write and run automated tests for React components and applications, ensuring reliability and maintainability.",
+    "Artificial Intelligence (AI)":
+      "Explore the fundamentals and applications of AI, including machine learning, neural networks, and building intelligent features for web apps.",
+  },
+  Polish: {
+    "Testowanie React":
+      "Pisanie i uruchamianie automatycznych testów dla komponentów i aplikacji React, aby zapewnić niezawodność i łatwość utrzymania.",
+    "Sztuczna inteligencja (AI)":
+      "Poznawanie podstaw i zastosowań sztucznej inteligencji, w tym uczenie maszynowe, sieci neuronowe oraz budowanie inteligentnych funkcji dla aplikacji webowych.",
+  },
+  Spanish: {
+    "Pruebas en React":
+      "Aprende a escribir y ejecutar pruebas automatizadas para componentes y aplicaciones React, asegurando fiabilidad y facilidad de mantenimiento.",
+    "Inteligencia Artificial (IA)":
+      "Explora los fundamentos y aplicaciones de la IA, incluyendo aprendizaje automático, redes neuronales y la creación de funciones inteligentes para aplicaciones web.",
+  },
+};
 export const skillDescriptions = {
   English: {
     "HTML - Semantic & accessible":
@@ -49,6 +69,10 @@ export const skillDescriptions = {
     "CI/CD for React Apps": "Automating builds and deployments for React apps.",
     "JWT Authentication": "Securing apps with JWT authentication.",
     "OAuth2 Integration": "Integrating OAuth2 for secure login.",
+    "OpenAI API Integration":
+      "Integrating AI models (chat, completions, embeddings) into web apps.",
+    "Prompt Engineering":
+      "Designing effective prompts to optimize AI model outputs.",
   },
   Polish: {
     "HTML - Semantyczny i dostępny":
@@ -107,6 +131,10 @@ export const skillDescriptions = {
       "Automatyzowanie procesów budowania i wdrażania aplikacji.",
     "Autentykacja JWT": "Zabezpieczanie aplikacji za pomocą JWT.",
     "Integracja OAuth2": "Integracja OAuth2 dla bezpiecznego logowania.",
+    "Integracja OpenAI API":
+      "Integracja modeli AI (chat, uzupełnianie, osadzanie) w aplikacjach webowych.",
+    "Inżynieria promptów":
+      "Projektowanie skutecznych promptów w celu optymalizacji wyników modeli AI.",
   },
   Spanish: {
     "HTML - Semántico y accesible":
@@ -163,6 +191,10 @@ export const skillDescriptions = {
       "Automatización de procesos de build y despliegue.",
     "Autenticación JWT": "Protección de aplicaciones con autenticación JWT.",
     "Integración OAuth2": "Integración de OAuth2 para inicio de sesión seguro.",
+    "Integración de OpenAI API":
+      "Integración de modelos de IA (chat, completado, embeddings) en aplicaciones web.",
+    "Ingeniería de prompts":
+      "Diseño de prompts efectivos para optimizar los resultados de los modelos de IA.",
   },
 };
 
@@ -208,6 +240,8 @@ export const skillsets = {
     "CI/CD for React Apps",
     "JWT Authentication",
     "OAuth2 Integration",
+    "OpenAI API Integration",
+    "Prompt Engineering",
   ],
   Polish: [
     "HTML - Semantyczny i dostępny",
@@ -248,6 +282,8 @@ export const skillsets = {
     "CI/CD dla aplikacji React",
     "JWT Autentykacja",
     "Integracja OAuth2",
+    "Integracja OpenAI API",
+    "Inżynieria promptów",
   ],
   Spanish: [
     "HTML - Semántico y accesible",
@@ -288,11 +324,15 @@ export const skillsets = {
     "CI/CD para Apps React",
     "Autenticación JWT",
     "Integración OAuth2",
+    "Integración de OpenAI API",
+    "Ingeniería de prompts",
   ],
 };
 
 export const toLearn = {
-  English: ["React Testing", "React Native", "Three.js", "Node.js"],
-  Polish: ["Testowanie React", "React Native", "Three.js", "Node.js"],
-  Spanish: ["Pruebas React", "React Native", "Three.js", "Node.js"],
+  English: ["React Testing", "Artificial Intelligence (AI)"],
+
+  Polish: ["Testowanie React", "Sztuczna inteligencja (AI)"],
+
+  Spanish: ["Pruebas en React", "Inteligencia Artificial (IA)"],
 };
