@@ -45,7 +45,7 @@ const float = keyframes`
 
 export const Wrapper = styled.section`
   padding: var(--spacing-3xl) 0;
-  margin: var(--spacing-3xl) 0;
+  margin: var(--spacing-md) 0;
   border-radius: var(--radius-xl);
   position: relative;
   overflow: hidden;
