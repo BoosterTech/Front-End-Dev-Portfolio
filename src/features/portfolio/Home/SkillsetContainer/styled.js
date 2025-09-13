@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Tooltip = styled.div`
   position: absolute;
   left: 50%;
-  top: -40px;
+  top: calc(100% + 2px);
   transform: translateX(-50%);
   background: rgba(40,142,221,0.95);
   color: #fff;
