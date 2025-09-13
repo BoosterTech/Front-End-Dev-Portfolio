@@ -1,4 +1,5 @@
 import styled, { keyframes } from "styled-components";
+
 // Gradient animation from About/Home header
 const gradientShift = keyframes`
   0%, 100% {
@@ -52,7 +53,8 @@ export const Wrapper = styled.section`
 
   @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
     margin: var(--spacing-2xl) 0;
-    padding: calc(var(--spacing-2xl) + 96px) var(--spacing-lg) var(--spacing-2xl) var(--spacing-lg);
+    padding: calc(var(--spacing-2xl) + 96px) var(--spacing-lg)
+      var(--spacing-2xl) var(--spacing-lg);
   }
 `;
 
@@ -68,6 +70,13 @@ export const TitleWrapper = styled.div`
     gap: var(--spacing-xs);
     margin-bottom: var(--spacing-lg);
   }
+`;
+
+export const AvailableTag = styled.span`
+  font-weight: 400;
+  font-size: 1.1rem;
+  margin-left: 0.5em;
+  color: var(--color-text-secondary);
 `;
 
 export const Header = styled.h2`
@@ -212,7 +221,8 @@ export const ProjectImage = styled.img`
 export const ProjectDescription = styled.div`
   animation: ${fadeInUp} 0.8s ease-out 0.3s both;
 
-  p, div {
+  p,
+  div {
     font-size: 1.1rem;
     line-height: 1.7;
     color: var(--color-text-primary);
@@ -226,14 +236,16 @@ export const ProjectDescription = styled.div`
   @media (max-width: ${({ theme }) => theme.breakpoint.xxxl}) {
     animation: ${fadeInUp} 0.8s ease-out 0.4s both;
     order: 2;
-    p, div {
+    p,
+    div {
       font-size: 1rem;
       line-height: 1.5;
       margin-bottom: var(--spacing-sm);
     }
   }
   @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
-    p, div {
+    p,
+    div {
       font-size: 0.95rem;
       line-height: 1.4;
       margin-bottom: var(--spacing-xs);
