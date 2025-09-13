@@ -28,7 +28,7 @@ const Projects = ({ id }) => {
       </TitleWrapper>
       <ProjectsWrapper>
         {projects.map((project, index) => {
-          if (project.title?.English?.includes("WTM AI Music Generation")) {
+          if (project.title?.English?.includes("AI Music Generation")) {
             return (
               <ComingSoonProject
                 key={index}
