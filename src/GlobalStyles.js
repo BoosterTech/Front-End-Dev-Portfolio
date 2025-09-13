@@ -83,7 +83,13 @@ html {
 }
 
 body {
-  background-color: var(--color-background);
+  background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 50%, #bdbdbd 100%);
+  /* fallback for dark mode */
+}
+
+/* Dark mode: override with solid color */
+[data-theme="dark"] body {
+  background: var(--color-background);
   color: var(--color-text-primary);
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
   font-size: 16px;
