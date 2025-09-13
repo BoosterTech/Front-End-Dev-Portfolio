@@ -34,28 +34,6 @@ const fadeInUp = keyframes`
   }
 `;
 
-const slideInFromLeft = keyframes`
-  from {
-    opacity: 0;
-    transform: translateX(-50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-`;
-
-const slideInFromRight = keyframes`
-  from {
-    opacity: 0;
-    transform: translateX(50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-`;
-
 const float = keyframes`
   0%, 100% {
     transform: translateY(0px);
@@ -133,8 +111,7 @@ export const ProjectsWrapper = styled.div`
 
 export const ProjectWrapper = styled.div`
   display: grid;
-  grid-template-columns: ${(props) =>
-    props.$inverted ? "1fr auto" : "auto 1fr"};
+  grid-template-columns: auto 1fr;
   gap: var(--spacing-3xl);
   align-items: center;
   padding: var(--spacing-xl);
@@ -154,6 +131,10 @@ export const ProjectWrapper = styled.div`
   &:not(:last-child) {
     border-bottom: ${({ $border }) =>
       $border ? `2px solid var(--color-border)` : "none"};
+  }
+
+  &:nth-child(even) {
+    grid-template-columns: 1fr auto;
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.xxxl}) {
@@ -205,9 +186,7 @@ export const ProjectImage = styled.img`
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-lg);
   transition: all var(--transition-normal);
-  animation: ${(props) =>
-      props.$inverted ? slideInFromRight : slideInFromLeft}
-    0.8s ease-out 0.2s both;
+  animation: ${fadeInUp} 0.8s ease-out 0.2s both;
 
   &:hover {
     transform: scale(1.02);
@@ -225,9 +204,7 @@ export const ProjectImage = styled.img`
 `;
 
 export const ProjectDescription = styled.div`
-  animation: ${(props) =>
-      props.$inverted ? slideInFromLeft : slideInFromRight}
-    0.8s ease-out 0.3s both;
+  animation: ${fadeInUp} 0.8s ease-out 0.3s both;
 
   p {
     font-size: 1.1rem;
