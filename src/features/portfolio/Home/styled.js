@@ -192,21 +192,33 @@ export const ImageContainer = styled.div`
   &::before {
     content: "";
     position: absolute;
-    top: -10px;
-    left: -10px;
-    right: -10px;
-    bottom: -10px;
-    background: linear-gradient(
-      45deg,
-      var(--color-primary),
-      var(--color-accent),
-      var(--color-primary)
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 260px;
+    height: 260px;
+    background: radial-gradient(
+      circle,
+      rgba(255, 255, 255, 0.45) 0%,
+      var(--color-primary) 25%,
+      var(--color-accent) 60%,
+      rgba(0, 0, 0, 0.08) 85%,
+      transparent 100%
     );
-    border-radius: inherit;
+    border-radius: 50%;
     z-index: -1;
-    opacity: 0.3;
-    filter: blur(60px);
-    animation: ${imageBorderAnimation} 12s ease-in-out infinite 1s;
+    opacity: 0.38;
+    filter: blur(32px);
+    animation: spin 20s linear infinite;
+  }
+
+  @keyframes spin {
+    from {
+      transform: translate(-50%, -50%) rotate(0deg);
+    }
+    to {
+      transform: translate(-50%, -50%) rotate(360deg);
+    }
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.xl2}) {
