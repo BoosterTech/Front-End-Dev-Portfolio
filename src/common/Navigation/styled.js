@@ -141,6 +141,11 @@ export const DevWrapper = styled.div`
   -webkit-text-fill-color: transparent;
   background-size: 200% 200%;
   animation: gradientShift 3s ease-in-out infinite;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
 
   @keyframes gradientShift {
     0%, 100% {
@@ -152,7 +157,7 @@ export const DevWrapper = styled.div`
   }
 
   &:hover {
-    transform: scale(1.05);
+    transform: translate(-50%, -50%) scale(1.05);
     filter: brightness(1.1);
   }
 
