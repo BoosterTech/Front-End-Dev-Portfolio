@@ -4,6 +4,7 @@ import {
   StyledList,
   StyledListItem,
   StyledScrollLink,
+  TopRow,
 } from "./styled";
 import { menuItems } from "./menuItems";
 import { LanguageSwitch } from "../../common/LanguageSwitch";
@@ -65,11 +66,10 @@ const Navigation = () => {
 
   return (
     <StyledList>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-md)' }}>
+      <TopRow>
         <LanguageSwitch />
         <DarkModeToggle />
-      </div>
-      
+      </TopRow>
       <Link
         activeClass="active"
         to={menuItems[language][0].name.toLowerCase()}
@@ -108,4 +108,3 @@ const Navigation = () => {
 };
 
 export default Navigation;
-
