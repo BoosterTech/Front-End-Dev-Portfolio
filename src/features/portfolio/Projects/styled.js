@@ -137,8 +137,10 @@ export const ProjectWrapper = styled.div`
     grid-template-columns: 1fr auto;
   }
 
+  /* Force single column for all projects on small screens */
   @media (max-width: ${({ theme }) => theme.breakpoint.xxxl}) {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
+    grid-auto-flow: row;
     gap: var(--spacing-xl);
     text-align: center;
   }
@@ -196,6 +198,10 @@ export const ProjectImage = styled.img`
   @media (max-width: ${({ theme }) => theme.breakpoint.xxxl}) {
     max-width: 400px;
     animation: ${fadeInUp} 0.8s ease-out 0.2s both;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    order: 1;
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
@@ -219,6 +225,19 @@ export const ProjectDescription = styled.div`
 
   @media (max-width: ${({ theme }) => theme.breakpoint.xxxl}) {
     animation: ${fadeInUp} 0.8s ease-out 0.4s both;
+    order: 2;
+    p, div {
+      font-size: 1rem;
+      line-height: 1.5;
+      margin-bottom: var(--spacing-sm);
+    }
+  }
+  @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
+    p, div {
+      font-size: 0.95rem;
+      line-height: 1.4;
+      margin-bottom: var(--spacing-xs);
+    }
   }
 `;
 
