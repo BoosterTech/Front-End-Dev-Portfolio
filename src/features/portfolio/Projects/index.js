@@ -13,7 +13,14 @@ const Projects = ({ id }) => {
   return (
     <Wrapper id={id}>
       <TitleWrapper>
-        <ProjectIcon src={gitHubIcon} alt="GitHub Icon" />
+        <a
+          href="https://github.com/BoosterTech"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Visit my GitHub profile"
+        >
+          <ProjectIcon src={gitHubIcon} alt="GitHub Icon" />
+        </a>
         <Header>Projects</Header>
       </TitleWrapper>
       <ProjectsWrapper>
