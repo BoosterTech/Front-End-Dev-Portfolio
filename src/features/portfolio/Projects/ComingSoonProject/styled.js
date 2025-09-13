@@ -1,5 +1,13 @@
 import styled from "styled-components";
 
+export const ImagesWrapper = styled.div`
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1.5rem;
+`;
+
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
