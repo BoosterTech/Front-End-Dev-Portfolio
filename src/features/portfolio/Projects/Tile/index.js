@@ -23,8 +23,12 @@ const Tile = ({
 }) => {
   const language = useSelector(selectLanguage);
 
+  const handleContainerClick = () => {
+    window.open(GitHubPagesURL, "_blank");
+  };
+
   return (
-    <ProjectWrapper $border={border}>
+    <ProjectWrapper $border={border} onClick={handleContainerClick} style={{ cursor: "pointer" }}>
       {index % 2 === 0 ? (
         <>
           <ProjectImage 
