@@ -87,20 +87,20 @@ export const ImageContainer = styled.div`
   &::before {
     content: "";
     position: absolute;
-    top: -20px;
-    left: -20px;
-    right: -20px;
-    bottom: -20px;
-    background: linear-gradient(
-      45deg,
-      var(--color-primary),
-      var(--color-accent),
-      var(--color-primary)
+    width: 260px;
+    height: 260px;
+
+    background: radial-gradient(circle,
+      rgba(255,255,255,0.45) 0%,
+      var(--color-primary) 25%,
+      var(--color-accent) 60%,
+      rgba(0,0,0,0.08) 85%,
+      transparent 100%
     );
     border-radius: 50%;
     z-index: -1;
-    opacity: 0.1;
-    filter: blur(30px);
+    opacity: 0.38;
+    filter: blur(32px);
     animation: ${spin} 20s linear infinite;
   }
 
