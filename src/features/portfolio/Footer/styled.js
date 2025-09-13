@@ -22,7 +22,7 @@ export const Wrapper = styled.footer`
   background: linear-gradient(135deg, var(--color-surface), var(--color-background));
   border-top: 1px solid var(--color-border);
   margin-top: var(--spacing-3xl);
-  padding: var(--spacing-xl) 0;
+  padding: var(--spacing-sm) 0;
   text-align: center;
   position: relative;
   overflow: hidden;
