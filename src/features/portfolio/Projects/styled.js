@@ -265,7 +265,6 @@ export const ProjectLink = styled.a`
   }
 
   &:hover {
-    transform: translateY(-2px);
     box-shadow: var(--shadow-lg);
 
     &::before {
@@ -286,7 +285,7 @@ export const ProjectLink = styled.a`
 export const LinkTag = styled.span`
   position: relative;
 
-  &::after {
+  /* &::after {
     content: "";
     position: absolute;
     width: 0%;
@@ -296,9 +295,9 @@ export const LinkTag = styled.span`
     background: white;
     transition: all var(--transition-fast);
     transform: translateX(-50%);
-  }
+  } */
 
-  ${ProjectLink}:hover &::after {
+  /* ${ProjectLink}:hover &::after {
     width: 100%;
-  }
+  } */
 `;
