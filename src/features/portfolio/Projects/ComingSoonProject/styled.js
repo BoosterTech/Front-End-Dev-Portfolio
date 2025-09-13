@@ -1,7 +1,9 @@
 import styled from "styled-components";
 
 export const FullscreenContent = styled.div`
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -120,11 +122,12 @@ export const ImagesWrapper = styled.div`
   justify-content: center;
   align-items: center;
   /* margin-bottom: 1.5rem; */
-  width: 80%;
-  height: auto;
+  width: 95%;
+  height: 400px;
 `;
 
 export const Container = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -133,7 +136,22 @@ export const Container = styled.div`
   background: ${({ theme }) => theme.background};
   border-radius: 1.5rem;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
-  margin: 2rem 0;
+  margin: auto;
+  width: 90%;
+  /* max-width: 900px; */
+  @media (max-width: 1200px) {
+    max-width: 100%;
+    padding: 1.5rem;
+  }
+  @media (max-width: 900px) {
+    padding: 1rem;
+    margin: 1.5rem 0;
+  }
+  @media (max-width: 600px) {
+    padding: 0.5rem;
+    margin: 1rem 0;
+    border-radius: 1rem;
+  }
 `;
 
 export const Title = styled.h2`
@@ -149,9 +167,9 @@ export const Image = styled.img`
   border-radius: 1rem;
   opacity: ${(props) => (props.$visible ? 1 : 0)};
   transition: opacity 0.5s ease;
-  position: absolute; 
+  position: absolute;
   left: 0;
-  top: 15%; 
+  top: 15%;
 `;
 
 export const SlideshowWrapper = styled.div`
@@ -162,21 +180,92 @@ export const SlideshowWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  @media (max-width: 900px) {
+    width: 100%;
+    height: 320px;
+  }
+  @media (max-width: 600px) {
+    width: 100%;
+    height: 200px;
+  }
 `;
 
 export const Description = styled.div`
   font-size: 1.1rem;
-  color: ${({ theme }) => theme.textSecondary || theme.text};
+  line-height: 1.7;
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-md);
   text-align: center;
-  margin-bottom: 2rem;
+  p,
+  div {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--color-text-primary);
+    margin-bottom: var(--spacing-md);
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+  @media (max-width: ${({ theme }) => theme.breakpoint.xxxl}) {
+    p,
+    div {
+      font-size: 1rem;
+      line-height: 1.5;
+      margin-bottom: var(--spacing-sm);
+    }
+  }
+  @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
+    p,
+    div {
+      font-size: 0.95rem;
+      line-height: 1.4;
+      margin-bottom: var(--spacing-xs);
+    }
+  }
 `;
 
 export const ComingSoonTag = styled.div`
-  background: linear-gradient(90deg, #ffb347, #ffcc33);
+  position: absolute;
+  bottom: 1.5rem;
+  width: 200px;
+  height: 48px;
+  background: linear-gradient(90deg, #ffcc33 70%, #ffb347 100%);
   color: #222;
   font-weight: 600;
-  padding: 0.7rem 1.5rem;
-  border-radius: 2rem;
-  font-size: 1.2rem;
-  box-shadow: 0 2px 8px rgba(255, 204, 51, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @media (max-width: 900px) {
+    width: 100%;
+    left: 0;
+    top: 10%;
+  }
+  @media (max-width: 600px) {
+    width: 100%;
+    left: 0;
+    top: 5%;
+    border-radius: 0.5rem;
+  }
+  border-radius: 24px;
+  font-size: 1.1rem;
+  box-shadow: 0 2px 8px rgba(255, 204, 51, 0.18);
+  letter-spacing: 0.05em;
+  z-index: 20;
+  border: 2px solid #fff;
+  text-align: center;
+  user-select: none;
+  @media (max-width: 900px) {
+    width: 160px;
+    height: 40px;
+    font-size: 1rem;
+    bottom: 1rem;
+    border-radius: 20px;
+  }
+  @media (max-width: 600px) {
+    width: 120px;
+    height: 32px;
+    font-size: 0.95rem;
+    bottom: 0.5rem;
+    border-radius: 16px;
+  }
 `;
