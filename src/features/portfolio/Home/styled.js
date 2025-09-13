@@ -158,6 +158,8 @@ export const ImageContainer = styled.div`
   width: 280px;
   height: 280px;
   position: relative;
+  box-shadow: 0 8px 32px rgba(206, 207, 207, 0.18),
+    0 2px 8px rgba(0, 0, 0, 0.08);
   animation: ${slideInRight} 0.8s ease-out 0.3s both,
     ${imageBorderAnimation} 12s ease-in-out infinite 1s;
 
@@ -177,7 +179,7 @@ export const ImageContainer = styled.div`
     border-radius: inherit;
     z-index: -1;
     opacity: 0.3;
-    filter: blur(20px);
+    filter: blur(60px);
     animation: ${imageBorderAnimation} 12s ease-in-out infinite 1s;
   }
 
@@ -203,12 +205,11 @@ export const ProfileImage = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
+  box-shadow: 0 0 40px 14px rgba(40, 142, 221, 0.35),
+    0 8px 32px rgba(206, 207, 207, 0.18), 0 2px 8px rgba(0, 0, 0, 0.08);
   border-radius: inherit;
+  border: 1px solid var(--color-primary);
   transition: transform var(--transition-normal);
-
-  &:hover {
-    transform: scale(1.05);
-  }
 `;
 
 export const TechStackContainer = styled.div`
