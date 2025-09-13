@@ -76,7 +76,7 @@ export const Wrapper = styled.article`
     grid-template-columns: 1fr;
     gap: var(--spacing-2xl);
     text-align: center;
-    padding: var(--spacing-2xl) 0;
+  padding: calc(var(--spacing-2xl) + 96px) 0 var(--spacing-2xl) 0;
   }
 `;
 
