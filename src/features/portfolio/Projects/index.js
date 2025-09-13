@@ -28,7 +28,7 @@ const Projects = ({ id }) => {
         {projects.map((project, index) => {
           // Render WTM Music AI Gen project with ComingSoonProject
           if (
-            project.title?.English?.includes("WTM Music AI Gen")
+            project.title?.English?.includes("WTM AI Music")
           ) {
             return (
               <ComingSoonProject
