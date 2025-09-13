@@ -45,22 +45,9 @@ const float = keyframes`
 export const Wrapper = styled.section`
   padding: var(--spacing-3xl) 0;
   margin: var(--spacing-3xl) 0;
-  background: var(--color-surface);
   border-radius: var(--radius-xl);
-  border: 1px solid var(--color-border);
-  box-shadow: var(--shadow-lg);
   position: relative;
   overflow: hidden;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, var(--color-primary), var(--color-accent), var(--color-primary));
-  }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
     margin: var(--spacing-2xl) 0;
@@ -87,23 +74,15 @@ export const Header = styled.h2`
   font-weight: 800;
   margin: 0;
   text-align: center;
-  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  background: linear-gradient(
+    135deg,
+    var(--color-primary),
+    var(--color-accent)
+  );
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   position: relative;
-  
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80px;
-    height: 4px;
-    background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
-    border-radius: var(--radius-md);
-  }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.sm}) {
     font-size: clamp(2rem, 8vw, 2.5rem);
@@ -122,7 +101,8 @@ export const ProjectsWrapper = styled.div`
 
 export const ProjectWrapper = styled.div`
   display: grid;
-  grid-template-columns: ${props => props.$inverted ? '1fr auto' : 'auto 1fr'};
+  grid-template-columns: ${(props) =>
+    props.$inverted ? "1fr auto" : "auto 1fr"};
   gap: var(--spacing-3xl);
   align-items: center;
   padding: var(--spacing-xl);
@@ -132,15 +112,16 @@ export const ProjectWrapper = styled.div`
   box-shadow: var(--shadow-md);
   transition: all var(--transition-normal);
   animation: ${fadeInUp} 0.8s ease-out;
-  
+
   &:hover {
     transform: translateY(-5px);
     box-shadow: var(--shadow-xl);
     border-color: var(--color-primary);
   }
-  
+
   &:not(:last-child) {
-    border-bottom: ${({ $border }) => ($border ? `2px solid var(--color-border)` : "none")};
+    border-bottom: ${({ $border }) =>
+      $border ? `2px solid var(--color-border)` : "none"};
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.xxxl}) {
@@ -163,7 +144,7 @@ export const ProjectIcon = styled.img`
   box-shadow: var(--shadow-lg);
   animation: ${float} 3s ease-in-out infinite;
   transition: transform var(--transition-normal);
-  
+
   &:hover {
     transform: scale(1.1);
   }
@@ -179,7 +160,7 @@ export const ProjectHeader = styled.h3`
   font-weight: 700;
   margin: 0 0 var(--spacing-md) 0;
   color: var(--color-text-primary);
-  
+
   @media (max-width: ${({ theme }) => theme.breakpoint.xxxl}) {
     text-align: center;
   }
@@ -192,8 +173,10 @@ export const ProjectImage = styled.img`
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-lg);
   transition: all var(--transition-normal);
-  animation: ${props => props.$inverted ? slideInFromRight : slideInFromLeft} 0.8s ease-out 0.2s both;
-  
+  animation: ${(props) =>
+      props.$inverted ? slideInFromRight : slideInFromLeft}
+    0.8s ease-out 0.2s both;
+
   &:hover {
     transform: scale(1.02);
     box-shadow: var(--shadow-xl);
@@ -210,14 +193,16 @@ export const ProjectImage = styled.img`
 `;
 
 export const ProjectDescription = styled.div`
-  animation: ${props => props.$inverted ? slideInFromLeft : slideInFromRight} 0.8s ease-out 0.3s both;
-  
+  animation: ${(props) =>
+      props.$inverted ? slideInFromLeft : slideInFromRight}
+    0.8s ease-out 0.3s both;
+
   p {
     font-size: 1.1rem;
     line-height: 1.7;
     color: var(--color-text-secondary);
     margin-bottom: var(--spacing-md);
-    
+
     &:last-of-type {
       margin-bottom: 0;
     }
@@ -248,7 +233,11 @@ export const ProjectLink = styled.a`
   align-items: center;
   justify-content: center;
   padding: var(--spacing-sm) var(--spacing-lg);
-  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  background: linear-gradient(
+    135deg,
+    var(--color-primary),
+    var(--color-accent)
+  );
   color: white;
   text-decoration: none;
   border-radius: var(--radius-md);
@@ -258,27 +247,32 @@ export const ProjectLink = styled.a`
   box-shadow: var(--shadow-sm);
   position: relative;
   overflow: hidden;
-  
+
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      transparent
+    );
     transition: left var(--transition-normal);
   }
-  
+
   &:hover {
     transform: translateY(-2px);
     box-shadow: var(--shadow-lg);
-    
+
     &::before {
       left: 100%;
     }
   }
-  
+
   &:active {
     transform: translateY(0);
   }
@@ -291,7 +285,7 @@ export const ProjectLink = styled.a`
 
 export const LinkTag = styled.span`
   position: relative;
-  
+
   &::after {
     content: "";
     position: absolute;
@@ -303,9 +297,8 @@ export const LinkTag = styled.span`
     transition: all var(--transition-fast);
     transform: translateX(-50%);
   }
-  
+
   ${ProjectLink}:hover &::after {
     width: 100%;
   }
 `;
-
