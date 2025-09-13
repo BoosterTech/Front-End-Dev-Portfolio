@@ -1,4 +1,27 @@
 import styled, { keyframes } from "styled-components";
+// Gradient animation from About/Home header
+const gradientShift = keyframes`
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+`;
+
+const waveHand = keyframes`
+  0% { transform: rotate(0deg) scale(1.1); }
+  10% { transform: rotate(20deg) scale(1.1); }
+  20% { transform: rotate(-10deg) scale(1.1); }
+  30% { transform: rotate(20deg) scale(1.1); }
+  40% { transform: rotate(-10deg) scale(1.1); }
+  50% { transform: rotate(20deg) scale(1.1); }
+  60% { transform: rotate(-10deg) scale(1.1); }
+  70% { transform: rotate(20deg) scale(1.1); }
+  80% { transform: rotate(-10deg) scale(1.1); }
+  90% { transform: rotate(10deg) scale(1.1); }
+  100% { transform: rotate(0deg) scale(1.1); }
+`;
 
 const fadeInUp = keyframes`
   from {
@@ -59,32 +82,41 @@ export const TitleWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--spacing-lg);
-  margin-bottom: var(--spacing-3xl);
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-xl);
   animation: ${fadeInUp} 0.8s ease-out;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.xl}) {
-    gap: var(--spacing-md);
-    margin-bottom: var(--spacing-2xl);
+    gap: var(--spacing-xs);
+    margin-bottom: var(--spacing-lg);
   }
 `;
 
 export const Header = styled.h2`
-  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-size: clamp(2.5rem, 6vw, 4rem);
   font-weight: 800;
-  margin: 0;
-  text-align: center;
+  margin-bottom: var(--spacing-lg);
+  color: var(--color-text-primary);
+  line-height: 1.2;
+  position: relative;
+  padding-bottom: 0.3em;
   background: linear-gradient(
     135deg,
-    var(--color-primary),
-    var(--color-accent)
+    var(--color-text-primary) 0%,
+    var(--color-primary) 50%,
+    var(--color-accent) 100%
   );
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  position: relative;
+  background-size: 200% 200%;
+  animation: ${gradientShift} 4s ease-in-out infinite;
 
-  @media (max-width: ${({ theme }) => theme.breakpoint.sm}) {
+  &:hover img {
+    animation: ${waveHand} 4s infinite;
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
     font-size: clamp(2rem, 8vw, 2.5rem);
   }
 `;
@@ -284,20 +316,4 @@ export const ProjectLink = styled.a`
 
 export const LinkTag = styled.span`
   position: relative;
-
-  /* &::after {
-    content: "";
-    position: absolute;
-    width: 0%;
-    height: 2px;
-    bottom: -2px;
-    left: 50%;
-    background: white;
-    transition: all var(--transition-fast);
-    transform: translateX(-50%);
-  } */
-
-  /* ${ProjectLink}:hover &::after {
-    width: 100%;
-  } */
 `;
