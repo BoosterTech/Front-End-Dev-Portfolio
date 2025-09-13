@@ -36,6 +36,7 @@ const Projects = ({ id }) => {
             GitHubPagesURLTag={project.GitHubPagesURLTag}
             GitHubRepoURLTag={project.GitHubRepoURLTag}
             index={index}
+            available={project.available}
           />
         ))}
       </ProjectsWrapper>
