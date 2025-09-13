@@ -1,6 +1,20 @@
 import styled from "styled-components";
 import { keyframes } from "styled-components";
 
+const waveHand = keyframes`
+  0% { transform: rotate(0deg) scale(1.1); }
+  10% { transform: rotate(20deg) scale(1.1); }
+  20% { transform: rotate(-10deg) scale(1.1); }
+  30% { transform: rotate(20deg) scale(1.1); }
+  40% { transform: rotate(-10deg) scale(1.1); }
+  50% { transform: rotate(20deg) scale(1.1); }
+  60% { transform: rotate(-10deg) scale(1.1); }
+  70% { transform: rotate(20deg) scale(1.1); }
+  80% { transform: rotate(-10deg) scale(1.1); }
+  90% { transform: rotate(10deg) scale(1.1); }
+  100% { transform: rotate(0deg) scale(1.1); }
+`;
+
 const imageBorderAnimation = keyframes`
    0%{
   border-radius: 65% 35% 67% 33% / 65% 36% 64% 35%  ;
@@ -119,7 +133,9 @@ export const ContentHeader = styled.h1`
   }
 
   &:hover img {
-    transform: rotate(20deg) scale(1.1);
+    /* transform: rotate(20deg) scale(1.1); */
+        animation: ${waveHand} 4s infinite;
+
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
@@ -138,6 +154,10 @@ export const HeaderImage = styled.img`
 
   @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
     width: clamp(30px, 6vw, 40px);
+  }
+
+  &:hover {
+    animation: ${waveHand} 4s infinite;
   }
 `;
 
