@@ -75,7 +75,7 @@ export const HomeWrapper = styled.section`
   animation: ${fadeInUp} 0.8s ease-out;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
-    padding: var(--spacing-2xl) 0;
+    padding: calc(var(--spacing-2xl) + 128px) 0 var(--spacing-2xl) 0;
   }
 `;
 
