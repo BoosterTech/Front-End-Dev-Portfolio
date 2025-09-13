@@ -50,10 +50,24 @@ export const StyledList = styled.nav`
     font-size: 0.9rem;
   }
 
-  @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
+  @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
     flex-direction: column;
     gap: var(--spacing-md);
     padding: var(--spacing-md);
+  }
+`;
+
+export const TopRow = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 300px;
+  gap: var(--spacing-md);
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
+    /* gap: var(--spacing-xs); */
+    width: 100%;
+    justify-content: space-between;
   }
 `;
 
@@ -66,15 +80,20 @@ export const StyledListItem = styled.li`
   cursor: pointer;
   position: relative;
   overflow: hidden;
-  
+
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.1),
+      transparent
+    );
     transition: left var(--transition-slow);
   }
 
@@ -85,11 +104,15 @@ export const StyledListItem = styled.li`
       border-color: var(--color-border);
       transform: translateY(-1px);
       box-shadow: var(--shadow-md);
-      
+
       &::before {
         left: 100%;
       }
     }
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.xl2}) {
+    padding: 10px 14px;
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
@@ -100,44 +123,42 @@ export const StyledListItem = styled.li`
   @media (max-width: ${({ theme }) => theme.breakpoint.xs}) {
     animation: ${slideFromLeft} 0.6s ease-out forwards;
     padding: var(--spacing-sm) var(--spacing-md);
-    border-radius: 100%;
   }
 `;
 
 export const StyledScrollLink = styled(Link)`
   text-decoration: none;
-  
+
   &.active ${StyledListItem} {
-    color: var(--color-primary);
+    color: white;
+    background: linear-gradient(
+      135deg,
+      var(--color-primary),
+      var(--color-accent)
+    );
     border-color: var(--color-primary);
+    box-shadow: var(--shadow-md);
     transform: translateY(-1px);
 
     svg {
       color: var(--color-primary);
     }
 
-    @media (max-width: ${({ theme }) => theme.breakpoint.xs}) {
+    @media (max-width: ${({ theme }) => theme.breakpoint.xl2}) {
       background: none;
       background-color: transparent;
       box-shadow: none;
       color: var(--color-primary);
       border-color: var(--color-primary);
       transform: none;
+      border-radius: 50px;
       svg {
         color: var(--color-primary);
       }
     }
   }
 
-  ${(props) =>
-    props.$isContactVisible &&
-    `${StyledListItem} {
-      color: white;
-      background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
-      border-color: var(--color-primary);
-      box-shadow: var(--shadow-md);
-      transform: translateY(-1px);
-    }`}
+  /* Contact item active styles now apply to all active menu items */
 `;
 
 export const DevWrapper = styled.div`
@@ -148,20 +169,27 @@ export const DevWrapper = styled.div`
   border-radius: var(--radius-md);
   transition: all var(--transition-fast);
   cursor: pointer;
-  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  background: linear-gradient(
+    135deg,
+    var(--color-primary),
+    var(--color-accent)
+  );
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-size: 200% 200%;
   animation: gradientShift 3s ease-in-out infinite;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  position: static;
+  left: auto;
+  top: auto;
+  transform: none;
   z-index: 10;
+  display: flex;
+  flex-wrap: nowrap;
 
   @keyframes gradientShift {
-    0%, 100% {
+    0%,
+    100% {
       background-position: 0% 50%;
     }
     50% {
@@ -170,18 +198,16 @@ export const DevWrapper = styled.div`
   }
 
   &:hover {
-    transform: translate(-50%, -50%) scale(1.05);
     filter: brightness(1.1);
   }
 
-  @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
+  @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
     font-size: 1.2rem;
-    margin-bottom: var(--spacing-xl);
+    padding: var(--spacing-sm) var(--spacing-md);
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.sm}) {
     font-size: 1rem;
-    margin-bottom: var(--spacing-2xl);
   }
 `;
 
@@ -190,11 +216,10 @@ export const MenuContainer = styled.div`
   flex-direction: row;
   align-items: center;
   gap: var(--spacing-sm);
-  
 
   /* @media (max-width: ${({ theme }) => theme.breakpoint.xxl}) {
     /* gap: var(--spacing-xxs); */
-  /* } */ 
+  /* } */
 
   @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
     flex-direction: row;
@@ -203,4 +228,3 @@ export const MenuContainer = styled.div`
     gap: var(--spacing-xs);
   }
 `;
-
