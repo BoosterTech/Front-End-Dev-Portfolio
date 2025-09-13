@@ -62,7 +62,7 @@ export const StyledListItem = styled.li`
   transition: all var(--transition-fast);
   border: 1px solid transparent;
   padding: var(--spacing-sm) var(--spacing-lg);
-  border-radius: var(--radius-lg);
+  border-radius: 20px;
   cursor: pointer;
   position: relative;
   overflow: hidden;
@@ -100,6 +100,7 @@ export const StyledListItem = styled.li`
   @media (max-width: ${({ theme }) => theme.breakpoint.xs}) {
     animation: ${slideFromLeft} 0.6s ease-out forwards;
     padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: 100%;
   }
 `;
 
@@ -108,12 +109,24 @@ export const StyledScrollLink = styled(Link)`
   
   &.active ${StyledListItem} {
     color: var(--color-primary);
-    background-color: var(--color-primary);
-    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
-    color: white;
     border-color: var(--color-primary);
-    box-shadow: var(--shadow-md);
     transform: translateY(-1px);
+
+    svg {
+      color: var(--color-primary);
+    }
+
+    @media (max-width: ${({ theme }) => theme.breakpoint.xs}) {
+      background: none;
+      background-color: transparent;
+      box-shadow: none;
+      color: var(--color-primary);
+      border-color: var(--color-primary);
+      transform: none;
+      svg {
+        color: var(--color-primary);
+      }
+    }
   }
 
   ${(props) =>
@@ -163,10 +176,12 @@ export const DevWrapper = styled.div`
 
   @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
     font-size: 1.2rem;
+    margin-bottom: var(--spacing-xl);
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.sm}) {
     font-size: 1rem;
+    margin-bottom: var(--spacing-2xl);
   }
 `;
 
@@ -175,6 +190,11 @@ export const MenuContainer = styled.div`
   flex-direction: row;
   align-items: center;
   gap: var(--spacing-sm);
+  
+
+  /* @media (max-width: ${({ theme }) => theme.breakpoint.xxl}) {
+    /* gap: var(--spacing-xxs); */
+  /* } */ 
 
   @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
     flex-direction: row;
