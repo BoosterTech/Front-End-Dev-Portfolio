@@ -14,6 +14,7 @@ const projects = [
       Polish: `🏡 The Paradise Lodge - Luksusowa Strona Rezerwacji Domków`,
       Spanish: `🏡 The Paradise Lodge - Sitio Web de Reservas de Cabañas de Lujo`,
     },
+    available: "web",
     description: {
       English: `<p>&nbsp&nbsp Welcome to The Paradise Lodge! </p>
                 <p>The Paradise Lodge is a luxury cabin booking platform designed for seamless exploration, reservation, and management of high-end stays. Users can browse stunning lodges, check real-time availability, and make secure bookings effortlessly.</p>
@@ -48,10 +49,11 @@ const projects = [
 
   {
     title: {
-      English: `🎥 Movies Browser `,
+      English: `🎥 Movies Browser`,
       Polish: `🎥 Przeglądarka Filmów `,
       Spanish: `🎥 Navegador de Películas `,
     },
+  available: "web & mob",
     description: {
       English: `<p>&nbsp&nbsp The Movie Browser is an intuitive web application designed to enhance your movie-watching experience
                 by allowing users to search for movies, cast, and crew members effortlessly.</p>
@@ -135,6 +137,7 @@ const projects = [
       Polish: `💱Kalkulator Walut`,
       Spanish: `💱Conversor de Divisas`,
     },
+    available: "web & mob",
     description: {
       English: `<p>&nbsp&nbsp This comprehensive currency converter is powered by data sourced directly from the European Central Bank.</p>
                 Seamlessly integrated, it provides real-time exchange rates, ensuring accuracy and reliability in currency conversions.
@@ -189,6 +192,7 @@ const projects = [
                           <p>React Quiz App es una aplicación de preguntas con 30 preguntas centradas en conceptos de React. Construida con React y el hook useReducer, la aplicación realiza un seguimiento de las respuestas del usuario, avanza a través de las preguntas y calcula la puntuación final. El uso de useReducer gestiona eficientemente el estado del quiz, lo que facilita su escalabilidad.</p>
                           `,
     },
+    available: "web & mob",
     imageURL: `${reactQuizImage}`,
     GitHubPagesURLTag: {
       English: "Go to the Website",
@@ -239,6 +243,7 @@ const projects = [
                 <p>Explora la Biblioteca de Plasma y disfruta de un vistazo a los inicios de mi viaje en la programación 🚀</p>
                 `,
     },
+    available: "web & mob",
     imageURL: `${plasmaLibraryImage}`,
     GitHubPagesURLTag: {
       English: "Go to the Website",
@@ -275,6 +280,7 @@ const projects = [
                 <p>La aplicación permite a los usuarios ingresar el monto total de la cuenta, especificar la cantidad de personas que la dividirán y automáticamente calcula cuánto debe pagar cada persona. Construido con React.js para una experiencia dinámica y receptiva y Styled Components para una interfaz elegante y personalizable, Eat-N-Split hace que administrar pagos grupales sea rápido, sin complicaciones y agradable.</p>
                 <p>Ideal para salidas en grupo, cenas o cualquier situación en la que varias personas compartan gastos, Eat-N-Split elimina la necesidad de cálculos manuales y asegura que todos paguen de manera justa.</p>`,
     },
+    available: "web",
     imageURL: `${eatNsplitmage}`,
     GitHubPagesURLTag: {
       English: "Go to the Website",
@@ -311,6 +317,7 @@ const projects = [
                 <p>Diseñada con un enfoque en la experiencia del usuario, la aplicación ofrece una interfaz fluida e intuitiva para realizar pedidos. ¿Antojo de una clásica Margarita u otras? The Pizza App garantiza un proceso de pedido sin complicaciones.</p>
                 <p>Ideal para los amantes de la pizza que buscan una forma conveniente de satisfacer sus antojos, esta aplicación hace que pedir pizza sea tan fácil como unos pocos clics.</p>`,
     },
+    available: "web & mob",
     imageURL: `${fastReactPizzaImage}`,
     GitHubPagesURLTag: {
       English: "Go to the Website",
