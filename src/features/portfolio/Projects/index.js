@@ -32,10 +32,10 @@ const Projects = ({ id }) => {
             imageURL={project.imageURL}
             GitHubPagesURL={project.GitHubPagesURL}
             GitHubRepoURL={project.GitHubRepoURL}
-            inverted={project.inverted}
             border={project.border}
             GitHubPagesURLTag={project.GitHubPagesURLTag}
             GitHubRepoURLTag={project.GitHubRepoURLTag}
+            index={index}
           />
         ))}
       </ProjectsWrapper>
