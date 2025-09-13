@@ -174,7 +174,7 @@ export const HeaderImage = styled.img`
 export const HeaderParagraph = styled.p`
   font-size: clamp(1.1rem, 2.5vw, 1.5rem);
   font-weight: 500;
-  color: var(--color-text-secondary);
+  color: var(--color-text-primary);
   line-height: 1.6;
   margin: 0;
   max-width: 600px;
@@ -188,7 +188,7 @@ export const ImageContainer = styled.div`
   width: 280px;
   height: 280px;
   position: relative;
-  box-shadow: 0 8px 32px rgba(206, 207, 207, 0.18),
+  box-shadow: 0 8px 32px rgba(6, 7, 7, 0.18),
     0 2px 8px rgba(0, 0, 0, 0.08);
   animation: ${slideInRight} 0.8s ease-out 0.3s both,
     ${imageBorderAnimation} 12s ease-in-out infinite 1s;
