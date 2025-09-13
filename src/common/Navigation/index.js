@@ -68,22 +68,22 @@ const Navigation = () => {
     <StyledList>
       <TopRow>
         <LanguageSwitch />
+        <Link
+          activeClass="active"
+          to={menuItems[language][0].name.toLowerCase()}
+          spy={true}
+          smooth={true}
+          offset={menuItems[language][0].offset}
+          duration={700}
+          key={1}
+          onClick={handleClick}
+        >
+          <DevWrapper>
+            <span>Derek.dev</span>
+          </DevWrapper>
+        </Link>
         <DarkModeToggle />
       </TopRow>
-      <Link
-        activeClass="active"
-        to={menuItems[language][0].name.toLowerCase()}
-        spy={true}
-        smooth={true}
-        offset={menuItems[language][0].offset}
-        duration={700}
-        key={1}
-        onClick={handleClick}
-      >
-        <DevWrapper>
-          <span>Derek.dev</span>
-        </DevWrapper>
-      </Link>
 
       <MenuContainer>
         {menuItems[language].map((item, index) => {

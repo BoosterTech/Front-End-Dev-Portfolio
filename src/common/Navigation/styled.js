@@ -67,9 +67,24 @@ export const TopRow = styled.div`
   gap: var(--spacing-md);
 
   @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
-    /* gap: var(--spacing-xs); */
     width: 100%;
     justify-content: space-between;
+    flex-wrap: wrap;
+    
+    /* Make 3rd child wrap to 2nd row */
+    > *:nth-child(3) {
+      order: 1;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin-top: var(--spacing-sm);
+    }
+    
+    /* Keep 1st and 2nd child in first row */
+    > *:nth-child(1),
+    > *:nth-child(2) {
+      order: 0;
+    }
   }
 `;
 
@@ -147,13 +162,14 @@ export const StyledScrollLink = styled(Link)`
     }
 
     @media (max-width: ${({ theme }) => theme.breakpoint.xl2}) {
-      background: none;
-      background-color: transparent;
-      box-shadow: none;
+      background: none !important;
+      background-color: transparent !important;
+      box-shadow: none !important;
+      border: none !important;
       color: var(--color-primary);
-      border-color: var(--color-primary);
       transform: none;
       border-radius: 50px;
+      
       svg {
         color: var(--color-primary);
       }
@@ -188,6 +204,7 @@ export const DevWrapper = styled.div`
   z-index: 10;
   display: flex;
   flex-wrap: nowrap;
+  justify-content: center;
 
   @keyframes gradientShift {
     0%,

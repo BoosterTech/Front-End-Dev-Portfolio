@@ -5,7 +5,7 @@ import Contact from "./features/portfolio/Contact";
 import Projects from "./features/portfolio/Projects";
 import Footer from "./features/portfolio/Footer";
 import { Main } from "./GlobalStyles";
-import { ScrollWatcher } from "./common/ScrollWatcher/styled";
+// import { ScrollWatcher } from "./common/ScrollWatcher/styled";
 import { ThemeProvider } from "styled-components";
 import { useSelector } from "react-redux";
 import { selectLanguage } from "./Redux/languageSlice";
