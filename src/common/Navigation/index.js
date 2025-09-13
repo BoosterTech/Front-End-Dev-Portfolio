@@ -17,7 +17,7 @@ import { themes } from "../../themes";
 import { selectContactVisibility } from "../../Redux/generalSlice";
 
 const Navigation = () => {
-  const breakpointXL = parseInt(themes.breakpoint.xl, 10);
+  const breakpointXL = parseInt(themes.breakpoint.xl2, 10);
 
   const isContactVisible = useSelector(selectContactVisibility);
   const language = useSelector(selectLanguage);
