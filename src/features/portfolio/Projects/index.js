@@ -1,3 +1,4 @@
+
 import {
   Header,
   ProjectIcon,
@@ -8,6 +9,7 @@ import {
 import projects from "./projects";
 import Tile from "./Tile";
 import ComingSoonProject from "./ComingSoonProject";
+import wtm2Image from "../../../images/wtm2.png";
 import gitHubIcon from "../../../images/gitHubIcon.png";
 
 const Projects = ({ id }) => {
@@ -26,16 +28,14 @@ const Projects = ({ id }) => {
       </TitleWrapper>
       <ProjectsWrapper>
         {projects.map((project, index) => {
-          // Render WTM Music AI Gen project with ComingSoonProject
-          if (
-            project.title?.English?.includes("WTM AI Music")
-          ) {
+          if (project.title?.English?.includes("WTM AI Music Generation")) {
             return (
               <ComingSoonProject
                 key={index}
                 title={project.title.English}
                 imageURL={project.imageURL}
                 description={project.description.English}
+                extraImageURL={wtm2Image}
               />
             );
           }
