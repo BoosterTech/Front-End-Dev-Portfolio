@@ -25,9 +25,11 @@ const fadeIn = keyframes`
 `;
 
 export const StyledList = styled.nav`
-  position: sticky;
+  width: 100vw;
+  position: fixed;
   top: 0;
-  z-index: 100;
+  left: 0;
+  z-index: 1000;
   display: flex;
   flex-direction: row;
   list-style: none;
