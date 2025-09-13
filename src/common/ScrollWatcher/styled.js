@@ -12,7 +12,7 @@ export const ScrollWatcher = styled.div`
   top: 0;
   z-index: 100;
   background-color: #3d6af5;
-  width: 100%;
+  width: 100vw;
   transform: scale(0.45);
 
   animation: ${scrollWatcherAnimation} linear;
