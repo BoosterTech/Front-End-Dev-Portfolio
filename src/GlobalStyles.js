@@ -212,7 +212,9 @@ export const Main = styled.main`
   margin: 0 auto;
   padding: 0 var(--spacing-lg);
   
-  @media (max-width: 768px) {
+  @media (max-width: ${({ theme }) => theme.breakpoint.xl2}) {
+    max-width: 100vw;
+    width: 100vw;
     padding: 0 var(--spacing-md);
   }
 `;
