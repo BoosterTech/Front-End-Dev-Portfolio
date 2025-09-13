@@ -194,6 +194,15 @@ img {
   background: var(--color-primary);
 }
 
+@media (max-width: 1024px) {
+  /* Hide scrollbar for tablets and mobile devices */
+  ::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    background: transparent;
+  }
+}
+
 /* Focus styles for accessibility */
 *:focus {
   outline: 2px solid var(--color-primary);
