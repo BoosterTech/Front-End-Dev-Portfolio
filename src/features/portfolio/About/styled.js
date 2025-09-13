@@ -90,11 +90,12 @@ export const ImageContainer = styled.div`
     width: 260px;
     height: 260px;
 
-    background: radial-gradient(circle,
-      rgba(255,255,255,0.45) 0%,
+    background: radial-gradient(
+      circle,
+      rgba(255, 255, 255, 0.45) 0%,
       var(--color-primary) 25%,
       var(--color-accent) 60%,
-      rgba(0,0,0,0.08) 85%,
+      rgba(0, 0, 0, 0.08) 85%,
       transparent 100%
     );
     border-radius: 50%;
@@ -167,7 +168,8 @@ export const Header = styled.h2`
 export const ContentContainer = styled.div`
   animation: ${fadeInRight} 0.8s ease-out 0.3s both;
 
-  p, div {
+  p,
+  div {
     font-size: 1.1rem;
     line-height: 1.8;
     margin-bottom: var(--spacing-lg);
