@@ -1,5 +1,55 @@
 import styled from "styled-components";
 
+export const MusicGenerationHeader = styled.h1`
+  font-size: 3rem;
+  font-weight: 900;
+  text-align: center;
+  margin-bottom: 2rem;
+  letter-spacing: 0.03em;
+  background: linear-gradient(90deg, #2196f3 0%, #3f51b5 50%, #9c27b0 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
+    font-size: 2.2rem;
+  }
+  @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
+    font-size: 1.6rem;
+  }
+`;
+
+export const ComingSoonImage = styled.img`
+  position: absolute;
+  top: -5rem;
+  left: 0;
+  width: 200px;
+  height: auto;
+  z-index: 10;
+  pointer-events: none;
+  transform: rotate(-25deg);
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.xl}) {
+    top: -4rem;
+    left: -3rem;
+    width: 180px;
+  }
+  @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
+    top: -5rem;
+    left: -3rem;
+    width: 160px;
+  }
+  @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
+    top: -4rem;
+    left: -3rem;
+    width: 140px;
+  }
+  @media (max-width: ${({ theme }) => theme.breakpoint.sm}) {
+    left: -2rem;
+    width: 120px;
+  }
+`;
+
 export const FullscreenContent = styled.div`
   position: fixed;
   top: 0;
@@ -100,6 +150,31 @@ export const ArrowButton = styled.button`
     height: 28px;
     display: block;
   }
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
+    width: 40px;
+    height: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    ${(props) => (props.$left ? "left: 1rem;" : "")}
+    ${(props) => (props.$right ? "right: 1rem;" : "")}
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
+  @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
+    width: 32px;
+    height: 32px;
+    top: 50%;
+    transform: translateY(-50%);
+    ${(props) => (props.$left ? "left: 0.5rem;" : "")}
+    ${(props) => (props.$right ? "right: 0.5rem;" : "")}
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
 `;
 
 export const ContentWrapper = styled.div`
@@ -109,9 +184,20 @@ export const ContentWrapper = styled.div`
   justify-content: center;
   align-items: flex-start;
   width: 100%;
-  @media (max-width: 900px) {
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
     flex-direction: column;
     gap: 2rem;
+    align-items: center;
+  }
+  @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+  }
+  @media (max-width: ${({ theme }) => theme.breakpoint.sm}) {
+    flex-direction: column;
+    gap: 1rem;
     align-items: center;
   }
 `;
@@ -121,9 +207,27 @@ export const ImagesWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  /* margin-bottom: 1.5rem; */
   width: 95%;
   height: 400px;
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.xl}) {
+    width: 100%;
+  }
+  @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
+    height: 300px;
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+  @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
+    /* width: 10%; */
+    height: 200px;
+    margin-bottom: 3rem;
+    margin-top: 2rem;
+  }
+  @media (max-width: ${({ theme }) => theme.breakpoint.sm}) {
+    margin-top: 1rem;
+    height: 180px;
+  }
 `;
 
 export const Container = styled.div`
@@ -137,20 +241,21 @@ export const Container = styled.div`
   border-radius: 1.5rem;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
   margin: auto;
-  width: 90%;
-  /* max-width: 900px; */
-  @media (max-width: 1200px) {
+  width: 93%;
+
+  @media (${({ theme }) => theme.breakpoint.lg}) {
     max-width: 100%;
     padding: 1.5rem;
   }
-  @media (max-width: 900px) {
+  @media (${({ theme }) => theme.breakpoint.md}) {
     padding: 1rem;
     margin: 1.5rem 0;
   }
-  @media (max-width: 600px) {
+  @media (max-width: ${({ theme }) => theme.breakpoint.sm}) {
     padding: 0.5rem;
     margin: 1rem 0;
     border-radius: 1rem;
+    width: 100%;
   }
 `;
 
@@ -159,17 +264,34 @@ export const Title = styled.h2`
   font-weight: 700;
   margin-bottom: 1rem;
   color: ${({ theme }) => theme.text};
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
+    font-size: 1.5rem;
+    margin-bottom: 0;
+  }
+  @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
+    font-size: 1.2rem;
+    margin-bottom: 0;
+    text-align: center;
+  }
+  @media (max-width: ${({ theme }) => theme.breakpoint.sm}) {
+    font-size: 1rem;
+    margin-top: 30px;
+    margin-bottom: 0;
+    text-align: center;
+  }
 `;
 
 export const Image = styled.img`
-  width: 640px;
+  width: 100%;
   max-width: 100vw;
   border-radius: 1rem;
   opacity: ${(props) => (props.$visible ? 1 : 0)};
   transition: opacity 0.5s ease;
   position: absolute;
-  left: 0;
-  top: 15%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 `;
 
 export const SlideshowWrapper = styled.div`
@@ -180,11 +302,11 @@ export const SlideshowWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  @media (max-width: 900px) {
+  @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
     width: 100%;
     height: 320px;
   }
-  @media (max-width: 600px) {
+  @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
     width: 100%;
     height: 200px;
   }
@@ -196,7 +318,9 @@ export const Description = styled.div`
   color: var(--color-text-primary);
   margin-bottom: var(--spacing-md);
   text-align: center;
-  p,
+  p {
+    font-size: 1.1rem;
+  }
   div {
     font-size: 1.1rem;
     line-height: 1.7;
@@ -207,7 +331,7 @@ export const Description = styled.div`
     }
   }
   @media (max-width: ${({ theme }) => theme.breakpoint.xxxl}) {
-    p,
+    padding,
     div {
       font-size: 1rem;
       line-height: 1.5;
@@ -221,51 +345,5 @@ export const Description = styled.div`
       line-height: 1.4;
       margin-bottom: var(--spacing-xs);
     }
-  }
-`;
-
-export const ComingSoonTag = styled.div`
-  position: absolute;
-  bottom: 1.5rem;
-  width: 200px;
-  height: 48px;
-  background: linear-gradient(90deg, #ffcc33 70%, #ffb347 100%);
-  color: #222;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  @media (max-width: 900px) {
-    width: 100%;
-    left: 0;
-    top: 10%;
-  }
-  @media (max-width: 600px) {
-    width: 100%;
-    left: 0;
-    top: 5%;
-    border-radius: 0.5rem;
-  }
-  border-radius: 24px;
-  font-size: 1.1rem;
-  box-shadow: 0 2px 8px rgba(255, 204, 51, 0.18);
-  letter-spacing: 0.05em;
-  z-index: 20;
-  border: 2px solid #fff;
-  text-align: center;
-  user-select: none;
-  @media (max-width: 900px) {
-    width: 160px;
-    height: 40px;
-    font-size: 1rem;
-    bottom: 1rem;
-    border-radius: 20px;
-  }
-  @media (max-width: 600px) {
-    width: 120px;
-    height: 32px;
-    font-size: 0.95rem;
-    bottom: 0.5rem;
-    border-radius: 16px;
   }
 `;
