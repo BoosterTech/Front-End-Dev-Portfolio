@@ -7,6 +7,7 @@ import {
   ProjectImage,
   ProjectLink,
   ProjectWrapper,
+  AvailableTag,
 } from "../styled";
 import { selectLanguage } from "../../../../Redux/languageSlice";
 
@@ -20,6 +21,7 @@ const Tile = ({
   GitHubPagesURLTag,
   GitHubRepoURLTag,
   index,
+  available,
 }) => {
   const language = useSelector(selectLanguage);
 
@@ -36,7 +38,14 @@ const Tile = ({
             alt={`${title[language]} project screenshot`} 
           />
           <ProjectDescription>
-            <ProjectHeader>{title[language]}</ProjectHeader>
+            <ProjectHeader>
+              {title[language]}
+              {available && (
+                <AvailableTag>
+                  ({available})
+                </AvailableTag>
+              )}
+            </ProjectHeader>
             <div
               dangerouslySetInnerHTML={{
                 __html: description[language],
@@ -55,7 +64,14 @@ const Tile = ({
       ) : (
         <>
           <ProjectDescription>
-            <ProjectHeader>{title[language]}</ProjectHeader>
+            <ProjectHeader>
+              {title[language]}
+              {available && (
+                <AvailableTag>
+                  ({available})
+                </AvailableTag>
+              )}
+            </ProjectHeader>
             <div
               dangerouslySetInnerHTML={{
                 __html: description[language],
