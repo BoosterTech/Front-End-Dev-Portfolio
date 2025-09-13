@@ -1,5 +1,23 @@
 import styled from "styled-components";
 
+export const Tooltip = styled.div`
+  position: absolute;
+  left: 50%;
+  top: -40px;
+  transform: translateX(-50%);
+  background: rgba(40,142,221,0.95);
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 16px;
+  font-size: 0.95em;
+  white-space: pre-line;
+  box-shadow: 0 4px 16px rgba(40,142,221,0.18);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s;
+  z-index: 100;
+`;
+
 export const SkillsetWrapper = styled.div`
   margin-top: 20px;
   width: auto;
