@@ -85,11 +85,6 @@ html {
 body {
   background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 50%, #bdbdbd 100%);
   /* fallback for dark mode */
-}
-
-/* Dark mode: override with solid color */
-[data-theme="dark"] body {
-  background: var(--color-background);
   color: var(--color-text-primary);
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
   font-size: 16px;
@@ -99,9 +94,14 @@ body {
   margin: 0;
   padding: 0;
   animation: ${slowEntry} 0.6s ease-out;
-  transition: background-color var(--transition-normal), color var(--transition-normal);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Dark mode: override with solid color */
+[data-theme="dark"] body {
+  background: var(--color-background);
+  transition: background-color var(--transition-normal), color var(--transition-normal);
 }
 
 h1, h2, h3, h4, h5, h6 {
