@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.js": "/Front-End-Dev-Portfolio/static/js/main.62235c6d.js",
+    "main.js": "/Front-End-Dev-Portfolio/static/js/main.3e7e02dc.js",
     "static/js/592.f2abfe8c.chunk.js": "/Front-End-Dev-Portfolio/static/js/592.f2abfe8c.chunk.js",
     "static/media/paradiseLodge.png": "/Front-End-Dev-Portfolio/static/media/paradiseLodge.2fbb46d08dc786e2ec23.png",
     "static/media/comingSoonES.png": "/Front-End-Dev-Portfolio/static/media/comingSoonES.6808855619024471cbbf.png",
@@ -32,10 +32,10 @@
     "static/media/jwtIcon.png": "/Front-End-Dev-Portfolio/static/media/jwtIcon.9e8cbff93e4d683f00d4.png",
     "static/media/oAuthIcon.png": "/Front-End-Dev-Portfolio/static/media/oAuthIcon.4f10cd74f296a51770bf.png",
     "index.html": "/Front-End-Dev-Portfolio/index.html",
-    "main.62235c6d.js.map": "/Front-End-Dev-Portfolio/static/js/main.62235c6d.js.map",
+    "main.3e7e02dc.js.map": "/Front-End-Dev-Portfolio/static/js/main.3e7e02dc.js.map",
     "592.f2abfe8c.chunk.js.map": "/Front-End-Dev-Portfolio/static/js/592.f2abfe8c.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.62235c6d.js"
+    "static/js/main.3e7e02dc.js"
   ]
 }
