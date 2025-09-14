@@ -104,7 +104,7 @@ export const themes = {
 
   Polish: {
     home: {
-      contentHeader: "Programista Front-Endu <React | Next/>",
+      contentHeader: "Programista Front-Endu",
       contentHeaderTechStack: "< React | Next | TypeScript />",
 
       headerParagraph:
@@ -149,7 +149,7 @@ Moim celem jest wykorzystywanie najnowszych technologii do tworzenia rozwiązań
 
   Spanish: {
     home: {
-      contentHeader: "Desarrollador Front-End <React | Next/>",
+      contentHeader: "Desarrollador Front-End",
       contentHeaderTechStack: "< React | Next | TypeScript />",
 
       headerParagraph:
