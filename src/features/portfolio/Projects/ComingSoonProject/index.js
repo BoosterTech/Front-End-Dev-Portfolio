@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import comingSoonImg from "../../../../images/comingSoon.png";
+import comingSoonImgPL from "../../../../images/comingSoonPL.png";
+import comingSoonImgENG from "../../../../images/comingSoonENG.png";
+import comingSoonImgES from "../../../../images/comingSoonES.png";
 import wtm3Img from "../../../../images/wtm3.png";
 import wtm4Img from "../../../../images/wtm4.png";
 import wtm5Img from "../../../../images/wtm5.png";
@@ -21,6 +23,8 @@ import {
 } from "./styled";
 import { MusicGenerationHeader } from "./styled";
 import { SlideshowNote } from "./styled";
+import { selectLanguage } from "../../../../Redux/languageSlice";
+import { useSelector } from "react-redux";
 
 const ComingSoonProject = ({ title, imageURL, description, extraImageURL }) => {
   const images = [
@@ -29,10 +33,11 @@ const ComingSoonProject = ({ title, imageURL, description, extraImageURL }) => {
     wtm3Img,
     wtm4Img,
     wtm5Img,
-    wtm6Img
+    wtm6Img,
   ].filter(Boolean);
   const [current, setCurrent] = useState(0);
   const [fullscreen, setFullscreen] = useState(false);
+  const language = useSelector(selectLanguage);
 
   const openFullscreen = () => setFullscreen(true);
   const closeFullscreen = () => setFullscreen(false);
@@ -44,8 +49,16 @@ const ComingSoonProject = ({ title, imageURL, description, extraImageURL }) => {
 
   return (
     <Container>
-      <ComingSoonImage src={comingSoonImg} alt="Coming Soon" />
-      <Title>{title}</Title>
+      {language === "English" && (
+        <ComingSoonImage src={comingSoonImgENG} alt="Coming Soon" />
+      )}
+      {language === "Polish" && (
+        <ComingSoonImage src={comingSoonImgPL} alt="Nadchodzące" />
+      )}
+      {language === "Spanish" && (
+        <ComingSoonImage src={comingSoonImgES} alt="Próximamente" />
+      )}
+      <Title>{title[language]}</Title>
       <ImagesWrapper style={{ position: "relative" }}>
         {images.length > 1 && (
           <ArrowButton onClick={handlePrev} aria-label="Previous image" $left>
@@ -64,9 +77,19 @@ const ComingSoonProject = ({ title, imageURL, description, extraImageURL }) => {
             />
           ))}
         </SlideshowWrapper>
-        <SlideshowNote>(Click image to zoom)</SlideshowNote>
+        {language === "English" && (
+          <SlideshowNote>( Click image to zoom )</SlideshowNote>
+        )}
+        {language === "Polish" && (
+          <SlideshowNote>( Kliknij obraz, aby powiększyć )</SlideshowNote>
+        )}
+        {language === "Spanish" && (
+          <SlideshowNote>
+            ( Haz clic en la imagen para hacer zoom )
+          </SlideshowNote>
+        )}
         {images.length > 1 && (
-            <ArrowButton onClick={handleNext} aria-label="Next image" $right>
+          <ArrowButton onClick={handleNext} aria-label="Next image" $right>
             <MdArrowForward size={32} />
           </ArrowButton>
         )}
@@ -87,7 +110,7 @@ const ComingSoonProject = ({ title, imageURL, description, extraImageURL }) => {
               <FullscreenImage
                 key={idx}
                 src={img}
-                alt={title + " fullscreen"}
+                alt={title[language] + " fullscreen"}
                 $visible={current === idx}
                 style={{ zIndex: current === idx ? 2 : 1 }}
               />
@@ -108,7 +131,7 @@ const ComingSoonProject = ({ title, imageURL, description, extraImageURL }) => {
       )}
       {/* Extract first sentence and rest from description */}
       {(() => {
-        const match = description.match(/<p>(.*?)<\/p>(.*)/s);
+        const match = description[language].match(/<p>(.*?)<\/p>(.*)/s);
         if (match) {
           return (
             <>
