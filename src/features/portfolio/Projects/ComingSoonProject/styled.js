@@ -1,4 +1,9 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+
+const fadeIn = keyframes`
+  from { opacity: 0; transform: rotate(-25deg) scale(0.95); }
+  to { opacity: 1; transform: rotate(-25deg) scale(1); }
+`;
 
 export const SlideshowNote = styled.div`
   position: absolute;
@@ -107,6 +112,8 @@ export const ComingSoonImage = styled.img`
   z-index: 10;
   pointer-events: none;
   transform: rotate(-25deg);
+  opacity: 0;
+  animation: ${fadeIn} 1.2s ease-out 0s forwards;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.xl}) {
     top: -5.5rem;
@@ -387,6 +394,7 @@ export const Container = styled.div`
 export const Title = styled.h2`
   font-size: 3rem;
   font-weight: 700;
+  margin-top: 4rem;
   margin-bottom: 1rem;
   color: ${({ theme }) => theme.text};
 
