@@ -29,7 +29,7 @@ const Projects = ({ id }) => {
       </TitleWrapper>
       <ProjectsWrapper>
         {projects.map((project, index) => {
-          if (project.title?.English?.includes("AI Music Generation")) {
+          if (project.title?.English?.includes("AI")) {
             return (
               <motion.div
                 key={index}
@@ -39,9 +39,9 @@ const Projects = ({ id }) => {
                 transition={{ type: "spring", stiffness: 60, damping: 18, duration: 0.7 }}
               >
                 <ComingSoonProject
-                  title={project.title.English}
+                  title={project.title}
                   imageURL={project.imageURL}
-                  description={project.description.English}
+                  description={project.description}
                   extraImageURL={wtm2Image}
                 />
               </motion.div>
