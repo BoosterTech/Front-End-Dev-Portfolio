@@ -125,7 +125,7 @@ export const ProjectsWrapper = styled.div`
 
 export const ProjectWrapper = styled.div`
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: var(--spacing-3xl);
   align-items: center;
   padding: var(--spacing-xl);
