@@ -68,6 +68,8 @@ const Navigation = () => {
     <StyledList>
       <TopRow>
         <LanguageSwitch />
+        <DarkModeToggle />
+      </TopRow>
         <Link
           activeClass="active"
           to={menuItems[language][0].name.toLowerCase()}
@@ -82,8 +84,6 @@ const Navigation = () => {
             <span>Derek.dev</span>
           </DevWrapper>
         </Link>
-        <DarkModeToggle />
-      </TopRow>
 
       <MenuContainer>
         {menuItems[language].map((item, index) => {

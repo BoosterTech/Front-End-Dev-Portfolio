@@ -48,12 +48,9 @@ export const StyledList = styled.nav`
   animation: ${fadeIn} 0.6s ease-out;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
+    flex-direction: column;
     padding: var(--spacing-md) var(--spacing-lg);
     font-size: 0.9rem;
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
-    flex-direction: column;
     gap: var(--spacing-md);
     padding: var(--spacing-md);
   }
@@ -63,14 +60,13 @@ export const TopRow = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  width: 300px;
-  gap: var(--spacing-md);
+  width: 350px;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
     width: 100%;
     justify-content: space-between;
     flex-wrap: wrap;
-    
+
     /* Make 3rd child wrap to 2nd row */
     > *:nth-child(3) {
       order: 1;
@@ -79,7 +75,7 @@ export const TopRow = styled.div`
       justify-content: center;
       margin-top: var(--spacing-sm);
     }
-    
+
     /* Keep 1st and 2nd child in first row */
     > *:nth-child(1),
     > *:nth-child(2) {
@@ -169,7 +165,7 @@ export const StyledScrollLink = styled(Link)`
       color: var(--color-primary);
       transform: none;
       border-radius: 50px;
-      
+
       svg {
         color: var(--color-primary);
       }
