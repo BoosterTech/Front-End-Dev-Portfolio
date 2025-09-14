@@ -20,6 +20,7 @@ import {
   FullscreenContent,
 } from "./styled";
 import { MusicGenerationHeader } from "./styled";
+import { SlideshowNote } from "./styled";
 
 const ComingSoonProject = ({ title, imageURL, description, extraImageURL }) => {
   const images = [
@@ -63,8 +64,9 @@ const ComingSoonProject = ({ title, imageURL, description, extraImageURL }) => {
             />
           ))}
         </SlideshowWrapper>
+        <SlideshowNote>(Click image to zoom)</SlideshowNote>
         {images.length > 1 && (
-          <ArrowButton onClick={handleNext} aria-label="Next image" $right>
+            <ArrowButton onClick={handleNext} aria-label="Next image" $right>
             <MdArrowForward size={32} />
           </ArrowButton>
         )}
