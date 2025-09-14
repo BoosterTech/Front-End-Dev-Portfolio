@@ -184,6 +184,21 @@ img {
 }
 
 /* Custom scrollbar */
+@media (max-width: 600px) {
+  ::-webkit-scrollbar {
+    display: none;
+    width: 0 !important;
+    background: transparent !important;
+  }
+  html {
+    scrollbar-width: none !important;
+    scrollbar-color: transparent transparent !important;
+  }
+  body {
+    -ms-overflow-style: none !important; /* IE and Edge */
+    overflow: -moz-scrollbars-none !important; /* Old Firefox */
+  }
+}
 ::-webkit-scrollbar {
   width: 8px;
 }
