@@ -56,6 +56,11 @@ export const Wrapper = styled.section`
     padding: calc(var(--spacing-2xl) + 96px) var(--spacing-lg)
       var(--spacing-2xl) var(--spacing-lg);
   }
+  @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
+    margin: 0;
+   padding: calc(var(--spacing-xl) + 96px) var(--spacing-lg)
+      var(--spacing-2xl) var(--spacing-lg);
+  }
 `;
 
 export const TitleWrapper = styled.div`
