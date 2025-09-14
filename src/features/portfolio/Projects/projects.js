@@ -3,7 +3,7 @@ import tasksListImage from "../../../images/tasksListProject.png";
 import currencyConverterImage from "../../../images/currencyConverterProject.png";
 import plasmaLibraryImage from "../../../images/plasmaLibraryProject.png";
 import reactQuizImage from "../../../images/react-quiz-project.png";
-import eatNsplitmage from "../../../images/eat-n-split-project.png";
+import eatNsplitImage from "../../../images/eat-n-split-project.png";
 import fastReactPizzaImage from "../../../images/fast-react-pizza.png";
 import paradiselodgeImage from "../../../images/paradiseLodge.png";
 import wtmMusicAIImage from "../../../images/wtmMusicAI.png";
@@ -11,24 +11,24 @@ import wtmMusicAIImage from "../../../images/wtmMusicAI.png";
 const projects = [
   {
     title: {
-      English: "🎵 AI Music Generation Website",
-      Polish: "🎵 AI Music Generation - Strona Generowania Muzyki AI",
-      Spanish: "🎵 AI Music Generation - Sitio Web de Generación de Música con IA",
+      English: "🎵 AI Music Generator Website",
+      Polish: "🎵  Strona Generator Muzyki AI",
+      Spanish: "🎵 Sitio Web de Generación de Música con AI",
     },
     available: "web",
     description: {
-      English: `<p>&nbsp&nbsp Welcome to AI Music Generation!</p>
-              <p>AI Music Generation is a cutting-edge platform for generating original music using artificial intelligence. Users can select genres, customize musical styles, and instantly create unique tracks powered by advanced AI models.</p>
+      English: `<p>&nbsp&nbsp Welcome to AI Music Generator!</p>
+              <p>AI Music Generator is a cutting-edge platform for generating original music using artificial intelligence. Users can select genres, customize musical styles, and instantly create unique tracks powered by advanced AI models.</p>
               <p>With an interactive interface, real-time audio visualization, and seamless playback controls, users can explore, save, and share their musical creations. The platform also features a library for recent tracks and favorites, making music discovery and management effortless.</p>
-              <p>Perfect for musicians, creators, and enthusiasts, AI Music Generation transforms your ideas into music with just a few clicks.</p>`,
-      Polish: `<p>&nbsp&nbsp Witaj w AI Music Generation!</p>
-             <p>AI Music Generation to nowoczesna platforma do generowania oryginalnej muzyki za pomocą sztucznej inteligencji. Użytkownicy mogą wybierać gatunki, dostosowywać style muzyczne i natychmiast tworzyć unikalne utwory dzięki zaawansowanym modelom AI.</p>
+              <p>Perfect for musicians, creators, and enthusiasts, AI Music Generator transforms your ideas into music with just a few clicks.</p>`,
+      Polish: `<p>&nbsp&nbsp Witaj w AI Music Generator!</p>
+             <p>AI Music Generator to nowoczesna platforma do generowania oryginalnej muzyki za pomocą sztucznej inteligencji. Użytkownicy mogą wybierać gatunki, dostosowywać style muzyczne i natychmiast tworzyć unikalne utwory dzięki zaawansowanym modelom AI.</p>
              <p>Dzięki interaktywnemu interfejsowi, wizualizacji dźwięku w czasie rzeczywistym i wygodnym kontrolom odtwarzania, użytkownicy mogą odkrywać, zapisywać i udostępniać swoje muzyczne kreacje. Platforma oferuje także bibliotekę ostatnich utworów i ulubionych, ułatwiając zarządzanie muzyką.</p>
-             <p>Idealna dla muzyków, twórców i entuzjastów – AI Music Generation zamienia pomysły w muzykę w kilka kliknięć.</p>`,
-      Spanish: `<p>&nbsp&nbsp ¡Bienvenido a AI Music Generation!</p>
-              <p>AI Music Generation es una plataforma avanzada para generar música original utilizando inteligencia artificial. Los usuarios pueden elegir géneros, personalizar estilos musicales y crear pistas únicas al instante gracias a modelos de IA de última generación.</p>
+             <p>Idealna dla muzyków, twórców i entuzjastów – AI Music Generator zamienia pomysły w muzykę w kilka kliknięć.</p>`,
+      Spanish: `<p>&nbsp&nbsp ¡Bienvenido a AI Music Generator!</p>
+              <p>AI Music Generator es una plataforma avanzada para generar música original utilizando inteligencia artificial. Los usuarios pueden elegir géneros, personalizar estilos musicales y crear pistas únicas al instante gracias a modelos de IA de última generación.</p>
               <p>Con una interfaz interactiva, visualización de audio en tiempo real y controles de reproducción intuitivos, los usuarios pueden explorar, guardar y compartir sus creaciones musicales. La plataforma también incluye una biblioteca para pistas recientes y favoritas, facilitando la gestión y el descubrimiento musical.</p>
-              <p>Perfecta para músicos, creadores y entusiastas, AI Music Generation convierte tus ideas en música con solo unos clics.</p>`,
+              <p>Perfecta para músicos, creadores y entusiastas, AI Music Generator convierte tus ideas en música con solo unos clics.</p>`,
     },
     imageURL: `${wtmMusicAIImage}`,
     GitHubPagesURLTag: {
@@ -247,57 +247,7 @@ const projects = [
     inverted: true,
     border: true,
   },
-  {
-    title: {
-      English: `⚛️Plasma Library`,
-      Polish: `⚛️Biblioteka Plazma`,
-      Spanish: `⚛️Biblioteca de Plasma`,
-    },
-    description: {
-      English: `<p>&nbsp&nbsp Welcome to my very first web development project 🙂</p>
-                <p>Marking the beginning of my journey into web development, this project is a testament to my early learning and growth. 
-                <p>The Plasma Library is a simple yet informative site primarily built using HTML and CSS, with a touch of JavaScript,
-                dedicated to the fascinating field of plasma physics.</p>
-                It includes links to three major books available for purchase as well as an array of publications.
-                <p>Despite having gained more knowledge and skills since then, I have chosen to preserve the original code of this project.
-                It remains untouched and as originally written, holding sentimental value as a reminder of my early steps into the world of web application development.
-                <p>Explore the Plasma Library and enjoy a glimpse into the beginnings of my coding journey🚀</p>`,
-      Polish: `<p>&nbsp&nbsp Witaj w moim pierwszym projekcie związanym z tworzeniem stron internetowych 🙂</p>
-               <p>Wyznacza on początek mojej drogi w rozwijaniu umiejętności związanych z tworzeniem stron internetowych. Ten projekt jest świadectwem mojego wczesnego uczenia się i rozwoju.</p>
-               <p>"Biblioteka Plazma" to prosta, ale informacyjna strona internetowa, zbudowana głównie przy użyciu HTML i CSS, z odrobiną JavaScriptu,
-               poświęcona fascynującej dziedzinie fizyki plazmowej.</p>
-               Zawiera ona linki do trzech głównych książek dostępnych do zakupu, a także szereg publikacji.
-               <p>Mimo, że zdobyłem więcej wiedzy i umiejętności od tamtego czasu, zdecydowałem się zachować oryginalny kod tego projektu.
-               Pozostaje on nietknięty i zgodny z oryginalnymi założeniami, co ma dla mnie wartość sentymentalną jako przypomnienie o moich początkowych krokach w świecie tworzenia aplikacji internetowych.</p>
-               <p>Zapraszam do eksploracji "Biblioteki Plazma" i cieszenia się wglądem w początki mojej przygody z kodowaniem 🚀</p>
-      `,
-      Spanish: `<p>&nbsp&nbsp Bienvenido a mi primer proyecto de desarrollo web 🙂</p>
-                <p>Marcando el comienzo de mi viaje en el desarrollo web, este proyecto es un testimonio de mi aprendizaje y crecimiento temprano.</p>
-                <p>La Biblioteca de Plasma es un sitio web simple pero informativo, construido principalmente con HTML y CSS, con un toque de JavaScript,
-                dedicado al fascinante campo de la física de plasma.</p>
-                Incluye enlaces a tres libros principales disponibles para su compra, así como a una variedad de publicaciones.
-                <p>A pesar de haber adquirido más conocimientos y habilidades desde entonces, he elegido conservar el código original de este proyecto.
-                Permanece intacto y tal como fue escrito originalmente, teniendo un valor sentimental como un recordatorio de mis primeros pasos en el mundo del desarrollo de aplicaciones web móviles.</p>
-                <p>Explora la Biblioteca de Plasma y disfruta de un vistazo a los inicios de mi viaje en la programación 🚀</p>
-                `,
-    },
-    available: "web & mob",
-    imageURL: `${plasmaLibraryImage}`,
-    GitHubPagesURLTag: {
-      English: "Go to the Website",
-      Polish: "Przejdź do Strony",
-      Spanish: "Ir al Sitio Web",
-    },
-    GitHubRepoURLTag: {
-      English: "Go to the GitHub Repository",
-      Polish: "Przejdź do Repozytorium GitHub",
-      Spanish: "Ir al Repositorio de GitHub",
-    },
-    GitHubPagesURL: "https://boostertech.github.io/Plasma-Library/",
-    GitHubRepoURL: "https://github.com/BoosterTech/Plasma-Library.git",
-    inverted: false,
-    border: true,
-  },
+ 
   {
     title: {
       English: `🍴Eat-n-split💶`,
@@ -319,7 +269,7 @@ const projects = [
                 <p>Ideal para salidas en grupo, cenas o cualquier situación en la que varias personas compartan gastos, Eat-N-Split elimina la necesidad de cálculos manuales y asegura que todos paguen de manera justa.</p>`,
     },
     available: "web",
-    imageURL: `${eatNsplitmage}`,
+  imageURL: `${eatNsplitImage}`,
     GitHubPagesURLTag: {
       English: "Go to the Website",
       Polish: "Przejdź do Strony",
@@ -371,6 +321,56 @@ const projects = [
     GitHubRepoURL: "https://github.com/BoosterTech/Fast-Pizza-Co.git",
     inverted: false,
     border: false,
+  }, {
+    title: {
+      English: `⚛️Plasma Library`,
+      Polish: `⚛️Biblioteka Plazma`,
+      Spanish: `⚛️Biblioteca de Plasma`,
+    },
+    description: {
+      English: `<p>&nbsp&nbsp Welcome to my very first web development project 🙂</p>
+                <p>Marking the beginning of my journey into web development, this project is a testament to my early learning and growth. 
+                <p>The Plasma Library is a simple yet informative site primarily built using HTML and CSS, with a touch of JavaScript,
+                dedicated to the fascinating field of plasma physics.</p>
+                It includes links to three major books available for purchase as well as an array of publications.
+                <p>Despite having gained more knowledge and skills since then, I have chosen to preserve the original code of this project.
+                It remains untouched and as originally written, holding sentimental value as a reminder of my early steps into the world of web application development.
+                <p>Explore the Plasma Library and enjoy a glimpse into the beginnings of my coding journey🚀</p>`,
+      Polish: `<p>&nbsp&nbsp Witaj w moim pierwszym projekcie związanym z tworzeniem stron internetowych 🙂</p>
+               <p>Wyznacza on początek mojej drogi w rozwijaniu umiejętności związanych z tworzeniem stron internetowych. Ten projekt jest świadectwem mojego wczesnego uczenia się i rozwoju.</p>
+               <p>"Biblioteka Plazma" to prosta, ale informacyjna strona internetowa, zbudowana głównie przy użyciu HTML i CSS, z odrobiną JavaScriptu,
+               poświęcona fascynującej dziedzinie fizyki plazmowej.</p>
+               Zawiera ona linki do trzech głównych książek dostępnych do zakupu, a także szereg publikacji.
+               <p>Mimo, że zdobyłem więcej wiedzy i umiejętności od tamtego czasu, zdecydowałem się zachować oryginalny kod tego projektu.
+               Pozostaje on nietknięty i zgodny z oryginalnymi założeniami, co ma dla mnie wartość sentymentalną jako przypomnienie o moich początkowych krokach w świecie tworzenia aplikacji internetowych.</p>
+               <p>Zapraszam do eksploracji "Biblioteki Plazma" i cieszenia się wglądem w początki mojej przygody z kodowaniem 🚀</p>
+      `,
+      Spanish: `<p>&nbsp&nbsp Bienvenido a mi primer proyecto de desarrollo web 🙂</p>
+                <p>Marcando el comienzo de mi viaje en el desarrollo web, este proyecto es un testimonio de mi aprendizaje y crecimiento temprano.</p>
+                <p>La Biblioteca de Plasma es un sitio web simple pero informativo, construido principalmente con HTML y CSS, con un toque de JavaScript,
+                dedicado al fascinante campo de la física de plasma.</p>
+                Incluye enlaces a tres libros principales disponibles para su compra, así como a una variedad de publicaciones.
+                <p>A pesar de haber adquirido más conocimientos y habilidades desde entonces, he elegido conservar el código original de este proyecto.
+                Permanece intacto y tal como fue escrito originalmente, teniendo un valor sentimental como un recordatorio de mis primeros pasos en el mundo del desarrollo de aplicaciones web móviles.</p>
+                <p>Explora la Biblioteca de Plasma y disfruta de un vistazo a los inicios de mi viaje en la programación 🚀</p>
+                `,
+    },
+    available: "web & mob",
+    imageURL: `${plasmaLibraryImage}`,
+    GitHubPagesURLTag: {
+      English: "Go to the Website",
+      Polish: "Przejdź do Strony",
+      Spanish: "Ir al Sitio Web",
+    },
+    GitHubRepoURLTag: {
+      English: "Go to the GitHub Repository",
+      Polish: "Przejdź do Repozytorium GitHub",
+      Spanish: "Ir al Repositorio de GitHub",
+    },
+    GitHubPagesURL: "https://boostertech.github.io/Plasma-Library/",
+    GitHubRepoURL: "https://github.com/BoosterTech/Plasma-Library.git",
+    inverted: false,
+    border: true,
   },
 ];
 
