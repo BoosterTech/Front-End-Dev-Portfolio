@@ -78,6 +78,11 @@ export const Wrapper = styled.article`
     text-align: center;
   padding: calc(var(--spacing-2xl) + 96px) 0 var(--spacing-2xl) 0;
   }
+  @media (max-width: ${({ theme }) => theme.breakpoint.sm}) {
+    gap: var(--spacing-md);
+    padding: var(--spacing-sm) 0;
+    margin-bottom: var(--spacing-xs);
+  }
 `;
 
 export const ImageContainer = styled.div`
