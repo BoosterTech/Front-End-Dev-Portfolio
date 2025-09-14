@@ -64,7 +64,7 @@ export const themes = {
   English: {
     home: {
       contentHeader: "Front-End Developer",
-      contentHeaderTechStack: "< React | Next.js | TypeScript />",
+      contentHeaderTechStack: "< React | Next | TypeScript />",
       headerParagraph: `
       Hi, I'm Dariusz Podczasik.
        A passionate Front-End React Developer based in Trim, Ireland.`,
@@ -105,7 +105,7 @@ export const themes = {
   Polish: {
     home: {
       contentHeader: "Programista Front-Endu <React | Next/>",
-      contentHeaderTechStack: "< React | Next.js | TypeScript />",
+      contentHeaderTechStack: "< React | Next | TypeScript />",
 
       headerParagraph:
         "Witam, nazywam się Dariusz Podczasik. Jestem Programistą Front-Endu, mieszkającym w Trim w Irlandii.",
@@ -150,7 +150,7 @@ Moim celem jest wykorzystywanie najnowszych technologii do tworzenia rozwiązań
   Spanish: {
     home: {
       contentHeader: "Desarrollador Front-End <React | Next/>",
-      contentHeaderTechStack: "< React | Next.js | TypeScript />",
+      contentHeaderTechStack: "< React | Next | TypeScript />",
 
       headerParagraph:
         "Hola, soy Dariusz Podczasik. Un apasionado desarrollador Front-End React con sede en Trim, Irlanda.",
