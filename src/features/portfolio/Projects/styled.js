@@ -277,6 +277,7 @@ export const ProjectLink = styled.a`
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
   padding: var(--spacing-sm) var(--spacing-lg);
   background: linear-gradient(
     135deg,
@@ -323,6 +324,7 @@ export const ProjectLink = styled.a`
 
   @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
     font-size: 0.9rem;
+    width: 100%;
     padding: var(--spacing-xs) var(--spacing-md);
   }
 `;
