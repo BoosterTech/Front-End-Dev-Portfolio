@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.js": "/Front-End-Dev-Portfolio/static/js/main.ba3e762f.js",
+    "main.js": "/Front-End-Dev-Portfolio/static/js/main.57a46385.js",
     "static/js/592.f2abfe8c.chunk.js": "/Front-End-Dev-Portfolio/static/js/592.f2abfe8c.chunk.js",
     "static/media/paradiseLodge.png": "/Front-End-Dev-Portfolio/static/media/paradiseLodge.2fbb46d08dc786e2ec23.png",
     "static/media/wtm3.png": "/Front-End-Dev-Portfolio/static/media/wtm3.be347413bf3df3098f30.png",
@@ -30,10 +30,10 @@
     "static/media/jwtIcon.png": "/Front-End-Dev-Portfolio/static/media/jwtIcon.9e8cbff93e4d683f00d4.png",
     "static/media/oAuthIcon.png": "/Front-End-Dev-Portfolio/static/media/oAuthIcon.4f10cd74f296a51770bf.png",
     "index.html": "/Front-End-Dev-Portfolio/index.html",
-    "main.ba3e762f.js.map": "/Front-End-Dev-Portfolio/static/js/main.ba3e762f.js.map",
+    "main.57a46385.js.map": "/Front-End-Dev-Portfolio/static/js/main.57a46385.js.map",
     "592.f2abfe8c.chunk.js.map": "/Front-End-Dev-Portfolio/static/js/592.f2abfe8c.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.ba3e762f.js"
+    "static/js/main.57a46385.js"
   ]
 }
