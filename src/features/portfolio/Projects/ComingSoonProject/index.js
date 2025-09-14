@@ -27,6 +27,25 @@ import { selectLanguage } from "../../../../Redux/languageSlice";
 import { useSelector } from "react-redux";
 
 const ComingSoonProject = ({ title, imageURL, description, extraImageURL }) => {
+  const [current, setCurrent] = useState(0);
+  const [fullscreen, setFullscreen] = useState(false);
+  const language = useSelector(selectLanguage);
+
+  const openFullscreen = () => setFullscreen(true);
+  const closeFullscreen = () => setFullscreen(false);
+
+  const comingSoonImages = {
+    English: comingSoonImgENG,
+    Polish: comingSoonImgPL,
+    Spanish: comingSoonImgES,
+  };
+
+  const slideshowNotes = {
+    English: "( Click image to zoom )",
+    Polish: "( Kliknij obraz, aby powiększyć )",
+    Spanish: "( Haz clic en la imagen para hacer zoom )",
+  };
+
   const images = [
     imageURL,
     extraImageURL,
@@ -35,12 +54,6 @@ const ComingSoonProject = ({ title, imageURL, description, extraImageURL }) => {
     wtm5Img,
     wtm6Img,
   ].filter(Boolean);
-  const [current, setCurrent] = useState(0);
-  const [fullscreen, setFullscreen] = useState(false);
-  const language = useSelector(selectLanguage);
-
-  const openFullscreen = () => setFullscreen(true);
-  const closeFullscreen = () => setFullscreen(false);
 
   const handlePrev = () =>
     setCurrent((prev) => (prev === 0 ? images.length - 1 : prev - 1));
@@ -49,15 +62,11 @@ const ComingSoonProject = ({ title, imageURL, description, extraImageURL }) => {
 
   return (
     <Container>
-      {language === "English" && (
-        <ComingSoonImage src={comingSoonImgENG} alt="Coming Soon" />
-      )}
-      {language === "Polish" && (
-        <ComingSoonImage src={comingSoonImgPL} alt="Nadchodzące" />
-      )}
-      {language === "Spanish" && (
-        <ComingSoonImage src={comingSoonImgES} alt="Próximamente" />
-      )}
+      <ComingSoonImage
+        key={language}
+        src={comingSoonImages[language]}
+        alt={title[language]}
+      />
       <Title>{title[language]}</Title>
       <ImagesWrapper style={{ position: "relative" }}>
         {images.length > 1 && (
@@ -77,17 +86,7 @@ const ComingSoonProject = ({ title, imageURL, description, extraImageURL }) => {
             />
           ))}
         </SlideshowWrapper>
-        {language === "English" && (
-          <SlideshowNote>( Click image to zoom )</SlideshowNote>
-        )}
-        {language === "Polish" && (
-          <SlideshowNote>( Kliknij obraz, aby powiększyć )</SlideshowNote>
-        )}
-        {language === "Spanish" && (
-          <SlideshowNote>
-            ( Haz clic en la imagen para hacer zoom )
-          </SlideshowNote>
-        )}
+        <SlideshowNote>{slideshowNotes[language]}</SlideshowNote>
         {images.length > 1 && (
           <ArrowButton onClick={handleNext} aria-label="Next image" $right>
             <MdArrowForward size={32} />
