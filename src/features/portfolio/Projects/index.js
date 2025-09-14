@@ -6,6 +6,7 @@ import {
   TitleWrapper,
   Wrapper,
 } from "./styled";
+import { motion } from "framer-motion";
 import projects from "./projects";
 import Tile from "./Tile";
 import ComingSoonProject from "./ComingSoonProject";
@@ -30,29 +31,43 @@ const Projects = ({ id }) => {
         {projects.map((project, index) => {
           if (project.title?.English?.includes("AI Music Generation")) {
             return (
-              <ComingSoonProject
+              <motion.div
                 key={index}
-                title={project.title.English}
-                imageURL={project.imageURL}
-                description={project.description.English}
-                extraImageURL={wtm2Image}
-              />
+                initial={{ x: 100, opacity: 0 }}
+                whileInView={{ x: 0, opacity: 1 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ type: "spring", stiffness: 60, damping: 18, duration: 0.7 }}
+              >
+                <ComingSoonProject
+                  title={project.title.English}
+                  imageURL={project.imageURL}
+                  description={project.description.English}
+                  extraImageURL={wtm2Image}
+                />
+              </motion.div>
             );
           }
           return (
-            <Tile
+            <motion.div
               key={index}
-              title={project.title}
-              description={project.description}
-              imageURL={project.imageURL}
-              GitHubPagesURL={project.GitHubPagesURL}
-              GitHubRepoURL={project.GitHubRepoURL}
-              border={project.border}
-              GitHubPagesURLTag={project.GitHubPagesURLTag}
-              GitHubRepoURLTag={project.GitHubRepoURLTag}
-              index={index}
-              available={project.available}
-            />
+              initial={{ opacity: 0, scale: 0.95, y: 40 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 2.2, ease: [0.25, 0.8, 0.25, 1] }}
+            >
+              <Tile
+                title={project.title}
+                description={project.description}
+                imageURL={project.imageURL}
+                GitHubPagesURL={project.GitHubPagesURL}
+                GitHubRepoURL={project.GitHubRepoURL}
+                border={project.border}
+                GitHubPagesURLTag={project.GitHubPagesURLTag}
+                GitHubRepoURLTag={project.GitHubRepoURLTag}
+                index={index}
+                available={project.available}
+              />
+            </motion.div>
           );
         })}
       </ProjectsWrapper>
