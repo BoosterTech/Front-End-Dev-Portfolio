@@ -193,21 +193,28 @@ img {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-secondary);
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 50%, #06b6d4 100%);
   border-radius: var(--radius-md);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-primary);
+  background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%);
 }
 
-@media (max-width: 1024px) {
-  /* Hide scrollbar for tablets and mobile devices */
-  ::-webkit-scrollbar {
-    display: none;
-    width: 0;
-    background: transparent;
-  }
+[data-theme="dark"] ::-webkit-scrollbar-track {
+  background: var(--color-dark-surface);
+}
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 50%, #22d3ee 100%);
+}
+
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #2563eb #f8fafc;
+}
+[data-theme="dark"] html {
+  scrollbar-color: #3b82f6 #1e293b;
 }
 
 /* Focus styles for accessibility */
@@ -227,11 +234,10 @@ export const Main = styled.main`
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 var(--spacing-lg);
-  
+
   @media (max-width: ${({ theme }) => theme.breakpoint.xl2}) {
     max-width: 100vw;
     width: 100vw;
     padding: 0 var(--spacing-md);
   }
 `;
-
