@@ -33,9 +33,9 @@ const Tile = ({
     <ProjectWrapper $border={border} onClick={handleContainerClick} style={{ cursor: "pointer" }}>
       {index % 2 === 0 ? (
         <>
-          <ProjectImage 
-            src={imageURL} 
-            alt={`${title[language]} project screenshot`} 
+          <ProjectImage
+            src={imageURL}
+            alt={`${title[language]} project screenshot`}
           />
           <ProjectDescription>
             <ProjectHeader>
