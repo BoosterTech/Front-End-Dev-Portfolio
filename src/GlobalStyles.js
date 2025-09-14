@@ -93,6 +93,7 @@ body {
   max-width: 100%;
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
   animation: ${slowEntry} 0.6s ease-out;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
