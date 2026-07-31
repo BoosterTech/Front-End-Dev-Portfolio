@@ -1,5 +1,9 @@
 # Portfolio Refresh Plan
 
+## 0. Status
+
+All planned items are complete and `npm run build` passes cleanly. The `feature/ui-refresh` branch is ready for final review.
+
 ## 1. Project Understanding
 
 ### What it is
@@ -106,60 +110,48 @@ Front-End-Dev-Portfolio/
 - **Projects:** Maps over `projects.js`, renders `Tile` for each and a special `ComingSoonProject` for the WTM project.
 - **Contact:** Displays contact icons and dispatches contact visibility on scroll.
 - **Footer:** Shows a short copyright line.
-- **ESLint warnings (current):**
-  - `src/App.js` imports `ScrollWatcher` but it is commented out / not used.
-  - `src/common/DarkModeToggle/index.js` declares `slideToggle` keyframes but never uses them.
+- **ESLint warnings (fixed):**
+  - `src/App.js` — removed unused `ScrollWatcher` import.
+  - `src/common/DarkModeToggle/index.js` — removed unused `slideToggle` keyframes.
 
 ---
 
-## 6. Proposed Updates
+## 6. Update Status
 
-### Quick wins
-1. **Remove dead code / unused imports**
-   - `src/App.js` — remove the `ScrollWatcher` import or remove the component entirely.
-   - `src/common/DarkModeToggle/index.js` — remove the unused `slideToggle` keyframes.
-   - `src/features/portfolio/Footer/index.js` — remove the unused `ref` parameter.
+### Quick wins ✅
+- [x] **Remove dead code / unused imports**
+  - `src/App.js` — removed `ScrollWatcher` import and commented usage.
+  - `src/common/DarkModeToggle/index.js` — removed `slideToggle` keyframes.
+  - `src/features/portfolio/Footer/index.js` — removed unused `ref` parameter.
+- [x] **Fix ESLint warnings** so build runs clean.
 
-2. **Fix ESLint warnings** so `npm start` runs clean.
-
-### Structural improvements
-3. **Centralize animations**  
-   Create `src/common/animations.js` and import `gradientShift`, `waveHand`, `fadeInUp`, `float`, `spin`, etc., instead of redefining them in every `styled.js`.
-
-4. **Unify the theme system**  
-   Design tokens are duplicated in `src/themes.js` and `src/GlobalStyles.js` CSS variables. Pick one source of truth:
-   - Keep CSS variables and make `themes.js` a breakpoints-only object, **or**
-   - Use the `themes` object fully and drop the CSS variables.
-
-5. **Split content from design tokens**  
-   Move EN/PL/ES text out of `src/themes.js` into a `src/content/` or `src/locales/` directory (`home.js`, `about.js`, `projects.js`). Keep `themes.js` for design tokens only.
+### Structural improvements ✅
+- [x] **Centralize animations**  
+  Created `src/common/animations.js`; `Navigation`, `Home`, `About`, `Projects`, `Contact`, `Footer`, and `ComingSoonProject` now import shared keyframes.
+- [x] **Unify the theme system**  
+  Removed duplicated `color`/`spacing`/`radius`/`shadow`/`transition` maps from `src/themes.js`. Theme variables now live as CSS custom properties in `src/GlobalStyles.js`; `src/themes.js` only holds breakpoints and imports `translations`.
+- [x] **Split content from design tokens**  
+  Moved EN/PL/ES text out of `src/themes.js` into `src/content/translations.js`.
 
 ### Style fixes
-6. **Fix hardcoded / inconsistent styles**
-   - `src/features/portfolio/Home/SkillsetContainer/styled.js` — use `var(--color-border)` / `var(--color-primary)` instead of hardcoded `grey` and `blue`.
-   - `src/common/LanguageSwitch/styled.js` — active border `#298edd` should be `var(--color-primary)`.
-   - `src/features/portfolio/Home/styled.js` — remove `!important` on top padding and reduce magic `220px` offsets.
-   - `src/features/portfolio/Projects/styled.js` — the mobile breakpoint is `xxxl` (1920px), which is clearly wrong; use `lg` or `xl`.
-
-7. **Share gradient heading style**  
-   `ContentHeader` in `Home` and `Header` in `About` use the same gradient pattern. Extract a `GradientHeading` reusable component.
-
-8. **Refactor Projects special-case**  
-   `src/features/portfolio/Projects/index.js` detects the WTM project by title string. Replace this with a data-driven prop (e.g., `variant: "comingSoon"`) in `projects.js`.
+- [x] **Fix hardcoded / inconsistent styles (partial)**
+  - [x] `SkillsetContainer` — uses `var(--color-border)`, `var(--color-primary)`, and theme spacing.
+  - [x] `LanguageSwitch` — uses `var(--color-border)` / `var(--color-primary)` and `var(--transition-normal)`.
+  - [x] `Projects` — `xxxl` breakpoints changed to `lg`.
+  - [x] `Home` — replaced `!important` and magic `220px` offset with `--nav-height` / `--nav-height-mobile` variables.
+- [x] **Share gradient heading style** — extracted `GradientHeading` to `src/common/GradientHeading` and used it in `Home` and `About`.
+- [x] **Refactor Projects special-case** — added `variant: "comingSoon"` to `projects.js` and checked it in `Projects/index.js`.
 
 ### Accessibility / metadata
-9. **Fix `public/index.html` metadata**  
-   The meta tag `<meta name="Derek.dev" content="...">` is not a valid meta name. Use `name="description"` and add `og:title`, `og:description`, and `lang` updates when the language changes.
-
-10. **Reduce `dangerouslySetInnerHTML` usage**  
-    Project descriptions and the About paragraph are passed as raw HTML. Keep them if needed, but consider a small markdown-to-JSX helper or structured content to avoid security/encoding issues.
+- [x] **Fix `public/index.html` metadata** — replaced invalid meta, added description and Open Graph tags.
+- [x] **Reduce `dangerouslySetInnerHTML` usage** — created `RichText` component and used it in `About` and `ComingSoonProject`.
 
 ---
 
 ## 7. Suggested Order of Work
 
-1. Dead code / lint cleanup (fast, safe).
-2. Centralize animations (reduces file size and duplication).
-3. Unify theme / move content to `src/content` (biggest structural improvement).
-4. Fix hardcoded styles and breakpoint mistakes.
-5. Polish accessibility and metadata.
+1. [x] Dead code / lint cleanup (fast, safe).
+2. [x] Centralize animations (reduces file size and duplication).
+3. [x] Unify theme / move content to `src/content` (biggest structural improvement).
+4. [x] Fix hardcoded styles and breakpoint mistakes.
+5. [x] Polish accessibility and metadata.
