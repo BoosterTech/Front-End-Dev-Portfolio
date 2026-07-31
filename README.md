@@ -18,13 +18,12 @@ Check out my portfolio: [Derek.dev](https://boostertech.github.io/Front-End-Dev-
 ---
 
 ## 🛠️ Technologies Used
-- **Front-End**: React, Next.js, TypeScript, Tailwind CSS, Styled-Components
-- **State Management**: Redux Toolkit, React Query, React Context API
-- **Routing**: React Router, Next.js App Router
-- **Styling**: CSS Grid, CSS Flexbox, BEM Convention, Animations/Keyframes
-- **APIs**: Axios, Fetch, JWT Authentication, OAuth2 Integration
-- **Deployment**: Vercel, Supabase, CI/CD for React Apps
-- **Tools**: Git, GitHub, Figma, Trello, NPM, Scrum
+- **Front-End**: React (Create React App), styled-components
+- **State Management**: Redux Toolkit
+- **Routing / Navigation**: react-scroll
+- **Styling**: CSS variables, CSS Grid, CSS Flexbox, keyframe animations
+- **Deployment**: GitHub Pages (gh-pages)
+- **Tools**: Git, GitHub, npm
 
 ---
 
