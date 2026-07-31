@@ -45,6 +45,7 @@ const projects = [
     GitHubRepoURL: "https://github.com/BoosterTech/WTM-Music-AI-Gen.git",
     inverted: true,
     border: false,
+    variant: "comingSoon",
   },
   {
     title: {

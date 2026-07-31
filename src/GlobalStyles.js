@@ -56,6 +56,10 @@ export const GlobalStyles = createGlobalStyle`
   --transition-fast: 150ms ease-in-out;
   --transition-normal: 250ms ease-in-out;
   --transition-slow: 350ms ease-in-out;
+
+  /* Layout helpers */
+  --nav-height: 220px;
+  --nav-height-mobile: 128px;
 }
 
 [data-theme="dark"] {

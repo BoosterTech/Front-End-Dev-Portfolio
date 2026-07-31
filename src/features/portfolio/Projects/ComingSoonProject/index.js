@@ -1,5 +1,6 @@
 
 import React, { useState } from "react";
+import RichText from "../../../../common/RichText";
 import { MdArrowBack, MdArrowForward, MdClose } from "react-icons/md";
 import { Container, Title, Image, Description, ComingSoonTag, ImagesWrapper, SlideshowWrapper, ArrowButton, FullscreenOverlay, FullscreenImage, CloseButton, FullscreenContent } from "./styled";
 
@@ -69,7 +70,9 @@ const ComingSoonProject = ({ title, imageURL, description, extraImageURL }) => {
           </FullscreenContent>
         </FullscreenOverlay>
       )}
-      <Description dangerouslySetInnerHTML={{ __html: description }} />
+      <Description>
+        <RichText html={description} />
+      </Description>
       <ComingSoonTag>Coming Soon</ComingSoonTag>
     </Container>
   );

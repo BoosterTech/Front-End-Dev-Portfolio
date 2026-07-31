@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { keyframes } from "styled-components";
-import { fadeInUp, gradientShift, slideInLeft, slideInRight, waveHand } from "../../../common/animations";
+import { fadeInUp, slideInLeft, slideInRight, waveHand } from "../../../common/animations";
 
 const imageBorderAnimation = keyframes`
    0%{
@@ -24,17 +24,13 @@ const techStackFloat = keyframes`
 `;
 
 export const HomeWrapper = styled.section`
-  padding: calc(var(--spacing-3xl) + 220px) 0 var(--spacing-3xl) 0 !important;
+  padding: calc(var(--spacing-3xl) + var(--nav-height)) 0 var(--spacing-3xl) 0;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
-    padding: calc(var(--spacing-2xl) + 220px) 0 var(--spacing-2xl) 0 !important;
+    padding: calc(var(--spacing-2xl) + var(--nav-height-mobile)) 0 var(--spacing-2xl) 0;
   }
   width: 100%;
   animation: ${fadeInUp} 0.8s ease-out;
-
-  @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
-    padding: calc(var(--spacing-2xl) + 128px) 0 var(--spacing-2xl) 0;
-  }
 `;
 
 export const ContentImageContainer = styled.div`
@@ -60,34 +56,6 @@ export const ContentContainer = styled.div`
   }
 `;
 
-export const ContentHeader = styled.h1`
-  font-size: clamp(2.5rem, 6vw, 4rem);
-  font-weight: 800;
-  margin-bottom: var(--spacing-lg);
-  color: var(--color-text-primary);
-  line-height: 1.1;
-  position: relative;
-
-  background: linear-gradient(
-    135deg,
-    var(--color-text-primary) 0%,
-    var(--color-primary) 50%,
-    var(--color-accent) 100%
-  );
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-size: 200% 200%;
-  animation: ${gradientShift} 4s ease-in-out infinite;
-
-  &:hover img {
-    animation: ${waveHand} 4s infinite;
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
-    font-size: clamp(2rem, 8vw, 2.5rem);
-  }
-`;
 
 export const TechStackSpan = styled.div`
   display: inline-block;

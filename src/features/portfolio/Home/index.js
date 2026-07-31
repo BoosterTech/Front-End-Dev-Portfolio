@@ -3,7 +3,6 @@ import {
   HomeWrapper,
   ImageContainer,
   ContentContainer,
-  ContentHeader,
   HeaderImage,
   HeaderParagraph,
   ProfileImage,
@@ -11,6 +10,7 @@ import {
   TechStackItem,
   TechStackSpan,
 } from "./styled";
+import GradientHeading from "../../../common/GradientHeading";
 
 import wavingHandImage from "../../../images/wavingHand.png";
 import profileImage from "../../../images/profileImage.png";
@@ -60,7 +60,7 @@ const Home = ({ id }) => {
     <HomeWrapper id={id}>
       <ContentImageContainer>
         <ContentContainer>
-          <ContentHeader>
+          <GradientHeading>
             {theme[language].home.contentHeader
               .split("\n")
               .map((line, index) => (
@@ -70,7 +70,7 @@ const Home = ({ id }) => {
               {theme[language].home.contentHeaderTechStack}
             </TechStackSpan>
             <HeaderImage src={wavingHandImage} alt="Waving hand emoji" />
-          </ContentHeader>
+          </GradientHeading>
           <HeaderParagraph>
             {theme[language].home.headerParagraph}
           </HeaderParagraph>
