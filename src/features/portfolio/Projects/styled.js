@@ -103,7 +103,7 @@ export const ProjectWrapper = styled.div`
   }
 
   /* Force single column for all projects on small screens */
-  @media (max-width: ${({ theme }) => theme.breakpoint.xxxl}) {
+  @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
     grid-template-columns: 1fr !important;
     grid-auto-flow: row;
     gap: var(--spacing-xl);
@@ -141,7 +141,7 @@ export const ProjectHeader = styled.h3`
   margin: 0 0 var(--spacing-md) 0;
   color: var(--color-text-primary);
 
-  @media (max-width: ${({ theme }) => theme.breakpoint.xxxl}) {
+  @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
     text-align: center;
   }
 `;
@@ -160,7 +160,7 @@ export const ProjectImage = styled.img`
     box-shadow: var(--shadow-xl);
   }
 
-  @media (max-width: ${({ theme }) => theme.breakpoint.xxxl}) {
+  @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
     max-width: 400px;
     animation: ${fadeInUp} 0.8s ease-out 0.2s both;
     margin-left: auto;
@@ -189,7 +189,7 @@ export const ProjectDescription = styled.div`
     }
   }
 
-  @media (max-width: ${({ theme }) => theme.breakpoint.xxxl}) {
+  @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
     animation: ${fadeInUp} 0.8s ease-out 0.4s both;
     order: 2;
     p,
@@ -215,7 +215,7 @@ export const LinkContainer = styled.div`
   gap: var(--spacing-md);
   margin-top: var(--spacing-xl);
 
-  @media (max-width: ${({ theme }) => theme.breakpoint.xxxl}) {
+  @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
     align-items: center;
   }
 

@@ -14,14 +14,12 @@ export const IconsWrapper = styled.div`
 `;
 
 export const Icon = styled.img`
-  top: 1;
-  left: 1;
   height: 28px;
-  margin: 4px 10px;
-  border: 1px solid black;
-  border-radius: 100%;
+  margin: var(--spacing-xs) var(--spacing-sm);
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
   padding: 1px;
-  transition: all 0.3s ease;
+  transition: all var(--transition-normal);
 
   &:hover {
     cursor: pointer;
@@ -31,7 +29,7 @@ export const Icon = styled.img`
   ${(props) =>
     props.$isActive &&
     css`
-      border: 1px solid #298edd;
+      border: 1px solid var(--color-primary);
       transform: scale(1.6);
     `}
 

@@ -41,17 +41,15 @@ export const SkillsetHeader = styled.div`
 
 export const ListContainer = styled.ul`
   list-style: none;
-  border-top: 1px solid grey;
-  border-bottom: 1px solid grey;
-  border-radius: 15px;
-  padding: 32px 0 0 0;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
   display: grid;
   align-items: center;
   justify-content: center;
   grid-template-columns: 1fr 1fr 1fr;
-  /* font-size: 1rem; */
-  gap: 10px 3px;
-  padding: 20px;
+  gap: var(--spacing-sm) var(--spacing-xs);
+  padding: var(--spacing-lg);
 
   @media (max-width: ${({ theme }) => theme.breakpoint.xl}) {
     grid-template-columns: 1fr 1fr;
@@ -66,7 +64,7 @@ export const ListContainer = styled.ul`
 export const ListItem = styled.li`
   &:before {
     content: "●";
-    color: blue;
-    padding-right: 10px;
+    color: var(--color-primary);
+    padding-right: var(--spacing-sm);
   }
 `;

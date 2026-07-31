@@ -57,7 +57,7 @@ export const CloseButton = styled.button`
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
   transition: background 0.2s;
   &:hover {
-    background: ${({ theme }) => theme.primary};
+    background: var(--color-primary);
     color: #fff;
   }
 `;
@@ -83,7 +83,7 @@ export const ArrowButton = styled.button`
   padding: 0;
   transition: background 0.2s, color 0.2s;
   &:hover {
-    background: ${({ theme }) => theme.primary};
+    background: var(--color-primary);
     color: #fff;
   }
   svg {
@@ -123,7 +123,7 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
   padding: 2rem;
-  background: ${({ theme }) => theme.background};
+  background: var(--color-background);
   border-radius: 1.5rem;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
   margin: 2rem 0;
@@ -133,7 +133,7 @@ export const Title = styled.h2`
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 1rem;
-  color: ${({ theme }) => theme.text};
+  color: var(--color-text-primary);
 `;
 
 export const Image = styled.img`
@@ -159,7 +159,7 @@ export const SlideshowWrapper = styled.div`
 
 export const Description = styled.div`
   font-size: 1.1rem;
-  color: ${({ theme }) => theme.textSecondary || theme.text};
+  color: var(--color-text-secondary);
   text-align: center;
   margin-bottom: 2rem;
 `;
