@@ -1,14 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import styled, { keyframes } from 'styled-components';
-
-const slideToggle = keyframes`
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(24px);
-  }
-`;
+import styled from 'styled-components';
 
 const ToggleContainer = styled.div`
   display: flex;

@@ -3,7 +3,7 @@ import { TextContainer, Wrapper } from "./styled";
 import { selectLanguage } from "../../../Redux/languageSlice";
 import { useTheme } from "styled-components";
 
-const Footer = (ref) => {
+const Footer = () => {
   const language = useSelector(selectLanguage);
   const theme = useTheme();
 
