@@ -27,17 +27,25 @@ const Contact = ({ id }) => {
           }
         });
       },
-      { threshold: 1 }
+      { threshold: 0 }
     );
 
     if (currentRef) {
       observer.observe(currentRef);
     }
 
+    const handleScroll = () => {
+      if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 2) {
+        dispatch(setContactVisibility(true));
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+
     return () => {
       if (currentRef) {
         observer.unobserve(currentRef);
       }
+      window.removeEventListener("scroll", handleScroll);
     };
   }, [dispatch]);
 
@@ -45,15 +53,20 @@ const Contact = ({ id }) => {
     <Wrapper id={id} ref={contactRef}>
       <Header>{theme[language].contact.contactParagraph}</Header>
       <IconsWrapper>
-        {icons.map((icon) => (
+        {icons.map((icon, index) => (
           <a
             style={{ display: "flex" }}
             key={icon.id}
             href={icon.link}
-            target="blank"
-            rel="noopener noreferre"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Contact via ${icon.name || 'social media'}`}
           >
-            <ContactIconStyled key={icon.id} src={icon.iconURL} />
+            <ContactIconStyled 
+              src={icon.iconURL} 
+              alt={`${icon.name || 'Contact'} icon`}
+              index={index}
+            />
           </a>
         ))}
       </IconsWrapper>
@@ -62,3 +75,4 @@ const Contact = ({ id }) => {
 };
 
 export default Contact;
+

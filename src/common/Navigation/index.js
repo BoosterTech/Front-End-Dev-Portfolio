@@ -4,9 +4,11 @@ import {
   StyledList,
   StyledListItem,
   StyledScrollLink,
+  TopRow,
 } from "./styled";
 import { menuItems } from "./menuItems";
 import { LanguageSwitch } from "../../common/LanguageSwitch";
+import DarkModeToggle from "../../common/DarkModeToggle";
 import { useDispatch, useSelector } from "react-redux";
 import { selectLanguage, setLanguage } from "../../Redux/languageSlice";
 import { Link } from "react-scroll";
@@ -16,7 +18,7 @@ import { themes } from "../../themes";
 import { selectContactVisibility } from "../../Redux/generalSlice";
 
 const Navigation = () => {
-  const breakpointXL = parseInt(themes.breakpoint.xl, 10);
+  const breakpointXL = parseInt(themes.breakpoint.xl2, 10);
 
   const isContactVisible = useSelector(selectContactVisibility);
   const language = useSelector(selectLanguage);
@@ -64,7 +66,10 @@ const Navigation = () => {
 
   return (
     <StyledList>
-      <LanguageSwitch />
+      <TopRow>
+        <LanguageSwitch />
+        <DarkModeToggle />
+      </TopRow>
       <Link
         activeClass="active"
         to={menuItems[language][0].name.toLowerCase()}
@@ -81,22 +86,27 @@ const Navigation = () => {
       </Link>
 
       <MenuContainer>
-        {menuItems[language].map((item, index) => (
-          <StyledScrollLink
-            activeClass="active"
-            $isContactVisible={getActiveClass(index)}
-            to={item.name.toLowerCase()}
-            spy={true}
-            smooth={true}
-            offset={item.offset}
-            duration={700}
-            key={index}
-          >
-            <StyledListItem key={index}>
-              {windowWidth < breakpointXL ? getIcon(item.name) : item.name}
-            </StyledListItem>
-          </StyledScrollLink>
-        ))}
+        {menuItems[language].map((item, index) => {
+          const isContact = index === menuItems[language].length - 1;
+          const forceActive = isContact && isContactVisible;
+          return (
+            <StyledScrollLink
+              activeClass="active"
+              className={forceActive ? "active" : undefined}
+              $isContactVisible={getActiveClass(index)}
+              to={item.name.toLowerCase()}
+              spy={true}
+              smooth={true}
+              offset={item.offset}
+              duration={700}
+              key={index}
+            >
+              <StyledListItem key={index}>
+                {windowWidth < breakpointXL ? getIcon(item.name) : item.name}
+              </StyledListItem>
+            </StyledScrollLink>
+          );
+        })}
       </MenuContainer>
     </StyledList>
   );

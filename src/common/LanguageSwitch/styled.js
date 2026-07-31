@@ -2,16 +2,15 @@ import styled, { css } from "styled-components";
 
 export const Wrapper = styled.div`
   margin-right: auto;
-
-  @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
-    margin: auto;
-  }
 `;
 
-export const IconsWrapper = styled.span`
+export const IconsWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
   padding: 1px;
   border-radius: 16px;
-  width: 48px;
 `;
 
 export const Icon = styled.img`
@@ -36,7 +35,7 @@ export const Icon = styled.img`
       transform: scale(1.6);
     `}
 
-  @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
+  @media (max-width: ${({ theme }) => theme.breakpoint.sm}) {
     width: 20px;
     height: 20px;
   }

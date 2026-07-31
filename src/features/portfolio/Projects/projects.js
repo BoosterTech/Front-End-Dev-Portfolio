@@ -6,14 +6,53 @@ import reactQuizImage from "../../../images/react-quiz-project.png";
 import eatNsplitmage from "../../../images/eat-n-split-project.png";
 import fastReactPizzaImage from "../../../images/fast-react-pizza.png";
 import paradiselodgeImage from "../../../images/paradiseLodge.png";
+import wtmMusicAIImage from "../../../images/wtmMusicAI.png";
 
 const projects = [
+  {
+    title: {
+      English: "🎵 WTM AI Music Generation Website",
+      Polish: "🎵 WTM AI Music Generation - Strona Generowania Muzyki AI",
+      Spanish: "🎵 WTM AI Music Generation - Sitio Web de Generación de Música con IA",
+    },
+    available: "web",
+    description: {
+      English: `<p>&nbsp&nbsp Welcome to WTM AI Music Generation!</p>
+              <p>WTM AI Music Generation is a cutting-edge platform for generating original music using artificial intelligence. Users can select genres, customize musical styles, and instantly create unique tracks powered by advanced AI models.</p>
+              <p>With an interactive interface, real-time audio visualization, and seamless playback controls, users can explore, save, and share their musical creations. The platform also features a library for recent tracks and favorites, making music discovery and management effortless.</p>
+              <p>Perfect for musicians, creators, and enthusiasts, WTM AI Music Generation transforms your ideas into music with just a few clicks.</p>`,
+      Polish: `<p>&nbsp&nbsp Witaj w WTM AI Music Generation!</p>
+             <p>WTM AI Music Generation to nowoczesna platforma do generowania oryginalnej muzyki za pomocą sztucznej inteligencji. Użytkownicy mogą wybierać gatunki, dostosowywać style muzyczne i natychmiast tworzyć unikalne utwory dzięki zaawansowanym modelom AI.</p>
+             <p>Dzięki interaktywnemu interfejsowi, wizualizacji dźwięku w czasie rzeczywistym i wygodnym kontrolom odtwarzania, użytkownicy mogą odkrywać, zapisywać i udostępniać swoje muzyczne kreacje. Platforma oferuje także bibliotekę ostatnich utworów i ulubionych, ułatwiając zarządzanie muzyką.</p>
+             <p>Idealna dla muzyków, twórców i entuzjastów – WTM AI Music Generation zamienia pomysły w muzykę w kilka kliknięć.</p>`,
+      Spanish: `<p>&nbsp&nbsp ¡Bienvenido a WTM AI Music Generation!</p>
+              <p>WTM AI Music Generation es una plataforma avanzada para generar música original utilizando inteligencia artificial. Los usuarios pueden elegir géneros, personalizar estilos musicales y crear pistas únicas al instante gracias a modelos de IA de última generación.</p>
+              <p>Con una interfaz interactiva, visualización de audio en tiempo real y controles de reproducción intuitivos, los usuarios pueden explorar, guardar y compartir sus creaciones musicales. La plataforma también incluye una biblioteca para pistas recientes y favoritas, facilitando la gestión y el descubrimiento musical.</p>
+              <p>Perfecta para músicos, creadores y entusiastas, WTM AI Music Generation convierte tus ideas en música con solo unos clics.</p>`,
+    },
+    imageURL: `${wtmMusicAIImage}`,
+    GitHubPagesURLTag: {
+      English: "Go to the Website",
+      Polish: "Przejdź do Strony",
+      Spanish: "Ir al Sitio Web",
+    },
+    GitHubRepoURLTag: {
+      English: "Go to the GitHub Repository",
+      Polish: "Przejdź do Repozytorium GitHub",
+      Spanish: "Ir al Repositorio de GitHub",
+    },
+    GitHubPagesURL: "https://wtm-music-ai-gen.vercel.app",
+    GitHubRepoURL: "https://github.com/BoosterTech/WTM-Music-AI-Gen.git",
+    inverted: true,
+    border: false,
+  },
   {
     title: {
       English: `🏡 The Paradise Lodge - Luxury Cabin Booking Website`,
       Polish: `🏡 The Paradise Lodge - Luksusowa Strona Rezerwacji Domków`,
       Spanish: `🏡 The Paradise Lodge - Sitio Web de Reservas de Cabañas de Lujo`,
     },
+    available: "web",
     description: {
       English: `<p>&nbsp&nbsp Welcome to The Paradise Lodge! </p>
                 <p>The Paradise Lodge is a luxury cabin booking platform designed for seamless exploration, reservation, and management of high-end stays. Users can browse stunning lodges, check real-time availability, and make secure bookings effortlessly.</p>
@@ -48,10 +87,11 @@ const projects = [
 
   {
     title: {
-      English: `🎥 Movies Browser `,
+      English: `🎥 Movies Browser`,
       Polish: `🎥 Przeglądarka Filmów `,
       Spanish: `🎥 Navegador de Películas `,
     },
+    available: "web & mob",
     description: {
       English: `<p>&nbsp&nbsp The Movie Browser is an intuitive web application designed to enhance your movie-watching experience
                 by allowing users to search for movies, cast, and crew members effortlessly.</p>
@@ -135,6 +175,7 @@ const projects = [
       Polish: `💱Kalkulator Walut`,
       Spanish: `💱Conversor de Divisas`,
     },
+    available: "web & mob",
     description: {
       English: `<p>&nbsp&nbsp This comprehensive currency converter is powered by data sourced directly from the European Central Bank.</p>
                 Seamlessly integrated, it provides real-time exchange rates, ensuring accuracy and reliability in currency conversions.
@@ -189,6 +230,7 @@ const projects = [
                           <p>React Quiz App es una aplicación de preguntas con 30 preguntas centradas en conceptos de React. Construida con React y el hook useReducer, la aplicación realiza un seguimiento de las respuestas del usuario, avanza a través de las preguntas y calcula la puntuación final. El uso de useReducer gestiona eficientemente el estado del quiz, lo que facilita su escalabilidad.</p>
                           `,
     },
+    available: "web & mob",
     imageURL: `${reactQuizImage}`,
     GitHubPagesURLTag: {
       English: "Go to the Website",
@@ -239,6 +281,7 @@ const projects = [
                 <p>Explora la Biblioteca de Plasma y disfruta de un vistazo a los inicios de mi viaje en la programación 🚀</p>
                 `,
     },
+    available: "web & mob",
     imageURL: `${plasmaLibraryImage}`,
     GitHubPagesURLTag: {
       English: "Go to the Website",
@@ -275,6 +318,7 @@ const projects = [
                 <p>La aplicación permite a los usuarios ingresar el monto total de la cuenta, especificar la cantidad de personas que la dividirán y automáticamente calcula cuánto debe pagar cada persona. Construido con React.js para una experiencia dinámica y receptiva y Styled Components para una interfaz elegante y personalizable, Eat-N-Split hace que administrar pagos grupales sea rápido, sin complicaciones y agradable.</p>
                 <p>Ideal para salidas en grupo, cenas o cualquier situación en la que varias personas compartan gastos, Eat-N-Split elimina la necesidad de cálculos manuales y asegura que todos paguen de manera justa.</p>`,
     },
+    available: "web",
     imageURL: `${eatNsplitmage}`,
     GitHubPagesURLTag: {
       English: "Go to the Website",
@@ -311,6 +355,7 @@ const projects = [
                 <p>Diseñada con un enfoque en la experiencia del usuario, la aplicación ofrece una interfaz fluida e intuitiva para realizar pedidos. ¿Antojo de una clásica Margarita u otras? The Pizza App garantiza un proceso de pedido sin complicaciones.</p>
                 <p>Ideal para los amantes de la pizza que buscan una forma conveniente de satisfacer sus antojos, esta aplicación hace que pedir pizza sea tan fácil como unos pocos clics.</p>`,
     },
+    available: "web & mob",
     imageURL: `${fastReactPizzaImage}`,
     GitHubPagesURLTag: {
       English: "Go to the Website",

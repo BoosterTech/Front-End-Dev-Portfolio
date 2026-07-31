@@ -7,6 +7,7 @@ import {
   ProjectImage,
   ProjectLink,
   ProjectWrapper,
+  AvailableTag,
 } from "../styled";
 import { selectLanguage } from "../../../../Redux/languageSlice";
 
@@ -16,35 +17,84 @@ const Tile = ({
   imageURL,
   GitHubPagesURL,
   GitHubRepoURL,
-  inverted,
   border = true,
-
   GitHubPagesURLTag,
   GitHubRepoURLTag,
+  index,
+  available,
 }) => {
   const language = useSelector(selectLanguage);
 
+  const handleContainerClick = () => {
+    window.open(GitHubPagesURL, "_blank");
+  };
+
   return (
-    <ProjectWrapper $border={border}>
-      <ProjectImage src={imageURL} alt={`${title}_image`} />
-      <ProjectDescription $inverted={inverted}>
-        <ProjectHeader>{title[language]}</ProjectHeader>
-        <div
-          dangerouslySetInnerHTML={{
-            __html: description[language],
-          }}
-        />
-        <LinkContainer>
-          <ProjectLink href={GitHubPagesURL} target="_blank">
-            <LinkTag>{GitHubPagesURLTag[language]}</LinkTag>
-          </ProjectLink>
-          <ProjectLink href={GitHubRepoURL} target="_blank">
-            <LinkTag>{GitHubRepoURLTag[language]}</LinkTag>
-          </ProjectLink>
-        </LinkContainer>
-      </ProjectDescription>
+    <ProjectWrapper $border={border} onClick={handleContainerClick} style={{ cursor: "pointer" }}>
+      {index % 2 === 0 ? (
+        <>
+          <ProjectImage 
+            src={imageURL} 
+            alt={`${title[language]} project screenshot`} 
+          />
+          <ProjectDescription>
+            <ProjectHeader>
+              {title[language]}
+              {available && (
+                <AvailableTag>
+                  ({available})
+                </AvailableTag>
+              )}
+            </ProjectHeader>
+            <div
+              dangerouslySetInnerHTML={{
+                __html: description[language],
+              }}
+            />
+            <LinkContainer>
+              <ProjectLink href={GitHubPagesURL} target="_blank" rel="noopener noreferrer">
+                <LinkTag>{GitHubPagesURLTag[language]}</LinkTag>
+              </ProjectLink>
+              <ProjectLink href={GitHubRepoURL} target="_blank" rel="noopener noreferrer">
+                <LinkTag>{GitHubRepoURLTag[language]}</LinkTag>
+              </ProjectLink>
+            </LinkContainer>
+          </ProjectDescription>
+        </>
+      ) : (
+        <>
+          <ProjectDescription>
+            <ProjectHeader>
+              {title[language]}
+              {available && (
+                <AvailableTag>
+                  ({available})
+                </AvailableTag>
+              )}
+            </ProjectHeader>
+            <div
+              dangerouslySetInnerHTML={{
+                __html: description[language],
+              }}
+            />
+            <LinkContainer>
+              <ProjectLink href={GitHubPagesURL} target="_blank" rel="noopener noreferrer">
+                <LinkTag>{GitHubPagesURLTag[language]}</LinkTag>
+              </ProjectLink>
+              <ProjectLink href={GitHubRepoURL} target="_blank" rel="noopener noreferrer">
+                <LinkTag>{GitHubRepoURLTag[language]}</LinkTag>
+              </ProjectLink>
+            </LinkContainer>
+          </ProjectDescription>
+          <ProjectImage 
+            src={imageURL} 
+            alt={`${title[language]} project screenshot`} 
+          />
+        </>
+      )}
     </ProjectWrapper>
   );
 };
 
 export default Tile;
+
