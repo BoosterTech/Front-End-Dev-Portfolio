@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { fadeIn } from "../../../../common/animations";
 
 export const FullscreenContent = styled.div`
   position: relative;
@@ -20,15 +21,7 @@ export const FullscreenOverlay = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  animation: fadeIn 0.3s;
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
+  animation: ${fadeIn} 0.3s;
 `;
 
 export const FullscreenImage = styled.img`

@@ -1,28 +1,6 @@
 import styled from "styled-components";
-import { keyframes } from "styled-components";
 import { Link } from "react-scroll";
-
-const slideFromLeft = keyframes`
-  from {
-    transform: translateX(-100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-`;
-
-const fadeIn = keyframes`
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-`;
+import { fadeIn, slideFromLeft } from "../animations";
 
 export const StyledList = styled.nav`
   width: 100vw;

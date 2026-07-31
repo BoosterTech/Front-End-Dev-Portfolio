@@ -1,23 +1,5 @@
-import styled, { keyframes } from "styled-components";
-
-const fadeIn = keyframes`
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-`;
-
-const gradientShift = keyframes`
-  0%, 100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-`;
-
+import styled from "styled-components";
+import { fadeIn, gradientShift } from "../../../common/animations";
 export const Wrapper = styled.footer`
   background: linear-gradient(135deg, var(--color-surface), var(--color-background));
   border-top: 1px solid var(--color-border);

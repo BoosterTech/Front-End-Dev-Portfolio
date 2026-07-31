@@ -1,19 +1,6 @@
 import styled from "styled-components";
 import { keyframes } from "styled-components";
-
-const waveHand = keyframes`
-  0% { transform: rotate(0deg) scale(1.1); }
-  10% { transform: rotate(20deg) scale(1.1); }
-  20% { transform: rotate(-10deg) scale(1.1); }
-  30% { transform: rotate(20deg) scale(1.1); }
-  40% { transform: rotate(-10deg) scale(1.1); }
-  50% { transform: rotate(20deg) scale(1.1); }
-  60% { transform: rotate(-10deg) scale(1.1); }
-  70% { transform: rotate(20deg) scale(1.1); }
-  80% { transform: rotate(-10deg) scale(1.1); }
-  90% { transform: rotate(10deg) scale(1.1); }
-  100% { transform: rotate(0deg) scale(1.1); }
-`;
+import { fadeInUp, gradientShift, slideInLeft, slideInRight, waveHand } from "../../../common/animations";
 
 const imageBorderAnimation = keyframes`
    0%{
@@ -25,39 +12,6 @@ const imageBorderAnimation = keyframes`
 100%{
     border-radius: 65% 35% 67% 33% / 65% 36% 64% 35%  ;
 }
-`;
-
-const fadeInUp = keyframes`
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-`;
-
-const slideInLeft = keyframes`
-  from {
-    opacity: 0;
-    transform: translateX(-50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-`;
-
-const slideInRight = keyframes`
-  from {
-    opacity: 0;
-    transform: translateX(50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
 `;
 
 const techStackFloat = keyframes`
@@ -124,17 +78,7 @@ export const ContentHeader = styled.h1`
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-size: 200% 200%;
-  animation: gradientShift 4s ease-in-out infinite;
-
-  @keyframes gradientShift {
-    0%,
-    100% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-  }
+  animation: ${gradientShift} 4s ease-in-out infinite;
 
   &:hover img {
     animation: ${waveHand} 4s infinite;
