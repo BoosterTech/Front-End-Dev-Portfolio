@@ -3,16 +3,22 @@ import {
   HomeWrapper,
   ImageContainer,
   ContentContainer,
-  HeaderImage,
-  HeaderParagraph,
   ProfileImage,
   TechStackContainer,
   TechStackItem,
-  TechStackSpan,
+  WelcomeLabel,
+  HeroTitle,
+  GradientText,
+  TechStackText,
+  HeroDescription,
+  LocationSpan,
+  ButtonsContainer,
+  ViewMyWorkButton,
+  DownloadCVButton,
 } from "./styled";
-import GradientHeading from "../../../common/GradientHeading";
+import { FaArrowRight, FaDownload, FaStar } from "react-icons/fa";
+import { menuItems } from "../../../common/Navigation/menuItems";
 
-import wavingHandImage from "../../../images/wavingHand.png";
 import profileImage from "../../../images/profileImage.png";
 import reactIcon from "../../../images/reactIcon.png";
 import reduxIcon from "../../../images/reduxIcon.png";
@@ -20,7 +26,7 @@ import styledComponentsicon from "../../../images/styledComponentsIcon.jpg";
 import axiosIcon from "../../../images/axiosIcon.jpg";
 import reduxToolkitIcon from "../../../images/reduxToolkitIcon.jpg";
 import reactRouterIcon from "../../../images/reactRouterIcon.png";
-import supabaseIcon from  "../../../images/supabaseIcon.png";
+import supabaseIcon from "../../../images/supabaseIcon.png";
 import nextIcon from "../../../images/nextIcon.png";
 import oAuthIcon from "../../../images/oAuthIcon.png";
 import reactQueryIcon from "../../../images/reactQueryIcon.png";
@@ -38,6 +44,13 @@ import { selectLanguage } from "../../../Redux/languageSlice";
 const Home = ({ id }) => {
   const theme = useTheme();
   const language = useSelector(selectLanguage);
+
+  const headerWords = theme[language].home.contentHeader.split(" ");
+  const titleFirst = headerWords.slice(0, -1).join(" ");
+  const titleLast = headerWords[headerWords.length - 1];
+  const location = theme[language].home.location;
+  const paragraphParts = theme[language].home.headerParagraph.split(location);
+  const projectsItem = menuItems[language][2];
 
   const techStackIcons = [
     { src: reactIcon, name: "React" },
@@ -60,31 +73,58 @@ const Home = ({ id }) => {
     <HomeWrapper id={id}>
       <ContentImageContainer>
         <ContentContainer>
-          <GradientHeading>
-            {theme[language].home.contentHeader
-              .split("\n")
-              .map((line, index) => (
-                <React.Fragment key={index}>{line}</React.Fragment>
-              ))}
-            <TechStackSpan>
-              {theme[language].home.contentHeaderTechStack}
-            </TechStackSpan>
-            <HeaderImage src={wavingHandImage} alt="Waving hand emoji" />
-          </GradientHeading>
-          <HeaderParagraph>
-            {theme[language].home.headerParagraph}
-          </HeaderParagraph>
+          <WelcomeLabel>
+            <FaStar />
+            {theme[language].home.welcomeLabel}
+          </WelcomeLabel>
+          <HeroTitle>
+            {titleFirst}
+            <GradientText>{titleLast}</GradientText>
+          </HeroTitle>
+          <TechStackText>
+            {theme[language].home.contentHeaderTechStack}{" "}
+            {/* <HeaderImage src={wavingHandImage} alt="Waving hand emoji" /> */}
+          </TechStackText>
+
+          <HeroDescription>
+            {paragraphParts[0]}
+            <LocationSpan>{location}</LocationSpan>
+            {paragraphParts[1]}
+          </HeroDescription>
+          <ButtonsContainer>
+            <ViewMyWorkButton
+              to={projectsItem.name.toLowerCase()}
+              spy={true}
+              smooth={true}
+              offset={projectsItem.offset}
+              duration={700}
+            >
+              {theme[language].home.viewMyWork}
+              <FaArrowRight />
+            </ViewMyWorkButton>
+            <DownloadCVButton
+              href={theme[language].home.cvUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {theme[language].home.downloadCV}
+              <FaDownload />
+            </DownloadCVButton>
+          </ButtonsContainer>
         </ContentContainer>
         <ImageContainer>
-          <ProfileImage src={profileImage} alt="Dariusz Podczasik - Front-End Developer" />
+          <ProfileImage
+            src={profileImage}
+            alt="Dariusz Podczasik - Front-End Developer"
+          />
         </ImageContainer>
       </ContentImageContainer>
 
       <TechStackContainer>
         {techStackIcons.map((item, index) => (
-          <TechStackItem 
-            key={index} 
-            src={item.src} 
+          <TechStackItem
+            key={index}
+            src={item.src}
             alt={item.name}
             title={item.name}
             index={index}
@@ -98,4 +138,3 @@ const Home = ({ id }) => {
 };
 
 export default Home;
-
