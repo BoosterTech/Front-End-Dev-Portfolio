@@ -2,7 +2,7 @@
 
 ## 0. Status
 
-All planned items are complete and `npm run build` passes cleanly. The `feature/ui-refresh` branch is ready for final review.
+The original UI-refresh items are complete, `npm run build` passes cleanly, and the 30-day architecture stabilization plan (`plan/next-30-days-a29356.md`) is in progress. The `feature/ui-refresh` branch is now the active architecture cleanup branch.
 
 ## 1. Project Understanding
 
@@ -54,10 +54,15 @@ Front-End-Dev-Portfolio/
 │   ├── setupTests.js
 │   ├── common/
 │   │   ├── DarkModeToggle/
+│   │   ├── GradientHeading/
 │   │   ├── LanguageSwitch/
 │   │   ├── Navigation/
-│   │   ├── ScrollWatcher/
+│   │   ├── RichText/
+│   │   ├── animations.js
 │   │   └── slowEntry.js
+│   ├── content/
+│   │   ├── translations.js
+│   │   └── skillsets.js
 │   ├── features/
 │   │   └── portfolio/
 │   │       ├── Home/
@@ -100,7 +105,7 @@ Front-End-Dev-Portfolio/
 ## 5. Existing Constraints & Business Logic
 
 - **Dark mode:** `DarkModeToggle` reads `localStorage` and `prefers-color-scheme`, then sets `data-theme="dark"` and persists the choice.
-- **Language:** `LanguageSwitch` dispatches `setLanguage()`; all UI text is pulled from `themes.js` / `projects.js` based on the selected language.
+- **Language:** `LanguageSwitch` dispatches `setLanguage()`; UI text is pulled from `src/content/translations.js`; skill data is pulled from `src/content/skillsets.js`; project data remains in `src/features/portfolio/Projects/projects.js`.
 - **Navigation:**
   - `Navigation` maps `menuItems[language]` to `react-scroll` `Link` components.
   - On smaller screens it shows icons instead of labels.
@@ -118,14 +123,14 @@ Front-End-Dev-Portfolio/
 
 ## 6. Update Status
 
-### Quick wins ✅
+### Quick wins 
 - [x] **Remove dead code / unused imports**
   - `src/App.js` — removed `ScrollWatcher` import and commented usage.
   - `src/common/DarkModeToggle/index.js` — removed `slideToggle` keyframes.
   - `src/features/portfolio/Footer/index.js` — removed unused `ref` parameter.
 - [x] **Fix ESLint warnings** so build runs clean.
 
-### Structural improvements ✅
+### Structural improvements 
 - [x] **Centralize animations**  
   Created `src/common/animations.js`; `Navigation`, `Home`, `About`, `Projects`, `Contact`, `Footer`, and `ComingSoonProject` now import shared keyframes.
 - [x] **Unify the theme system**  
@@ -155,3 +160,10 @@ Front-End-Dev-Portfolio/
 3. [x] Unify theme / move content to `src/content` (biggest structural improvement).
 4. [x] Fix hardcoded styles and breakpoint mistakes.
 5. [x] Polish accessibility and metadata.
+
+### 30-Day Architecture Stabilization
+
+- [x] Week 1 — Cleanup: remove `ScrollWatcher`, remove `react-router`, move `skillsets.js` to `src/content`.
+- [ ] Week 2 — Structure: add `jsconfig.json` path aliases, then move `projects.js` to `src/content`.
+- [ ] Week 3 — CI & Quality: add GitHub Actions build gate and a smoke test.
+- [ ] Week 4 — Polish & Handoff: move `SpinnerSvg` to `public`, split `Home/styled.js` if needed.
