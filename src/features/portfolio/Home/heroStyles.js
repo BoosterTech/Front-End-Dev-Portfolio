@@ -50,8 +50,8 @@ export const GradientText = styled.span`
   margin-left: 0.18em;
   background: linear-gradient(
     135deg,
-    var(--color-text-primary) 0%,
-    var(--color-primary) 50%,
+    var(--color-text-secondary) 0%,
+    var(--color-primary) 40%,
     var(--color-accent) 100%
   );
   background-clip: text;

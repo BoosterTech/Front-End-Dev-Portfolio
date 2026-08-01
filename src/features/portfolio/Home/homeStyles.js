@@ -98,8 +98,8 @@ export const HeaderParagraph = styled.p`
 `;
 
 export const ImageContainer = styled.div`
-  width: 280px;
-  height: 280px;
+  width: 300px;
+  height: 300px;
   position: relative;
   box-shadow: 0 8px 32px rgba(6, 7, 7, 0.18),
     0 2px 8px rgba(0, 0, 0, 0.08);
@@ -112,8 +112,8 @@ export const ImageContainer = styled.div`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 260px;
-    height: 260px;
+    width: 280px;
+    height: 280px;
     background: radial-gradient(
       circle,
       rgba(255, 255, 255, 0.45) 0%,
@@ -146,13 +146,13 @@ export const ImageContainer = styled.div`
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.sm}) {
-    width: 220px;
-    height: 220px;
+    width: 230px;
+    height: 230px;
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.xxs}) {
-    width: 180px;
-    height: 180px;
+    width: 190px;
+    height: 190px;
   }
 `;
 

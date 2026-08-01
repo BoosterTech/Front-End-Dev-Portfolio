@@ -115,7 +115,7 @@ const Home = ({ id }) => {
         <ImageContainer>
           <ProfileImage
             src={profileImage}
-            alt="Dariusz Podczasik - Front-End Developer"
+            alt="profile_image"
           />
         </ImageContainer>
       </ContentImageContainer>
