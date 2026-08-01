@@ -19,16 +19,16 @@ export const GlobalStyles = createGlobalStyle`
   --color-shadow: rgba(0, 0, 0, 0.1);
   
   /* Dark theme colors */
-  --color-dark-primary: #3b82f6;
-  --color-dark-primary-hover: #2563eb;
+  --color-dark-primary: #2b8de4;
+  --color-dark-primary-hover: #1e6fd6;
   --color-dark-secondary: #94a3b8;
   --color-dark-accent: #22d3ee;
-  --color-dark-background: #0f172a;
-  --color-dark-surface: #1e293b;
-  --color-dark-text-primary: #f1f5f9;
-  --color-dark-text-secondary: #cbd5e1;
-  --color-dark-border: #334155;
-  --color-dark-shadow: rgba(0, 0, 0, 0.3);
+  --color-dark-background: #0a0f1c;
+  --color-dark-surface: rgba(17, 24, 39, 0.8);
+  --color-dark-text-primary: #ffffff;
+  --color-dark-text-secondary: #94a3b8;
+  --color-dark-border: #1e293b;
+  --color-dark-shadow: rgba(0, 0, 0, 0.4);
   
   /* Spacing */
   --spacing-xxs: 0.125rem;
@@ -58,8 +58,8 @@ export const GlobalStyles = createGlobalStyle`
   --transition-slow: 350ms ease-in-out;
 
   /* Layout helpers */
-  --nav-height: 220px;
-  --nav-height-mobile: 128px;
+  --nav-height: 80px;
+  --nav-height-mobile: 80px;
 }
 
 [data-theme="dark"] {
@@ -87,8 +87,12 @@ html {
 }
 
 body {
-  background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 50%, #bdbdbd 100%);
-  /* fallback for dark mode */
+  min-height: 100vh;
+  background-image: url(${process.env.PUBLIC_URL}/backgroundLight.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   color: var(--color-text-primary);
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
   font-size: 16px;
@@ -102,10 +106,18 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Dark mode: override with solid color */
 [data-theme="dark"] body {
-  background: var(--color-background);
-  transition: background-color var(--transition-normal), color var(--transition-normal);
+  background-image: url(${process.env.PUBLIC_URL}/backgroundDark.png);
+}
+
+@media (max-width: 768px) {
+  body {
+    background-image: url(${process.env.PUBLIC_URL}/backgroundLightMobile.png);
+  }
+
+  [data-theme="dark"] body {
+    background-image: url(${process.env.PUBLIC_URL}/backgroundDarkMobile.png);
+  }
 }
 
 h1, h2, h3, h4, h5, h6 {
