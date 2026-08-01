@@ -16,7 +16,7 @@ export const StyledList = styled.nav`
   background-color: var(--color-surface);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  padding: var(--spacing-lg) var(--spacing-xl);
+  padding: var(--spacing-sm) var(--spacing-xl);
   margin: 0;
   font-weight: 600;
   font-size: 0.95rem;
@@ -52,7 +52,7 @@ export const TopRow = styled.div`
 `;
 
 export const StyledListItem = styled.li`
-  color: var(--color-text-secondary);
+  color: var(--color-text-primary);
   transition: all var(--transition-fast);
   border: 1px solid transparent;
   padding: var(--spacing-sm) var(--spacing-lg);
@@ -108,6 +108,7 @@ export const StyledListItem = styled.li`
 
 export const StyledScrollLink = styled(Link)`
   text-decoration: none;
+  white-space: nowrap;
 
   &.active ${StyledListItem} {
     color: white;
@@ -195,6 +196,8 @@ export const MenuContainer = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: flex-end;
+  width: 300px;
   gap: var(--spacing-sm);
 
   /* @media (max-width: ${({ theme }) => theme.breakpoint.xxl}) {
@@ -203,7 +206,7 @@ export const MenuContainer = styled.div`
 
   @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
     flex-direction: row;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     justify-content: center;
     gap: var(--spacing-xs);
   }

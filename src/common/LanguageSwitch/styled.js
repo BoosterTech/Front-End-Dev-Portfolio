@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 
 export const Wrapper = styled.div`
-  margin-right: auto;
+  display: flex;
 `;
 
 export const IconsWrapper = styled.div`
