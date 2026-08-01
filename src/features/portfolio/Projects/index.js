@@ -6,11 +6,11 @@ import {
   TitleWrapper,
   Wrapper,
 } from "./styled";
-import projects from "./projects";
+import projects from "content/projects";
 import Tile from "./Tile";
 import ComingSoonProject from "./ComingSoonProject";
-import wtm2Image from "../../../images/wtm2.png";
-import gitHubIcon from "../../../images/gitHubIcon.png";
+import wtm2Image from "images/wtm2.png";
+import gitHubIcon from "images/gitHubIcon.png";
 
 const Projects = ({ id }) => {
   return (

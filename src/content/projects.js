@@ -1,12 +1,12 @@
-import movieBrowserImage from "../../../images/movieBrowserProject.png";
-import tasksListImage from "../../../images/tasksListProject.png";
-import currencyConverterImage from "../../../images/currencyConverterProject.png";
-import plasmaLibraryImage from "../../../images/plasmaLibraryProject.png";
-import reactQuizImage from "../../../images/react-quiz-project.png";
-import eatNsplitmage from "../../../images/eat-n-split-project.png";
-import fastReactPizzaImage from "../../../images/fast-react-pizza.png";
-import paradiselodgeImage from "../../../images/paradiseLodge.png";
-import wtmMusicAIImage from "../../../images/wtmMusicAI.png";
+import movieBrowserImage from "images/movieBrowserProject.png";
+import tasksListImage from "images/tasksListProject.png";
+import currencyConverterImage from "images/currencyConverterProject.png";
+import plasmaLibraryImage from "images/plasmaLibraryProject.png";
+import reactQuizImage from "images/react-quiz-project.png";
+import eatNsplitmage from "images/eat-n-split-project.png";
+import fastReactPizzaImage from "images/fast-react-pizza.png";
+import paradiselodgeImage from "images/paradiseLodge.png";
+import wtmMusicAIImage from "images/wtmMusicAI.png";
 
 const projects = [
   {
