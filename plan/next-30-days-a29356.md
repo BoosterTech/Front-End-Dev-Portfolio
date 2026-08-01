@@ -7,11 +7,11 @@ Stabilize the portfolio codebase for AI-generated contributions by removing dead
 1. Delete the dead `src/common/ScrollWatcher` folder and any commented `ScrollWatcher` references.
 2. Remove `react-router` from `package.json` dependencies; it is not used.
 3. Move `src/features/portfolio/Home/SkillsetContainer/skillsets.js` data to `src/content/skillsets.js` or `public/data/skillsets.json`.
-4. Move `src/features/portfolio/Projects/projects.js` data to `src/content/projects.js`.
+4. Move `src/features/portfolio/Projects/projects.js` data to `src/content/projects.js` only after path aliases are in place; its image imports break CRA's module scope without them.
 
 ## Week 2 — Structure
 
-1. Add a `jsconfig.json` with `baseUrl: "src"` and path aliases for `@/common`, `@/content`, `@/features`.
+1. Add a `jsconfig.json` with `baseUrl: "src"` and path aliases for `@/common`, `@/content`, `@/features`. Then move `projects.js` to `@/content/projects` and image imports to `@/images`.
 2. Replace deep relative imports (`../../../common/...`) with aliases where touched.
 3. Split `src/features/portfolio/Home/styled.js` into smaller co-located style modules if it grows beyond 400 lines.
 
@@ -32,5 +32,5 @@ Stabilize the portfolio codebase for AI-generated contributions by removing dead
 - `npm run build` passes without warnings.
 - No unused dependencies in `package.json`.
 - No dead code in `src/common/`.
-- All data files live under `src/content/`.
+- All data files live under `src/content/` (skillsets already moved; projects deferred to Week 2).
 - CI runs on every PR.
