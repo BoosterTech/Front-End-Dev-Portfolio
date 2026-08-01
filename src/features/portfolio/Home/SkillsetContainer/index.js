@@ -5,8 +5,8 @@ import {
   SkillsetHeader,
   Tooltip,
 } from "./styled";
-import { skillsets, toLearn, skillDescriptions } from "./skillsets";
-import { toLearnDescriptions } from "./skillsets";
+import { skillsets, toLearn, skillDescriptions } from "../../../../content/skillsets";
+import { toLearnDescriptions } from "../../../../content/skillsets";
 import { useTheme } from "styled-components";
 import { useSelector } from "react-redux";
 import { selectLanguage } from "../../../../Redux/languageSlice";
