@@ -2,7 +2,7 @@
 
 ## 0. Status
 
-The original UI-refresh items are complete, `npm run build` passes cleanly, and the 30-day architecture stabilization plan (`plan/next-30-days-a29356.md`) is in progress. The `feature/ui-refresh` branch is now the active architecture cleanup branch.
+The original UI-refresh items and the 30-day architecture stabilization plan (`plan/next-30-days-a29356.md`) are complete. `npm run build` and `npm test` pass cleanly, and the `feature/ui-refresh` branch contains the finalized cleanup.
 
 ## 1. Project Understanding
 
@@ -44,9 +44,11 @@ Front-End-Dev-Portfolio/
 │   ├── index.html
 │   ├── icon.png
 │   ├── manifest.json
-│   └── robots.txt
+│   ├── robots.txt
+│   └── spinner.svg
 ├── src/
 │   ├── App.js
+│   ├── App.test.js
 │   ├── index.js
 │   ├── GlobalStyles.js
 │   ├── themes.js
@@ -62,21 +64,31 @@ Front-End-Dev-Portfolio/
 │   │   └── slowEntry.js
 │   ├── content/
 │   │   ├── translations.js
-│   │   └── skillsets.js
+│   │   ├── skillsets.js
+│   │   └── projects.js
 │   ├── features/
 │   │   └── portfolio/
 │   │       ├── Home/
-│   │       │   └── SkillsetContainer/
+│   │       │   ├── SkillsetContainer/
+│   │       │   ├── homeStyles.js
+│   │       │   ├── heroStyles.js
+│   │       │   └── styled.js
 │   │       ├── About/
 │   │       ├── Projects/
 │   │       │   ├── Tile/
 │   │       │   └── ComingSoonProject/
 │   │       ├── Contact/
 │   │       └── Footer/
+├── .github/
+│   └── workflows/
+│       └── ci.yml
+├── scripts/
+│   └── check-file-size.js
 │   └── Redux/
 │       ├── store.js
 │       ├── languageSlice.js
 │       └── generalSlice.js
+├── jsconfig.json
 ├── package.json
 ├── package-lock.json
 ├── README.md
@@ -164,6 +176,6 @@ Front-End-Dev-Portfolio/
 ### 30-Day Architecture Stabilization
 
 - [x] Week 1 — Cleanup: remove `ScrollWatcher`, remove `react-router`, move `skillsets.js` to `src/content`.
-- [ ] Week 2 — Structure: add `jsconfig.json` path aliases, then move `projects.js` to `src/content`.
-- [ ] Week 3 — CI & Quality: add GitHub Actions build gate and a smoke test.
-- [ ] Week 4 — Polish & Handoff: move `SpinnerSvg` to `public`, split `Home/styled.js` if needed.
+- [x] Week 2 — Structure: add `jsconfig.json` with `baseUrl`, then move `projects.js` to `src/content`.
+- [x] Week 3 — CI & Quality: add GitHub Actions build gate, smoke test, and file-size check.
+- [x] Week 4 — Polish & Handoff: move `SpinnerSvg` to `public`, split `Home/styled.js` if needed.

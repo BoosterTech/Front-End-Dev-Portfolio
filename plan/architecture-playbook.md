@@ -59,7 +59,7 @@ This document records the major architectural decisions in the `feature/ui-refre
 
 ### Decision: Store multi-language content in JS modules rather than JSON or an i18n library
 
-- **What:** English, Polish, and Spanish copy lives in `src/content/translations.js`. Shared skill data was moved to `src/content/skillsets.js`. Project data remains in `src/features/portfolio/Projects/projects.js` because it imports local image assets that break CRA's module scope when moved outside `src/features/portfolio/Projects` without path aliases. Menu items remain in `src/common/Navigation/menuItems.js`.
+- **What:** English, Polish, and Spanish copy lives in `src/content/translations.js`. Skill data was moved to `src/content/skillsets.js`. Project data was moved to `src/content/projects.js` after adding `jsconfig.json` with `baseUrl: "src"`; image imports use `src`-relative `images/...` paths. Menu items remain in `src/common/Navigation/menuItems.js`.
 - **Why:** No extra i18n dependency is needed; content can contain HTML strings and be co-located with the consuming feature; imports are static and simple.
 - **Trade-offs:** No fallback language chain, no runtime language lazy-loading, and content is bundled into the JavaScript. Adding a language requires updating every content file.
 - **Future guidance:** If a CMS or more languages are added, migrate to a `src/locales/` JSON structure or introduce `react-i18next`. Until then, keep content objects isomorphic across all three languages.
@@ -161,7 +161,14 @@ When adding or changing anything, prefer the following order:
 - Deleted the dead `src/common/ScrollWatcher` folder during the 30-day stabilization pass.
 - Removed the unused `react-router` dependency from `package.json`.
 - Moved `skillsets.js` data from `src/features/portfolio/Home/SkillsetContainer` to `src/content/skillsets.js`.
-- Created `plan/next-30-days-a29356.md` to track the 30-day architecture stabilization plan.
+- Moved `projects.js` data from `src/features/portfolio/Projects` to `src/content/projects.js` after adding `jsconfig.json` with `baseUrl: "src"`.
+- Added `.github/workflows/ci.yml` to run `npm ci` and `npm run build` on every push/PR.
+- Added `src/App.test.js` as a smoke test that renders `<App />` and checks for the welcome label.
+- Added `scripts/check-file-size.js` and `npm run size-check` to warn on source files over 300 lines.
+- Guarded `IntersectionObserver` usage in `src/features/portfolio/Contact/index.js` so the component does not crash in test/SSR environments where the API is missing.
+- Moved the `FrontEndSpinner` SVG from `src/features/portfolio/About/SpinnerSvg.js` to `public/spinner.svg` and imported it as a `PUBLIC_URL` asset.
+- Split `src/features/portfolio/Home/styled.js` into `homeStyles.js` and `heroStyles.js` to keep each file under 300 lines.
+- Created and completed `plan/next-30-days-a29356.md` for the 30-day architecture stabilization plan.
 - Fixed the broken `App.js` JSX from the quick-wins pass.
 - Created `src/common/animations.js` and updated all `styled.js` files to import shared keyframes.
 - Removed duplicated color/spacing/radius/shadow/transition maps from `src/themes.js`.
