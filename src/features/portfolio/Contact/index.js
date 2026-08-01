@@ -17,20 +17,21 @@ const Contact = ({ id }) => {
   useEffect(() => {
     const currentRef = contactRef.current;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach(({ isIntersecting }) => {
-          if (isIntersecting) {
-            dispatch(setContactVisibility(true));
-          } else {
-            dispatch(setContactVisibility(false));
-          }
-        });
-      },
-      { threshold: 0 }
-    );
+    let observer;
+    if (typeof IntersectionObserver !== "undefined" && currentRef) {
+      observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach(({ isIntersecting }) => {
+            if (isIntersecting) {
+              dispatch(setContactVisibility(true));
+            } else {
+              dispatch(setContactVisibility(false));
+            }
+          });
+        },
+        { threshold: 0 }
+      );
 
-    if (currentRef) {
       observer.observe(currentRef);
     }
 
@@ -42,7 +43,7 @@ const Contact = ({ id }) => {
     window.addEventListener("scroll", handleScroll);
 
     return () => {
-      if (currentRef) {
+      if (observer && currentRef) {
         observer.unobserve(currentRef);
       }
       window.removeEventListener("scroll", handleScroll);
