@@ -49,9 +49,11 @@ export const ImageContainer = styled.div`
   }
 `;
 
-export const StyledSVG = styled.svg`
+export const SpinnerImage = styled.img`
   position: relative;
   z-index: 2;
+  width: 260px;
+  height: 260px;
   animation: ${spin} 60s linear infinite;
   filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.1));
 `;

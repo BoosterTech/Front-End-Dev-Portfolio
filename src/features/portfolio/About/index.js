@@ -1,13 +1,13 @@
-import FrontEndSpinner from "./SpinnerSvg";
-import imageOverlay from "../../../images/frontEndImg.jpg";
+import imageOverlay from "images/frontEndImg.jpg";
 import {
   ContentContainer,
   ImageContainer,
   Image,
+  SpinnerImage,
   Wrapper,
 } from "./styled";
-import GradientHeading from "../../../common/GradientHeading";
-import RichText from "../../../common/RichText";
+import GradientHeading from "common/GradientHeading";
+import RichText from "common/RichText";
 import { useSelector } from "react-redux";
 import { useTheme } from "styled-components";
 import { selectLanguage } from "../../../Redux/languageSlice";
@@ -19,7 +19,10 @@ const About = ({id}) => {
   return (
     <Wrapper id={id}>
       <ImageContainer>
-        <FrontEndSpinner alt="frontEndSpinner.svg" />
+        <SpinnerImage
+          src={process.env.PUBLIC_URL + "/spinner.svg"}
+          alt="frontEndSpinner"
+        />
         <Image src={imageOverlay} alt="frontEndImage.jpg" />
       </ImageContainer>
       <ContentContainer>
