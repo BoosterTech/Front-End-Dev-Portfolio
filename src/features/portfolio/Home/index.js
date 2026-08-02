@@ -4,8 +4,6 @@ import {
   ImageContainer,
   ContentContainer,
   ProfileImage,
-  TechStackContainer,
-  TechStackItem,
   WelcomeLabel,
   HeroTitle,
   GradientText,
@@ -20,22 +18,8 @@ import { FaArrowRight, FaDownload, FaStar } from "react-icons/fa";
 import { menuItems } from "../../../common/Navigation/menuItems";
 
 import profileImage from "../../../images/profileImage.png";
-import reactIcon from "../../../images/reactIcon.png";
-import reduxIcon from "../../../images/reduxIcon.png";
-import styledComponentsicon from "../../../images/styledComponentsIcon.jpg";
-import axiosIcon from "../../../images/axiosIcon.jpg";
-import reduxToolkitIcon from "../../../images/reduxToolkitIcon.jpg";
-import reactRouterIcon from "../../../images/reactRouterIcon.png";
-import supabaseIcon from "../../../images/supabaseIcon.png";
-import nextIcon from "../../../images/nextIcon.png";
-import oAuthIcon from "../../../images/oAuthIcon.png";
-import reactQueryIcon from "../../../images/reactQueryIcon.png";
-import vercelIcon from "../../../images/vercelIcon.png";
-import jwtIcon from "../../../images/jwtIcon.png";
-import tailwindIcon from "../../../images/tailwindIcon.png";
-import typeScriptIcon from "../../../images/typeScriptIcon.png";
 
-import { SkillsetContainer } from "./SkillsetContainer";
+import { ToolsShowcase } from "./ToolsShowcase";
 import { useTheme } from "styled-components";
 import React from "react";
 import { useSelector } from "react-redux";
@@ -52,22 +36,6 @@ const Home = ({ id }) => {
   const paragraphParts = theme[language].home.headerParagraph.split(location);
   const projectsItem = menuItems[language][2];
 
-  const techStackIcons = [
-    { src: reactIcon, name: "React" },
-    { src: reduxIcon, name: "Redux" },
-    { src: reduxToolkitIcon, name: "Redux Toolkit" },
-    { src: axiosIcon, name: "Axios" },
-    { src: reactRouterIcon, name: "React Router" },
-    { src: styledComponentsicon, name: "Styled Components" },
-    { src: nextIcon, name: "Next.js" },
-    { src: supabaseIcon, name: "Supabase" },
-    { src: oAuthIcon, name: "OAuth" },
-    { src: reactQueryIcon, name: "React Query" },
-    { src: vercelIcon, name: "Vercel" },
-    { src: jwtIcon, name: "JWT" },
-    { src: tailwindIcon, name: "Tailwind CSS" },
-    { src: typeScriptIcon, name: "TypeScript" },
-  ];
 
   return (
     <HomeWrapper id={id}>
@@ -120,19 +88,7 @@ const Home = ({ id }) => {
         </ImageContainer>
       </ContentImageContainer>
 
-      <TechStackContainer>
-        {techStackIcons.map((item, index) => (
-          <TechStackItem
-            key={index}
-            src={item.src}
-            alt={item.name}
-            title={item.name}
-            index={index}
-          />
-        ))}
-      </TechStackContainer>
-
-      <SkillsetContainer />
+      <ToolsShowcase />
     </HomeWrapper>
   );
 };
