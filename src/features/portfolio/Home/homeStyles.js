@@ -1,7 +1,11 @@
+import {
+  fadeInUp,
+  slideInLeft,
+  slideInRight,
+  waveHand,
+} from "common/animations";
 import styled from "styled-components";
 import { keyframes } from "styled-components";
-import { fadeInUp, slideInLeft, slideInRight, waveHand } from "../../../common/animations";
-
 
 const imageBorderAnimation = keyframes`
    0%{
@@ -25,10 +29,10 @@ const techStackFloat = keyframes`
 `;
 
 export const HomeWrapper = styled.section`
-  padding: calc(var(--spacing-3xl) + var(--nav-height)) 0 var(--spacing-3xl) 0;
+  padding: var(--nav-height) 0 var(--spacing-3xl) 0;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
-    padding: calc(var(--spacing-2xl) + var(--nav-height-mobile)) 0 var(--spacing-2xl) 0;
+    padding: var(--nav-height-mobile) 0 var(--spacing-2xl) 0;
   }
   width: 100%;
   animation: ${fadeInUp} 0.8s ease-out;
@@ -39,11 +43,14 @@ export const ContentImageContainer = styled.div`
   grid-template-columns: 1fr auto;
   gap: var(--spacing-3xl);
   align-items: center;
+  align-content: center;
+  min-height: calc(100vh - var(--nav-height));
   margin-bottom: var(--spacing-3xl);
 
   @media (max-width: ${({ theme }) => theme.breakpoint.xl2}) {
     grid-template-columns: 1fr;
     gap: var(--spacing-2xl);
+    min-height: calc(100vh - var(--nav-height-mobile));
     text-align: center;
   }
 `;
@@ -56,7 +63,6 @@ export const ContentContainer = styled.div`
     animation: ${fadeInUp} 0.8s ease-out 0.4s both;
   }
 `;
-
 
 export const TechStackSpan = styled.div`
   display: inline-block;
@@ -101,9 +107,11 @@ export const ImageContainer = styled.div`
   width: 300px;
   height: 300px;
   position: relative;
-  box-shadow: 0 8px 32px rgba(6, 7, 7, 0.18),
+  box-shadow:
+    0 8px 32px rgba(6, 7, 7, 0.18),
     0 2px 8px rgba(0, 0, 0, 0.08);
-  animation: ${slideInRight} 0.8s ease-out 0.3s both,
+  animation:
+    ${slideInRight} 0.8s ease-out 0.3s both,
     ${imageBorderAnimation} 12s ease-in-out infinite 1s;
 
   &::before {
@@ -141,7 +149,8 @@ export const ImageContainer = styled.div`
   @media (max-width: ${({ theme }) => theme.breakpoint.xl2}) {
     order: 1;
     margin: 0 auto var(--spacing-xl) auto;
-    animation: ${fadeInUp} 0.8s ease-out 0.2s both,
+    animation:
+      ${fadeInUp} 0.8s ease-out 0.2s both,
       ${imageBorderAnimation} 12s ease-in-out infinite 1s;
   }
 
@@ -162,8 +171,10 @@ export const ProfileImage = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
-  box-shadow: 0 0 40px 14px rgba(40, 142, 221, 0.35),
-    0 8px 32px rgba(206, 207, 207, 0.18), 0 2px 8px rgba(0, 0, 0, 0.08);
+  box-shadow:
+    0 0 40px 14px rgba(40, 142, 221, 0.35),
+    0 8px 32px rgba(206, 207, 207, 0.18),
+    0 2px 8px rgba(0, 0, 0, 0.08);
   border-radius: inherit;
   border: 1px solid var(--color-primary);
   transition: transform var(--transition-normal);

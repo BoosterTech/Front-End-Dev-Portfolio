@@ -1,3 +1,13 @@
+import DarkModeToggle from "common/DarkModeToggle";
+import { LanguageSwitch } from "common/LanguageSwitch";
+import { useEffect, useState } from "react";
+import { FaEnvelope, FaHome, FaProjectDiagram, FaUser } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-scroll";
+import { selectContactVisibility } from "slices/generalSlice";
+import { selectLanguage, setLanguage } from "slices/languageSlice";
+
+import { menuItems } from "./menuItems";
 import {
   DevWrapper,
   MenuContainer,
@@ -6,19 +16,14 @@ import {
   StyledScrollLink,
   TopRow,
 } from "./styled";
-import { menuItems } from "./menuItems";
-import { LanguageSwitch } from "../../common/LanguageSwitch";
-import DarkModeToggle from "../../common/DarkModeToggle";
-import { useDispatch, useSelector } from "react-redux";
-import { selectLanguage, setLanguage } from "../../Redux/languageSlice";
-import { Link } from "react-scroll";
-import { useEffect, useState } from "react";
-import { FaEnvelope, FaHome, FaProjectDiagram, FaUser } from "react-icons/fa";
-import { themes } from "../../themes";
-import { selectContactVisibility } from "../../Redux/generalSlice";
 
 const Navigation = () => {
-  const breakpointXL = parseInt(themes.breakpoint.xl2, 10);
+  const breakpointXL = parseInt(
+    getComputedStyle(document.documentElement).getPropertyValue(
+      "--breakpoint-xl2"
+    ) || "1100px",
+    10
+  );
 
   const isContactVisible = useSelector(selectContactVisibility);
   const language = useSelector(selectLanguage);

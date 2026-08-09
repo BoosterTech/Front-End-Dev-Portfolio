@@ -1,6 +1,12 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle, keyframes } from "styled-components";
 import styled from "styled-components";
+
 import slowEntry from "./common/slowEntry";
+
+const twinkle = keyframes`
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.4); }
+`;
 
 export const GlobalStyles = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
@@ -60,6 +66,7 @@ export const GlobalStyles = createGlobalStyle`
   /* Layout helpers */
   --nav-height: 80px;
   --nav-height-mobile: 80px;
+  --breakpoint-xl2: 1100px;
 }
 
 [data-theme="dark"] {
@@ -239,10 +246,12 @@ img {
 `;
 
 export const Main = styled.main`
+  position: relative;
+  z-index: 1;
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 var(--spacing-lg);
-  
+
   @media (max-width: ${({ theme }) => theme.breakpoint.xl2}) {
     max-width: 100vw;
     width: 100vw;
@@ -250,3 +259,20 @@ export const Main = styled.main`
   }
 `;
 
+export const StarField = styled.div`
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  overflow: hidden;
+
+  span {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+    animation: ${twinkle} 3s ease-in-out infinite;
+    box-shadow: 0 0 6px 1px rgba(255, 255, 255, 0.3);
+  }
+`;

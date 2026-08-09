@@ -1,6 +1,7 @@
-import styled from "styled-components";
-import { gradientShift, waveHand } from "../../../common/animations";
+import { gradientShift, waveHand } from "common/animations";
 import { Link } from "react-scroll";
+import styled from "styled-components";
+
 import { HeaderImage } from "./homeStyles";
 
 export const WelcomeLabel = styled.span`
@@ -109,7 +110,11 @@ export const ViewMyWorkButton = styled(Link)`
   font-size: 1rem;
   font-weight: 600;
   color: #ffffff;
-  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  background: linear-gradient(
+    135deg,
+    var(--color-primary),
+    var(--color-accent)
+  );
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
   text-decoration: none;
@@ -119,7 +124,7 @@ export const ViewMyWorkButton = styled(Link)`
 
   &:hover {
     color: var(--color-primary);
-        border-color: var(--color-primary);
+    border-color: var(--color-primary);
 
     background: transparent;
     box-shadow: none;

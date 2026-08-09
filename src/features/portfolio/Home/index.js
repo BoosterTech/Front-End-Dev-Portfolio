@@ -1,3 +1,11 @@
+import { menuItems } from "common/Navigation/menuItems";
+import profileImage from "images/profileImage.png";
+import React from "react";
+import { FaArrowRight, FaDownload, FaStar } from "react-icons/fa";
+import { useSelector } from "react-redux";
+import { selectLanguage } from "slices/languageSlice";
+import { useTheme } from "styled-components";
+
 import {
   ContentImageContainer,
   HomeWrapper,
@@ -14,16 +22,7 @@ import {
   ViewMyWorkButton,
   DownloadCVButton,
 } from "./styled";
-import { FaArrowRight, FaDownload, FaStar } from "react-icons/fa";
-import { menuItems } from "../../../common/Navigation/menuItems";
-
-import profileImage from "../../../images/profileImage.png";
-
 import { ToolsShowcase } from "./ToolsShowcase";
-import { useTheme } from "styled-components";
-import React from "react";
-import { useSelector } from "react-redux";
-import { selectLanguage } from "../../../Redux/languageSlice";
 
 const Home = ({ id }) => {
   const theme = useTheme();
@@ -35,7 +34,6 @@ const Home = ({ id }) => {
   const location = theme[language].home.location;
   const paragraphParts = theme[language].home.headerParagraph.split(location);
   const projectsItem = menuItems[language][2];
-
 
   return (
     <HomeWrapper id={id}>
@@ -81,10 +79,7 @@ const Home = ({ id }) => {
           </ButtonsContainer>
         </ContentContainer>
         <ImageContainer>
-          <ProfileImage
-            src={profileImage}
-            alt="profile_image"
-          />
+          <ProfileImage src={profileImage} alt="profile_image" />
         </ImageContainer>
       </ContentImageContainer>
 

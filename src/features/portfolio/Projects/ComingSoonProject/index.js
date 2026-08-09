@@ -1,8 +1,21 @@
-
+import RichText from "common/RichText";
 import React, { useState } from "react";
-import RichText from "../../../../common/RichText";
 import { MdArrowBack, MdArrowForward, MdClose } from "react-icons/md";
-import { Container, Title, Image, Description, ComingSoonTag, ImagesWrapper, SlideshowWrapper, ArrowButton, FullscreenOverlay, FullscreenImage, CloseButton, FullscreenContent } from "./styled";
+
+import {
+  Container,
+  Title,
+  Image,
+  Description,
+  ComingSoonTag,
+  ImagesWrapper,
+  SlideshowWrapper,
+  ArrowButton,
+  FullscreenOverlay,
+  FullscreenImage,
+  CloseButton,
+  FullscreenContent,
+} from "./styled";
 
 const ComingSoonProject = ({ title, imageURL, description, extraImageURL }) => {
   const images = [imageURL, extraImageURL].filter(Boolean);
@@ -12,13 +25,15 @@ const ComingSoonProject = ({ title, imageURL, description, extraImageURL }) => {
   const openFullscreen = () => setFullscreen(true);
   const closeFullscreen = () => setFullscreen(false);
 
-  const handlePrev = () => setCurrent((prev) => (prev === 0 ? images.length - 1 : prev - 1));
-  const handleNext = () => setCurrent((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+  const handlePrev = () =>
+    setCurrent((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+  const handleNext = () =>
+    setCurrent((prev) => (prev === images.length - 1 ? 0 : prev + 1));
 
   return (
     <Container>
       <Title>{title}</Title>
-      <ImagesWrapper style={{ position: 'relative' }}>
+      <ImagesWrapper style={{ position: "relative" }}>
         {images.length > 1 && (
           <ArrowButton onClick={handlePrev} aria-label="Previous image" $left>
             <MdArrowBack size={32} />
@@ -31,7 +46,7 @@ const ComingSoonProject = ({ title, imageURL, description, extraImageURL }) => {
               src={img}
               alt={title + " screenshot"}
               $visible={current === idx}
-              style={{ zIndex: current === idx ? 2 : 1, cursor: 'pointer' }}
+              style={{ zIndex: current === idx ? 2 : 1, cursor: "pointer" }}
               onClick={openFullscreen}
             />
           ))}
@@ -44,9 +59,13 @@ const ComingSoonProject = ({ title, imageURL, description, extraImageURL }) => {
       </ImagesWrapper>
       {fullscreen && (
         <FullscreenOverlay onClick={closeFullscreen}>
-          <FullscreenContent onClick={e => e.stopPropagation()}>
+          <FullscreenContent onClick={(e) => e.stopPropagation()}>
             {images.length > 1 && (
-              <ArrowButton onClick={handlePrev} aria-label="Previous image" $left>
+              <ArrowButton
+                onClick={handlePrev}
+                aria-label="Previous image"
+                $left
+              >
                 <MdArrowBack size={32} />
               </ArrowButton>
             )}
@@ -64,7 +83,10 @@ const ComingSoonProject = ({ title, imageURL, description, extraImageURL }) => {
                 <MdArrowForward size={32} />
               </ArrowButton>
             )}
-            <CloseButton onClick={closeFullscreen} aria-label="Close fullscreen">
+            <CloseButton
+              onClick={closeFullscreen}
+              aria-label="Close fullscreen"
+            >
               <MdClose size={32} />
             </CloseButton>
           </FullscreenContent>

@@ -1,5 +1,5 @@
+import { gradientShift, waveHand } from "common/animations";
 import styled from "styled-components";
-import { gradientShift, waveHand } from "../animations";
 
 const GradientHeading = styled.h1`
   font-size: clamp(2.5rem, 6vw, 4rem);

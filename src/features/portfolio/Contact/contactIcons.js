@@ -1,7 +1,7 @@
-import whatsAppIcon from "../../../images/whatsappIcon.png";
-import gitHubIcon from "../../../images/gitHubIcon.png";
-import linkedInIcon from "../../../images/linkedInIcon.png";
-import emailIcon from "../../../images/emailIcon.png";
+import emailIcon from "images/emailIcon.png";
+import gitHubIcon from "images/gitHubIcon.png";
+import linkedInIcon from "images/linkedInIcon.png";
+import whatsAppIcon from "images/whatsappIcon.png";
 
 export const icons = [
   {

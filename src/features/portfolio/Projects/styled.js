@@ -1,5 +1,6 @@
+import { fadeInUp, float, gradientShift, waveHand } from "common/animations";
 import styled from "styled-components";
-import { fadeInUp, float, gradientShift, waveHand } from "../../../common/animations";
+
 export const Wrapper = styled.section`
   padding: var(--spacing-3xl) 0;
   margin: var(--spacing-md) 0;

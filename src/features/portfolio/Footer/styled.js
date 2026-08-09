@@ -1,7 +1,12 @@
+import { fadeIn, gradientShift } from "common/animations";
 import styled from "styled-components";
-import { fadeIn, gradientShift } from "../../../common/animations";
+
 export const Wrapper = styled.footer`
-  background: linear-gradient(135deg, var(--color-surface), var(--color-background));
+  background: linear-gradient(
+    135deg,
+    var(--color-surface),
+    var(--color-background)
+  );
   border-top: 1px solid var(--color-border);
   margin-top: var(--spacing-3xl);
   padding: var(--spacing-sm) 0;
@@ -9,28 +14,37 @@ export const Wrapper = styled.footer`
   position: relative;
   overflow: hidden;
   animation: ${fadeIn} 0.8s ease-out;
-  
+
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     height: 2px;
-    background: linear-gradient(90deg, var(--color-primary), var(--color-accent), var(--color-primary));
+    background: linear-gradient(
+      90deg,
+      var(--color-primary),
+      var(--color-accent),
+      var(--color-primary)
+    );
     background-size: 200% 200%;
     animation: ${gradientShift} 3s ease-in-out infinite;
   }
-  
+
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 300px;
     height: 100px;
-    background: radial-gradient(ellipse, var(--color-primary) 0%, transparent 70%);
+    background: radial-gradient(
+      ellipse,
+      var(--color-primary) 0%,
+      transparent 70%
+    );
     opacity: 0.03;
     z-index: 0;
   }
@@ -44,14 +58,14 @@ export const TextContainer = styled.p`
   color: var(--color-text-secondary);
   position: relative;
   z-index: 1;
-  
+
   &::before {
-    content: '💻';
+    content: "💻";
     margin-right: var(--spacing-sm);
   }
-  
+
   &::after {
-    content: '🚀';
+    content: "🚀";
     margin-left: var(--spacing-sm);
   }
 
@@ -59,9 +73,8 @@ export const TextContainer = styled.p`
     font-size: 0.9rem;
     padding: var(--spacing-sm);
   }
-  
+
   @media (max-width: ${({ theme }) => theme.breakpoint.sm}) {
     font-size: 0.85rem;
   }
 `;
-

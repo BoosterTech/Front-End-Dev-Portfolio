@@ -1,11 +1,11 @@
+import { useEffect, useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setContactVisibility } from "slices/generalSlice";
+import { selectLanguage } from "slices/languageSlice";
+import { useTheme } from "styled-components";
+
 import { icons } from "./contactIcons";
 import { ContactIconStyled, IconsWrapper, Header, Wrapper } from "./styled";
-
-import { useDispatch, useSelector } from "react-redux";
-import { selectLanguage } from "../../../Redux/languageSlice";
-import { useTheme } from "styled-components";
-import { useEffect, useRef } from "react";
-import { setContactVisibility } from "../../../Redux/generalSlice";
 
 const Contact = ({ id }) => {
   const language = useSelector(selectLanguage);
@@ -36,7 +36,10 @@ const Contact = ({ id }) => {
     }
 
     const handleScroll = () => {
-      if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 2) {
+      if (
+        window.innerHeight + window.scrollY >=
+        document.body.offsetHeight - 2
+      ) {
         dispatch(setContactVisibility(true));
       }
     };
@@ -61,11 +64,11 @@ const Contact = ({ id }) => {
             href={icon.link}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label={`Contact via ${icon.name || 'social media'}`}
+            aria-label={`Contact via ${icon.name || "social media"}`}
           >
-            <ContactIconStyled 
-              src={icon.iconURL} 
-              alt={`${icon.name || 'Contact'} icon`}
+            <ContactIconStyled
+              src={icon.iconURL}
+              alt={`${icon.name || "Contact"} icon`}
               index={index}
             />
           </a>
@@ -76,4 +79,3 @@ const Contact = ({ id }) => {
 };
 
 export default Contact;
-

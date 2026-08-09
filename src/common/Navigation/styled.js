@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import { fadeIn, slideFromLeft } from "common/animations";
 import { Link } from "react-scroll";
-import { fadeIn, slideFromLeft } from "../animations";
+import styled from "styled-components";
 
 export const StyledList = styled.nav`
   width: 100vw;

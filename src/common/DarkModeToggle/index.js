@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
+import React, { useState, useEffect } from "react";
+import styled from "styled-components";
 
 const ToggleContainer = styled.div`
   display: flex;
@@ -11,12 +11,12 @@ const ToggleWrapper = styled.div`
   position: relative;
   width: 52px;
   height: 28px;
-  background: ${props => props.$isDark ? 'var(--color-primary)' : 'var(--color-secondary)'};
+  background: ${(props) => (props.$isDark ? "var(--color-primary)" : "var(--color-secondary)")};
   border-radius: 14px;
   cursor: pointer;
   transition: background var(--transition-normal);
   border: 2px solid var(--color-border);
-  
+
   &:hover {
     box-shadow: var(--shadow-md);
   }
@@ -31,7 +31,7 @@ const ToggleSlider = styled.div`
   background: white;
   border-radius: 50%;
   transition: transform var(--transition-normal);
-  transform: ${props => props.$isDark ? 'translateX(24px)' : 'translateX(0)'};
+  transform: ${(props) => (props.$isDark ? "translateX(24px)" : "translateX(0)")};
   box-shadow: var(--shadow-sm);
   display: flex;
   align-items: center;
@@ -49,7 +49,7 @@ const ToggleLabel = styled.span`
   font-weight: 500;
   color: var(--color-text-secondary);
   user-select: none;
-  
+
   @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
     display: none;
   }
@@ -60,25 +60,27 @@ const DarkModeToggle = () => {
 
   useEffect(() => {
     // Check for saved theme preference or default to light mode
-    const savedTheme = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    
-    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+    const savedTheme = localStorage.getItem("theme");
+    const prefersDark = window.matchMedia(
+      "(prefers-color-scheme: dark)"
+    ).matches;
+
+    if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
       setIsDark(true);
-      document.documentElement.setAttribute('data-theme', 'dark');
+      document.documentElement.setAttribute("data-theme", "dark");
     }
   }, []);
 
   const toggleTheme = () => {
     const newTheme = !isDark;
     setIsDark(newTheme);
-    
+
     if (newTheme) {
-      document.documentElement.setAttribute('data-theme', 'dark');
-      localStorage.setItem('theme', 'dark');
+      document.documentElement.setAttribute("data-theme", "dark");
+      localStorage.setItem("theme", "dark");
     } else {
-      document.documentElement.removeAttribute('data-theme');
-      localStorage.setItem('theme', 'light');
+      document.documentElement.removeAttribute("data-theme");
+      localStorage.setItem("theme", "light");
     }
   };
 
@@ -87,9 +89,7 @@ const DarkModeToggle = () => {
       <ToggleLabel>Light</ToggleLabel>
       <ToggleWrapper $isDark={isDark} onClick={toggleTheme}>
         <ToggleSlider $isDark={isDark}>
-          <ToggleIcon>
-            {isDark ? '🌙' : '☀️'}
-          </ToggleIcon>
+          <ToggleIcon>{isDark ? "🌙" : "☀️"}</ToggleIcon>
         </ToggleSlider>
       </ToggleWrapper>
       <ToggleLabel>Dark</ToggleLabel>
@@ -98,4 +98,3 @@ const DarkModeToggle = () => {
 };
 
 export default DarkModeToggle;
-

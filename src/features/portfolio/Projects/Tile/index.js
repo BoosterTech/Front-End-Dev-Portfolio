@@ -1,4 +1,3 @@
-import { useSelector } from "react-redux";
 import {
   LinkContainer,
   LinkTag,
@@ -8,9 +7,11 @@ import {
   ProjectLink,
   ProjectWrapper,
   AvailableTag,
-} from "../styled";
-import { selectLanguage } from "../../../../Redux/languageSlice";
+} from "features/portfolio/Projects/styled";
+import { useSelector } from "react-redux";
+import { selectLanguage } from "slices/languageSlice";
 
+/** @param {import("../../../../types").TileProps} props */
 const Tile = ({
   title,
   description,
@@ -30,21 +31,21 @@ const Tile = ({
   };
 
   return (
-    <ProjectWrapper $border={border} onClick={handleContainerClick} style={{ cursor: "pointer" }}>
+    <ProjectWrapper
+      $border={border}
+      onClick={handleContainerClick}
+      style={{ cursor: "pointer" }}
+    >
       {index % 2 === 0 ? (
         <>
-          <ProjectImage 
-            src={imageURL} 
-            alt={`${title[language]} project screenshot`} 
+          <ProjectImage
+            src={imageURL}
+            alt={`${title[language]} project screenshot`}
           />
           <ProjectDescription>
             <ProjectHeader>
               {title[language]}
-              {available && (
-                <AvailableTag>
-                  ({available})
-                </AvailableTag>
-              )}
+              {available && <AvailableTag>({available})</AvailableTag>}
             </ProjectHeader>
             <div
               dangerouslySetInnerHTML={{
@@ -52,10 +53,18 @@ const Tile = ({
               }}
             />
             <LinkContainer>
-              <ProjectLink href={GitHubPagesURL} target="_blank" rel="noopener noreferrer">
+              <ProjectLink
+                href={GitHubPagesURL}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <LinkTag>{GitHubPagesURLTag[language]}</LinkTag>
               </ProjectLink>
-              <ProjectLink href={GitHubRepoURL} target="_blank" rel="noopener noreferrer">
+              <ProjectLink
+                href={GitHubRepoURL}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <LinkTag>{GitHubRepoURLTag[language]}</LinkTag>
               </ProjectLink>
             </LinkContainer>
@@ -66,11 +75,7 @@ const Tile = ({
           <ProjectDescription>
             <ProjectHeader>
               {title[language]}
-              {available && (
-                <AvailableTag>
-                  ({available})
-                </AvailableTag>
-              )}
+              {available && <AvailableTag>({available})</AvailableTag>}
             </ProjectHeader>
             <div
               dangerouslySetInnerHTML={{
@@ -78,17 +83,25 @@ const Tile = ({
               }}
             />
             <LinkContainer>
-              <ProjectLink href={GitHubPagesURL} target="_blank" rel="noopener noreferrer">
+              <ProjectLink
+                href={GitHubPagesURL}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <LinkTag>{GitHubPagesURLTag[language]}</LinkTag>
               </ProjectLink>
-              <ProjectLink href={GitHubRepoURL} target="_blank" rel="noopener noreferrer">
+              <ProjectLink
+                href={GitHubRepoURL}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <LinkTag>{GitHubRepoURLTag[language]}</LinkTag>
               </ProjectLink>
             </LinkContainer>
           </ProjectDescription>
-          <ProjectImage 
-            src={imageURL} 
-            alt={`${title[language]} project screenshot`} 
+          <ProjectImage
+            src={imageURL}
+            alt={`${title[language]} project screenshot`}
           />
         </>
       )}
@@ -97,4 +110,3 @@ const Tile = ({
 };
 
 export default Tile;
-

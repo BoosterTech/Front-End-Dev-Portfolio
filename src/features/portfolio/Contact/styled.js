@@ -1,5 +1,6 @@
+import { fadeInUp, float, pulse } from "common/animations";
 import styled from "styled-components";
-import { fadeInUp, float, pulse } from "../../../common/animations";
+
 export const Wrapper = styled.section`
   padding: var(--spacing-3xl) 0;
   margin: var(--spacing-3xl) 0;
@@ -110,7 +111,9 @@ export const ContactIconStyled = styled.img`
     transform: translateY(-8px) scale(1.1);
     border-color: var(--color-primary);
     box-shadow: var(--shadow-xl);
-    animation: ${pulse} 1.5s infinite, ${float} 3s ease-in-out infinite;
+    animation:
+      ${pulse} 1.5s infinite,
+      ${float} 3s ease-in-out infinite;
     background: linear-gradient(
       135deg,
       var(--color-primary),

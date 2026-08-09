@@ -1,3 +1,9 @@
+import { skillsets, toLearn, skillDescriptions } from "content/skillsets";
+import { toLearnDescriptions } from "content/skillsets";
+import { useSelector } from "react-redux";
+import { selectLanguage } from "slices/languageSlice";
+import { useTheme } from "styled-components";
+
 import {
   SkillsetWrapper,
   ListContainer,
@@ -5,12 +11,8 @@ import {
   SkillsetHeader,
   Tooltip,
 } from "./styled";
-import { skillsets, toLearn, skillDescriptions } from "content/skillsets";
-import { toLearnDescriptions } from "content/skillsets";
-import { useTheme } from "styled-components";
-import { useSelector } from "react-redux";
-import { selectLanguage } from "../../../../Redux/languageSlice";
 
+/** @param {import("../../../../types").SkillsetListProps} props */
 export const SkillsetList = ({ skills, descriptions }) => {
   const language = useSelector(selectLanguage);
 

@@ -1,5 +1,5 @@
+import { fadeIn } from "common/animations";
 import styled from "styled-components";
-import { fadeIn } from "../../../../common/animations";
 
 export const FullscreenContent = styled.div`
   position: relative;
@@ -30,7 +30,9 @@ export const FullscreenImage = styled.img`
   border-radius: 1.5rem;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
   background: #fff;
-  transition: box-shadow 0.2s, opacity 0.5s ease;
+  transition:
+    box-shadow 0.2s,
+    opacity 0.5s ease;
   opacity: ${(props) => (props.$visible ? 1 : 0)};
   position: absolute;
   left: 50%;
@@ -81,7 +83,9 @@ export const ArrowButton = styled.button`
   cursor: pointer;
   z-index: 10;
   padding: 0;
-  transition: background 0.2s, color 0.2s;
+  transition:
+    background 0.2s,
+    color 0.2s;
   &:hover {
     background: var(--color-primary);
     color: #fff;
@@ -142,9 +146,9 @@ export const Image = styled.img`
   border-radius: 1rem;
   opacity: ${(props) => (props.$visible ? 1 : 0)};
   transition: opacity 0.5s ease;
-  position: absolute; 
+  position: absolute;
   left: 0;
-  top: 15%; 
+  top: 15%;
 `;
 
 export const SlideshowWrapper = styled.div`

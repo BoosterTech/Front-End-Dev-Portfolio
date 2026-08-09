@@ -1,7 +1,8 @@
 import { useSelector } from "react-redux";
-import { TextContainer, Wrapper } from "./styled";
-import { selectLanguage } from "../../../Redux/languageSlice";
+import { selectLanguage } from "slices/languageSlice";
 import { useTheme } from "styled-components";
+
+import { TextContainer, Wrapper } from "./styled";
 
 const Footer = () => {
   const language = useSelector(selectLanguage);
