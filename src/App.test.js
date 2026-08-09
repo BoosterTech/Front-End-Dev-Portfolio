@@ -1,9 +1,10 @@
-import React from "react";
 import { render, screen } from "@testing-library/react";
+import React from "react";
 import { Provider } from "react-redux";
 import { ThemeProvider } from "styled-components";
+
 import App from "./App";
-import store from "./Redux/store";
+import store from "./slices/store";
 import { themes } from "./themes";
 
 beforeEach(() => {
