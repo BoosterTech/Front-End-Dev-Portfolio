@@ -162,9 +162,9 @@ When adding or changing anything, prefer the following order:
 - Removed the unused `react-router` dependency from `package.json`.
 - Moved `skillsets.js` data from `src/features/portfolio/Home/SkillsetContainer` to `src/content/skillsets.js`.
 - Moved `projects.js` data from `src/features/portfolio/Projects` to `src/content/projects.js` after adding `jsconfig.json` with `baseUrl: "src"`.
-- Added `.github/workflows/ci.yml` to run `npm ci` and `npm run build` on every push/PR.
+- Updated `.github/workflows/ci.yml` to run `npm ci`, `npm run size-check`, `npm run test`, and `npm run build` on every push/PR.
 - Added `src/App.test.js` as a smoke test that renders `<App />` and checks for the welcome label.
-- Added `scripts/check-file-size.js` and `npm run size-check` to warn on source files over 300 lines.
+- Updated `scripts/check-file-size.js` and `npm run size-check` to fail on source files over 300 lines; the script exits with code 1 when offenders are found.
 - Guarded `IntersectionObserver` usage in `src/features/portfolio/Contact/index.js` so the component does not crash in test/SSR environments where the API is missing.
 - Moved the `FrontEndSpinner` SVG from `src/features/portfolio/About/SpinnerSvg.js` to `public/spinner.svg` and imported it as a `PUBLIC_URL` asset.
 - Split `src/features/portfolio/Home/styled.js` into `homeStyles.js` and `heroStyles.js` to keep each file under 300 lines.
@@ -181,3 +181,21 @@ When adding or changing anything, prefer the following order:
 - Fixed `public/index.html` metadata and added Open Graph tags.
 - Created `src/common/RichText` to centralize raw HTML rendering.
 - `npm run build` passes cleanly after all changes.
+- The size-check currently fails on four existing files (`projects.js`, `skillsets.js`, `OrbitSection.js`, and `ToolsShowcase/styled.js`), which are tracked for splitting or explicit exclusion in the current 30-day plan.
+- Added `.eslintrc.js` (extending `react-app` with `import/order` as error and `import/no-relative-parent-imports` as warn until Week 2) and `.prettierrc`.
+- Added `npm run lint` and `npm run format:check` to the CI pipeline. `npm run lint` now passes with 44 warnings for `import/no-relative-parent-imports`; `npm run format:check` passes after formatting.
+- Added `scripts/bundle-size.js` and `npm run bundle:check` to the CI pipeline. The main JS chunk is currently `572.92 KB` with a `600 KB` budget.
+- Added `src/types.js` JSDoc type declarations and annotated high-touch content shapes (`Project`, `SkillSet`, `SkillDescriptions`, `TranslationSet`, `LanguageState`, `GeneralState`) and component props (`Tile`, `SkillsetList`, `About`).
+- Normalized all `../` imports to `jsconfig` base-URL aliases (`common/...`, `content/...`, `features/portfolio/...`) and promoted `import/no-relative-parent-imports` to `error`.
+- Renamed `src/Redux` to `src/slices` to avoid the `redux` package name collision and updated all `Redux/...` imports to `slices/...`.
+- `npm run lint`, `npm run format:check`, and `npm run build` all pass with no warnings or errors.
+- `Navigation/index.js` no longer imports `themes.js` for runtime breakpoints; it reads `--breakpoint-xl2` from CSS custom properties.
+- Centered the hero section on the screen by adjusting `HomeWrapper` padding and adding `align-content: center` plus `min-height: calc(100vh - var(--nav-height))` to `ContentImageContainer`.
+- Added `src/content/translations.test.js` to assert that `translations.js`, `skillsets.js` exports, and `projects.js` all use `English`, `Polish`, and `Spanish` consistently.
+- Decided to keep `src/content/projects.js` and `src/content/skillsets.js` as JS data modules and exclude them from the 300-line size check; content parity is enforced by the test suite instead.
+- Verified `framer-motion` is still used by `ToolsShowcase/styled.js` (via `motion.*` styled components) and kept it in `package.json`.
+- Added component regression tests for `Navigation`, `LanguageSwitch`, `Tile`, and `Contact`, plus `src/test-utils.js` and a `matchMedia` mock in `src/setupTests.js`.
+- `README.md` and `plan/ai-readiness-30-day-plan.md` updated to reflect the completed 30-day AI Readiness & Proportionality work.
+- Split `ToolsShowcase/styled.js` into `showcaseLayout.js`, `orbitDecorations.js`, and `exploreLayout.js`, and split `OrbitSection.js` into `OrbitSection.styles.js`, `useWindowWidth.js`, and `getOrbitDimensions.js` so all files are under 300 lines.
+- Simplified `OrbitSection` by removing the `BreathingRing` pulse and reducing orbit dimensions so the `MY TECHNOLOGY STACK` text fits without cropping; kept `LinesSvg` connecting lines and removed the `ToolsShowcaseWrapper` top/bottom section borders.
+- Redesigned the `About` section with a two-column layout: a `CodeTerminal` component showing the "From Embedded to Full-Stack" class on the left and a `MY JOURNEY` content panel with a gradient heading, journey paragraph, and four feature cards on the right.
