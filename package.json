@@ -26,7 +26,10 @@
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "size-check": "node scripts/check-file-size.js"
+    "size-check": "node scripts/check-file-size.js",
+    "lint": "eslint src",
+    "format:check": "npx --yes prettier --check src",
+    "bundle:check": "node scripts/bundle-size.js"
   },
   "eslintConfig": {
     "extends": [
