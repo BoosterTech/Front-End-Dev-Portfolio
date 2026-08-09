@@ -1,6 +1,13 @@
-import { useSelector } from "react-redux";
-import { selectLanguage } from "../../../../Redux/languageSlice";
-import { toLearn, toLearnDescriptions } from "../../../../content/skillsets";
+import { toLearn, toLearnDescriptions } from "content/skillsets";
+import nextIcon from "images/nextIcon.png";
+import reactIcon from "images/reactIcon.png";
+import reactQueryIcon from "images/reactQueryIcon.png";
+import reduxIcon from "images/reduxIcon.png";
+import reduxToolkitIcon from "images/reduxToolkitIcon.jpg";
+import styledComponentsIcon from "images/styledComponentsIcon.jpg";
+import supabaseIcon from "images/supabaseIcon.png";
+import typeScriptIcon from "images/typeScriptIcon.png";
+import vercelIcon from "images/vercelIcon.png";
 import {
   FaBolt,
   FaExpandArrowsAlt,
@@ -12,10 +19,12 @@ import {
   FaEllipsisH,
 } from "react-icons/fa";
 import { SiStripe, SiOpenai, SiFramer } from "react-icons/si";
+import { useSelector } from "react-redux";
+import { selectLanguage } from "slices/languageSlice";
 
+import { OrbitSection } from "./OrbitSection";
 import {
   ToolsShowcaseWrapper,
-  StarField,
   ShowcaseGrid,
   ShowcaseContent,
   SectionLabel,
@@ -45,18 +54,6 @@ import {
   MoreItem,
 } from "./styled";
 
-import { OrbitSection } from "./OrbitSection";
-
-import reactIcon from "../../../../images/reactIcon.png";
-import nextIcon from "../../../../images/nextIcon.png";
-import styledComponentsIcon from "../../../../images/styledComponentsIcon.jpg";
-import reduxIcon from "../../../../images/reduxIcon.png";
-import reduxToolkitIcon from "../../../../images/reduxToolkitIcon.jpg";
-import typeScriptIcon from "../../../../images/typeScriptIcon.png";
-import supabaseIcon from "../../../../images/supabaseIcon.png";
-import reactQueryIcon from "../../../../images/reactQueryIcon.png";
-import vercelIcon from "../../../../images/vercelIcon.png";
-
 const orbitTechnologies = [
   { id: "react", name: "React", icon: reactIcon },
   { id: "typescript", name: "TypeScript", icon: typeScriptIcon },
@@ -69,19 +66,47 @@ const orbitTechnologies = [
 ];
 
 const exploreItems = [
-  { name: "Artificial Intelligence (AI)", icon: <FaBrain />, description: "Building AI-powered features" },
+  {
+    name: "Artificial Intelligence (AI)",
+    icon: <FaBrain />,
+    description: "Building AI-powered features",
+  },
   { name: "Stripe", icon: <SiStripe />, description: "Payment infrastructure" },
-  { name: "AI-Directed Engineering", icon: <FaRobot />, description: "AI-assisted development" },
+  {
+    name: "AI-Directed Engineering",
+    icon: <FaRobot />,
+    description: "AI-assisted development",
+  },
   { name: "OpenAI API", icon: <SiOpenai />, description: "LLM integrations" },
-  { name: "Framer Motion", icon: <SiFramer />, description: "Production-ready animations" },
-  { name: "SaaS Architecture", icon: <FaSitemap />, description: "Scalable SaaS patterns" },
+  {
+    name: "Framer Motion",
+    icon: <SiFramer />,
+    description: "Production-ready animations",
+  },
+  {
+    name: "SaaS Architecture",
+    icon: <FaSitemap />,
+    description: "Scalable SaaS patterns",
+  },
 ];
 
 const features = [
   { icon: <FaBolt />, title: "Performance Optimized", subtitle: "Fast loads" },
-  { icon: <FaExpandArrowsAlt />, title: "Scalable Architecture", subtitle: "Grows cleanly" },
-  { icon: <FaLaptopCode />, title: "Developer Experience", subtitle: "Clean APIs" },
-  { icon: <FaPaintBrush />, title: "Modern UI/UX", subtitle: "Polished interfaces" },
+  {
+    icon: <FaExpandArrowsAlt />,
+    title: "Scalable Architecture",
+    subtitle: "Grows cleanly",
+  },
+  {
+    icon: <FaLaptopCode />,
+    title: "Developer Experience",
+    subtitle: "Clean APIs",
+  },
+  {
+    icon: <FaPaintBrush />,
+    title: "Modern UI/UX",
+    subtitle: "Polished interfaces",
+  },
 ];
 
 const container = {
@@ -98,13 +123,6 @@ const item = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
 };
 
-const stars = Array.from({ length: 60 }).map(() => ({
-  left: `${Math.random() * 100}%`,
-  top: `${Math.random() * 100}%`,
-  delay: `${Math.random() * 3}s`,
-  size: Math.random() > 0.7 ? "3px" : "2px",
-}));
-
 export const ToolsShowcase = () => {
   const language = useSelector(selectLanguage);
   const moreItems = toLearn[language] || toLearn.English;
@@ -116,26 +134,20 @@ export const ToolsShowcase = () => {
       viewport={{ once: true, amount: 0.2 }}
       variants={container}
     >
-      <StarField>
-        {stars.map((star, i) => (
-          <span
-            key={i}
-            style={{
-              left: star.left,
-              top: star.top,
-              animationDelay: star.delay,
-              width: star.size,
-              height: star.size,
-            }}
-          />
-        ))}
-      </StarField>
-
       <ShowcaseGrid>
+        <OrbitSectionWrapper>
+          <OrbitSection
+            technologies={orbitTechnologies}
+            centerIcon={nextIcon}
+            centerLabel="Next.js"
+          />
+        </OrbitSectionWrapper>
         <ShowcaseContent>
           <SectionLabel variants={item}>MY TECHNOLOGY STACK</SectionLabel>
           <SectionTitle variants={item}>
-            Built with the <GradientWord>Best Tools</GradientWord>
+            Build with the
+            <br />
+            <GradientWord>Best Tools</GradientWord>
           </SectionTitle>
           <SectionDescription variants={item}>
             I craft fast, scalable, and modern web applications using a powerful
@@ -159,14 +171,6 @@ export const ToolsShowcase = () => {
             ))}
           </FeatureGrid>
         </ShowcaseContent>
-
-        <OrbitSectionWrapper>
-          <OrbitSection
-            technologies={orbitTechnologies}
-            centerIcon={nextIcon}
-            centerLabel="Next.js"
-          />
-        </OrbitSectionWrapper>
       </ShowcaseGrid>
 
       <ExploreSection variants={item}>
@@ -193,7 +197,9 @@ export const ToolsShowcase = () => {
                 {item.icon}
                 {item.name}
               </ExploreChipHeader>
-              <ExploreChipDescription>{item.description}</ExploreChipDescription>
+              <ExploreChipDescription>
+                {item.description}
+              </ExploreChipDescription>
             </ExploreChip>
           ))}
           <MoreChip
@@ -214,9 +220,7 @@ export const ToolsShowcase = () => {
                   <MoreItem key={skill}>
                     <strong>{skill}</strong>
                     {toLearnDescriptions[language]?.[skill] && (
-                      <div>
-                        {toLearnDescriptions[language][skill]}
-                      </div>
+                      <div>{toLearnDescriptions[language][skill]}</div>
                     )}
                   </MoreItem>
                 ))}
