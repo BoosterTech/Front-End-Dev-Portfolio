@@ -2,6 +2,7 @@ import { createSlice, createSelector } from "@reduxjs/toolkit";
 
 const languageSlice = createSlice({
   name: "language",
+  /** @type {import("../types").LanguageState} */
   initialState: {
     language: "English",
   },

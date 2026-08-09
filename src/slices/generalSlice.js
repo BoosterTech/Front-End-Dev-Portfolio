@@ -2,6 +2,7 @@ import { createSlice, createSelector } from "@reduxjs/toolkit";
 
 const generalSlice = createSlice({
   name: "general",
+  /** @type {import("../types").GeneralState} */
   initialState: {
     isContactVisible: false,
   },
