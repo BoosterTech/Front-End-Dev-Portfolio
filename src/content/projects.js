@@ -1,19 +1,21 @@
-import movieBrowserImage from "images/movieBrowserProject.png";
-import tasksListImage from "images/tasksListProject.png";
 import currencyConverterImage from "images/currencyConverterProject.png";
-import plasmaLibraryImage from "images/plasmaLibraryProject.png";
-import reactQuizImage from "images/react-quiz-project.png";
 import eatNsplitmage from "images/eat-n-split-project.png";
 import fastReactPizzaImage from "images/fast-react-pizza.png";
+import movieBrowserImage from "images/movieBrowserProject.png";
 import paradiselodgeImage from "images/paradiseLodge.png";
+import plasmaLibraryImage from "images/plasmaLibraryProject.png";
+import reactQuizImage from "images/react-quiz-project.png";
+import tasksListImage from "images/tasksListProject.png";
 import wtmMusicAIImage from "images/wtmMusicAI.png";
 
+/** @type {import("../types").Project[]} */
 const projects = [
   {
     title: {
       English: "🎵 WTM AI Music Generation Website",
       Polish: "🎵 WTM AI Music Generation - Strona Generowania Muzyki AI",
-      Spanish: "🎵 WTM AI Music Generation - Sitio Web de Generación de Música con IA",
+      Spanish:
+        "🎵 WTM AI Music Generation - Sitio Web de Generación de Música con IA",
     },
     available: "web",
     description: {

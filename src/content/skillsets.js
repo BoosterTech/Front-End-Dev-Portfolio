@@ -337,6 +337,7 @@
 //   Spanish: ["Pruebas en React", "Inteligencia Artificial (IA)"],
 // };
 
+/** @type {import("../types").SkillDescriptions} */
 export const toLearnDescriptions = {
   English: {
     "React Testing":
@@ -372,6 +373,7 @@ export const toLearnDescriptions = {
   },
 };
 
+/** @type {import("../types").SkillDescriptions} */
 export const skillDescriptions = {
   English: {
     "HTML - Semantic & accessible":
@@ -696,6 +698,7 @@ export const skillDescriptions = {
       "Uso de IA como socio de ingeniería para arquitectura, desarrollo y mejora del flujo de trabajo.",
   },
 };
+/** @type {import("../types").SkillSet} */
 export const skillsets = {
   English: [
     "HTML - Semantic & accessible",
@@ -838,6 +841,7 @@ export const skillsets = {
     "AI-Directed Engineering",
   ],
 };
+/** @type {import("../types").SkillSet} */
 export const toLearn = {
   English: [
     "React Testing",
