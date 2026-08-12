@@ -29,7 +29,18 @@ Check out my portfolio: [Derek.dev](https://boostertech.github.io/Front-End-Dev-
 - **Animations**: framer-motion
 - **Deployment**: gh-pages
 - **Quality & CI**: ESLint, Prettier, Jest, GitHub Actions
-- **Build-time Guardrails**: `size-check`, `format:check`, `lint`, `bundle:check`
+- **Build-time Guardrails**: `size-check`, `format:check`, `lint`, `bundle:check`, `depcheck`, `test:coverage`, `lighthouse:check`
+
+---
+
+## 🏗️ Architecture & Maintenance
+
+- Decisions are recorded in `plan/architecture-playbook.md`.
+- Active cleanup work is tracked in `plan/30-day-cleanup-plan.md`.
+- Recent boundary cleanup: `StarField` and `Main` are now standalone `src/common/` components, `src/themes.js` contains only breakpoints, and components read localized copy through `src/common/useContent.js`.
+- Shared primitives: `src/common/Card` provides `$glass`, `$bordered`, and `$hoverable` variants for `About`, `Projects`, and `ToolsShowcase`.
+- Content split: `src/content/skillsets.js` is now `src/content/skillsets/{en,pl,es}.js` with an `index.js` aggregator; `projects.js` remains a single module under the size-check exclusion.
+- Quality gates: `npm run test:coverage` enforces a 50% Jest coverage threshold, and `npm run lighthouse:check` audits the build for LCP <= 2.5 s and CLS <= 0.1 (currently non-blocking in CI).
 
 ---
 
