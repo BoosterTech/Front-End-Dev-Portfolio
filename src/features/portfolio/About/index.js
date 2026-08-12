@@ -1,4 +1,5 @@
 import GradientHeading from "common/GradientHeading";
+import useContent from "common/useContent";
 import {
   FaBookOpen,
   FaLayerGroup,
@@ -6,9 +7,6 @@ import {
   FaRobot,
   FaStar,
 } from "react-icons/fa";
-import { useSelector } from "react-redux";
-import { selectLanguage } from "slices/languageSlice";
-import { useTheme } from "styled-components";
 
 import CodeTerminal from "./CodeTerminal";
 import {
@@ -28,9 +26,7 @@ const featureIcons = [FaLayerGroup, FaRobot, FaLightbulb, FaBookOpen];
 
 /** @param {{ id: string }} props */
 const About = ({ id }) => {
-  const language = useSelector(selectLanguage);
-  const theme = useTheme();
-  const about = theme[language]?.about;
+  const { about } = useContent();
 
   return (
     <Wrapper id={id}>

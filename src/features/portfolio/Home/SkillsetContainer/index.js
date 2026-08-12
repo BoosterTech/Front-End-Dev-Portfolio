@@ -1,8 +1,8 @@
+import useContent from "common/useContent";
 import { skillsets, toLearn, skillDescriptions } from "content/skillsets";
 import { toLearnDescriptions } from "content/skillsets";
 import { useSelector } from "react-redux";
 import { selectLanguage } from "slices/languageSlice";
-import { useTheme } from "styled-components";
 
 import {
   SkillsetWrapper,
@@ -18,7 +18,7 @@ export const SkillsetList = ({ skills, descriptions }) => {
 
   return (
     <ListContainer>
-      {skills[language].map((skill, index) => {
+      {skills[language]?.map((skill, index) => {
         const hasDescription =
           descriptions &&
           descriptions[language] &&
@@ -61,16 +61,13 @@ export const SkillsetList = ({ skills, descriptions }) => {
 };
 
 export const SkillsetContainer = () => {
-  const theme = useTheme();
-  const language = useSelector(selectLanguage);
+  const { home } = useContent();
 
   return (
     <SkillsetWrapper>
-      <SkillsetHeader>{theme[language].home.skillsetHeader} 🛠️</SkillsetHeader>
+      <SkillsetHeader>{home.skillsetHeader} 🛠️</SkillsetHeader>
       <SkillsetList skills={skillsets} descriptions={skillDescriptions} />
-      <SkillsetHeader>
-        {theme[language].home.learnNextHeader} 🚀{" "}
-      </SkillsetHeader>
+      <SkillsetHeader>{home.learnNextHeader} 🚀 </SkillsetHeader>
       <SkillsetList skills={toLearn} descriptions={toLearnDescriptions} />
     </SkillsetWrapper>
   );

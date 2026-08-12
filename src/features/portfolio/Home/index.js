@@ -1,10 +1,9 @@
 import { menuItems } from "common/Navigation/menuItems";
+import useContent from "common/useContent";
 import profileImage from "images/profileImage.png";
-import React from "react";
 import { FaArrowRight, FaDownload, FaStar } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { selectLanguage } from "slices/languageSlice";
-import { useTheme } from "styled-components";
 
 import {
   ContentImageContainer,
@@ -25,14 +24,14 @@ import {
 import { ToolsShowcase } from "./ToolsShowcase";
 
 const Home = ({ id }) => {
-  const theme = useTheme();
+  const { home } = useContent();
   const language = useSelector(selectLanguage);
 
-  const headerWords = theme[language].home.contentHeader.split(" ");
+  const headerWords = home.contentHeader.split(" ");
   const titleFirst = headerWords.slice(0, -1).join(" ");
   const titleLast = headerWords[headerWords.length - 1];
-  const location = theme[language].home.location;
-  const paragraphParts = theme[language].home.headerParagraph.split(location);
+  const location = home.location;
+  const paragraphParts = home.headerParagraph.split(location);
   const projectsItem = menuItems[language][2];
 
   return (
@@ -41,14 +40,14 @@ const Home = ({ id }) => {
         <ContentContainer>
           <WelcomeLabel>
             <FaStar />
-            {theme[language].home.welcomeLabel}
+            {home.welcomeLabel}
           </WelcomeLabel>
           <HeroTitle>
             {titleFirst}
             <GradientText>{titleLast}</GradientText>
           </HeroTitle>
           <TechStackText>
-            {theme[language].home.contentHeaderTechStack}{" "}
+            {home.contentHeaderTechStack}{" "}
             {/* <HeaderImage src={wavingHandImage} alt="Waving hand emoji" /> */}
           </TechStackText>
 
@@ -65,15 +64,15 @@ const Home = ({ id }) => {
               offset={projectsItem.offset}
               duration={700}
             >
-              {theme[language].home.viewMyWork}
+              {home.viewMyWork}
               <FaArrowRight />
             </ViewMyWorkButton>
             <DownloadCVButton
-              href={theme[language].home.cvUrl}
+              href={home.cvUrl}
               target="_blank"
               rel="noopener noreferrer"
             >
-              {theme[language].home.downloadCV}
+              {home.downloadCV}
               <FaDownload />
             </DownloadCVButton>
           </ButtonsContainer>

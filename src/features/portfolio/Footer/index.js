@@ -1,16 +1,13 @@
-import { useSelector } from "react-redux";
-import { selectLanguage } from "slices/languageSlice";
-import { useTheme } from "styled-components";
+import useContent from "common/useContent";
 
 import { TextContainer, Wrapper } from "./styled";
 
 const Footer = () => {
-  const language = useSelector(selectLanguage);
-  const theme = useTheme();
+  const { footer } = useContent();
 
   return (
     <Wrapper id="contact">
-      <TextContainer>{theme[language].footer.footerParagraph}</TextContainer>
+      <TextContainer>{footer.footerParagraph}</TextContainer>
     </Wrapper>
   );
 };

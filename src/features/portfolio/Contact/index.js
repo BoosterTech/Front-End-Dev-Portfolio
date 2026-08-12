@@ -1,15 +1,13 @@
+import useContent from "common/useContent";
 import { useEffect, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setContactVisibility } from "slices/generalSlice";
-import { selectLanguage } from "slices/languageSlice";
-import { useTheme } from "styled-components";
 
 import { icons } from "./contactIcons";
 import { ContactIconStyled, IconsWrapper, Header, Wrapper } from "./styled";
 
 const Contact = ({ id }) => {
-  const language = useSelector(selectLanguage);
-  const theme = useTheme();
+  const { contact } = useContent();
   const contactRef = useRef("");
 
   const dispatch = useDispatch();
@@ -55,7 +53,7 @@ const Contact = ({ id }) => {
 
   return (
     <Wrapper id={id} ref={contactRef}>
-      <Header>{theme[language].contact.contactParagraph}</Header>
+      <Header>{contact.contactParagraph}</Header>
       <IconsWrapper>
         {icons.map((icon, index) => (
           <a

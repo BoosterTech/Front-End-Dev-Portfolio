@@ -1,3 +1,4 @@
+import Card from "common/Card";
 import { motion } from "framer-motion";
 import styled from "styled-components";
 
@@ -78,23 +79,12 @@ export const FeatureGrid = styled.div`
   }
 `;
 
-export const FeatureCard = styled(motion.div)`
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  padding: var(--spacing-md);
-  display: flex;
+export const FeatureCard = styled(Card).attrs({
+  $glass: true,
+  $hoverable: true,
+  as: motion.div,
+})`
   align-items: center;
-  gap: var(--spacing-sm);
-  backdrop-filter: blur(8px);
-  transition:
-    border-color var(--transition-normal),
-    background var(--transition-normal);
-
-  &:hover {
-    background: rgba(255, 255, 255, 0.06);
-    border-color: var(--color-primary);
-  }
 `;
 
 export const FeatureIcon = styled.div`

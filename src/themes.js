@@ -1,5 +1,3 @@
-import { translations } from "./content/translations";
-
 export const themes = {
   breakpoint: {
     xxs: "280px", // Extra small devices (phones)
@@ -13,6 +11,4 @@ export const themes = {
     xxxl: "1800px", // Extra Large desktops
     xxxxl: "1920px", // Ultra large desktops
   },
-
-  ...translations,
 };

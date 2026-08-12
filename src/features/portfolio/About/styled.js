@@ -1,3 +1,4 @@
+import Card from "common/Card";
 import styled from "styled-components";
 
 export const Wrapper = styled.article`
@@ -75,21 +76,10 @@ export const FeaturesGrid = styled.div`
   }
 `;
 
-export const FeatureCard = styled.div`
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  padding: var(--spacing-md);
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-sm);
-  backdrop-filter: blur(8px);
-  transition: border-color 0.3s ease;
-
-  &:hover {
-    border-color: rgba(40, 142, 221, 0.5);
-  }
-
+export const FeatureCard = styled(Card).attrs({
+  $glass: true,
+  $hoverable: true,
+})`
   svg {
     width: 24px;
     height: 24px;
