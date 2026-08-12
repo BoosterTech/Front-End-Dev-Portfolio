@@ -1,4 +1,5 @@
 import { fadeInUp, float, gradientShift, waveHand } from "common/animations";
+import Card from "common/Card";
 import styled from "styled-components";
 
 export const Wrapper = styled.section`
@@ -66,23 +67,21 @@ export const Header = styled.h2`
 `;
 
 export const ProjectsWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-3xl);
-
-  @media (max-width: ${({ theme }) => theme.breakpoint.xl}) {
-    gap: var(--spacing-2xl);
-  }
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: var(--radius-xl);
 `;
 
-export const ProjectWrapper = styled.div`
+export const ProjectWrapper = styled(Card)`
   display: grid;
   grid-template-columns: auto 1fr;
   gap: var(--spacing-3xl);
   align-items: center;
   padding: var(--spacing-xl);
   background: var(--color-background);
-  border-radius: var(--radius-lg);
   border: 1px solid var(--color-border);
   box-shadow: var(--shadow-md);
   transition: all var(--transition-normal);
@@ -281,4 +280,92 @@ export const ProjectLink = styled.a`
 
 export const LinkTag = styled.span`
   position: relative;
+`;
+
+export const ProjectsTrack = styled.div`
+  --card-width: 70%;
+  --card-gap: 2%;
+
+  display: flex;
+  align-items: center;
+  gap: var(--card-gap);
+  width: 100%;
+  padding: var(--spacing-md) 0;
+  transform: translateX(
+    calc(
+      -1 * var(--active-index) * (var(--card-width) + var(--card-gap)) +
+        (100% - var(--card-width)) / 2
+    )
+  );
+  transition: transform 0.5s ease;
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
+    --card-width: 86%;
+    --card-gap: 3%;
+  }
+`;
+
+export const CarouselButton = styled.button`
+  position: absolute;
+  top: 50%;
+  ${({ $left }) => ($left ? "left: var(--spacing-md)" : "right: var(--spacing-md)")};
+  transform: translateY(-50%);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border);
+  background: rgba(15, 23, 42, 0.7);
+  color: #ffffff;
+  backdrop-filter: blur(8px);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  box-shadow: var(--shadow-lg);
+
+  &:hover {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+  }
+
+  svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
+    width: 36px;
+    height: 36px;
+
+    svg {
+      width: 18px;
+      height: 18px;
+    }
+  }
+`;
+
+export const NavDots = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-xl);
+`;
+
+export const NavDot = styled.button`
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  background: ${({ $active }) =>
+    $active ? "var(--color-primary)" : "var(--color-border)"};
+  transition: all var(--transition-fast);
+
+  &:hover {
+    background: ${({ $active }) =>
+      $active ? "var(--color-primary)" : "var(--color-secondary)"};
+  }
 `;

@@ -33,6 +33,7 @@ const projects = [
               <p>Perfecta para músicos, creadores y entusiastas, WTM AI Music Generation convierte tus ideas en música con solo unos clics.</p>`,
     },
     imageURL: `${wtmMusicAIImage}`,
+    technologies: ["React", "Redux", "Styled Components"],
     GitHubPagesURLTag: {
       English: "Go to the Website",
       Polish: "Przejdź do Strony",
@@ -72,6 +73,7 @@ const projects = [
     },
 
     imageURL: `${paradiselodgeImage}`,
+    technologies: ["React", "Next.js", "TypeScript", "Supabase"],
     GitHubPagesURLTag: {
       English: "Go to the Website",
       Polish: "Przejdź do Strony",
@@ -115,6 +117,7 @@ const projects = [
   `,
     },
     imageURL: `${movieBrowserImage}`,
+    technologies: ["React", "Redux", "Axios", "Styled Components"],
     GitHubPagesURLTag: {
       English: "Go to the Website",
       Polish: "Przejdź do Strony",
@@ -155,6 +158,7 @@ const projects = [
   `,
     },
     imageURL: `${tasksListImage}`,
+    technologies: ["React", "Redux", "LocalStorage"],
     GitHubPagesURLTag: {
       English: "Go to the Website",
       Polish: "Przejdź do Strony",
@@ -199,6 +203,7 @@ const projects = [
       `,
     },
     imageURL: `${currencyConverterImage}`,
+    technologies: ["React", "Axios", "Styled Components"],
     GitHubPagesURLTag: {
       English: "Go to the Website",
       Polish: "Przejdź do Strony",
@@ -235,6 +240,7 @@ const projects = [
     },
     available: "web & mob",
     imageURL: `${reactQuizImage}`,
+    technologies: ["React", "useReducer", "Styled Components"],
     GitHubPagesURLTag: {
       English: "Go to the Website",
       Polish: "Przejdź do Strony",
@@ -286,6 +292,7 @@ const projects = [
     },
     available: "web & mob",
     imageURL: `${plasmaLibraryImage}`,
+    technologies: ["React", "Redux", "Styled Components"],
     GitHubPagesURLTag: {
       English: "Go to the Website",
       Polish: "Przejdź do Strony",
@@ -323,6 +330,7 @@ const projects = [
     },
     available: "web",
     imageURL: `${eatNsplitmage}`,
+    technologies: ["React", "Styled Components"],
     GitHubPagesURLTag: {
       English: "Go to the Website",
       Polish: "Przejdź do Strony",
@@ -360,6 +368,7 @@ const projects = [
     },
     available: "web & mob",
     imageURL: `${fastReactPizzaImage}`,
+    technologies: ["React", "Redux Toolkit", "Tailwind CSS"],
     GitHubPagesURLTag: {
       English: "Go to the Website",
       Polish: "Przejdź do Strony",

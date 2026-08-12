@@ -34,6 +34,7 @@
  * @property {boolean} [border]
  * @property {string} [variant]
  * @property {string} [available]
+ * @property {string[]} [technologies]
  */
 
 /**
