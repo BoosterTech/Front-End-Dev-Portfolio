@@ -20,6 +20,8 @@ jobs:
 
       - run: npm ci
 
+      - run: npx --yes depcheck
+
       - run: npm run size-check
 
       - run: npm run test
@@ -31,3 +33,6 @@ jobs:
       - run: npm run build
 
       - run: npm run bundle:check
+
+      - run: npm run lighthouse:check
+        continue-on-error: true

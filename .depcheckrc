@@ -1,0 +1,14 @@
+{
+  "ignores": [
+    "common",
+    "content",
+    "features",
+    "images",
+    "slices",
+    "test-utils",
+    "themes",
+    "eslint-config-react-app",
+    "@babel/plugin-proposal-private-property-in-object",
+    "@testing-library/user-event"
+  ]
+}

@@ -23,19 +23,31 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "test:coverage": "react-scripts test --coverage --watchAll=false",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "size-check": "node scripts/check-file-size.js",
     "lint": "eslint src",
     "format:check": "npx --yes prettier --check src",
-    "bundle:check": "node scripts/bundle-size.js"
+    "bundle:check": "node scripts/bundle-size.js",
+    "lighthouse:check": "npx --yes cross-env PUBLIC_URL=/ npm run build && npx --yes @lhci/cli autorun"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
       "react-app/jest"
     ]
+  },
+  "jest": {
+    "coverageThreshold": {
+      "global": {
+        "branches": 50,
+        "functions": 50,
+        "lines": 50,
+        "statements": 50
+      }
+    }
   },
   "browserslist": {
     "production": [

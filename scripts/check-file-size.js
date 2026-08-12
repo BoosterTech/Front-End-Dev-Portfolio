@@ -8,8 +8,11 @@ const LINE_LIMIT = 300;
 // instead of the 300-line rule because they are data, not logic.
 const EXCLUDED_FILES = new Set([
   path.join("src", "content", "projects.js"),
-  path.join("src", "content", "skillsets.js"),
 ]);
+
+// projects.js is kept as a single module because each project is a structured
+// object with per-language fields; splitting by language would force heavy
+// duplication and re-composition. Re-evaluate if it grows past 450 lines.
 
 function getFiles(dir, files = []) {
   const items = fs.readdirSync(dir, { withFileTypes: true });

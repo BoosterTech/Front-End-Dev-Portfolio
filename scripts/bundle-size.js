@@ -1,9 +1,10 @@
 const fs = require("fs");
 const path = require("path");
+const zlib = require("zlib");
 
 const BUILD_DIR = path.join(__dirname, "..", "build");
 const STATIC_DIR = path.join(BUILD_DIR, "static");
-const MAX_SIZE = Number(process.env.BUNDLE_SIZE_LIMIT) || 600 * 1024;
+const MAX_SIZE = Number(process.env.BUNDLE_SIZE_LIMIT) || 350 * 1024;
 
 function getFiles(dir, files = []) {
   if (!fs.existsSync(dir)) return files;
@@ -31,17 +32,17 @@ function main() {
   let failed = false;
 
   for (const file of files) {
-    const size = fs.statSync(file).size;
+    const size = zlib.gzipSync(fs.readFileSync(file)).length;
     const sizeKb = (size / 1024).toFixed(2);
     const relative = path.relative(BUILD_DIR, file);
 
     if (size > MAX_SIZE) {
       console.error(
-        `Bundle too large: ${relative} (${sizeKb} KB) exceeds ${MAX_SIZE / 1024} KB`
+        `Bundle too large: ${relative} (${sizeKb} KB gzipped) exceeds ${MAX_SIZE / 1024} KB`
       );
       failed = true;
     } else {
-      console.log(`OK: ${relative} (${sizeKb} KB)`);
+      console.log(`OK: ${relative} (${sizeKb} KB gzipped)`);
     }
   }
 
