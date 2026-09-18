@@ -4,20 +4,18 @@
   "homepage": "https://boostertech.github.io/Front-End-Dev-Portfolio/",
   "private": true,
   "dependencies": {
-    "@reduxjs/toolkit": "^2.2.1",
-    "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "framer-motion": "^12.43.0",
-    "gh-pages": "^6.1.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-icons": "^5.0.1",
-    "react-redux": "^9.1.0",
+    "@testing-library/jest-dom": "5.17.0",
+    "@testing-library/react": "13.4.0",
+    "@testing-library/user-event": "13.5.0",
+    "framer-motion": "12.43.0",
+    "gh-pages": "6.1.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-icons": "5.0.1",
     "react-scripts": "5.0.1",
-    "react-scroll": "^1.9.0",
-    "styled-components": "^6.1.8",
-    "web-vitals": "^2.1.4"
+    "react-scroll": "1.9.0",
+    "styled-components": "6.1.8",
+    "web-vitals": "2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -31,21 +29,36 @@
     "lint": "eslint src",
     "format:check": "npx --yes prettier --check src",
     "bundle:check": "node scripts/bundle-size.js",
-    "lighthouse:check": "npx --yes cross-env PUBLIC_URL=/ npm run build && npx --yes @lhci/cli autorun"
+    "check:colors": "node scripts/check-hardcoded-colors.js",
+    "check:circular": "node scripts/check-circular.js",
+    "lighthouse:check": "npx --yes cross-env PUBLIC_URL=/ npm run build && npx --yes @lhci/cli autorun",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "optimize:images": "node scripts/convert-images.js"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
       "react-app/jest"
+    ],
+    "overrides": [
+      {
+        "files": [
+          "e2e/**/*.spec.js"
+        ],
+        "rules": {
+          "testing-library/prefer-screen-queries": "off"
+        }
+      }
     ]
   },
   "jest": {
     "coverageThreshold": {
       "global": {
-        "branches": 50,
-        "functions": 50,
-        "lines": 50,
-        "statements": 50
+        "branches": 70,
+        "functions": 70,
+        "lines": 70,
+        "statements": 70
       }
     }
   },
@@ -62,6 +75,9 @@
     ]
   },
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
+    "@babel/plugin-proposal-private-property-in-object": "7.21.11",
+    "@playwright/test": "1.62.1",
+    "madge": "8.0.0",
+    "sharp": "^0.35.4"
   }
 }
