@@ -22,6 +22,8 @@ jobs:
 
       - run: npx --yes depcheck
 
+      - run: npm run check:circular
+
       - run: npm run size-check
 
       - run: npm run test
@@ -30,9 +32,16 @@ jobs:
 
       - run: npm run format:check
 
+      - run: npm run check:colors
+
       - run: npm run build
 
       - run: npm run bundle:check
 
       - run: npm run lighthouse:check
-        continue-on-error: true
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Run E2E tests
+        run: npm run test:e2e
