@@ -1,7 +1,16 @@
+import { screen } from "@testing-library/react";
+import { useContactVisibility } from "common/ContactVisibilityProvider";
 import Contact from "features/portfolio/Contact";
-import { setContactVisibility } from "slices/generalSlice";
-import store from "slices/store";
 import { renderWithProviders } from "test-utils";
+
+const DisplayContactVisibility = () => {
+  const { isContactVisible } = useContactVisibility();
+  return (
+    <span data-testid="contact-visibility">
+      {isContactVisible ? "true" : "false"}
+    </span>
+  );
+};
 
 class MockIntersectionObserver {
   constructor(callback) {
@@ -21,12 +30,14 @@ beforeEach(() => {
 });
 
 describe("Contact", () => {
-  it("dispatches setContactVisibility(true) when intersecting", () => {
-    store.dispatch(setContactVisibility(false));
-    expect(store.getState().general.isContactVisible).toBe(false);
+  it("sets contact visibility to true when intersecting", () => {
+    renderWithProviders(
+      <>
+        <Contact id="contact" />
+        <DisplayContactVisibility />
+      </>
+    );
 
-    renderWithProviders(<Contact id="contact" />);
-
-    expect(store.getState().general.isContactVisible).toBe(true);
+    expect(screen.getByTestId("contact-visibility")).toHaveTextContent("true");
   });
 });

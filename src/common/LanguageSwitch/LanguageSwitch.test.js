@@ -1,24 +1,41 @@
 import { fireEvent, screen } from "@testing-library/react";
+import { useLanguage } from "common/LanguageProvider";
 import { LanguageSwitch } from "common/LanguageSwitch";
-import store from "slices/store";
 import { renderWithProviders } from "test-utils";
 
+const DisplayLanguage = () => {
+  const { language } = useLanguage();
+  return <span data-testid="language">{language}</span>;
+};
+
 describe("LanguageSwitch", () => {
-  it("changes the Redux language to Polish when the Polish flag is clicked", () => {
-    renderWithProviders(<LanguageSwitch />);
+  it("changes the language to Polish when the Polish flag is clicked", () => {
+    renderWithProviders(
+      <>
+        <LanguageSwitch />
+        <DisplayLanguage />
+      </>
+    );
 
-    expect(store.getState().language.language).toBe("English");
+    expect(screen.getByTestId("language")).toHaveTextContent("English");
 
-    fireEvent.click(screen.getByAltText("PLflagIcon"));
+    fireEvent.click(screen.getByAltText("Polish"));
 
-    expect(store.getState().language.language).toBe("Polish");
+    expect(screen.getByTestId("language")).toHaveTextContent("Polish");
   });
 
-  it("changes the Redux language to Spanish when the Spanish flag is clicked", () => {
-    renderWithProviders(<LanguageSwitch />);
+  it("changes the language to Spanish when the Spanish flag is clicked", () => {
+    renderWithProviders(
+      <>
+        <LanguageSwitch />
+        <DisplayLanguage />
+      </>
+    );
 
-    fireEvent.click(screen.getByAltText("ESPflagIcon"));
+    expect(screen.getByTestId("language")).toHaveTextContent("English");
 
-    expect(store.getState().language.language).toBe("Spanish");
+    fireEvent.click(screen.getByAltText("Spanish"));
+
+    expect(screen.getByTestId("language")).toHaveTextContent("Spanish");
   });
 });

@@ -1,10 +1,11 @@
 import { render, screen } from "@testing-library/react";
+import { ContactVisibilityProvider } from "common/ContactVisibilityProvider";
+import { LanguageProvider } from "common/LanguageProvider";
 import React from "react";
-import { Provider } from "react-redux";
 import { ThemeProvider } from "styled-components";
 
 import App from "./App";
-import store from "./slices/store";
+import { GlobalStyles } from "./GlobalStyles";
 import { themes } from "./themes";
 
 beforeEach(() => {
@@ -25,9 +26,14 @@ beforeEach(() => {
 
 const renderWithProviders = (component) => {
   return render(
-    <Provider store={store}>
-      <ThemeProvider theme={themes}>{component}</ThemeProvider>
-    </Provider>
+    <LanguageProvider>
+      <ContactVisibilityProvider>
+        <ThemeProvider theme={themes}>
+          <GlobalStyles />
+          {component}
+        </ThemeProvider>
+      </ContactVisibilityProvider>
+    </LanguageProvider>
   );
 };
 
