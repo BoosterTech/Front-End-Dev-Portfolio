@@ -2,7 +2,6 @@ import {
   fadeInUp,
   slideInLeft,
   slideInRight,
-  waveHand,
 } from "common/animations";
 import styled from "styled-components";
 import { keyframes } from "styled-components";
@@ -17,15 +16,6 @@ const imageBorderAnimation = keyframes`
 100%{
     border-radius: 65% 35% 67% 33% / 65% 36% 64% 35%  ;
 }
-`;
-
-const techStackFloat = keyframes`
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
 `;
 
 export const HomeWrapper = styled.section`
@@ -53,6 +43,10 @@ export const ContentImageContainer = styled.div`
     min-height: calc(100vh - var(--nav-height-mobile));
     text-align: center;
   }
+
+  @media (max-height: 500px) {
+    min-height: auto;
+  }
 `;
 
 export const ContentContainer = styled.div`
@@ -64,52 +58,13 @@ export const ContentContainer = styled.div`
   }
 `;
 
-export const TechStackSpan = styled.div`
-  display: inline-block;
-  font-size: 0.5em;
-  font-weight: 600;
-  /* opacity: 0.8; */
-  /* margin-left: 0.5em; */
-`;
-
-export const HeaderImage = styled.img`
-  display: inline-block;
-  width: clamp(35px, 5vw, 50px);
-  height: auto;
-  margin-left: var(--spacing-sm);
-  transform-origin: bottom center;
-  transition: transform var(--transition-slow);
-  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
-
-  @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
-    width: clamp(30px, 6vw, 40px);
-  }
-
-  &:hover {
-    animation: ${waveHand} 4s infinite;
-  }
-`;
-
-export const HeaderParagraph = styled.p`
-  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
-  font-weight: 500;
-  color: var(--color-text-primary);
-  line-height: 1.6;
-  margin: 0;
-  max-width: 600px;
-
-  @media (max-width: ${({ theme }) => theme.breakpoint.xl2}) {
-    max-width: none;
-  }
-`;
-
 export const ImageContainer = styled.div`
   width: 300px;
   height: 300px;
   position: relative;
   box-shadow:
-    0 8px 32px rgba(6, 7, 7, 0.18),
-    0 2px 8px rgba(0, 0, 0, 0.08);
+    0 8px 32px rgba(var(--color-black-rgb), 0.18),
+    0 2px 8px rgba(var(--color-black-rgb), 0.08);
   animation:
     ${slideInRight} 0.8s ease-out 0.3s both,
     ${imageBorderAnimation} 12s ease-in-out infinite 1s;
@@ -124,10 +79,10 @@ export const ImageContainer = styled.div`
     height: 280px;
     background: radial-gradient(
       circle,
-      rgba(255, 255, 255, 0.45) 0%,
+      rgba(var(--color-white-rgb), 0.45) 0%,
       var(--color-primary) 25%,
       var(--color-accent) 60%,
-      rgba(0, 0, 0, 0.08) 85%,
+      rgba(var(--color-black-rgb), 0.08) 85%,
       transparent 100%
     );
     border-radius: 50%;
@@ -166,105 +121,32 @@ export const ImageContainer = styled.div`
 `;
 
 export const ProfileImage = styled.img`
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
   z-index: 2;
   width: 100%;
   height: 100%;
   object-fit: cover;
   box-shadow:
-    0 0 40px 14px rgba(40, 142, 221, 0.35),
-    0 8px 32px rgba(206, 207, 207, 0.18),
-    0 2px 8px rgba(0, 0, 0, 0.08);
+    0 0 40px 14px rgba(var(--color-tooltip-rgb), 0.35),
+    0 8px 32px rgba(var(--color-white-rgb), 0.18),
+    0 2px 8px rgba(var(--color-black-rgb), 0.08);
   border-radius: inherit;
   border: 1px solid var(--color-primary);
-  transition: transform var(--transition-normal);
-`;
+  transition: opacity 0.4s ease, transform var(--transition-normal);
 
-export const TechStackContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: var(--spacing-lg);
-  margin: var(--spacing-3xl) 0;
-  padding: var(--spacing-2xl) var(--spacing-xl);
-  background: var(--color-surface);
-  border-radius: var(--radius-xl);
-  border: 1px solid var(--color-border);
-  box-shadow: var(--shadow-sm);
-  position: relative;
-  overflow: hidden;
-
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      rgba(255, 255, 255, 0.1),
-      transparent
-    );
-    transition: left 2s ease-in-out;
+  &.dark {
+    opacity: 0;
   }
 
-  &:hover::before {
-    left: 100%;
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
-    gap: var(--spacing-md);
-    padding: var(--spacing-xl) var(--spacing-lg);
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
-    gap: var(--spacing-sm);
-    padding: var(--spacing-lg) var(--spacing-md);
-  }
-`;
-
-export const TechStackItem = styled.img`
-  width: 50px;
-  height: 50px;
-  object-fit: contain;
-  padding: var(--spacing-xs);
-  border: 2px solid var(--color-border);
-  border-radius: var(--radius-md);
-  background: var(--color-background);
-  transition: all var(--transition-normal);
-  cursor: pointer;
-  animation: ${techStackFloat} 3s ease-in-out infinite;
-  animation-delay: ${(props) => (props.index || 0) * 0.1}s;
-
-  @media (hover: hover) {
-    &:hover {
-      transform: translateY(-8px) scale(1.1);
-      border-color: var(--color-primary);
-      box-shadow: var(--shadow-lg);
-      background: linear-gradient(
-        135deg,
-        var(--color-primary),
-        var(--color-accent)
-      );
-      filter: brightness(1.1);
+  html[data-theme="dark"] & {
+    &.dark {
+      opacity: 1;
+    }
+    &.light {
+      opacity: 0;
     }
   }
-
-  @media (max-width: ${({ theme }) => theme.breakpoint.xl2}) {
-    width: 45px;
-    height: 45px;
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
-    width: 40px;
-    height: 40px;
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoint.sm}) {
-    width: 35px;
-    height: 35px;
-  }
 `;
+

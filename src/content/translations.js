@@ -8,8 +8,7 @@ export const translations = {
       welcomeLabel: "WELCOME TO MY PORTFOLIO",
       headerParagraph: `
 Hi, I'm Dariusz Podczasik.
-A Software Engineer focused on building modern web applications and AI-powered SaaS products from Trim, Ireland.`,
-      location: "Trim, Ireland",
+A Software Engineer focused on building modern web applications and AI-powered SaaS products.`,
       viewMyWork: "View My Work",
       downloadCV: "Download CV",
       cvUrl: "#",
@@ -60,7 +59,6 @@ A Software Engineer focused on building modern web applications and AI-powered S
       welcomeLabel: "WITAJ W MOIM PORTFOLIO",
       headerParagraph:
         "Cześć, jestem Dariusz Podczasik. Software Engineer specjalizujący się w tworzeniu nowoczesnych aplikacji internetowych i produktów AI SaaS.",
-      location: "Trim, Irlandia",
       viewMyWork: "Zobacz Projekty",
       downloadCV: "Pobierz CV",
       cvUrl: "#",
@@ -111,7 +109,6 @@ A Software Engineer focused on building modern web applications and AI-powered S
       welcomeLabel: "BIENVENIDO A MI PORTAFOLIO",
       headerParagraph:
         "Hola, soy Dariusz Podczasik. Software Engineer especializado en aplicaciones web modernas y productos SaaS impulsados por IA.",
-      location: "Trim, Irlanda",
       viewMyWork: "Ver Proyectos",
       downloadCV: "Descargar CV",
       cvUrl: "#",

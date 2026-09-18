@@ -32,11 +32,15 @@ export const JourneyLabel = styled.div`
   display: inline-flex;
   align-items: center;
   gap: var(--spacing-sm);
+  padding: 0.45rem 1rem;
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--color-primary);
+  border: 1px solid var(--color-border);
+  border-radius: 50px;
+  align-self: flex-start;
 
   svg {
     color: var(--color-accent);
@@ -49,6 +53,11 @@ export const JourneyUnderline = styled.div`
   border-radius: 2px;
   background: var(--color-primary);
   margin-top: -8px;
+`;
+
+export const PlainHeadingPart = styled.span`
+  color: var(--color-text-primary);
+  -webkit-text-fill-color: var(--color-text-primary);
 `;
 
 export const JourneyParagraph = styled.div`
@@ -103,11 +112,27 @@ export const FeatureDescription = styled.p`
 
 export const CodeTerminalWindow = styled.div`
   position: relative;
-  background: #0b1220;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--color-terminal-bg);
+  border: 1px solid rgba(var(--color-white-rgb), 0.1);
   border-radius: var(--radius-xl);
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 24px 60px rgba(var(--color-black-rgb), 0.5);
   overflow: hidden;
+`;
+
+export const TerminalImage = styled.img`
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+  transition: opacity 0.4s ease;
+
+  html[data-theme="dark"] & {
+    opacity: 0;
+  }
 `;
 
 export const CodeTerminalHeader = styled.div`
@@ -115,8 +140,8 @@ export const CodeTerminalHeader = styled.div`
   align-items: center;
   gap: var(--spacing-md);
   padding: 14px 18px;
-  background: rgba(255, 255, 255, 0.03);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(var(--color-white-rgb), 0.03);
+  border-bottom: 1px solid rgba(var(--color-white-rgb), 0.08);
 `;
 
 export const CodeDots = styled.div`
@@ -130,15 +155,15 @@ export const CodeDot = styled.span`
   border-radius: 50%;
 
   &:nth-child(1) {
-    background: #ff5f56;
+    background: var(--color-code-red);
   }
 
   &:nth-child(2) {
-    background: #ffbd2e;
+    background: var(--color-code-yellow);
   }
 
   &:nth-child(3) {
-    background: #27c93f;
+    background: var(--color-code-green);
   }
 `;
 
@@ -157,42 +182,41 @@ export const CodeTerminalBody = styled.pre`
   margin: 0;
   padding: 24px;
   font-family: "Fira Code", "Courier New", monospace;
-  font-size: 0.8rem;
+  font-size: clamp(0.7rem, 2vw, 0.8rem);
   line-height: 1.7;
-  color: #abb2bf;
+  color: var(--color-code-text);
   overflow: auto;
   tab-size: 2;
 
   .comment {
-    color: #5c6370;
+    color: var(--color-code-comment);
   }
 
   .keyword {
-    color: #c678dd;
+    color: var(--color-code-keyword);
   }
 
   .type {
-    color: #e5c07b;
+    color: var(--color-code-type);
   }
 
   .string {
-    color: #98c379;
+    color: var(--color-code-string);
   }
 
   .property {
-    color: #e06c75;
+    color: var(--color-code-property);
   }
 
   .boolean {
-    color: #56b6c2;
+    color: var(--color-code-boolean);
   }
 
   .variable {
-    color: #61afef;
+    color: var(--color-code-variable);
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.sm}) {
-    font-size: 0.7rem;
     padding: 18px;
   }
 `;

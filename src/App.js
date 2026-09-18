@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useLanguage } from "common/LanguageProvider";
 import { ThemeProvider } from "styled-components";
 
 import Main from "./common/Main";
@@ -10,21 +10,20 @@ import Contact from "./features/portfolio/Contact";
 import Footer from "./features/portfolio/Footer";
 import Home from "./features/portfolio/Home";
 import Projects from "./features/portfolio/Projects";
-import { selectLanguage } from "./slices/languageSlice";
 import { themes } from "./themes";
 
 const App = () => {
-  const language = useSelector(selectLanguage);
+  const { language } = useLanguage();
 
   return (
     <ThemeProvider theme={themes}>
       <StarField />
       <Navigation />
       <Main>
-        <Home id={menuItems[language][0].name.toLowerCase()} />
-        <About id={menuItems[language][1].name.toLowerCase()} />
-        <Projects id={menuItems[language][2].name.toLowerCase()} />
-        <Contact id={menuItems[language][3].name.toLowerCase()} />
+        <Home id={menuItems[language][0].slug} />
+        <About id={menuItems[language][1].slug} />
+        <Projects id={menuItems[language][2].slug} />
+        <Contact id={menuItems[language][3].slug} />
       </Main>
       <Footer />
     </ThemeProvider>

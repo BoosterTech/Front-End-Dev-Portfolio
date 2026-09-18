@@ -4,7 +4,7 @@ import styled from "styled-components";
 export const ExploreSection = styled(motion.div)`
   margin-top: var(--spacing-3xl);
   width: 100%;
-  max-width: 1500px;
+  max-width: var(--container-max-width);
   margin-left: auto;
   margin-right: auto;
   background: transparent;
@@ -12,7 +12,7 @@ export const ExploreSection = styled(motion.div)`
   border-radius: var(--radius-xl);
   padding: var(--spacing-xl);
   display: grid;
-  grid-template-columns: 260px 1fr;
+  grid-template-columns: minmax(200px, 260px) 1fr;
   gap: var(--spacing-2xl);
   align-items: center;
 
@@ -49,28 +49,36 @@ export const ExploreTrack = styled(motion.div)`
   display: flex;
   gap: var(--spacing-md);
   overflow-x: auto;
+  scroll-snap-type: x proximity;
   padding: var(--spacing-sm) 0;
-  scrollbar-width: thin;
-  scrollbar-color: var(--color-accent) transparent;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 
   &::-webkit-scrollbar {
-    height: 6px;
+    display: none;
   }
 
-  &::-webkit-scrollbar-thumb {
-    background: var(--color-accent);
-    border-radius: 3px;
+  @media (min-width: ${({ theme }) => theme.breakpoint.lg}) {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    overflow: visible;
+    scroll-snap-type: none;
   }
 `;
 
 export const ExploreChip = styled(motion.div)`
   flex: 0 0 auto;
-  width: 170px;
+  scroll-snap-align: start;
+  width: clamp(140px, 45vw, 170px);
   display: flex;
   flex-direction: column;
+
+  @media (min-width: ${({ theme }) => theme.breakpoint.lg}) {
+    width: 100%;
+  }
   gap: var(--spacing-xs);
   padding: var(--spacing-md);
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(var(--color-white-rgb), 0.04);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
   color: var(--color-text-primary);
@@ -81,7 +89,7 @@ export const ExploreChip = styled(motion.div)`
 
   &:hover {
     border-color: var(--color-accent);
-    background: rgba(40, 142, 221, 0.12);
+    background: rgba(var(--color-tooltip-rgb), 0.12);
   }
 `;
 
@@ -107,21 +115,24 @@ export const ExploreChipDescription = styled.span`
 
 export const MoreChip = styled(motion.div)`
   flex: 0 0 auto;
-  position: relative;
-  width: 170px;
+  scroll-snap-align: start;
+  width: clamp(140px, 45vw, 170px);
   display: flex;
   flex-direction: column;
   gap: var(--spacing-xs);
   padding: var(--spacing-md);
   background: linear-gradient(
     135deg,
-    rgba(40, 142, 221, 0.2),
-    rgba(40, 142, 221, 0.05)
+    rgba(var(--color-tooltip-rgb), 0.2),
+    rgba(var(--color-tooltip-rgb), 0.05)
   );
   border: 1px solid var(--color-primary);
   border-radius: var(--radius-lg);
   color: var(--color-text-primary);
-  cursor: pointer;
+
+  @media (min-width: ${({ theme }) => theme.breakpoint.lg}) {
+    width: 100%;
+  }
 `;
 
 export const MoreChipHeader = styled.div`

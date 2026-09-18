@@ -10,7 +10,7 @@ const Card = styled.div`
   ${({ $glass }) =>
     $glass &&
     css`
-      background: rgba(255, 255, 255, 0.03);
+      background: rgba(var(--color-white-rgb), 0.03);
       border: 1px solid var(--color-border);
       backdrop-filter: blur(8px);
     `}
@@ -29,7 +29,7 @@ const Card = styled.div`
         background var(--transition-normal);
 
       &:hover {
-        background: rgba(255, 255, 255, 0.06);
+        background: rgba(var(--color-white-rgb), 0.06);
         border-color: var(--color-primary);
       }
     `}

@@ -1,16 +1,19 @@
+import { useContactVisibility } from "common/ContactVisibilityProvider";
 import DarkModeToggle from "common/DarkModeToggle";
+import { useLanguage } from "common/LanguageProvider";
 import { LanguageSwitch } from "common/LanguageSwitch";
 import { useEffect, useState } from "react";
-import { FaEnvelope, FaHome, FaProjectDiagram, FaUser } from "react-icons/fa";
-import { useDispatch, useSelector } from "react-redux";
+import { FaBars, FaEnvelope, FaHome, FaProjectDiagram, FaTimes, FaUser } from "react-icons/fa";
 import { Link } from "react-scroll";
-import { selectContactVisibility } from "slices/generalSlice";
-import { selectLanguage, setLanguage } from "slices/languageSlice";
 
 import { menuItems } from "./menuItems";
 import {
   DevWrapper,
+  HamburgerButton,
   MenuContainer,
+  MobileMenuBackdrop,
+  MobileNavItem,
+  MobileMenuPanel,
   StyledList,
   StyledListItem,
   StyledScrollLink,
@@ -18,27 +21,30 @@ import {
 } from "./styled";
 
 const Navigation = () => {
-  const breakpointXL = parseInt(
-    getComputedStyle(document.documentElement).getPropertyValue(
-      "--breakpoint-xl2"
-    ) || "1100px",
-    10
+  const { language, setLanguage } = useLanguage();
+  const { isContactVisible } = useContactVisibility();
+
+  const [isCompact, setIsCompact] = useState(
+    () => typeof window !== "undefined" && window.matchMedia(`(max-width: ${1100 - 1}px)`).matches
   );
-
-  const isContactVisible = useSelector(selectContactVisibility);
-  const language = useSelector(selectLanguage);
-  const dispatch = useDispatch();
-
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleResize = () => setWindowWidth(window.innerWidth);
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    const mql = window.matchMedia(`(max-width: ${1100 - 1}px)`);
+    const handler = (e) => setIsCompact(e.matches);
+    mql.addEventListener("change", handler);
+    return () => mql.removeEventListener("change", handler);
+  }, []);
+
+  useEffect(() => {
+    const mql = window.matchMedia(`(min-width: 768px)`);
+    const handler = () => setIsMenuOpen(false);
+    mql.addEventListener("change", handler);
+    return () => mql.removeEventListener("change", handler);
   }, []);
 
   const handleClick = () => {
-    dispatch(setLanguage("English"));
+    setLanguage("English");
   };
 
   const getActiveClass = (index) => {
@@ -70,14 +76,14 @@ const Navigation = () => {
   };
 
   return (
-    <StyledList>
+    <StyledList aria-label="Main navigation">
       <TopRow>
         <LanguageSwitch />
         <DarkModeToggle />
       </TopRow>
       <Link
         activeClass="active"
-        to={menuItems[language][0].name.toLowerCase()}
+        to={menuItems[language][0].slug}
         spy={true}
         smooth={true}
         offset={menuItems[language][0].offset}
@@ -99,7 +105,7 @@ const Navigation = () => {
               activeClass="active"
               className={forceActive ? "active" : undefined}
               $isContactVisible={getActiveClass(index)}
-              to={item.name.toLowerCase()}
+              to={item.slug}
               spy={true}
               smooth={true}
               offset={item.offset}
@@ -107,12 +113,45 @@ const Navigation = () => {
               key={index}
             >
               <StyledListItem key={index}>
-                {windowWidth < breakpointXL ? getIcon(item.name) : item.name}
+                {isCompact ? getIcon(item.name) : item.name}
               </StyledListItem>
             </StyledScrollLink>
           );
         })}
       </MenuContainer>
+      <HamburgerButton
+        onClick={() => setIsMenuOpen(!isMenuOpen)}
+        aria-label="Toggle navigation menu"
+        aria-expanded={isMenuOpen}
+      >
+        {isMenuOpen ? <FaTimes /> : <FaBars />}
+      </HamburgerButton>
+      <MobileMenuBackdrop
+        className={isMenuOpen ? "open" : ""}
+        onClick={() => setIsMenuOpen(false)}
+      />
+      <MobileMenuPanel className={isMenuOpen ? "open" : ""}>
+        {menuItems[language].map((item, index) => {
+          const isContact = index === menuItems[language].length - 1;
+          const forceActive = isContact && isContactVisible;
+          return (
+            <MobileNavItem
+              activeClass="active"
+              className={forceActive ? "active" : undefined}
+              to={item.slug}
+              spy={true}
+              smooth={true}
+              offset={item.offset}
+              duration={700}
+              key={index}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              {getIcon(item.name)}
+              {item.name}
+            </MobileNavItem>
+          );
+        })}
+      </MobileMenuPanel>
     </StyledList>
   );
 };

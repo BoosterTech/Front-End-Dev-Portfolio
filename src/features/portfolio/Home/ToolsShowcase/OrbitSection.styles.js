@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
-import styled, { keyframes } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 
 const float = keyframes`
-  0%, 100% { transform: translateY(0px); }
+  0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-6px); }
 `;
 
@@ -49,14 +49,14 @@ export const CenterNode = styled(motion.div)`
   gap: 8px;
   background: radial-gradient(
     circle at 35% 35%,
-    rgba(255, 255, 255, 0.35) 0%,
-    rgba(40, 142, 221, 0.35) 45%,
-    rgba(10, 30, 55, 0.85) 100%
+    rgba(var(--color-white-rgb), 0.35) 0%,
+    rgba(var(--color-tooltip-rgb), 0.35) 45%,
+    rgba(var(--color-panel-rgb), 0.85) 100%
   );
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(var(--color-white-rgb), 0.18);
   box-shadow:
-    inset 0 0 30px rgba(255, 255, 255, 0.1),
-    0 0 40px 8px rgba(40, 142, 221, 0.25);
+    inset 0 0 30px rgba(var(--color-white-rgb), 0.1),
+    0 0 40px 8px rgba(var(--color-tooltip-rgb), 0.25);
   backdrop-filter: blur(12px);
   pointer-events: auto;
 
@@ -84,54 +84,43 @@ export const TechCardWrapper = styled.div`
   pointer-events: none;
 `;
 
+export const TechCardFloat = styled.div`
+  width: 100%;
+  height: 100%;
+  will-change: transform;
+  animation: ${float} 4s ease-in-out infinite;
+  animation-delay: ${({ $delay }) => $delay}s;
+`;
+
 export const TechCard = styled(motion.div)`
   width: 100%;
   height: 100%;
   border-radius: 18px;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.1) 0%,
-    rgba(255, 255, 255, 0.03) 100%
-  );
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(16px);
-  box-shadow:
-    0 12px 40px rgba(0, 0, 0, 0.25),
-    0 0 0 1px rgba(40, 142, 221, 0.08);
+  background: transparent;
+  border: none;
+  overflow: hidden;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  padding: 14px;
   cursor: pointer;
   pointer-events: auto;
-  transition:
-    box-shadow 0.3s ease,
-    border-color 0.3s ease;
-
-  &:hover {
-    border-color: rgba(40, 142, 221, 0.6);
-    box-shadow:
-      0 18px 50px rgba(0, 0, 0, 0.35),
-      0 0 28px 4px rgba(40, 142, 221, 0.25);
-  }
 
   img {
-    width: ${({ $iconSize }) => $iconSize}px;
-    height: ${({ $iconSize }) => $iconSize}px;
+    width: 100%;
+    height: 100%;
     object-fit: contain;
   }
-`;
 
-export const CardInner = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  animation: ${float} 4s ease-in-out infinite;
-  animation-delay: ${({ $delay }) => $delay}s;
+  ${({ $isCircleCard, $isPadded }) =>
+    $isCircleCard &&
+    css`
+      border-radius: 50%;
+      background: var(--color-white);
+      border: 1px solid var(--color-accent);
+      box-shadow: 0 0 0 1px rgba(var(--color-cyan-rgb), 0.25),
+        0 6px 18px var(--color-shadow);
+      padding: ${$isPadded ? "10px" : "0"};
+    `}
 `;
 
 export const TechName = styled.span`
@@ -169,23 +158,29 @@ export const MobileCard = styled(motion.div)`
   width: 110px;
   height: 100px;
   border-radius: 18px;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.1) 0%,
-    rgba(255, 255, 255, 0.03) 100%
-  );
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(16px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  background: transparent;
+  border: none;
+  overflow: hidden;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 8px;
 
   img {
-    width: 32px;
-    height: 32px;
+    width: 100%;
+    height: 100%;
     object-fit: contain;
   }
+
+  ${({ $isCircleCard, $isPadded }) =>
+    $isCircleCard &&
+    css`
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: var(--color-white);
+      border: 1px solid var(--color-accent);
+      box-shadow: 0 0 0 1px rgba(var(--color-cyan-rgb), 0.25),
+        0 6px 18px var(--color-shadow);
+      padding: ${$isPadded ? "10px" : "0"};
+    `}
 `;

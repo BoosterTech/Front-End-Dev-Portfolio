@@ -1,23 +1,25 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { Provider } from "react-redux";
 import { ThemeProvider } from "styled-components";
 
 import App from "./App";
+import { ContactVisibilityProvider } from "./common/ContactVisibilityProvider";
+import { LanguageProvider } from "./common/LanguageProvider";
 import { GlobalStyles } from "./GlobalStyles";
 import reportWebVitals from "./reportWebVitals";
-import store from "./slices/store";
 import { themes } from "./themes";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <ThemeProvider theme={themes}>
-        <GlobalStyles />
-        <App />
-      </ThemeProvider>
-    </Provider>
+    <LanguageProvider>
+      <ContactVisibilityProvider>
+        <ThemeProvider theme={themes}>
+          <GlobalStyles />
+          <App />
+        </ThemeProvider>
+      </ContactVisibilityProvider>
+    </LanguageProvider>
   </React.StrictMode>
 );
 

@@ -1,4 +1,3 @@
-import { toLearn, toLearnDescriptions } from "content/skillsets";
 import nextIcon from "images/nextIcon.png";
 import reactIcon from "images/reactIcon.png";
 import reactQueryIcon from "images/reactQueryIcon.png";
@@ -18,10 +17,21 @@ import {
   FaSitemap,
   FaEllipsisH,
 } from "react-icons/fa";
-import { SiStripe, SiOpenai, SiFramer } from "react-icons/si";
-import { useSelector } from "react-redux";
-import { selectLanguage } from "slices/languageSlice";
+import { SiStripe, SiFramer } from "react-icons/si";
 
+import {
+  ExploreSection,
+  ExploreHeader,
+  ExploreLabel,
+  ExploreParagraph,
+  ExploreTrack,
+  ExploreChip,
+  ExploreChipHeader,
+  ExploreChipDescription,
+  MoreChip,
+  MoreChipHeader,
+  MoreChipDescription,
+} from "./exploreLayout";
 import { OrbitSection } from "./OrbitSection";
 import {
   ToolsShowcaseWrapper,
@@ -38,21 +48,7 @@ import {
   FeatureTitle,
   FeatureSubtitle,
   OrbitSectionWrapper,
-  ExploreSection,
-  ExploreHeader,
-  ExploreLabel,
-  ExploreParagraph,
-  ExploreTrack,
-  ExploreChip,
-  ExploreChipHeader,
-  ExploreChipDescription,
-  MoreChip,
-  MoreChipHeader,
-  MoreChipDescription,
-  MoreTooltip,
-  MoreList,
-  MoreItem,
-} from "./styled";
+} from "./showcaseLayout";
 
 const orbitTechnologies = [
   { id: "react", name: "React", icon: reactIcon },
@@ -77,7 +73,6 @@ const exploreItems = [
     icon: <FaRobot />,
     description: "AI-assisted development",
   },
-  { name: "OpenAI API", icon: <SiOpenai />, description: "LLM integrations" },
   {
     name: "Framer Motion",
     icon: <SiFramer />,
@@ -124,9 +119,6 @@ const item = {
 };
 
 export const ToolsShowcase = () => {
-  const language = useSelector(selectLanguage);
-  const moreItems = toLearn[language] || toLearn.English;
-
   return (
     <ToolsShowcaseWrapper
       initial="hidden"
@@ -159,7 +151,7 @@ export const ToolsShowcase = () => {
               <FeatureCard
                 key={index}
                 variants={item}
-                whileHover={{ y: -4, scale: 1.02 }}
+                whileHover={{ scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
                 <FeatureIcon>{feature.icon}</FeatureIcon>
@@ -191,7 +183,7 @@ export const ToolsShowcase = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 + index * 0.05 }}
-              whileHover={{ y: -4, scale: 1.02 }}
+              whileHover={{ scale: 1.02 }}
             >
               <ExploreChipHeader>
                 {item.icon}
@@ -207,25 +199,12 @@ export const ToolsShowcase = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 + exploreItems.length * 0.05 }}
-            whileHover={{ scale: 1.02 }}
           >
             <MoreChipHeader>
               <FaEllipsisH />
               And More...
             </MoreChipHeader>
             <MoreChipDescription>Always learning.</MoreChipDescription>
-            <MoreTooltip>
-              <MoreList>
-                {moreItems.map((skill) => (
-                  <MoreItem key={skill}>
-                    <strong>{skill}</strong>
-                    {toLearnDescriptions[language]?.[skill] && (
-                      <div>{toLearnDescriptions[language][skill]}</div>
-                    )}
-                  </MoreItem>
-                ))}
-              </MoreList>
-            </MoreTooltip>
           </MoreChip>
         </ExploreTrack>
       </ExploreSection>

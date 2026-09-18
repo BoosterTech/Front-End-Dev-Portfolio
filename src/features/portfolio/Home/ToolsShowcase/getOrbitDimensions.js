@@ -1,5 +1,5 @@
 export const getOrbitDimensions = (width) => {
-  if (width < 576) {
+  if (width < 768) {
     return {
       radius: 110,
       cardWidth: 78,

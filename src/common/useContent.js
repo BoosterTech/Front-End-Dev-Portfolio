@@ -1,10 +1,9 @@
+import { useLanguage } from "common/LanguageProvider";
 import { translations } from "content/translations";
-import { useSelector } from "react-redux";
-import { selectLanguage } from "slices/languageSlice";
 
 /** @returns {import("../types").Translations} */
 const useContent = () => {
-  const language = useSelector(selectLanguage);
+  const { language } = useLanguage();
   return translations[language] || translations.English;
 };
 

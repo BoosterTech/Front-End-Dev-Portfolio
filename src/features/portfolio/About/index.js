@@ -16,6 +16,7 @@ import {
   JourneyLabel,
   JourneyUnderline,
   JourneyParagraph,
+  PlainHeadingPart,
   FeaturesGrid,
   FeatureCard,
   FeatureTitle,
@@ -38,7 +39,10 @@ const About = ({ id }) => {
           <FaStar />
           {about.journeyLabel}
         </JourneyLabel>
-        <GradientHeading as="h2">{about.journeyHeader}</GradientHeading>
+        <GradientHeading as="h2">
+          <PlainHeadingPart>{about.journeyHeader.split(" ").slice(0, 2).join(" ")}</PlainHeadingPart>
+          {" " + about.journeyHeader.split(" ").slice(2).join(" ")}
+        </GradientHeading>
         <JourneyUnderline />
         <JourneyParagraph
           dangerouslySetInnerHTML={{ __html: about.journeyParagraph }}

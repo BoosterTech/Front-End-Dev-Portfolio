@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export const FullscreenContent = styled.div`
   position: relative;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   display: flex;
   align-items: center;
@@ -14,9 +14,9 @@ export const FullscreenOverlay = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
-  background: rgba(20, 20, 20, 0.85);
+  background: rgba(var(--color-sun-backdrop-rgb), 0.85);
   z-index: 1000;
   display: flex;
   align-items: center;
@@ -28,8 +28,8 @@ export const FullscreenImage = styled.img`
   max-width: 90vw;
   max-height: 90vh;
   border-radius: 1.5rem;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
-  background: #fff;
+  box-shadow: 0 8px 32px rgba(var(--color-black-rgb), 0.25);
+  background: var(--color-white);
   transition:
     box-shadow 0.2s,
     opacity 0.5s ease;
@@ -44,7 +44,7 @@ export const CloseButton = styled.button`
   position: absolute;
   top: 2rem;
   right: 2rem;
-  background: rgba(30, 30, 30, 0.7);
+  background: rgba(var(--color-sun-button-bg-rgb), 0.7);
   border: none;
   border-radius: 50%;
   width: 48px;
@@ -52,15 +52,15 @@ export const CloseButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #fff;
+  color: var(--color-white);
   font-size: 2rem;
   cursor: pointer;
   z-index: 1100;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 2px 8px rgba(var(--color-black-rgb), 0.18);
   transition: background 0.2s;
   &:hover {
     background: var(--color-primary);
-    color: #fff;
+    color: var(--color-white);
   }
 `;
 
@@ -70,7 +70,7 @@ export const ArrowButton = styled.button`
   ${(props) => (props.$left ? "left: 1.5rem;" : "")}
   ${(props) => (props.$right ? "right: 1.5rem;" : "")}
   transform: translateY(-50%);
-  background: rgba(30, 30, 30, 0.45);
+  background: rgba(var(--color-sun-button-bg-rgb), 0.45);
   border: none;
   border-radius: 50%;
   width: 48px;
@@ -78,8 +78,8 @@ export const ArrowButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
-  color: #fff;
+  box-shadow: 0 2px 8px rgba(var(--color-black-rgb), 0.18);
+  color: var(--color-white);
   cursor: pointer;
   z-index: 10;
   padding: 0;
@@ -88,7 +88,7 @@ export const ArrowButton = styled.button`
     color 0.2s;
   &:hover {
     background: var(--color-primary);
-    color: #fff;
+    color: var(--color-white);
   }
   svg {
     width: 28px;
@@ -104,7 +104,7 @@ export const ContentWrapper = styled.div`
   justify-content: center;
   align-items: flex-start;
   width: 100%;
-  @media (max-width: 900px) {
+  @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
     flex-direction: column;
     gap: 2rem;
     align-items: center;
@@ -129,7 +129,7 @@ export const Container = styled.div`
   padding: 2rem;
   background: var(--color-background);
   border-radius: 1.5rem;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 4px 24px rgba(var(--color-black-rgb), 0.12);
   margin: 2rem 0;
 `;
 
@@ -141,8 +141,8 @@ export const Title = styled.h2`
 `;
 
 export const Image = styled.img`
-  width: 640px;
-  max-width: 100vw;
+  width: 100%;
+  max-width: 640px;
   border-radius: 1rem;
   opacity: ${(props) => (props.$visible ? 1 : 0)};
   transition: opacity 0.5s ease;
@@ -153,8 +153,8 @@ export const Image = styled.img`
 
 export const SlideshowWrapper = styled.div`
   position: relative;
-  width: 640px;
-  max-width: 100vw;
+  width: 100%;
+  max-width: 640px;
   height: 480px;
   display: flex;
   justify-content: center;
@@ -169,11 +169,11 @@ export const Description = styled.div`
 `;
 
 export const ComingSoonTag = styled.div`
-  background: linear-gradient(90deg, #ffb347, #ffcc33);
-  color: #222;
+  background: linear-gradient(90deg, var(--color-sun-orange), var(--color-sun-yellow));
+  color: var(--color-sun-text);
   font-weight: 600;
   padding: 0.7rem 1.5rem;
   border-radius: 2rem;
   font-size: 1.2rem;
-  box-shadow: 0 2px 8px rgba(255, 204, 51, 0.15);
+  box-shadow: 0 2px 8px rgba(var(--color-sun-yellow-rgb), 0.15);
 `;

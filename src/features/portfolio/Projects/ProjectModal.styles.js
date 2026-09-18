@@ -1,0 +1,182 @@
+import { Button } from "common/Button";
+import { motion } from "framer-motion";
+import styled, { css } from "styled-components";
+
+export const Backdrop = styled(motion.div)`
+  position: fixed;
+  top: var(--navbar-height);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(6px);
+  padding: var(--spacing-lg);
+`;
+
+export const Modal = styled(motion.div)`
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  max-height: calc(90vh - var(--navbar-height));
+  overflow-y: auto;
+  border-radius: var(--radius-xl);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.5);
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--color-border);
+    border-radius: 4px;
+  }
+`;
+
+export const CloseButton = styled.button`
+  position: absolute;
+  top: var(--spacing-md);
+  right: var(--spacing-md);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border);
+  background: rgba(var(--color-surface-rgb), 0.9);
+  color: var(--color-text-primary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  backdrop-filter: blur(8px);
+
+  &:hover {
+    background: var(--color-primary);
+    color: var(--color-white);
+    border-color: var(--color-primary);
+  }
+
+  svg {
+    width: 18px;
+    height: 18px;
+  }
+`;
+
+export const ModalImage = styled.img`
+  width: 100%;
+  max-height: 450px;
+  object-fit: contain;
+  object-position: top center;
+  display: block;
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  background: var(--color-terminal-bg);
+
+  @media (max-height: 500px) {
+    max-height: 200px;
+  }
+`;
+
+export const ModalContent = styled.div`
+  padding: var(--spacing-xl) var(--spacing-xl) var(--spacing-2xl);
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.sm}) {
+    padding: var(--spacing-lg);
+  }
+
+  @media (max-height: 500px) {
+    padding: var(--spacing-md);
+  }
+`;
+
+export const ModalTitle = styled.h2`
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 800;
+  color: var(--color-text-primary);
+  margin: 0 0 var(--spacing-md) 0;
+  line-height: 1.3;
+`;
+
+export const ModalDescription = styled.div`
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--color-text-secondary);
+
+  p {
+    margin: 0 0 var(--spacing-md) 0;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+`;
+
+export const ModalTechBadges = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+  margin: var(--spacing-lg) 0;
+`;
+
+export const ModalTechBadge = styled.span`
+  display: inline-flex;
+  align-items: center;
+  padding: var(--spacing-xxs) var(--spacing-sm);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  background: rgba(var(--color-text-primary-rgb), 0.08);
+  border: 1px solid rgba(var(--color-text-primary-rgb), 0.18);
+  border-radius: var(--radius-md);
+`;
+
+export const ModalCTAContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-lg);
+`;
+
+export const ModalCTAButton = styled(Button)`
+  padding: var(--spacing-sm) var(--spacing-lg);
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+
+  ${({ $secondary }) =>
+    $secondary
+      ? css`
+          color: var(--color-text-primary);
+          background: transparent;
+          border: 1px solid rgba(var(--color-text-primary-rgb), 0.35);
+
+          &:hover {
+            background: rgba(var(--color-text-primary-rgb), 0.1);
+            border-color: var(--color-text-primary);
+          }
+        `
+      : css`
+          color: var(--color-white);
+          background: var(--color-primary);
+          border: 1px solid var(--color-primary);
+
+          &:hover {
+            color: var(--color-white);
+            background: var(--color-primary-hover);
+            border-color: var(--color-white);
+          }
+        `}
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+`;

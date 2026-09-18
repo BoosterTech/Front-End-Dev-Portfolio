@@ -5,13 +5,13 @@ export const Tooltip = styled.div`
   left: 50%;
   top: calc(100% + 2px);
   transform: translateX(-50%);
-  background: rgba(40, 142, 221, 0.95);
-  color: #fff;
+  background: var(--color-tooltip);
+  color: var(--color-white);
   padding: 8px 16px;
   border-radius: 16px;
   font-size: 0.95em;
   white-space: pre-line;
-  box-shadow: 0 4px 16px rgba(40, 142, 221, 0.18);
+  box-shadow: 0 4px 16px rgba(var(--color-tooltip-rgb), 0.18);
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.2s;
@@ -32,11 +32,7 @@ export const SkillsetHeader = styled.div`
   text-align: center;
   margin-top: 10px;
   font-weight: 1000;
-  font-size: 1.6rem;
-
-  @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
-    font-size: 1.1rem;
-  }
+  font-size: clamp(1.1rem, 3vw, 1.6rem);
 `;
 
 export const ListContainer = styled.ul`

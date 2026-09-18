@@ -1,3 +1,5 @@
+import lightTerminalImage from "images/code_terminal_light_theme.webp";
+
 import {
   CodeTerminalWindow,
   CodeTerminalHeader,
@@ -5,6 +7,7 @@ import {
   CodeDot,
   CodeTerminalTitle,
   CodeTerminalBody,
+  TerminalImage,
 } from "./styled";
 
 const code = `<span class="comment">// Journey: From Electronics to Full-Stack</span>
@@ -43,6 +46,7 @@ const CodeTerminal = () => (
       </CodeTerminalTitle>
     </CodeTerminalHeader>
     <CodeTerminalBody dangerouslySetInnerHTML={{ __html: code }} />
+    <TerminalImage src={lightTerminalImage} alt="Code terminal" loading="lazy" />
   </CodeTerminalWindow>
 );
 

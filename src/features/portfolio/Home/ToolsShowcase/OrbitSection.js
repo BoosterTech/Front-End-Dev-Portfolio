@@ -6,10 +6,9 @@ import {
   LinesSvg,
   CenterWrapper,
   CenterNode,
-  CenterLabel,
   TechCardWrapper,
+  TechCardFloat,
   TechCard,
-  CardInner,
   TechName,
   MobileTrack,
   MobileCard,
@@ -22,6 +21,8 @@ export const OrbitSection = ({
   centerLabel = "Next.js",
 }) => {
   const windowWidth = useWindowWidth();
+  const CIRCLE_CARD_IDS = ["redux", "typescript", "react", "vercel", "supabase", "react-query", "redux-toolkit", "styled"];
+  const PADDED_CARD_IDS = ["react", "vercel", "supabase", "styled", "redux-toolkit", "react-query"];
   const orbitRef = useRef(null);
   const [availableSize, setAvailableSize] = useState(Number.MAX_SAFE_INTEGER);
 
@@ -29,8 +30,6 @@ export const OrbitSection = ({
     radius: baseRadius,
     cardWidth,
     cardHeight,
-    iconSize,
-    fontSize,
     centerSize,
   } = useMemo(() => getOrbitDimensions(windowWidth), [windowWidth]);
 
@@ -93,7 +92,7 @@ export const OrbitSection = ({
                   y1={center}
                   x2={endX}
                   y2={endY}
-                  stroke="#38bdf8"
+                  stroke="var(--color-cyan)"
                   strokeWidth="5"
                   strokeOpacity="0.15"
                   strokeLinecap="round"
@@ -113,7 +112,7 @@ export const OrbitSection = ({
                   y1={center}
                   x2={endX}
                   y2={endY}
-                  stroke="#7dd3fc"
+                  stroke="var(--color-cyan-light)"
                   strokeWidth="1.5"
                   strokeOpacity="0.5"
                   strokeLinecap="round"
@@ -132,8 +131,7 @@ export const OrbitSection = ({
             transition={{ duration: 0.6, ease: "easeOut" }}
             whileHover={{ scale: 1.05 }}
           >
-            <img src={centerIcon} alt={centerLabel} />
-            <CenterLabel $size={centerSize}>{centerLabel}</CenterLabel>
+            <img src={centerIcon} alt={centerLabel} loading="lazy" />
           </CenterNode>
         </CenterWrapper>
 
@@ -142,32 +140,36 @@ export const OrbitSection = ({
           return (
             <TechCardWrapper
               key={tech.id || tech.name}
-              $width={cardWidth}
-              $height={cardHeight}
+              $width={CIRCLE_CARD_IDS.includes(tech.id) ? Math.min(cardWidth, cardHeight) : cardWidth}
+              $height={CIRCLE_CARD_IDS.includes(tech.id) ? Math.min(cardWidth, cardHeight) : cardHeight}
               style={{
                 left: "50%",
                 top: "50%",
                 transform: `translate(-50%, -50%) translate(${x}px, ${y}px)`,
               }}
             >
-              <TechCard
-                $iconSize={iconSize}
-                initial={{ opacity: 0, scale: 0 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                whileHover={{ scale: 1.08 }}
-                transition={{
-                  duration: 0.5,
-                  delay: 0.3 + index * 0.06,
-                  type: "spring",
-                  stiffness: 200,
-                }}
-              >
-                <CardInner $delay={index * 0.4}>
-                  <img src={tech.icon} alt={tech.name} loading="lazy" />
-                  <TechName $fontSize={fontSize}>{tech.name}</TechName>
-                </CardInner>
-              </TechCard>
+              <TechCardFloat $delay={index * 0.4}>
+                <TechCard
+                  $isCircleCard={CIRCLE_CARD_IDS.includes(tech.id)}
+                  $isPadded={PADDED_CARD_IDS.includes(tech.id)}
+                  initial={{ opacity: 0, scale: 0 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  whileHover={{ scale: 1.08 }}
+                  transition={{
+                    duration: 0.5,
+                    delay: 0.3 + index * 0.06,
+                    type: "spring",
+                    stiffness: 200,
+                  }}
+                >
+                    {typeof tech.icon === "string" ? (
+                      <img src={tech.icon} alt={tech.name} loading="lazy" />
+                    ) : (
+                      tech.icon
+                    )}
+                </TechCard>
+              </TechCardFloat>
             </TechCardWrapper>
           );
         })}
@@ -180,20 +182,25 @@ export const OrbitSection = ({
           viewport={{ once: true }}
           whileHover={{ scale: 1.05 }}
         >
-          <img src={centerIcon} alt={centerLabel} />
+          <img src={centerIcon} alt={centerLabel} loading="lazy" />
           <TechName $fontSize={12}>{centerLabel}</TechName>
         </MobileCard>
         {technologies.map((tech, index) => (
           <MobileCard
             key={tech.id || tech.name}
+            $isCircleCard={CIRCLE_CARD_IDS.includes(tech.id)}
+            $isPadded={PADDED_CARD_IDS.includes(tech.id)}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: index * 0.05 }}
             whileHover={{ scale: 1.05 }}
           >
-            <img src={tech.icon} alt={tech.name} loading="lazy" />
-            <TechName $fontSize={12}>{tech.name}</TechName>
+            {typeof tech.icon === "string" ? (
+              <img src={tech.icon} alt={tech.name} loading="lazy" />
+            ) : (
+              tech.icon
+            )}
           </MobileCard>
         ))}
       </MobileTrack>

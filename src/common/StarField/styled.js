@@ -16,9 +16,9 @@ export const StarField = styled.div`
     position: absolute;
     width: 2px;
     height: 2px;
-    background: rgba(255, 255, 255, 0.7);
+    background: rgba(var(--color-white-rgb), 0.7);
     border-radius: 50%;
     animation: ${twinkle} 3s ease-in-out infinite;
-    box-shadow: 0 0 6px 1px rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 6px 1px rgba(var(--color-white-rgb), 0.3);
   }
 `;

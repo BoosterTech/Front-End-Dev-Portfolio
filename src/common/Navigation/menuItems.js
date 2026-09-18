@@ -5,21 +5,21 @@ const offsetContact = 0;
 
 export const menuItems = {
   English: [
-    { name: "Home", offset: offsetHome },
-    { name: "About me", offset: offsetAbout },
-    { name: "Projects", offset: offsetProjects },
-    { name: "Contact", offset: offsetContact },
+    { name: "Home", slug: "home", offset: offsetHome },
+    { name: "About me", slug: "about", offset: offsetAbout },
+    { name: "Projects", slug: "projects", offset: offsetProjects },
+    { name: "Contact", slug: "contact", offset: offsetContact },
   ],
   Polish: [
-    { name: "Strona główna", offset: offsetHome },
-    { name: "O mnie", offset: offsetAbout },
-    { name: "Projekty", offset: offsetProjects },
-    { name: "Kontakt", offset: offsetContact },
+    { name: "Strona główna", slug: "home", offset: offsetHome },
+    { name: "O mnie", slug: "about", offset: offsetAbout },
+    { name: "Projekty", slug: "projects", offset: offsetProjects },
+    { name: "Kontakt", slug: "contact", offset: offsetContact },
   ],
   Spanish: [
-    { name: "Inicio", offset: offsetHome },
-    { name: "Acerca de", offset: offsetAbout },
-    { name: "Proyectos", offset: offsetProjects },
-    { name: "Contacto", offset: offsetContact },
+    { name: "Inicio", slug: "home", offset: offsetHome },
+    { name: "Acerca de", slug: "about", offset: offsetAbout },
+    { name: "Proyectos", slug: "projects", offset: offsetProjects },
+    { name: "Contacto", slug: "contact", offset: offsetContact },
   ],
 };

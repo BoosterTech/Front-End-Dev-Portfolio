@@ -15,7 +15,7 @@ export const ShowcaseGrid = styled.div`
   grid-template-columns: 1fr 1.6fr;
   gap: var(--spacing-3xl);
   align-items: center;
-  max-width: 1500px;
+  max-width: var(--container-max-width);
   margin: 0 auto;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.xl2}) {
@@ -34,11 +34,15 @@ export const SectionLabel = styled.span`
   display: inline-flex;
   align-items: center;
   gap: var(--spacing-sm);
+  padding: 0.45rem 1rem;
   font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--color-primary);
+  border: 1px solid var(--color-border);
+  border-radius: 50px;
+  align-self: flex-start;
 `;
 
 export const SectionTitle = styled.h2`
@@ -88,20 +92,19 @@ export const FeatureCard = styled(Card).attrs({
 `;
 
 export const FeatureIcon = styled.div`
-  width: 40px;
-  height: 40px;
-  border-radius: var(--radius-md);
+  width: 24px;
+  height: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(
-    135deg,
-    rgba(40, 142, 221, 0.2),
-    rgba(40, 142, 221, 0.05)
-  );
   color: var(--color-primary);
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   flex-shrink: 0;
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
 `;
 
 export const FeatureText = styled.div`
@@ -119,4 +122,15 @@ export const FeatureTitle = styled.span`
 export const FeatureSubtitle = styled.span`
   font-size: 0.75rem;
   color: var(--color-text-secondary);
+`;
+
+export const OrbitSectionWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 500px;
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.xl2}) {
+    min-height: auto;
+  }
 `;

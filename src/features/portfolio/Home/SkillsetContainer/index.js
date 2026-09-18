@@ -1,8 +1,7 @@
+import { useLanguage } from "common/LanguageProvider";
 import useContent from "common/useContent";
 import { skillsets, toLearn, skillDescriptions } from "content/skillsets";
 import { toLearnDescriptions } from "content/skillsets";
-import { useSelector } from "react-redux";
-import { selectLanguage } from "slices/languageSlice";
 
 import {
   SkillsetWrapper,
@@ -14,7 +13,7 @@ import {
 
 /** @param {import("../../../../types").SkillsetListProps} props */
 export const SkillsetList = ({ skills, descriptions }) => {
-  const language = useSelector(selectLanguage);
+  const { language } = useLanguage();
 
   return (
     <ListContainer>

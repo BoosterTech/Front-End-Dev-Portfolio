@@ -7,8 +7,5 @@ export const themes = {
     lg: "768px", // Large devices (tablets)
     xl: "1024px", // Extra large devices (small laptops)
     xl2: "1100px", // Large laptops and desktops
-    xxl: "1366px", // Larger desktops
-    xxxl: "1800px", // Extra Large desktops
-    xxxxl: "1920px", // Ultra large desktops
   },
 };

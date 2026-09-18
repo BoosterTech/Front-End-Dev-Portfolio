@@ -1,5 +1,5 @@
 import RichText from "common/RichText";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { MdArrowBack, MdArrowForward, MdClose } from "react-icons/md";
 
 import {
@@ -25,6 +25,15 @@ const ComingSoonProject = ({ title, imageURL, description, extraImageURL }) => {
   const openFullscreen = () => setFullscreen(true);
   const closeFullscreen = () => setFullscreen(false);
 
+  useEffect(() => {
+    if (!fullscreen) return;
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") closeFullscreen();
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [fullscreen]);
+
   const handlePrev = () =>
     setCurrent((prev) => (prev === 0 ? images.length - 1 : prev - 1));
   const handleNext = () =>
@@ -48,6 +57,7 @@ const ComingSoonProject = ({ title, imageURL, description, extraImageURL }) => {
               $visible={current === idx}
               style={{ zIndex: current === idx ? 2 : 1, cursor: "pointer" }}
               onClick={openFullscreen}
+              loading="lazy"
             />
           ))}
         </SlideshowWrapper>
@@ -58,7 +68,7 @@ const ComingSoonProject = ({ title, imageURL, description, extraImageURL }) => {
         )}
       </ImagesWrapper>
       {fullscreen && (
-        <FullscreenOverlay onClick={closeFullscreen}>
+        <FullscreenOverlay onClick={closeFullscreen} role="dialog" aria-modal="true" aria-label={`${title} fullscreen view`}>
           <FullscreenContent onClick={(e) => e.stopPropagation()}>
             {images.length > 1 && (
               <ArrowButton

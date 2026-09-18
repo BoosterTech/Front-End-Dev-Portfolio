@@ -1,13 +1,30 @@
-import useContent from "common/useContent";
-
-import { TextContainer, Wrapper } from "./styled";
+import {
+  Brand,
+  BrandColumn,
+  Constellation,
+  Container,
+  Copyright,
+  GridTexture,
+  Tagline,
+  Wrapper,
+} from "./styled";
 
 const Footer = () => {
-  const { footer } = useContent();
+  const currentYear = new Date().getFullYear();
 
   return (
-    <Wrapper id="contact">
-      <TextContainer>{footer.footerParagraph}</TextContainer>
+    <Wrapper id="footer">
+      <GridTexture aria-hidden="true" />
+      <Constellation aria-hidden="true" />
+      <Container>
+        <BrandColumn>
+          <Brand>Derek.dev</Brand>
+          <Tagline>Engineering excellence through code and design.</Tagline>
+        </BrandColumn>
+        <Copyright>
+          &copy; {currentYear} Derek.dev &middot; All rights reserved.
+        </Copyright>
+      </Container>
     </Wrapper>
   );
 };

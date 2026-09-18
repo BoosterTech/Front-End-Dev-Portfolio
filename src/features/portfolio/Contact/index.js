@@ -1,16 +1,27 @@
+import { useContactVisibility } from "common/ContactVisibilityProvider";
 import useContent from "common/useContent";
 import { useEffect, useRef } from "react";
-import { useDispatch } from "react-redux";
-import { setContactVisibility } from "slices/generalSlice";
+import { FiArrowUpRight } from "react-icons/fi";
 
 import { icons } from "./contactIcons";
-import { ContactIconStyled, IconsWrapper, Header, Wrapper } from "./styled";
+import {
+  Arrow,
+  CardsGrid,
+  ContactLabel,
+  ContactName,
+  ContactTile,
+  Eyebrow,
+  Header,
+  IconFrame,
+  Subtitle,
+  Wrapper,
+} from "./styled";
 
 const Contact = ({ id }) => {
   const { contact } = useContent();
-  const contactRef = useRef("");
+  const contactRef = useRef(null);
 
-  const dispatch = useDispatch();
+  const { setContactVisibility } = useContactVisibility();
 
   useEffect(() => {
     const currentRef = contactRef.current;
@@ -21,9 +32,9 @@ const Contact = ({ id }) => {
         (entries) => {
           entries.forEach(({ isIntersecting }) => {
             if (isIntersecting) {
-              dispatch(setContactVisibility(true));
+              setContactVisibility(true);
             } else {
-              dispatch(setContactVisibility(false));
+              setContactVisibility(false);
             }
           });
         },
@@ -38,7 +49,7 @@ const Contact = ({ id }) => {
         window.innerHeight + window.scrollY >=
         document.body.offsetHeight - 2
       ) {
-        dispatch(setContactVisibility(true));
+        setContactVisibility(true);
       }
     };
     window.addEventListener("scroll", handleScroll);
@@ -49,29 +60,36 @@ const Contact = ({ id }) => {
       }
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [dispatch]);
+  }, [setContactVisibility]);
 
   return (
     <Wrapper id={id} ref={contactRef}>
-      <Header>{contact.contactParagraph}</Header>
-      <IconsWrapper>
-        {icons.map((icon, index) => (
-          <a
-            style={{ display: "flex" }}
+      <Eyebrow aria-hidden="true" />
+      <Header>
+        Let&apos;s <span>Connect</span>
+      </Header>
+      <Subtitle>{contact.contactParagraph}</Subtitle>
+      <CardsGrid>
+        {icons.map((icon) => (
+          <ContactTile
             key={icon.id}
             href={icon.link}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label={`Contact via ${icon.name || "social media"}`}
+            $accent={icon.accent}
+            aria-label={`Contact via ${icon.name}`}
           >
-            <ContactIconStyled
-              src={icon.iconURL}
-              alt={`${icon.name || "Contact"} icon`}
-              index={index}
-            />
-          </a>
+            <Arrow $accent={icon.accent} aria-hidden="true">
+              <FiArrowUpRight />
+            </Arrow>
+            <IconFrame $id={icon.id} $accent={icon.accent}>
+              <img src={icon.iconURL} alt="" loading="lazy" />
+            </IconFrame>
+            <ContactName>{icon.name}</ContactName>
+            <ContactLabel>{icon.label}</ContactLabel>
+          </ContactTile>
         ))}
-      </IconsWrapper>
+      </CardsGrid>
     </Wrapper>
   );
 };

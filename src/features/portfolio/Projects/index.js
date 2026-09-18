@@ -1,9 +1,11 @@
 import projects from "content/projects";
+import { AnimatePresence } from "framer-motion";
 import gitHubIcon from "images/gitHubIcon.png";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 
 import CarouselSlide from "./CarouselSlide";
+import ProjectModal from "./ProjectModal";
 import {
   CarouselButton,
   Header,
@@ -18,12 +20,25 @@ import {
 
 const Projects = ({ id }) => {
   const [activeIndex, setActiveIndex] = useState(1);
+  const [expandedProject, setExpandedProject] = useState(null);
 
   const handleSelect = (index) => setActiveIndex(index);
   const handlePrev = () =>
-    setActiveIndex((prev) => (prev - 1 + projects.length) % projects.length);
+    setActiveIndex((prev) => Math.max(0, prev - 1));
   const handleNext = () =>
-    setActiveIndex((prev) => (prev + 1) % projects.length);
+    setActiveIndex((prev) => Math.min(projects.length - 1, prev + 1));
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "ArrowLeft" && activeIndex > 0) {
+        handlePrev();
+      } else if (e.key === "ArrowRight" && activeIndex < projects.length - 1) {
+        handleNext();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [activeIndex]);
 
   return (
     <Wrapper id={id}>
@@ -38,27 +53,42 @@ const Projects = ({ id }) => {
         </a>
         <Header>Projects</Header>
       </TitleWrapper>
-      <ProjectsWrapper>
-        <CarouselButton
-          $left
-          onClick={handlePrev}
-          aria-label="Previous project"
-        >
-          <FiChevronLeft />
-        </CarouselButton>
+      <ProjectsWrapper role="region" aria-label="Projects carousel">
+        {activeIndex > 0 && (
+          <CarouselButton
+            $left
+            onClick={handlePrev}
+            aria-label="Previous project"
+          >
+            <FiChevronLeft />
+          </CarouselButton>
+        )}
         <ProjectsTrack style={{ "--active-index": activeIndex }}>
-          {projects.map((project, index) => (
-            <CarouselSlide
-              key={project.title.English}
-              project={project}
-              isActive={index === activeIndex}
-              onClick={() => handleSelect(index)}
-            />
-          ))}
+          {projects.map((project, index) => {
+            const position =
+              index === activeIndex
+                ? "center"
+                : index < activeIndex
+                ? "left"
+                : "right";
+
+            return (
+              <CarouselSlide
+                key={project.title.English}
+                project={project}
+                isActive={index === activeIndex}
+                position={position}
+                onClick={() => handleSelect(index)}
+                onExpand={() => setExpandedProject(project)}
+              />
+            );
+          })}
         </ProjectsTrack>
-        <CarouselButton onClick={handleNext} aria-label="Next project">
-          <FiChevronRight />
-        </CarouselButton>
+        {activeIndex < projects.length - 1 && (
+          <CarouselButton onClick={handleNext} aria-label="Next project">
+            <FiChevronRight />
+          </CarouselButton>
+        )}
       </ProjectsWrapper>
       <NavDots>
         {projects.map((_, index) => (
@@ -67,9 +97,18 @@ const Projects = ({ id }) => {
             $active={index === activeIndex}
             onClick={() => handleSelect(index)}
             aria-label={`Go to project ${index + 1}`}
+            aria-current={index === activeIndex ? "true" : undefined}
           />
         ))}
       </NavDots>
+      <AnimatePresence>
+        {expandedProject && (
+          <ProjectModal
+            project={expandedProject}
+            onClose={() => setExpandedProject(null)}
+          />
+        )}
+      </AnimatePresence>
     </Wrapper>
   );
 };
