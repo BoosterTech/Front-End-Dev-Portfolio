@@ -17,12 +17,12 @@ This document records the major architectural decisions in the `feature/ui-refre
 
 ## 2. State Management
 
-### Decision: Redux Toolkit for language and general UI state
+### Decision: React Context for language and general UI state
 
-- **What:** `src/Redux/store.js` uses `configureStore` with `languageSlice` and `generalSlice`.
-- **Why:** `createSlice` removes Redux boilerplate; the language is read in many components, so a single global source is reliable; `createSelector` gives stable, memoized selectors.
-- **Trade-offs:** Two small slices are arguably overkill for this app; React Context or simple `useState` at `App` level would also work.
-- **Future guidance:** Keep `language` in Redux; expand `general` for additional UI flags. If API data is introduced, create a dedicated data slice rather than adding it to `general`.
+- **What:** `src/common/LanguageProvider` and `src/common/ContactVisibilityProvider` wrap the app in `src/index.js`. `useLanguage` returns `{ language, setLanguage }`; `useContactVisibility` returns `{ isContactVisible, setContactVisibility }`.
+- **Why:** `language` (a string) and `isContactVisible` (a boolean) are the only global states. Context removes the `@reduxjs/toolkit` and `react-redux` dependencies and the `Provider`/store boilerplate while still giving any component a stable, single source of truth.
+- **Trade-offs:** Context does not provide automatic memoization like `createSelector`; context consumers re-render whenever the provider value changes. With only these two small states and infrequent updates, this is acceptable. If API or complex state is added later, re-evaluate Redux Toolkit, Zustand, or Jotai.
+- **Future guidance:** Keep global UI flags in dedicated providers under `src/common/*Provider/`. Avoid mixing data fetching with UI state. If more than three providers are needed, compose them in a single `AppProviders` component.
 
 ---
 
@@ -34,6 +34,20 @@ This document records the major architectural decisions in the `feature/ui-refre
 - **Why:** CSS variables update instantly without re-rendering the styled-components tree; `styled-components` still provides scoped, co-located styles for components; theming is decoupled from JavaScript. Moving UI components out of `GlobalStyles` keeps it from becoming a dumping ground and makes `StarField` independently testable.
 - **Trade-offs:** `styled-components` `ThemeProvider` is kept only to inject `theme.breakpoint`; it no longer drives color/spacing values, which reduces its dynamic capabilities.
 - **Future guidance:** Add any new design token to `:root` and its `data-theme="dark"` mirror. Never hardcode colors or spacing in `styled.js` files. Keep `GlobalStyles` free of component definitions; if it approaches 200 lines, split it.
+
+### Decision: Add portfolio accent tokens and a hardcoded-color guardrail
+
+- **What:** `src/styles/tokens.js` exposes the full palette as CSS custom properties, including semantic component tokens for tooltips, terminal code blocks, sun gradients, and reusable RGB values for translucent overlays. All `src/**/styled.js` files have been migrated from literal hex/RGB values to `var(--color-*)` tokens. `scripts/check-hardcoded-colors.js` scans all `src/**/*.js` and `src/**/*.jsx` files for hardcoded colors (with an allowlist for `tokens.js`, `contactIcons.js`, and `animations.js`), is exposed as `npm run check:colors`, and is now a blocking step in `.github/workflows/ci.yml`.
+- **Why:** Hardcoded colors are the most common AI drift. Centralizing the palette in `src/styles/tokens.js` and adding a mechanical scanner keeps the design-token contract intact and makes dark-mode flips reliable.
+- **Trade-offs:** Adding one-off tokens for component-specific accents (`--color-sun-*`, `--color-code-*`) keeps `styled.js` files clean but slightly expands the token surface. If the palette keeps growing, consider splitting `tokens.js` into `tokens/colors.js` and `tokens/layout.js`.
+- **Future guidance:** Always add a new token to `src/styles/tokens.js` before using a new color. Run `npm run check:colors` before committing any `styled.js` change.
+
+### Decision: Add Playwright E2E tests for critical user paths
+
+- **What:** `playwright.config.js` runs Chromium against `http://localhost:3000`, with `e2e/portfolio.spec.js` covering 5 critical paths: `react-scroll` navigation to the About section, language switching to Polish, dark-mode toggling, carousel next-button navigation, and carousel dot-click navigation. `npm run test:e2e` and `npm run test:e2e:ui` are available in `package.json`. CI installs Playwright browsers and runs `test:e2e` after the build step.
+- **Why:** These paths are the most likely to be silently broken by AI-led refactors: fixed slugs are tied to `react-scroll`, i18n is client-side, dark mode relies on `document.documentElement` manipulation, and the carousel depends on active-index state transitions. Playwright catches them faster than Jest alone.
+- **Trade-offs:** Playwright adds a dev dependency and a Chromium download; CI must build and serve the app before running tests. The `test:e2e` script assumes `build/` exists, so CI runs `npm run build` first. E2E adds ~30–60s to CI runtime.
+- **Future guidance:** Add more E2E scenarios only when they are cheaper to maintain in Playwright than in Jest. Keep the E2E suite under 60 seconds. Only Chromium is tested in CI (no Firefox/WebKit).
 
 ### Decision: Reduce `src/themes.js` to breakpoints only
 
@@ -48,10 +62,10 @@ This document records the major architectural decisions in the `feature/ui-refre
 
 ### Decision: `react-scroll` instead of React Router
 
-- **What:** `src/common/Navigation/index.js` uses `react-scroll` `<Link>` components to scroll to section IDs. The section IDs are derived from `menuItems[language][index].name.toLowerCase()` in `src/App.js`.
-- **Why:** The app is a true single-page experience. There are no route transitions, no browser history, and no server-side routing concerns.
-- **Trade-offs:** The URL does not change as the user scrolls; there is no deep linking to individual sections; `offset` values for smooth scrolling are hardcoded in `src/common/Navigation/menuItems.js`.
-- **Future guidance:** If deep linking or URL-based section navigation becomes required, add `react-router-hash-link` or a custom `useEffect` that reads `window.location.hash`.
+- **What:** `src/common/Navigation/index.js` uses `react-scroll` `<Link>` components to scroll to section IDs. The section IDs are now fixed slugs (`home`, `about`, `projects`, `contact`) defined in `menuItems[language][index].slug` and used in `src/App.js`. Translated labels from `menuItems[language][index].name` are only used for visible menu text.
+- **Why:** The app is a true single-page experience. Fixed slugs keep `react-scroll` anchors, deep links, and tests stable across language switches.
+- **Trade-offs:** The URL still does not change as the user scrolls; `offset` values for smooth scrolling are hardcoded in `src/common/Navigation/menuItems.js`.
+- **Future guidance:** If deep linking or URL-based section navigation becomes required, add `react-router-hash-link` or a custom `useEffect` that reads `window.location.hash`. Do not derive anchors from translated text.
 
 ---
 
@@ -64,12 +78,12 @@ This document records the major architectural decisions in the `feature/ui-refre
 - **Trade-offs:** No fallback language chain, no runtime language lazy-loading, and content is bundled into the JavaScript. Adding a language requires updating every content file.
 - **Future guidance:** If a CMS or more languages are added, migrate to a `src/locales/` JSON structure or introduce `react-i18next`. Until then, keep content objects isomorphic across all three languages.
 
-### Decision: `LanguageSwitch` dispatches `setLanguage`; components read `selectLanguage`
+### Decision: `LanguageSwitch` calls `setLanguage` from context; components read `useLanguage`
 
-- **What:** `src/common/LanguageSwitch/index.js` dispatches `setLanguage()`. `App.js` and section components use `useSelector(selectLanguage)` to choose localized content via `src/common/useContent.js`.
-- **Why:** A single Redux action makes language switching predictable and easy to trace. `useContent` centralizes the `translations[language]` lookup so components do not call `useTheme()` for copy.
-- **Trade-offs:** Section IDs depend on the translated menu item name, so a language change can alter the DOM `id` of each section. This is acceptable for a static portfolio but could break tests that rely on fixed IDs.
-- **Future guidance:** If adding a new language, add a test or CI step that validates all language objects have the same keys and that `menuItems` includes the new language.
+- **What:** `src/common/LanguageSwitch/index.js` uses `setLanguage` from `useLanguage()`. `App.js` and section components use `useLanguage()` to choose localized content via `src/common/useContent.js`. `Navigation` also reads `isContactVisible` from `useContactVisibility()` to highlight the contact menu item.
+- **Why:** Two small pieces of global UI state do not justify the bundle and boilerplate of Redux. `useContent` centralizes the `translations[language]` lookup so components do not call `useTheme()` for copy.
+- **Trade-offs:** Context does not memoize selectors; consumers re-render when the provider value changes. With only language and contact visibility, this is acceptable.
+- **Future guidance:** If adding a new language, add a test or CI step that validates all language objects have the same keys and that `menuItems` includes the new language. If a third global UI state appears, evaluate Zustand or Redux Toolkit before creating another provider.
 
 ---
 
@@ -78,7 +92,7 @@ This document records the major architectural decisions in the `feature/ui-refre
 ### Decision: `common/` for shared UI, `features/portfolio/` for page sections
 
 - **What:** Reusable controls such as `Navigation`, `DarkModeToggle`, `LanguageSwitch`, and shared `animations.js` live in `src/common/`. Page sections live in `src/features/portfolio/<Section>/` with `index.js` for logic and `styled.js` for styles.
-- **Why:** Styles are co-located with components; `App.js` becomes a flat composer of sections; the structure mirrors Redux Feature-Sliced Design conventions.
+- **Why:** Styles are co-located with components; `App.js` becomes a flat composer of sections; the structure mirrors Feature-Sliced Design conventions.
 - **Trade-offs:** For a one-page portfolio, `features/portfolio` is one feature with nested sub-folders, creating deep relative imports such as `../../../common/animations`.
 - **Future guidance:** For a single-page site, `src/sections/` may be flatter. If more features are added, keep `features/` and consider path aliases (CRA requires eject or a custom Webpack setup for aliases).
 
@@ -91,10 +105,10 @@ This document records the major architectural decisions in the `feature/ui-refre
 
 ### Decision: Create a shared `Card` primitive in `src/common/Card/`
 
-- **What:** `src/common/Card/styled.js` exports a single `Card` component with prop-driven variants: `$glass` (frosted-glass background + border), `$bordered` (basic border), and `$hoverable` (background/border hover transition). It is used by `About/FeatureCard`, `ToolsShowcase/showcaseLayout/FeatureCard` (with `as={motion.div}`), and `Projects/ProjectWrapper`.
-- **Why:** `About`, `Projects`, and `ToolsShowcase` all repeated the same glass/border/hover markup. A shared primitive gives AI a single vocabulary for card-like surfaces and keeps hover transitions consistent.
-- **Trade-offs:** Not every card in the app is identical; `TechCard` and `ExploreChip` have unique gradients or accents and remain local. The primitive is intentionally minimal to avoid becoming a generic grab-bag.
-- **Future guidance:** Do not add a new card-like component until it has been evaluated against `src/common/Card`. If a new surface needs a new variant, extend `Card` rather than creating a one-off styled `div`.
+- **What:** `src/common/Card/styled.js` exports a single `Card` component with prop-driven variants: `$glass` (frosted-glass background + border), `$bordered` (basic border), and `$hoverable` (background/border hover transition). It is used by `About/FeatureCard`, `ToolsShowcase/showcaseLayout/FeatureCard` (with `as={motion.div}`), `Contact/ContactTile` (with `as="a"`), `Footer/SocialLink` (with `as="a"`), and `Projects/Tile/ProjectWrapper` (`$bordered` + `$hoverable`).
+- **Why:** `About`, `Contact`, `Footer`, `Projects`, and `ToolsShowcase` all repeated the same glass/border/hover markup. A shared primitive gives AI a single vocabulary for card-like surfaces and keeps hover transitions consistent.
+- **Trade-offs:** Not every card in the app is identical; `TechCard` and `ExploreChip` have unique gradients or accents and remain local. The primitive is intentionally minimal to avoid becoming a generic grab-bag. Some surfaces keep per-component overrides for glow, accent colors, or 3D lift; these live in the consuming `styled.js` rather than the Card itself.
+- **Future guidance:** Do not add a new card-like component until it has been evaluated against `src/common/Card`. If a new surface needs a new variant, extend `Card` rather than creating a one-off styled `div`. Prefer adding a boolean variant over ad-hoc background/border/hover styles.
 
 ---
 
@@ -115,6 +129,13 @@ This document records the major architectural decisions in the `feature/ui-refre
 - **Why:** Reduces duplication across components; a single file controls animation timing and naming; build passes without stale local keyframes.
 - **Trade-offs:** A shared animation file can grow into a generic grab-bag; importing from a long relative path is awkward for deeply nested components.
 - **Future guidance:** Only add an animation to `src/common/animations.js` when it is reused. Keep one-off keyframes local to the component.
+
+### Decision: Keep `framer-motion` for scroll-triggered and layout animations
+
+- **What:** `framer-motion` is used in `src/features/portfolio/Home/ToolsShowcase/` (`OrbitSection`, explore track, feature grid) and `src/features/portfolio/Projects/CarouselSlide/styled.js` (`Slide`, `Overlay`). It provides `whileInView`, `variants`, `staggerChildren`, `whileHover`, `spring` transitions, and `layout` animations.
+- **Why:** The orbit relies on per-card `whileInView` entry with staggered `spring` delays and responsive `whileHover` scaling. The explore track and feature grid use `whileInView`/`staggerChildren` triggered by viewport entry. `CarouselSlide` uses `layout` and `animate` for the active/hover overlay reveal. Replicating all of this with CSS keyframes would require a custom `IntersectionObserver` + JS state for scroll triggers, and the `layout` morphing cannot be done with CSS alone without significant manual math.
+- **Trade-offs:** `framer-motion` is one of the heavier dependencies. Current bundle is `185.33 KB` gzipped, well under the `350 KB` budget, so the cost is acceptable for now.
+- **Future guidance:** If the bundle budget tightens, the first candidates for CSS-only replacement are the `CarouselSlide` hover overlay and the `ExploreChip` hover effect. Do not remove `framer-motion` until those pieces are replaced and the `OrbitSection` has a clear CSS/JS fallback that preserves the staggered reveal and spring feel.
 
 ---
 
@@ -144,10 +165,10 @@ This document records the major architectural decisions in the `feature/ui-refre
 
 ### Decision: Fix `public/index.html` metadata
 
-- **Current state:** The invalid `<meta name="Derek.dev" ...>` was replaced with `name="description"`, and Open Graph tags (`og:title`, `og:description`, `og:type`, `og:url`) were added in `public/index.html`. The `<html lang="en">` attribute still does not update when the language changes.
-- **Why it matters:** Search engines and social sharing rely on `name="description"` and Open Graph tags. The `lang` attribute is important for screen readers.
-- **Trade-offs:** A dynamic `lang` update requires `React-Helmet` or a custom `useDocumentLang` hook, adding a small dependency or complexity.
-- **Future guidance:** Update `document.documentElement.lang` when the language changes if screen-reader support becomes a priority.
+- **Current state:** The invalid `<meta name="Derek.dev" ...>` was replaced with `name="description"`, and Open Graph tags (`og:title`, `og:description`, `og:type`, `og:url`) were added in `public/index.html`. The `<html lang>` attribute is now updated dynamically by `LanguageProvider` via a `useEffect` that sets `document.documentElement.lang` to `en`, `pl`, or `es` based on the selected language.
+- **Why it matters:** Search engines and social sharing rely on `name="description"` and Open Graph tags. The `lang` attribute is critical for screen readers to pronounce content correctly.
+- **Trade-offs:** The dynamic `lang` update is a side effect in `LanguageProvider`. This is acceptable because the app is client-side only with no SSR.
+- **Future guidance:** When adding a new language, update the `LANG_MAP` in `LanguageProvider/index.js` to include the new ISO 639-1 code.
 
 ### Decision: Centralize `dangerouslySetInnerHTML` through a `RichText` component
 
@@ -164,7 +185,7 @@ When adding or changing anything, prefer the following order:
 
 1. **CSS variables first.** Add new design tokens to `src/GlobalStyles.js` and mirror them in `data-theme="dark"`.
 2. **Centralization second.** Shared styles, keyframes, and content belong in `src/common/` or `src/content/`.
-3. **Redux for global UI state;** local `useState` for component-only concerns.
+3. **React Context for global UI state;** local `useState` for component-only concerns.
 4. **Run `npm run build` before committing** to catch missing modules, import path errors, and syntax issues early.
 5. **Avoid hardcoded colors, spacing, and breakpoints** in `styled.js`; use `var(--*)` and `theme.breakpoint.*`.
 6. **Document any new architecture decision in this playbook** using the same Decision/What/Why/Trade-offs/Future guidance structure.
@@ -180,6 +201,13 @@ When adding or changing anything, prefer the following order:
 - **Trade-offs:** `npx --yes depcheck` downloads the package on every CI run. Pinning `depcheck` to `devDependencies` could be added later if install time or reproducibility becomes an issue.
 - **Future guidance:** Do not add a dependency without importing it or documenting why it is kept. Remove anything `depcheck` flags unless the `.depcheckrc` comment is defensible.
 
+### Decision: Block circular dependencies with `madge`
+
+- **What:** `madge` is a devDependency. `npm run check:circular` runs `scripts/check-circular.js`, which uses the `madge` API to scan `src/` for cycles and exits with code 1 if any are found. `.github/workflows/ci.yml` runs `npm run check:circular` immediately after `npx --yes depcheck`.
+- **Why:** Circular imports are the most common source of silent module-initialization bugs. A dedicated check catches them before they reach `npm run build`.
+- **Trade-offs:** `madge@8` has a `typescript` peer-dependency conflict with the `typescript@4.9.5` brought in by `react-scripts`, so it was installed with `--legacy-peer-deps`. `madge` resolves `jsconfig` `baseUrl` aliases only with extra configuration, but relative-path cycles are still caught reliably.
+- **Future guidance:** If `madge` misses cycles involving `common/` aliases, add a `webpackConfig` or `requireConfig` option to `scripts/check-circular.js`, or migrate to `dependency-cruiser` with a matching `.dependency-cruiser.js` config.
+
 ### Decision: Tighten bundle-size budget to 350 KB
 
 - **What:** `scripts/bundle-size.js` now defaults to `350 * 1024` bytes unless `BUNDLE_SIZE_LIMIT` is set. The main chunk is ~212 KB, so the new budget still provides headroom.
@@ -187,9 +215,16 @@ When adding or changing anything, prefer the following order:
 - **Trade-offs:** Very large images or animations can hit this limit. Monitor the `bundle:check` output and split lazy-loaded chunks if the main bundle approaches the cap.
 - **Future guidance:** Before adding a new package or animation library, run `npm run build && npm run bundle:check` and confirm the budget is still respected.
 
+### Decision: Bundle-impact gate for PRs
+
+- **What:** `.github/pull_request_template.md` includes a bundle-impact checklist: “Run `npm run build && npm run bundle:check`”, confirm no chunk exceeds the 350 KB gzipped budget, and confirm the bundle did not grow significantly. The CI already runs `npm run bundle:check` after every build, so the template is a human double-check against accidental bloat.
+- **Why:** PR templates make the 350 KB budget explicit before code is reviewed. It is the cheapest place to stop one-off libraries or oversized assets from entering the codebase.
+- **Trade-offs:** A CI step that auto-posts bundle delta as a comment was considered but not added; the existing `bundle:check` job already fails the build on budget violations. The template can be converted to a bot comment later if manual checks slip.
+- **Future guidance:** If the budget is repeatedly challenged, add a `dependency-cruiser` or `bundlephobia` pre-merge check and a `GITHUB_STEP_SUMMARY` output showing delta per chunk.
+
 ### Decision: Keep `framer-motion` because `ToolsShowcase` uses `motion.*` styled components
 
-- **What:** `framer-motion` is imported in `features/portfolio/Home/ToolsShowcase/{OrbitSection.styles,exploreLayout,orbitDecorations,showcaseLayout}.js` and used as `styled(motion.div)`, `styled(motion.section)`, etc.
+- **What:** `framer-motion` is imported in `features/portfolio/Home/ToolsShowcase/{OrbitSection.styles,exploreLayout,showcaseLayout}.js` and used as `styled(motion.div)`, `styled(motion.section)`, etc.
 - **Why:** The orbit and explore-scroll animations rely on `framer-motion` for performant, declarative motion. Removing it would require re-implementing those animations.
 - **Trade-offs:** `framer-motion` adds bundle weight. If the orbit is simplified or removed in a future redesign, re-run `depcheck` and consider removing it.
 - **Future guidance:** Do not add `framer-motion` for trivial hover transitions; use CSS keyframes in `src/common/animations.js` instead. If `depcheck` ever flags `framer-motion`, confirm these four files still import it before keeping.
@@ -198,19 +233,61 @@ When adding or changing anything, prefer the following order:
 
 ## 13. Quality & CI
 
-### Decision: Add `test:coverage` with a conservative threshold
+### Decision: `test:coverage` with a 70% threshold
 
-- **What:** `package.json` has a `test:coverage` script (`react-scripts test --coverage --watchAll=false`) and a `jest.coverageThreshold` of 50% across branches, functions, lines, and statements.
-- **Why:** The project has only 12 tests for a static portfolio, so 100% coverage is not the goal. A 50% floor makes coverage visible and prevents it from silently dropping while keeping CI practical.
-- **Trade-offs:** `50%` is lenient and mainly acts as a regression guard, not a quality target. The threshold should rise only when new tests are added intentionally.
+- **What:** `package.json` has a `test:coverage` script (`react-scripts test --coverage --watchAll=false`) and a `jest.coverageThreshold` of 70% across branches, functions, lines, and statements. The project has 10 test suites with 32 tests covering Navigation, LanguageSwitch, Tile, Contact, RichText, SkillsetContainer, ComingSoonProject, CarouselSlide, translations, and App smoke test. Current coverage: 89.96% statements / 78.21% branches / 85.77% functions / 91.45% lines.
+- **Why:** A 70% floor forces test coverage growth alongside new code. The previous 50% threshold was too lenient to catch regressions. 20 new tests were added for previously untested components (RichText, SkillsetContainer, ComingSoonProject, CarouselSlide) and for Navigation compact mode.
+- **Trade-offs:** 70% is still not 100%; some branches in OrbitSection and Projects/index.js remain uncovered. Full coverage is not the goal for a static portfolio.
 - **Future guidance:** Re-run `npm run test:coverage` after any new component or test. Raise the threshold only when the new value is stable across several runs.
 
 ### Decision: Add Lighthouse CI with LCP and CLS budgets
 
-- **What:** `.lighthouserc.js` configures `@lhci/cli` to serve `build/` and assert `largest-contentful-paint <= 2500 ms` and `cumulative-layout-shift <= 0.1`. `npm run lighthouse:check` rebuilds with `PUBLIC_URL=/` so assets resolve from the build root, then runs `lhci autorun`.
-- **Why:** A portfolio is judged on speed and visual stability. A numeric, automated budget is cheaper than manual Lighthouse runs and catches regressions early.
-- **Trade-offs:** The first runs surfaced a very high headless LCP, so the CI step currently has `continue-on-error: true` while the underlying performance issue is investigated. Once LCP is under 2.5 s, `continue-on-error` can be removed.
-- **Future guidance:** Investigate the LCP root cause (likely a blocking image or animation on first paint) before removing the non-blocking flag. Do not raise the numeric thresholds to make the check pass.
+- **What:** `.lighthouserc.js` configures `@lhci/cli` to serve `build/` and assert `largest-contentful-paint <= 2500 ms` and `cumulative-layout-shift <= 0.1`. `npm run lighthouse:check` rebuilds with `PUBLIC_URL=/` so assets resolve from the build root, then runs `lhci autorun`. The CI step in `.github/workflows/ci.yml` is now blocking (`continue-on-error` removed).
+- **Why:** A portfolio is judged on speed and visual stability. A numeric, automated budget is cheaper than manual Lighthouse runs and catches regressions early. Making it blocking means PRs that violate the budget cannot merge.
+- **Trade-offs:** Headless CI runs can vary in LCP. If the check becomes flaky, re-enable `continue-on-error` temporarily and tune the assertions or collect more runs (`numberOfRuns: 3`) before making it blocking again.
+- **Future guidance:** Do not raise the numeric thresholds to make the check pass. If LCP regresses, investigate the offending asset (likely a large hero image or render-blocking style/script) rather than relaxing the budget.
+
+### Decision: Create a shared `Button` primitive in `src/common/Button/`
+
+- **What:** `src/common/Button/styled.js` exports `Button` (styled.a) and `ScrollButton` (styled `react-scroll` Link). The `$variant` prop selects `"primary"` (gradient bg, white text), `"outline"` (transparent bg, border), or default (gradient → transparent on hover). The `$size` prop supports `"sm"` for compact carousel CTAs. Used by `ViewMyWorkButton` (ScrollButton), `DownloadCVButton` (Button $variant="outline"), `ProjectLink` (styled(Button) with shimmer), and `CTAButton` (styled(Button) with $secondary).
+- **Why:** Four different button implementations across the codebase gave AI inconsistent signals. A single primitive with variant props gives AI one vocabulary for CTA-style buttons, just like `Card` does for surfaces.
+- **Trade-offs:** Not every button is identical; `CarouselButton` (circular nav), `CloseButton`, `ArrowButton`, and `NavDot` remain local because they're functional UI controls, not CTA links. The `CTAButton` keeps its own `$secondary` prop and per-component overrides for the slide-specific hover styles.
+- **Future guidance:** Do not create a new styled.a or styled(Link) for a CTA button without evaluating `common/Button` first. Extend `Button` with a new `$variant` rather than creating a one-off.
+
+### Decision: Use `matchMedia` for responsive JS behavior in Navigation
+
+- **What:** `Navigation/index.js` uses `window.matchMedia("(max-width: 1099px)")` with a `useState` + `useEffect` listener to switch between text labels and icons. SSR-safe with `typeof window !== "undefined"` guard.
+- **Why:** The previous approach read `getComputedStyle(document.documentElement).getPropertyValue("--breakpoint-xl2")` during every render, coupling JS to DOM layout and causing unnecessary re-reads. `matchMedia` is the idiomatic browser API for breakpoint-based JS behavior and integrates cleanly with React state.
+- **Trade-offs:** The breakpoint value (1099px) is hardcoded in JS rather than read from CSS. This mirrors the `themes.js` breakpoint.xl2 value (1100px). A mismatch would cause icon/text switching at the wrong width.
+- **Future guidance:** If the breakpoint changes, update both `themes.js` and the `matchMedia` query in `Navigation/index.js`. Consider extracting a shared constant if more components need the same breakpoint.
+
+### Decision: Optimize images to WebP with lazy loading
+
+- **What:** All PNG/JPG images converted to WebP using `sharp` (quality 80, resized to max display dimensions). `scripts/convert-images.js` handles conversion; `npm run optimize:images` runs it. All below-the-fold `<img>` tags have `loading="lazy"`. ~94 MB of unused images deleted from `src/images/` and `public/`.
+- **Why:** The profile image alone was 50.7 MB PNG (converted to 20 KB WebP). Background images were 1.3–2.2 MB each. Total image weight dropped from ~68 MB to ~0.5 MB (99.3% reduction). This dramatically improves LCP, bandwidth, and deploy time.
+- **Trade-offs:** WebP is not supported by very old browsers (IE11, old Safari < 14), but all modern browsers support it. The conversion script is a manual step (`npm run optimize:images`), not integrated into CI — run it when adding new images.
+- **Future guidance:** When adding a new image, place the original in `src/images/` or `public/`, run `npm run optimize:images`, then update imports to reference the `.webp` file. Delete the original after conversion. Always add `loading="lazy"` to below-the-fold images.
+
+### Decision: Run Playwright E2E tests in CI
+
+- **What:** `.github/workflows/ci.yml` installs Playwright Chromium browsers (`npx playwright install --with-deps chromium`) and runs `npm run test:e2e` after the build step. The Playwright config's `webServer` automatically serves the `build/` directory on port 3000 using `serve`.
+- **Why:** E2E tests existed but only ran locally. Without CI enforcement, regressions in scroll navigation, language switching, dark mode, and carousel behavior could merge undetected.
+- **Trade-offs:** E2E tests add ~30–60s to CI runtime. Only Chromium is tested (no Firefox/WebKit in CI). The `webServer` requires a production build first, which is already a CI step.
+- **Future guidance:** When adding new E2E tests, ensure they work with the `serve -s build` setup. Use `baseURL` (`http://localhost:3000`) for navigation. Avoid hardcoded timeouts where possible — use Playwright auto-waiting.
+
+### Decision: Accessibility — ARIA roles, keyboard navigation, dynamic `<html lang>`
+
+- **What:** `LanguageProvider` sets `document.documentElement.lang` via `useEffect`. Projects carousel responds to Arrow Left/Right keys. `DarkModeToggle` has `role="switch"` + `aria-checked` + keyboard support. `LanguageSwitch` flags have `role="button"` + `aria-pressed` + keyboard support. `ComingSoonProject` fullscreen has `role="dialog"` + `aria-modal` + Escape-to-close. Navigation has `aria-label="Main navigation"`.
+- **Why:** Screen readers and keyboard users need semantic roles and keyboard equivalents for all interactive elements. A static `<html lang="en">` misreports the page language when the user switches to Polish or Spanish.
+- **Trade-offs:** Added ~354 B to the bundle from ARIA attributes. The global arrow-key listener on the Projects section could conflict with other keyboard handlers if the user is focused on an input, but the portfolio has no text inputs.
+- **Future guidance:** Always add `role`, `aria-label`, and keyboard handlers to any new interactive element that isn't a native `<button>` or `<a>`. Update `LANG_MAP` in `LanguageProvider` when adding new languages.
+
+### Decision: Eliminate barrel re-exports (`export * from`)
+
+- **What:** Deleted `Home/styled.js` and `ToolsShowcase/styled.js`, which were barrel files that re-exported all symbols from `homeStyles.js`/`heroStyles.js` and `showcaseLayout.js`/`exploreLayout.js` respectively. Consumers now import directly from the source files.
+- **Why:** `export * from` hides the actual source of a symbol, making it harder for AI and developers to trace where a styled component is defined. It also hurts tree-shaking because bundlers must include all exports from all re-exported modules even if only one is used.
+- **Trade-offs:** Consumers must know which source file to import from, but this is already clear from the file structure. The barrel files provided no aggregation logic — they were pure pass-through.
+- **Future guidance:** Never create `export * from` barrel files. If aggregation is needed, use explicit named re-exports (`export { Foo } from "./source"`) so the source is visible.
 
 ---
 
@@ -240,22 +317,28 @@ When adding or changing anything, prefer the following order:
 - Fixed `public/index.html` metadata and added Open Graph tags.
 - Created `src/common/RichText` to centralize raw HTML rendering.
 - `npm run build` passes cleanly after all changes.
-- The size-check currently fails on four existing files (`projects.js`, `skillsets.js`, `OrbitSection.js`, and `ToolsShowcase/styled.js`), which are tracked for splitting or explicit exclusion in the current 30-day plan.
+- The size-check currently excludes `projects.js` (data module, not logic) and `OrbitSection.js` (complex orbit layout). `ToolsShowcase/styled.js` was deleted (barrel re-export removed) and `skillsets.js` was split into per-language files.
 - Added `.eslintrc.js` (extending `react-app` with `import/order` as error and `import/no-relative-parent-imports` as warn until Week 2) and `.prettierrc`.
 - Added `npm run lint` and `npm run format:check` to the CI pipeline. `npm run lint` now passes with 44 warnings for `import/no-relative-parent-imports`; `npm run format:check` passes after formatting.
-- Added `scripts/bundle-size.js` and `npm run bundle:check` to the CI pipeline. The main JS chunk is currently `572.92 KB` with a `600 KB` budget.
+- Added `scripts/bundle-size.js` and `npm run bundle:check` to the CI pipeline. The main JS chunk is currently `185.33 KB` with a `350 KB` budget.
 - Added `src/types.js` JSDoc type declarations and annotated high-touch content shapes (`Project`, `SkillSet`, `SkillDescriptions`, `TranslationSet`, `LanguageState`, `GeneralState`) and component props (`Tile`, `SkillsetList`, `About`).
 - Normalized all `../` imports to `jsconfig` base-URL aliases (`common/...`, `content/...`, `features/portfolio/...`) and promoted `import/no-relative-parent-imports` to `error`.
 - Renamed `src/Redux` to `src/slices` to avoid the `redux` package name collision and updated all `Redux/...` imports to `slices/...`.
 - `npm run lint`, `npm run format:check`, and `npm run build` all pass with no warnings or errors.
-- `Navigation/index.js` no longer imports `themes.js` for runtime breakpoints; it reads `--breakpoint-xl2` from CSS custom properties.
+- `Navigation/index.js` no longer imports `themes.js` for runtime breakpoints; it uses `window.matchMedia("(max-width: 1099px)")` with an event listener for responsive icon/text switching (replaced previous `getComputedStyle` approach).
 - Centered the hero section on the screen by adjusting `HomeWrapper` padding and adding `align-content: center` plus `min-height: calc(100vh - var(--nav-height))` to `ContentImageContainer`.
 - Added `src/content/translations.test.js` to assert that `translations.js`, `skillsets.js` exports, and `projects.js` all use `English`, `Polish`, and `Spanish` consistently.
 - Decided to keep `src/content/projects.js` and `src/content/skillsets.js` as JS data modules and exclude them from the 300-line size check; content parity is enforced by the test suite instead.
-- Verified `framer-motion` is still used by `ToolsShowcase/styled.js` (via `motion.*` styled components) and kept it in `package.json`.
-- Added component regression tests for `Navigation`, `LanguageSwitch`, `Tile`, and `Contact`, plus `src/test-utils.js` and a `matchMedia` mock in `src/setupTests.js`.
+- Verified `framer-motion` is still used by `ToolsShowcase` (via `motion.*` styled components in `showcaseLayout.js`, `exploreLayout.js`, and `OrbitSection.styles.js`) and kept it in `package.json`.
+- Added component regression tests for `Navigation`, `LanguageSwitch`, `Tile`, `Contact`, `RichText`, `SkillsetContainer`, `ComingSoonProject`, and `CarouselSlide`, plus `src/test-utils.js` and a `matchMedia` mock in `src/setupTests.js`.
+- Consolidated 4 button patterns (`ViewMyWorkButton`, `DownloadCVButton`, `ProjectLink`, `CTAButton`) into a shared `src/common/Button/` primitive with `$variant` (`primary` | `outline` | default) and `$size` (`sm`) props. `ScrollButton` variant wraps `react-scroll` `Link`.
+- Raised Jest coverage threshold from 50% to 70%; added 20 new unit tests bringing total to 32 tests across 10 suites.
+- Extended `check-hardcoded-colors.js` to scan all `.js`/`.jsx` files (not just `styled.js`) with an allowlist for `tokens.js`, `contactIcons.js`, and `animations.js`.
+- Extracted `DarkModeToggle` styled components from `index.js` to `styled.js`; deduplicated `Tile/index.js` even/odd JSX into a single render path.
+- Added 2 Playwright E2E tests for carousel navigation (next/prev button + dot selection), bringing total E2E to 5 tests.
+- Deleted dead code: `src/slices/` (71 lines), `orbitDecorations.js` (194 lines), 5 dead exports from `homeStyles.js` (~80 lines). Total ~345 lines removed.
 - `README.md` and `plan/ai-readiness-30-day-plan.md` updated to reflect the completed 30-day AI Readiness & Proportionality work.
-- Split `ToolsShowcase/styled.js` into `showcaseLayout.js`, `orbitDecorations.js`, and `exploreLayout.js`, and split `OrbitSection.js` into `OrbitSection.styles.js`, `useWindowWidth.js`, and `getOrbitDimensions.js` so all files are under 300 lines.
+- Split `ToolsShowcase/styled.js` into `showcaseLayout.js` and `exploreLayout.js` (barrel re-export later removed; imports now point directly to source files). `orbitDecorations.js` was deleted as dead code. Split `OrbitSection.js` into `OrbitSection.styles.js`, `useWindowWidth.js`, and `getOrbitDimensions.js` so all files are under 300 lines.
 - Simplified `OrbitSection` by removing the `BreathingRing` pulse and reducing orbit dimensions so the `MY TECHNOLOGY STACK` text fits without cropping; kept `LinesSvg` connecting lines and removed the `ToolsShowcaseWrapper` top/bottom section borders.
 - Redesigned the `About` section with a two-column layout: a `CodeTerminal` component showing the "From Embedded to Full-Stack" class on the left and a `MY JOURNEY` content panel with a gradient heading, journey paragraph, and four feature cards on the right.
 - Completed Week 1 of the 30-day cleanup: moved `StarField` and `Main` out of `src/GlobalStyles.js` into `src/common/StarField/` and `src/common/Main/`, made `StarField` deterministic with a seeded pseudo-random generator, and split `translations` out of `src/themes.js` by introducing `src/common/useContent.js`.

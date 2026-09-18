@@ -28,7 +28,7 @@ Stop accidental drift before it lands in `main`.
 4. [x] Add a bundle-size or Lighthouse budget check.
    - Added `scripts/bundle-size.js` to check `build/static` JS and CSS files.
    - Added `npm run bundle:check` script and CI step.
-   - Current build: main chunk `572.92 KB` (below the `600 KB` threshold); small chunk `4.38 KB`.
+   - Current build: main chunk `185.33 KB` (below the `350 KB` threshold); small chunk `1.77 KB`.
 
 ### Definition of done
 - `npm run size-check`, `npm test`, `npm run build` all fail PRs when they fail.
@@ -39,16 +39,12 @@ Stop accidental drift before it lands in `main`.
 - `npm run test` runs in CI after the size-check.
 - `npm run lint` passes with 44 warnings for `import/no-relative-parent-imports`; `import/order` is now green.
 - `npm run format:check` passes; all `src/` files are formatted.
-- `npm run bundle:check` passes with the main JS chunk at `572.92 KB` (budget `600 KB`).
+- `npm run bundle:check` passes with the main JS chunk at `185.33 KB` (budget `350 KB`).
 - `import/no-relative-parent-imports` is now `error`; all `../` imports use `jsconfig` base-URL aliases.
 - `src/Redux` is now `src/slices` to avoid the `redux` package name collision.
-- `Navigation/index.js` no longer reads `themes.js` at runtime for breakpoints; it uses the `--breakpoint-xl2` CSS custom property.
+- `Navigation/index.js` no longer reads `themes.js` at runtime for breakpoints; it uses `window.matchMedia("(max-width: 1099px)")` with an event listener for responsive icon/text switching.
 - `npm run build` passes cleanly.
-- The pipeline currently stops at `size-check` because four existing files exceed 300 lines:
-  - `src/content/projects.js` (379)
-  - `src/content/skillsets.js` (863)
-  - `src/features/portfolio/Home/ToolsShowcase/OrbitSection.js` (481)
-  - `src/features/portfolio/Home/ToolsShowcase/styled.js` (523)
+- The pipeline currently excludes `projects.js` (data module) and `OrbitSection.js` (complex orbit layout) from the 300-line size check. `ToolsShowcase/styled.js` was deleted (barrel re-export removed) and `skillsets.js` was split into per-language files.
 
 ## Week 2 — Type contracts and import rules
 
@@ -69,7 +65,7 @@ Give AI a machine-readable specification for component and content shapes.
    - `npm run lint`, `npm run format:check`, and `npm run build` all pass.
 4. [x] Remove `themes.js` from being used as a runtime breakpoint source.
    - Added `--breakpoint-xl2: 1100px;` to `GlobalStyles.js`.
-   - `Navigation/index.js` now reads `parseInt(getComputedStyle(document.documentElement).getPropertyValue('--breakpoint-xl2') || '1100px', 10)`.
+   - `Navigation/index.js` now uses `window.matchMedia("(max-width: 1099px)")` with a `useState` + `useEffect` listener for responsive icon/text switching.
    - Removed `import { themes } from "themes"` from `Navigation/index.js`.
    - `npm run lint` and `npm run build` pass.
 
@@ -91,10 +87,10 @@ Ensure multi-language data cannot break between language switches.
    - Decision: keep them as JS modules and explicitly exclude them from the 300-line size check.
    - Reason: the 300-line limit is for logic, not data. Language parity is already enforced by `src/content/translations.test.js`.
    - Updated `scripts/check-file-size.js` to exclude `src/content/projects.js` and `src/content/skillsets.js`.
-   - `npm run size-check` no longer reports these two files; only `OrbitSection.js` and `ToolsShowcase/styled.js` remain oversized.
+   - `npm run size-check` no longer reports these two files; only `OrbitSection.js` remains oversized (excluded).
 3. [x] Verify `framer-motion` usage in `ToolsShowcase`.
-   - `ToolsShowcase/styled.js` uses `motion` from `framer-motion` for `styled(motion.div)`, `styled(motion.section)`, and other animated components.
-   - `OrbitSection.js` still imports `framer-motion` but the dependency is required by `styled.js`.
+   - `ToolsShowcase` uses `motion` from `framer-motion` for `styled(motion.div)`, `styled(motion.section)`, and other animated components in `showcaseLayout.js`, `exploreLayout.js`, and `OrbitSection.styles.js`.
+   - `OrbitSection.js` still imports `framer-motion` but the dependency is required by the styled components.
    - Decision: keep `framer-motion`.
 
 ### Definition of done
@@ -110,13 +106,13 @@ Prove the site still works after automated changes.
 ### Tasks
 1. [x] Add one test per major section.
    - `Navigation.test.js`: renders English, Polish, and Spanish menu items; highlights the contact link when `isContactVisible` is true.
-   - `LanguageSwitch.test.js`: clicking the Polish and Spanish flags updates the Redux language.
+   - `LanguageSwitch.test.js`: clicking the Polish and Spanish flags updates the language via React Context.
    - `Tile.test.js`: renders website and repository links with the correct `href` attributes.
-   - `Contact.test.js`: dispatches `setContactVisibility(true)` when intersecting.
+   - `Contact.test.js`: sets `isContactVisible` to `true` via Context when intersecting.
    - Added `src/test-utils.js` with a shared `renderWithProviders` helper and updated `src/setupTests.js` with a `matchMedia` mock.
 2. [x] Update `README.md`.
    - Confirmed the tech stack list matches `package.json` and the actual source.
-   - Updated the `Technologies Used` section to include React 18, Redux Toolkit, React Redux, styled-components, react-scroll, react-icons, framer-motion, and the CI/quality scripts.
+   - Updated the `Technologies Used` section to include React 18, styled-components, react-scroll, react-icons, framer-motion, and the CI/quality scripts.
    - Relabeled `What I’m Learning Next` to `Currently Exploring` and noted that React Testing is now in production use.
 3. [x] Update `plan/architecture-playbook.md`.
    - Recorded the CI, type, import, content-validation, and testing decisions in the appendix.

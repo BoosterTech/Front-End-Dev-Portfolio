@@ -16,31 +16,40 @@ Check out my portfolio: [Derek.dev](https://boostertech.github.io/Front-End-Dev-
 - **Responsive Design**: Optimized for all devices (desktop, tablet, mobile).
 - **Interactive UI**: Smooth animations and transitions for a great user experience.
 - **Project Showcase**: Highlighting my best work with detailed descriptions and links.
+- **Accessibility**: ARIA roles/labels on interactive elements, keyboard navigation (arrow keys for carousel, Enter/Space for toggles, Escape for fullscreen), dynamic `<html lang>` attribute.
+- **Image Optimization**: WebP format with lazy loading for fast page loads.
 
 ---
 
 ## 🛠️ Technologies Used
 
 - **Front-End**: React 18, React DOM
-- **State Management**: Redux Toolkit, React Redux
+- **State Management**: React Context (`LanguageProvider`, `ContactVisibilityProvider`)
 - **Styling**: styled-components, CSS custom properties, CSS Grid, CSS Flexbox, keyframe animations
 - **Navigation**: react-scroll
 - **Icons**: react-icons
 - **Animations**: framer-motion
 - **Deployment**: gh-pages
-- **Quality & CI**: ESLint, Prettier, Jest, GitHub Actions
-- **Build-time Guardrails**: `size-check`, `format:check`, `lint`, `bundle:check`, `depcheck`, `test:coverage`, `lighthouse:check`
+- **Image Optimization**: sharp (PNG/JPG → WebP), `loading="lazy"` on below-the-fold images
+- **E2E Testing**: Playwright (5 tests: scroll nav, language switch, dark mode, carousel next/prev, carousel dot-click)
+- **Quality & CI**: ESLint, Prettier, Jest, Playwright, GitHub Actions
+- **Build-time Guardrails**: `size-check`, `format:check`, `lint`, `bundle:check`, `depcheck`, `test:coverage`, `lighthouse:check`, `check:colors`, `check:circular`, `test:e2e`, `optimize:images`
 
 ---
 
 ## 🏗️ Architecture & Maintenance
 
 - Decisions are recorded in `plan/architecture-playbook.md`.
-- Active cleanup work is tracked in `plan/30-day-cleanup-plan.md`.
+- Active architecture work is tracked in `plan/architecture-audit-next-30-days.md`.
 - Recent boundary cleanup: `StarField` and `Main` are now standalone `src/common/` components, `src/themes.js` contains only breakpoints, and components read localized copy through `src/common/useContent.js`.
-- Shared primitives: `src/common/Card` provides `$glass`, `$bordered`, and `$hoverable` variants for `About`, `Projects`, and `ToolsShowcase`.
+- **State management**: language and `isContactVisible` are handled by `LanguageProvider` and `ContactVisibilityProvider` in `src/common/`; `@reduxjs/toolkit` and `react-redux` were removed.
+- Shared primitives: `src/common/Card` provides `$glass`, `$bordered`, and `$hoverable` variants and is now used by `About` feature cards, `Contact` tiles, `Footer` social links, `Projects` tiles, and `ToolsShowcase` feature cards.
 - Content split: `src/content/skillsets.js` is now `src/content/skillsets/{en,pl,es}.js` with an `index.js` aggregator; `projects.js` remains a single module under the size-check exclusion.
-- Quality gates: `npm run test:coverage` enforces a 50% Jest coverage threshold, and `npm run lighthouse:check` audits the build for LCP <= 2.5 s and CLS <= 0.1 (currently non-blocking in CI).
+- Color-token guard: `npm run check:colors` runs in CI and fails the build if any hardcoded colors are found in any `src/**/*.js` or `src/**/*.jsx` file (with an allowlist for `tokens.js`, `contactIcons.js`, and `animations.js`).
+- Circular-dependency guard: `npm run check:circular` (via `madge`) runs in CI and fails the build if any import cycles are introduced.
+- Bundle-impact gate: PR template requires `npm run build && npm run bundle:check` and confirmation that no chunk exceeds the 350 KB gzipped budget.
+- Fixed section slugs: `home`, `about`, `projects`, `contact` are used for `react-scroll` anchors in all languages.
+- Quality gates: `npm run test:coverage` enforces a 70% Jest coverage threshold, `npm run test:e2e` runs 5 Playwright E2E tests (scroll, language switch, dark mode, carousel next/prev, carousel dot-click) in CI, and `npm run lighthouse:check` audits the build for LCP <= 2.5 s and CLS <= 0.1 (now a blocking CI step).
 
 ---
 
