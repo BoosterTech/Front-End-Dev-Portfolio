@@ -2,7 +2,7 @@ import slowEntry from "common/slowEntry";
 import { css } from "styled-components";
 
 export const base = css`
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+  @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
 
   html {
     box-sizing: border-box;
@@ -17,14 +17,19 @@ export const base = css`
 
   body {
     min-height: 100vh;
-    background-image: url(${process.env.PUBLIC_URL}/backgroundLight.webp);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    overflow-x: hidden;
+    overflow-x: clip;
     color: var(--color-text-primary);
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
-      'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+    font-family:
+      "Inter",
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      "Roboto",
+      "Oxygen",
+      "Ubuntu",
+      "Cantarell",
+      sans-serif;
     font-size: 16px;
     font-weight: 400;
     line-height: 1.6;
@@ -36,21 +41,40 @@ export const base = css`
     -moz-osx-font-smoothing: grayscale;
   }
 
-  [data-theme="dark"] body {
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url(${process.env.PUBLIC_URL}/backgroundLight.webp);
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1;
+  }
+
+  [data-theme="dark"] body::before {
     background-image: url(${process.env.PUBLIC_URL}/backgroundDark.webp);
   }
 
   @media (max-width: 768px) {
-    body {
+    body::before {
       background-image: url(${process.env.PUBLIC_URL}/backgroundLightMobile.webp);
     }
 
-    [data-theme="dark"] body {
+    [data-theme="dark"] body::before {
       background-image: url(${process.env.PUBLIC_URL}/backgroundDarkMobile.webp);
     }
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-weight: 700;
     line-height: 1.2;
     margin: 0 0 var(--spacing-md) 0;
@@ -153,10 +177,19 @@ export const base = css`
       width: 0;
       background: transparent;
     }
+
+    * {
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
   }
 
-  /* Focus styles for accessibility */
+  /* Focus styles for accessibility — keyboard only */
   *:focus {
+    outline: none;
+  }
+
+  *:focus-visible {
     outline: 2px solid var(--color-primary);
     outline-offset: 2px;
   }

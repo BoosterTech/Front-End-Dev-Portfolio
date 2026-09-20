@@ -47,7 +47,7 @@ export const Header = styled.h2`
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-size: 200% 200%;
-  animation: ${gradientShift} 4s ease-in-out infinite;
+  animation: ${gradientShift} 15s ease-in-out infinite;
 
   &:hover img {
     animation: ${waveHand} 4s infinite;

@@ -1,4 +1,4 @@
-import { fadeInUp } from "common/animations";
+import { fadeInUp, gradientShift } from "common/animations";
 import Card from "common/Card";
 import styled from "styled-components";
 
@@ -31,7 +31,12 @@ export const Wrapper = styled.section`
     left: 0;
     right: 0;
     height: 4px;
-    background: linear-gradient(90deg, transparent, var(--color-cyan), transparent);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--color-cyan),
+      transparent
+    );
     box-shadow: 0 0 20px rgba(var(--color-cyan-rgb), 0.6);
   }
 
@@ -44,7 +49,11 @@ export const Wrapper = styled.section`
     bottom: 0;
     background-image:
       linear-gradient(rgba(var(--color-cyan-rgb), 0.06) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(var(--color-cyan-rgb), 0.06) 1px, transparent 1px);
+      linear-gradient(
+        90deg,
+        rgba(var(--color-cyan-rgb), 0.06) 1px,
+        transparent 1px
+      );
     background-size: 40px 40px;
     pointer-events: none;
   }
@@ -107,7 +116,17 @@ export const Header = styled.h2`
   z-index: 1;
 
   span {
-    color: var(--color-cyan);
+    background: linear-gradient(
+      135deg,
+      var(--color-text-secondary) 0%,
+      var(--color-primary) 40%,
+      var(--color-accent) 100%
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% 200%;
+    animation: ${gradientShift} 15s ease-in-out infinite;
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
