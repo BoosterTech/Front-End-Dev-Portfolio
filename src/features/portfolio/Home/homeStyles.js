@@ -19,10 +19,10 @@ const imageBorderAnimation = keyframes`
 `;
 
 export const HomeWrapper = styled.section`
-  padding: var(--nav-height) 0 var(--spacing-3xl) 0;
+  padding: var(--nav-height-actual, var(--nav-height)) 0 var(--spacing-3xl) 0;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
-    padding: var(--nav-height-mobile) 0 var(--spacing-2xl) 0;
+    padding: var(--nav-height-actual, var(--nav-height-mobile)) 0 var(--spacing-2xl) 0;
   }
   width: 100%;
   animation: ${fadeInUp} 0.8s ease-out;
@@ -34,14 +34,15 @@ export const ContentImageContainer = styled.div`
   gap: var(--spacing-3xl);
   align-items: center;
   align-content: center;
-  min-height: calc(100vh - var(--nav-height));
+  min-height: calc(100vh - var(--nav-height-actual, var(--nav-height)));
   margin-bottom: var(--spacing-3xl);
 
   @media (max-width: ${({ theme }) => theme.breakpoint.xl2}) {
     grid-template-columns: 1fr;
     gap: var(--spacing-2xl);
-    min-height: calc(100vh - var(--nav-height-mobile));
+    min-height: calc(100vh - var(--nav-height-actual, var(--nav-height-mobile)));
     text-align: center;
+    padding-top: var(--spacing-xl);
   }
 
   @media (max-height: 500px) {

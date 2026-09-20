@@ -113,7 +113,7 @@ export const tokens = css`
 
     /* Layout helpers */
     --nav-height: 64px;
-    --nav-height-mobile: 64px;
+    --nav-height-mobile: 80px;
     --breakpoint-xl2: 1100px;
   }
 

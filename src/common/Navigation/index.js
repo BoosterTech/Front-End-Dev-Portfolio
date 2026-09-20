@@ -2,10 +2,11 @@ import { useContactVisibility } from "common/ContactVisibilityProvider";
 import DarkModeToggle from "common/DarkModeToggle";
 import { useLanguage } from "common/LanguageProvider";
 import { LanguageSwitch } from "common/LanguageSwitch";
-import { useEffect, useState } from "react";
-import { FaBars, FaEnvelope, FaHome, FaProjectDiagram, FaTimes, FaUser } from "react-icons/fa";
+import { useEffect, useRef, useState } from "react";
+import { FaEnvelope, FaHome, FaProjectDiagram, FaUser } from "react-icons/fa";
 import { Link } from "react-scroll";
 
+import { HamburgerIcon } from "./HamburgerIcon";
 import { menuItems } from "./menuItems";
 import {
   DevWrapper,
@@ -28,6 +29,66 @@ const Navigation = () => {
     () => typeof window !== "undefined" && window.matchMedia(`(max-width: ${1100 - 1}px)`).matches
   );
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navRef = useRef(null);
+  const [hidden, setHidden] = useState(false);
+
+  useEffect(() => {
+    let lastScrollY = window.scrollY;
+    let ticking = false;
+
+    const updateScroll = () => {
+      if (window.innerWidth >= 768) {
+        setHidden(false);
+        ticking = false;
+        return;
+      }
+
+      const currentY = window.scrollY;
+      const delta = currentY - lastScrollY;
+
+      if (currentY < 10) {
+        setHidden(false);
+      } else if (delta > 4) {
+        setHidden(true);
+      } else if (delta < -4) {
+        setHidden(false);
+      }
+
+      lastScrollY = currentY;
+      ticking = false;
+    };
+
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateScroll);
+        ticking = true;
+      }
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    const nav = navRef.current;
+    if (!nav) return;
+
+    const updateNavHeight = () => {
+      const height = nav.offsetHeight;
+      document.documentElement.style.setProperty("--nav-height-actual", `${height}px`);
+    };
+
+    updateNavHeight();
+
+    const ro = new ResizeObserver(updateNavHeight);
+    ro.observe(nav);
+
+    window.addEventListener("resize", updateNavHeight);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener("resize", updateNavHeight);
+    };
+  }, []);
 
   useEffect(() => {
     const mql = window.matchMedia(`(max-width: ${1100 - 1}px)`);
@@ -42,6 +103,20 @@ const Navigation = () => {
     mql.addEventListener("change", handler);
     return () => mql.removeEventListener("change", handler);
   }, []);
+
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.documentElement.style.overflow = "hidden";
+      document.body.style.overflow = "hidden";
+    } else {
+      document.documentElement.style.overflow = "";
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.documentElement.style.overflow = "";
+      document.body.style.overflow = "";
+    };
+  }, [isMenuOpen]);
 
   const handleClick = () => {
     setLanguage("English");
@@ -76,9 +151,9 @@ const Navigation = () => {
   };
 
   return (
-    <StyledList aria-label="Main navigation">
+    <StyledList ref={navRef} className={hidden ? "nav-hidden" : ""} aria-label="Main navigation">
       <TopRow>
-        <LanguageSwitch />
+        <LanguageSwitch onOpen={() => setIsMenuOpen(false)} />
         <DarkModeToggle />
       </TopRow>
       <Link
@@ -124,7 +199,7 @@ const Navigation = () => {
         aria-label="Toggle navigation menu"
         aria-expanded={isMenuOpen}
       >
-        {isMenuOpen ? <FaTimes /> : <FaBars />}
+        <HamburgerIcon $open={isMenuOpen} />
       </HamburgerButton>
       <MobileMenuBackdrop
         className={isMenuOpen ? "open" : ""}

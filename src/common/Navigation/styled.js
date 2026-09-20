@@ -1,9 +1,9 @@
-import { fadeIn, slideFromLeft } from "common/animations";
+import { fadeIn } from "common/animations";
 import { Link } from "react-scroll";
 import styled from "styled-components";
 
 export const StyledList = styled.nav`
-  width: 100%;
+  width: 100vw;
   position: fixed;
   top: 0;
   left: 0;
@@ -22,8 +22,12 @@ export const StyledList = styled.nav`
   font-size: 0.95rem;
   box-shadow: var(--shadow-sm);
   border-bottom: 1px solid var(--color-border);
-  transition: all var(--transition-normal);
+  transition: transform var(--transition-normal);
   animation: ${fadeIn} 0.6s ease-out;
+
+  &.nav-hidden {
+    transform: translateY(-100%);
+  }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
     padding: var(--spacing-md) var(--spacing-lg);
@@ -45,41 +49,18 @@ export const TopRow = styled.div`
 
 export const StyledListItem = styled.li`
   color: var(--color-text-primary);
-  transition: all var(--transition-fast);
+  transition: color var(--transition-fast), background-color var(--transition-fast), border-color var(--transition-fast);
   border: 1px solid transparent;
   padding: var(--spacing-sm) var(--spacing-lg);
   border-radius: 20px;
   cursor: pointer;
   position: relative;
-  overflow: hidden;
-
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      rgba(var(--color-white-rgb), 0.1),
-      transparent
-    );
-    transition: left var(--transition-slow);
-  }
 
   @media (hover: hover) {
     &:hover {
       color: var(--color-primary);
       background-color: var(--color-surface);
       border-color: var(--color-border);
-      transform: translateY(-1px);
-      box-shadow: var(--shadow-md);
-
-      &::before {
-        left: 100%;
-      }
     }
   }
 
@@ -88,12 +69,6 @@ export const StyledListItem = styled.li`
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
-    padding: var(--spacing-sm) var(--spacing-md);
-    font-size: 1.2rem;
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoint.xs}) {
-    animation: ${slideFromLeft} 0.6s ease-out forwards;
     padding: var(--spacing-sm) var(--spacing-md);
   }
 `;
@@ -110,8 +85,6 @@ export const StyledScrollLink = styled(Link)`
       var(--color-accent)
     );
     border-color: var(--color-primary);
-    box-shadow: var(--shadow-md);
-    transform: translateY(-1px);
 
     svg {
       color: var(--color-primary);
@@ -120,10 +93,8 @@ export const StyledScrollLink = styled(Link)`
     @media (max-width: ${({ theme }) => theme.breakpoint.xl2}) {
       background: none;
       background-color: transparent;
-      box-shadow: none;
       color: var(--color-primary);
       border-color: var(--color-primary);
-      transform: none;
       border-radius: 50px;
       svg {
         color: var(--color-primary);
@@ -140,8 +111,13 @@ export const DevWrapper = styled.div`
   font-size: 1.5rem;
   padding: var(--spacing-sm) var(--spacing-md);
   border-radius: var(--radius-md);
-  transition: all var(--transition-fast);
+  transition: filter var(--transition-fast);
   cursor: pointer;
+  flex-shrink: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   background: linear-gradient(
     135deg,
     var(--color-primary),
@@ -152,10 +128,6 @@ export const DevWrapper = styled.div`
   -webkit-text-fill-color: transparent;
   background-size: 200% 200%;
   animation: gradientShift 3s ease-in-out infinite;
-  position: static;
-  left: auto;
-  top: auto;
-  transform: none;
   z-index: 10;
   display: flex;
   flex-wrap: nowrap;
@@ -196,31 +168,24 @@ export const MenuContainer = styled.div`
     display: none;
   }
 
-  @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: center;
-    gap: var(--spacing-xs);
-  }
 `;
 
 export const HamburgerButton = styled.button`
   display: none;
   background: none;
-  border: 1px solid var(--color-border);
+  border: none;
   border-radius: var(--radius-md);
   padding: var(--spacing-sm);
   width: 40px;
   height: 40px;
+  flex-shrink: 0;
   cursor: pointer;
   color: var(--color-text-primary);
-  font-size: 1.25rem;
   align-items: center;
   justify-content: center;
-  transition: all var(--transition-fast);
+  transition: color var(--transition-fast);
 
   &:hover {
-    border-color: var(--color-primary);
     color: var(--color-primary);
   }
 
@@ -236,7 +201,7 @@ export const MobileMenuBackdrop = styled.div`
   left: 0;
   width: 100%;
   height: calc(100vh - 100%);
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(var(--color-black-rgb), 0.4);
   opacity: 0;
   visibility: hidden;
   transition: opacity var(--transition-normal), visibility var(--transition-normal);
@@ -297,7 +262,7 @@ export const MobileNavItem = styled(Link)`
   font-weight: 600;
   font-size: 1rem;
   min-height: 48px;
-  transition: all var(--transition-fast);
+  transition: color var(--transition-fast), background-color var(--transition-fast);
   white-space: nowrap;
 
   svg {

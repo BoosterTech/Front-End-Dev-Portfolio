@@ -1,18 +1,12 @@
-import React, { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
-import {
-  ToggleContainer,
-  ToggleWrapper,
-  ToggleSlider,
-  ToggleIcon,
-  ToggleLabel,
-} from "./styled";
+import { ThemeButton } from "./styled";
+import { ThemeIcon } from "./ThemeIcon";
 
 const DarkModeToggle = () => {
   const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
-    // Check for saved theme preference or default to light mode
     const savedTheme = localStorage.getItem("theme");
     const prefersDark = window.matchMedia(
       "(prefers-color-scheme: dark)"
@@ -38,29 +32,23 @@ const DarkModeToggle = () => {
   };
 
   return (
-    <ToggleContainer>
-      <ToggleLabel>Light</ToggleLabel>
-      <ToggleWrapper
-        $isDark={isDark}
-        onClick={toggleTheme}
-        data-testid="dark-mode-toggle"
-        role="switch"
-        aria-checked={isDark}
-        aria-label="Toggle dark mode"
-        tabIndex={0}
-        onKeyDown={(e) => {
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            toggleTheme();
-          }
-        }}
-      >
-        <ToggleSlider $isDark={isDark}>
-          <ToggleIcon>{isDark ? "🌙" : "☀️"}</ToggleIcon>
-        </ToggleSlider>
-      </ToggleWrapper>
-      <ToggleLabel>Dark</ToggleLabel>
-    </ToggleContainer>
+    <ThemeButton
+      onClick={toggleTheme}
+      onMouseDown={(e) => e.stopPropagation()}
+      data-testid="dark-mode-toggle"
+      role="switch"
+      aria-checked={isDark}
+      aria-label="Toggle dark mode"
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          toggleTheme();
+        }
+      }}
+    >
+      <ThemeIcon $isDark={isDark} />
+    </ThemeButton>
   );
 };
 

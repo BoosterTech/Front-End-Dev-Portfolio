@@ -2,68 +2,74 @@ import { useLanguage } from "common/LanguageProvider";
 import IRLIcon from "images/englishIcon.webp";
 import PLIcon from "images/PolandIcon.png";
 import ESPIcon from "images/SpainIcon.png";
+import { useEffect, useRef, useState } from "react";
+import { FaGlobe } from "react-icons/fa";
 
-import { Wrapper, Icon, IconsWrapper } from "./styled";
+import { Dropdown, DropdownItem, GlobeButton, Wrapper } from "./styled";
 
-export const LanguageSwitch = () => {
+const languages = [
+  { name: "English", flag: IRLIcon, code: "EN" },
+  { name: "Polish", flag: PLIcon, code: "PL" },
+  { name: "Spanish", flag: ESPIcon, code: "ES" },
+];
+
+export const LanguageSwitch = ({ onOpen }) => {
   const { language, setLanguage } = useLanguage();
+  const [isOpen, setIsOpen] = useState(false);
+  const ref = useRef(null);
 
-  const handleClick = (language) => () => {
-    setLanguage(language);
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (ref.current && !ref.current.contains(e.target)) {
+        setIsOpen(false);
+      }
+    };
+    const handleScroll = () => {
+      setIsOpen(false);
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const toggle = () => {
+    const next = !isOpen;
+    setIsOpen(next);
+    if (next && onOpen) onOpen();
+  };
+
+  const handleSelect = (lang) => {
+    setLanguage(lang);
+    setIsOpen(false);
   };
 
   return (
-    <Wrapper role="group" aria-label="Language selector">
-      <IconsWrapper>
-        <Icon
-          src={IRLIcon}
-          alt="English"
-          onClick={handleClick("English")}
-          $isActive={language === "English"}
-          role="button"
-          tabIndex={0}
-          aria-pressed={language === "English"}
-          aria-label="Switch to English"
-          onKeyDown={(e) => {
-            if (e.key === "Enter" || e.key === " ") {
-              e.preventDefault();
-              setLanguage("English");
-            }
-          }}
-        />
-        <Icon
-          src={PLIcon}
-          alt="Polish"
-          onClick={handleClick("Polish")}
-          $isActive={language === "Polish"}
-          role="button"
-          tabIndex={0}
-          aria-pressed={language === "Polish"}
-          aria-label="Switch to Polish"
-          onKeyDown={(e) => {
-            if (e.key === "Enter" || e.key === " ") {
-              e.preventDefault();
-              setLanguage("Polish");
-            }
-          }}
-        />
-        <Icon
-          src={ESPIcon}
-          alt="Spanish"
-          onClick={handleClick("Spanish")}
-          $isActive={language === "Spanish"}
-          role="button"
-          tabIndex={0}
-          aria-pressed={language === "Spanish"}
-          aria-label="Switch to Spanish"
-          onKeyDown={(e) => {
-            if (e.key === "Enter" || e.key === " ") {
-              e.preventDefault();
-              setLanguage("Spanish");
-            }
-          }}
-        />
-      </IconsWrapper>
+    <Wrapper ref={ref} role="group" aria-label="Language selector">
+      <GlobeButton
+        onClick={toggle}
+        aria-label="Select language"
+        aria-expanded={isOpen}
+        aria-haspopup="listbox"
+      >
+        <FaGlobe />
+      </GlobeButton>
+      <Dropdown className={isOpen ? "open" : ""} role="listbox">
+        {languages.map((lang) => (
+          <DropdownItem
+            key={lang.name}
+            $isActive={language === lang.name}
+            onClick={() => handleSelect(lang.name)}
+            role="option"
+            aria-selected={language === lang.name}
+          >
+            <img src={lang.flag} alt={lang.name} />
+            {lang.name}
+          </DropdownItem>
+        ))}
+      </Dropdown>
     </Wrapper>
   );
 };
