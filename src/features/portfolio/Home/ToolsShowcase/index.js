@@ -16,6 +16,7 @@ import {
   FaRobot,
   FaSitemap,
   FaEllipsisH,
+  FaStar,
 } from "react-icons/fa";
 import { SiStripe, SiFramer } from "react-icons/si";
 
@@ -39,6 +40,7 @@ import {
   ShowcaseContent,
   SectionLabel,
   SectionTitle,
+  PlainTitlePart,
   GradientWord,
   SectionDescription,
   FeatureGrid,
@@ -63,7 +65,7 @@ const orbitTechnologies = [
 
 const exploreItems = [
   {
-    name: "Artificial Intelligence (AI)",
+    name: "Artificial Intelligence",
     icon: <FaBrain />,
     description: "Building AI-powered features",
   },
@@ -135,10 +137,12 @@ export const ToolsShowcase = () => {
           />
         </OrbitSectionWrapper>
         <ShowcaseContent>
-          <SectionLabel variants={item}>MY TECHNOLOGY STACK</SectionLabel>
+          <SectionLabel variants={item}>
+            <FaStar />
+            MY TECHNOLOGY STACK
+          </SectionLabel>
           <SectionTitle variants={item}>
-            Build with the
-            <br />
+            <PlainTitlePart>Build with the</PlainTitlePart>{" "}
             <GradientWord>Best Tools</GradientWord>
           </SectionTitle>
           <SectionDescription variants={item}>
@@ -175,7 +179,11 @@ export const ToolsShowcase = () => {
             Leveling up my skills and building the future, one line at a time.
           </ExploreParagraph>
         </ExploreHeader>
-        <ExploreTrack>
+        <ExploreTrack
+          role="region"
+          aria-label="Technologies currently exploring"
+          tabIndex={0}
+        >
           {exploreItems.map((item, index) => (
             <ExploreChip
               key={item.name}

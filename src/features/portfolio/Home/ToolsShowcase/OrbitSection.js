@@ -1,4 +1,5 @@
 import { useLayoutEffect, useMemo, useRef, useState } from "react";
+import { themes } from "themes";
 
 import { getOrbitDimensions } from "./getOrbitDimensions";
 import {
@@ -10,10 +11,13 @@ import {
   TechCardFloat,
   TechCard,
   TechName,
-  MobileTrack,
-  MobileCard,
+  MarqueeTrack,
+  MarqueeContent,
+  MarqueeCard,
 } from "./OrbitSection.styles";
 import { useWindowWidth } from "./useWindowWidth";
+
+const MOBILE_MAX_WIDTH = parseInt(themes.breakpoint.lg, 10);
 
 export const OrbitSection = ({
   technologies,
@@ -21,8 +25,25 @@ export const OrbitSection = ({
   centerLabel = "Next.js",
 }) => {
   const windowWidth = useWindowWidth();
-  const CIRCLE_CARD_IDS = ["redux", "typescript", "react", "vercel", "supabase", "react-query", "redux-toolkit", "styled"];
-  const PADDED_CARD_IDS = ["react", "vercel", "supabase", "styled", "redux-toolkit", "react-query"];
+  const isMobile = windowWidth <= MOBILE_MAX_WIDTH;
+  const CIRCLE_CARD_IDS = [
+    "redux",
+    "typescript",
+    "react",
+    "vercel",
+    "supabase",
+    "react-query",
+    "redux-toolkit",
+    "styled",
+  ];
+  const PADDED_CARD_IDS = [
+    "react",
+    "vercel",
+    "supabase",
+    "styled",
+    "redux-toolkit",
+    "react-query",
+  ];
   const orbitRef = useRef(null);
   const [availableSize, setAvailableSize] = useState(Number.MAX_SAFE_INTEGER);
 
@@ -56,7 +77,7 @@ export const OrbitSection = ({
     ro.observe(parent);
 
     return () => ro.disconnect();
-  }, []);
+  }, [isMobile]);
 
   const positions = useMemo(() => {
     const totalItems = technologies.length;
@@ -69,141 +90,152 @@ export const OrbitSection = ({
     });
   }, [technologies, radius]);
 
+  const marqueeItems = [
+    { id: "__center", name: centerLabel, icon: centerIcon, isCenter: true },
+    ...technologies,
+  ];
+
   return (
     <>
-      <OrbitContainer
-        ref={orbitRef}
-        className="orbit-desktop"
-        style={{
-          width: containerSize,
-          height: containerSize,
-          display: windowWidth < 768 ? "none" : "block",
-        }}
-      >
-        <LinesSvg viewBox={`0 0 ${containerSize} ${containerSize}`}>
-          <g id="line-glow">
-            {positions.map((pos, index) => {
-              const endX = center + pos.x;
-              const endY = center + pos.y;
-              return (
-                <line
-                  key={`glow-${index}`}
-                  x1={center}
-                  y1={center}
-                  x2={endX}
-                  y2={endY}
-                  stroke="var(--color-cyan)"
-                  strokeWidth="5"
-                  strokeOpacity="0.15"
-                  strokeLinecap="round"
-                />
-              );
-            })}
-          </g>
+      {!isMobile && (
+        <OrbitContainer
+          ref={orbitRef}
+          className="orbit-desktop"
+          style={{
+            width: containerSize,
+            height: containerSize,
+          }}
+        >
+          <LinesSvg viewBox={`0 0 ${containerSize} ${containerSize}`}>
+            <g id="line-glow">
+              {positions.map((pos, index) => {
+                const endX = center + pos.x;
+                const endY = center + pos.y;
+                return (
+                  <line
+                    key={`glow-${index}`}
+                    x1={center}
+                    y1={center}
+                    x2={endX}
+                    y2={endY}
+                    stroke="var(--color-cyan)"
+                    strokeWidth="5"
+                    strokeOpacity="0.15"
+                    strokeLinecap="round"
+                  />
+                );
+              })}
+            </g>
 
-          <g id="line-core">
-            {positions.map((pos, index) => {
-              const endX = center + pos.x;
-              const endY = center + pos.y;
-              return (
-                <line
-                  key={`core-${index}`}
-                  x1={center}
-                  y1={center}
-                  x2={endX}
-                  y2={endY}
-                  stroke="var(--color-cyan-light)"
-                  strokeWidth="1.5"
-                  strokeOpacity="0.5"
-                  strokeLinecap="round"
-                />
-              );
-            })}
-          </g>
-        </LinesSvg>
+            <g id="line-core">
+              {positions.map((pos, index) => {
+                const endX = center + pos.x;
+                const endY = center + pos.y;
+                return (
+                  <line
+                    key={`core-${index}`}
+                    x1={center}
+                    y1={center}
+                    x2={endX}
+                    y2={endY}
+                    stroke="var(--color-cyan-light)"
+                    strokeWidth="1.5"
+                    strokeOpacity="0.5"
+                    strokeLinecap="round"
+                  />
+                );
+              })}
+            </g>
+          </LinesSvg>
 
-        <CenterWrapper $size={centerSize}>
-          <CenterNode
-            $size={centerSize}
-            initial={{ scale: 0.7, opacity: 0 }}
-            whileInView={{ scale: 1, opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            whileHover={{ scale: 1.05 }}
-          >
-            <img src={centerIcon} alt={centerLabel} loading="lazy" />
-          </CenterNode>
-        </CenterWrapper>
-
-        {technologies.map((tech, index) => {
-          const { x, y } = positions[index];
-          return (
-            <TechCardWrapper
-              key={tech.id || tech.name}
-              $width={CIRCLE_CARD_IDS.includes(tech.id) ? Math.min(cardWidth, cardHeight) : cardWidth}
-              $height={CIRCLE_CARD_IDS.includes(tech.id) ? Math.min(cardWidth, cardHeight) : cardHeight}
-              style={{
-                left: "50%",
-                top: "50%",
-                transform: `translate(-50%, -50%) translate(${x}px, ${y}px)`,
-              }}
+          <CenterWrapper $size={centerSize}>
+            <CenterNode
+              $size={centerSize}
+              initial={{ scale: 0.7, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              whileHover={{ scale: 1.05 }}
             >
-              <TechCardFloat $delay={index * 0.4}>
-                <TechCard
-                  $isCircleCard={CIRCLE_CARD_IDS.includes(tech.id)}
-                  $isPadded={PADDED_CARD_IDS.includes(tech.id)}
-                  initial={{ opacity: 0, scale: 0 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  whileHover={{ scale: 1.08 }}
-                  transition={{
-                    duration: 0.5,
-                    delay: 0.3 + index * 0.06,
-                    type: "spring",
-                    stiffness: 200,
-                  }}
-                >
+              <img src={centerIcon} alt={centerLabel} loading="lazy" />
+            </CenterNode>
+          </CenterWrapper>
+
+          {technologies.map((tech, index) => {
+            const { x, y } = positions[index];
+            return (
+              <TechCardWrapper
+                key={tech.id || tech.name}
+                $width={
+                  CIRCLE_CARD_IDS.includes(tech.id)
+                    ? Math.min(cardWidth, cardHeight)
+                    : cardWidth
+                }
+                $height={
+                  CIRCLE_CARD_IDS.includes(tech.id)
+                    ? Math.min(cardWidth, cardHeight)
+                    : cardHeight
+                }
+                style={{
+                  left: "50%",
+                  top: "50%",
+                  transform: `translate(-50%, -50%) translate(${x}px, ${y}px)`,
+                }}
+              >
+                <TechCardFloat $delay={index * 0.4}>
+                  <TechCard
+                    $isCircleCard={CIRCLE_CARD_IDS.includes(tech.id)}
+                    $isPadded={PADDED_CARD_IDS.includes(tech.id)}
+                    initial={{ opacity: 0, scale: 0 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    whileHover={{ scale: 1.08 }}
+                    transition={{
+                      duration: 0.5,
+                      delay: 0.3 + index * 0.06,
+                      type: "spring",
+                      stiffness: 200,
+                    }}
+                  >
                     {typeof tech.icon === "string" ? (
                       <img src={tech.icon} alt={tech.name} loading="lazy" />
                     ) : (
                       tech.icon
                     )}
-                </TechCard>
-              </TechCardFloat>
-            </TechCardWrapper>
-          );
-        })}
-      </OrbitContainer>
+                  </TechCard>
+                </TechCardFloat>
+              </TechCardWrapper>
+            );
+          })}
+        </OrbitContainer>
+      )}
 
-      <MobileTrack>
-        <MobileCard
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          whileHover={{ scale: 1.05 }}
-        >
-          <img src={centerIcon} alt={centerLabel} loading="lazy" />
-          <TechName $fontSize={12}>{centerLabel}</TechName>
-        </MobileCard>
-        {technologies.map((tech, index) => (
-          <MobileCard
-            key={tech.id || tech.name}
-            $isCircleCard={CIRCLE_CARD_IDS.includes(tech.id)}
-            $isPadded={PADDED_CARD_IDS.includes(tech.id)}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: index * 0.05 }}
-            whileHover={{ scale: 1.05 }}
-          >
-            {typeof tech.icon === "string" ? (
-              <img src={tech.icon} alt={tech.name} loading="lazy" />
-            ) : (
-              tech.icon
-            )}
-          </MobileCard>
-        ))}
-      </MobileTrack>
+      <MarqueeTrack>
+        <MarqueeContent>
+          {[0, 1].map((copy) =>
+            marqueeItems.map((tech) => (
+              <MarqueeCard
+                key={`${copy}-${tech.id || tech.name}`}
+                aria-hidden={copy === 1 || undefined}
+                $isCircleCard={
+                  !tech.isCenter && CIRCLE_CARD_IDS.includes(tech.id)
+                }
+                $isPadded={PADDED_CARD_IDS.includes(tech.id)}
+                whileHover={{ scale: 1.05 }}
+              >
+                {typeof tech.icon === "string" ? (
+                  <img src={tech.icon} alt={tech.name} loading="lazy" />
+                ) : (
+                  tech.icon
+                )}
+                {tech.isCenter && (
+                  <TechName $fontSize={11}>{tech.name}</TechName>
+                )}
+              </MarqueeCard>
+            ))
+          )}
+        </MarqueeContent>
+      </MarqueeTrack>
     </>
   );
 };

@@ -6,6 +6,11 @@ const float = keyframes`
   50% { transform: translateY(-6px); }
 `;
 
+const marqueeScroll = keyframes`
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+`;
+
 export const OrbitContainer = styled.div`
   position: relative;
   margin: 0 auto;
@@ -67,13 +72,6 @@ export const CenterNode = styled(motion.div)`
   }
 `;
 
-export const CenterLabel = styled.span`
-  font-size: ${({ $size }) => Math.max(10, $size * 0.095)}px;
-  font-weight: 800;
-  color: var(--color-text-primary);
-  letter-spacing: 0.02em;
-`;
-
 export const TechCardWrapper = styled.div`
   position: absolute;
   top: 50%;
@@ -117,7 +115,8 @@ export const TechCard = styled(motion.div)`
       border-radius: 50%;
       background: var(--color-white);
       border: 1px solid var(--color-accent);
-      box-shadow: 0 0 0 1px rgba(var(--color-cyan-rgb), 0.25),
+      box-shadow:
+        0 0 0 1px rgba(var(--color-cyan-rgb), 0.25),
         0 6px 18px var(--color-shadow);
       padding: ${$isPadded ? "10px" : "0"};
     `}
@@ -131,56 +130,83 @@ export const TechName = styled.span`
   line-height: 1.2;
 `;
 
-export const MobileTrack = styled.div`
+export const MarqueeTrack = styled.div`
   display: none;
-  gap: var(--spacing-md);
-  overflow-x: auto;
+  overflow: hidden;
+  width: 100%;
+  min-width: 0;
   padding: var(--spacing-md) 0;
-  scrollbar-width: thin;
-  scrollbar-color: var(--color-primary) transparent;
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent,
+    rgba(var(--color-black-rgb), 1) 12%,
+    rgba(var(--color-black-rgb), 1) 88%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent,
+    rgba(var(--color-black-rgb), 1) 12%,
+    rgba(var(--color-black-rgb), 1) 88%,
+    transparent
+  );
 
-  &::-webkit-scrollbar {
-    height: 6px;
+  @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
+    display: block;
   }
 
-  &::-webkit-scrollbar-thumb {
-    background: var(--color-primary);
-    border-radius: 3px;
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
-    display: flex;
+  @media (prefers-reduced-motion: reduce) {
+    overflow-x: auto;
+    -webkit-mask-image: none;
+    mask-image: none;
   }
 `;
 
-export const MobileCard = styled(motion.div)`
+export const MarqueeContent = styled.div`
+  display: flex;
+  gap: var(--spacing-md);
+  width: max-content;
+  animation: ${marqueeScroll} 28s linear infinite;
+
+  &:hover {
+    animation-play-state: paused;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+`;
+
+export const MarqueeCard = styled(motion.div)`
   flex: 0 0 auto;
-  width: 110px;
-  height: 100px;
+  width: 76px;
+  height: 76px;
   border-radius: 18px;
   background: transparent;
   border: none;
   overflow: hidden;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 4px;
 
   img {
+    flex: 1;
+    min-height: 0;
     width: 100%;
-    height: 100%;
     object-fit: contain;
   }
 
   ${({ $isCircleCard, $isPadded }) =>
     $isCircleCard &&
     css`
-      width: 100px;
-      height: 100px;
       border-radius: 50%;
       background: var(--color-white);
       border: 1px solid var(--color-accent);
-      box-shadow: 0 0 0 1px rgba(var(--color-cyan-rgb), 0.25),
+      box-shadow:
+        0 0 0 1px rgba(var(--color-cyan-rgb), 0.25),
         0 6px 18px var(--color-shadow);
-      padding: ${$isPadded ? "10px" : "0"};
+      padding: ${$isPadded ? "8px" : "0"};
     `}
 `;
