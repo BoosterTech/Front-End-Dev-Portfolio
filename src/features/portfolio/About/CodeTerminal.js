@@ -33,7 +33,7 @@ const code = `<span class="comment">// Journey: From Electronics to Full-Stack</
 }`;
 
 const CodeTerminal = () => (
-  <CodeTerminalWindow>
+  <CodeTerminalWindow aria-hidden="true">
     <CodeTerminalHeader>
       <CodeDots>
         <CodeDot />
@@ -46,7 +46,7 @@ const CodeTerminal = () => (
       </CodeTerminalTitle>
     </CodeTerminalHeader>
     <CodeTerminalBody dangerouslySetInnerHTML={{ __html: code }} />
-    <TerminalImage src={lightTerminalImage} alt="Code terminal" loading="lazy" />
+    <TerminalImage src={lightTerminalImage} alt="" loading="lazy" />
   </CodeTerminalWindow>
 );
 

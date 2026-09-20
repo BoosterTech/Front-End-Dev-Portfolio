@@ -1,39 +1,43 @@
 import Card from "common/Card";
+import { motion } from "framer-motion";
 import styled from "styled-components";
 
 export const Wrapper = styled.article`
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--spacing-3xl);
   align-items: center;
   padding: var(--spacing-3xl) 0;
   position: relative;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.xl2}) {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: var(--spacing-2xl);
     padding: var(--spacing-2xl) 0;
   }
 `;
 
-export const TerminalColumn = styled.div`
+export const TerminalColumn = styled(motion.div)`
+  min-width: 0;
+
   @media (max-width: ${({ theme }) => theme.breakpoint.xl2}) {
     order: 1;
   }
 `;
 
-export const ContentColumn = styled.div`
+export const ContentColumn = styled(motion.div)`
   display: flex;
   flex-direction: column;
   gap: var(--spacing-lg);
+  min-width: 0;
 `;
 
-export const JourneyLabel = styled.div`
+export const JourneyLabel = styled.span`
   display: inline-flex;
   align-items: center;
   gap: var(--spacing-sm);
   padding: 0.45rem 1rem;
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -43,28 +47,27 @@ export const JourneyLabel = styled.div`
   align-self: flex-start;
 
   svg {
-    color: var(--color-accent);
+    width: 0.75rem;
+    height: 0.75rem;
+    flex-shrink: 0;
   }
 `;
 
-export const JourneyUnderline = styled.div`
-  width: 60px;
-  height: 4px;
-  border-radius: 2px;
-  background: var(--color-primary);
-  margin-top: -8px;
-`;
-
 export const PlainHeadingPart = styled.span`
+  display: inline-block;
   color: var(--color-text-primary);
   -webkit-text-fill-color: var(--color-text-primary);
 `;
 
+export const GradientHeadingPart = styled.span`
+  display: inline-block;
+`;
+
 export const JourneyParagraph = styled.div`
-  font-size: 1rem;
-  line-height: 1.8;
+  font-size: clamp(1rem, 1.4vw, 1.2rem);
+  line-height: 1.6;
   color: var(--color-text-secondary);
-  max-width: 560px;
+  max-width: min(500px, 100%);
 
   p {
     margin: 0 0 var(--spacing-md) 0;
@@ -80,20 +83,49 @@ export const FeaturesGrid = styled.div`
   grid-template-columns: 1fr 1fr;
   gap: var(--spacing-md);
 
-  @media (max-width: ${({ theme }) => theme.breakpoint.sm}) {
+  @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
     grid-template-columns: 1fr;
+    gap: 0;
   }
 `;
 
 export const FeatureCard = styled(Card).attrs({
   $glass: true,
   $hoverable: true,
+  as: motion.div,
 })`
+  min-width: 0;
+
   svg {
     width: 24px;
     height: 24px;
     color: var(--color-primary);
+    flex-shrink: 0;
   }
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: var(--spacing-md);
+    text-align: left;
+    padding: var(--spacing-md) 0;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--color-border);
+    border-radius: 0;
+    backdrop-filter: none;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+`;
+
+export const FeatureText = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
 `;
 
 export const FeatureTitle = styled.h3`
@@ -127,6 +159,7 @@ export const TerminalImage = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: left top;
   border-radius: inherit;
   transition: opacity 0.4s ease;
 

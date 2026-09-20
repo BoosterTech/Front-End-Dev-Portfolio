@@ -14,11 +14,12 @@ import {
   TerminalColumn,
   ContentColumn,
   JourneyLabel,
-  JourneyUnderline,
   JourneyParagraph,
   PlainHeadingPart,
+  GradientHeadingPart,
   FeaturesGrid,
   FeatureCard,
+  FeatureText,
   FeatureTitle,
   FeatureDescription,
 } from "./styled";
@@ -31,30 +32,51 @@ const About = ({ id }) => {
 
   return (
     <Wrapper id={id}>
-      <TerminalColumn>
+      <TerminalColumn
+        initial={{ opacity: 0, y: 16 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+      >
         <CodeTerminal />
       </TerminalColumn>
-      <ContentColumn>
+      <ContentColumn
+        initial={{ opacity: 0, y: 16 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, delay: 0.1 }}
+      >
         <JourneyLabel>
           <FaStar />
           {about.journeyLabel}
         </JourneyLabel>
         <GradientHeading as="h2">
-          <PlainHeadingPart>{about.journeyHeader.split(" ").slice(0, 2).join(" ")}</PlainHeadingPart>
-          {" " + about.journeyHeader.split(" ").slice(2).join(" ")}
+          <PlainHeadingPart>
+            {about.journeyHeader.split(" ").slice(0, 2).join(" ")}
+          </PlainHeadingPart>{" "}
+          <GradientHeadingPart>
+            {about.journeyHeader.split(" ").slice(2).join(" ")}
+          </GradientHeadingPart>
         </GradientHeading>
-        <JourneyUnderline />
         <JourneyParagraph
           dangerouslySetInnerHTML={{ __html: about.journeyParagraph }}
         />
         <FeaturesGrid>
           {about.journeyFeatures.map((feature, index) => {
-            const Icon = featureIcons[index];
+            const Icon = featureIcons[index] ?? FaLightbulb;
             return (
-              <FeatureCard key={feature.title}>
+              <FeatureCard
+                key={feature.title}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 + index * 0.08 }}
+              >
                 <Icon />
-                <FeatureTitle>{feature.title}</FeatureTitle>
-                <FeatureDescription>{feature.description}</FeatureDescription>
+                <FeatureText>
+                  <FeatureTitle>{feature.title}</FeatureTitle>
+                  <FeatureDescription>{feature.description}</FeatureDescription>
+                </FeatureText>
               </FeatureCard>
             );
           })}
