@@ -92,4 +92,9 @@ export const ButtonsContainer = styled.div`
   @media (max-width: ${({ theme }) => theme.breakpoint.xl2}) {
     justify-content: center;
   }
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
+    flex-direction: column;
+    align-items: stretch;
+  }
 `;

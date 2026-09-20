@@ -54,7 +54,7 @@ const Home = ({ id }) => {
           <ButtonsContainer>
             <ViewMyWorkButton
               to={projectsItem.name.toLowerCase()}
-              spy={true}lug
+              spy={true}
               smooth={true}
               offset={projectsItem.offset}
               duration={700}

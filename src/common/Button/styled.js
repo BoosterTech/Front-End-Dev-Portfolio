@@ -6,11 +6,21 @@ const baseStyles = css`
   align-items: center;
   justify-content: center;
   gap: var(--spacing-sm);
+  min-height: 44px;
   font-weight: 600;
   text-decoration: none;
   cursor: pointer;
   border-radius: var(--radius-md);
-  transition: all var(--transition-normal);
+  transition: color var(--transition-normal), background var(--transition-normal), border-color var(--transition-normal), box-shadow var(--transition-normal), transform var(--transition-normal);
+
+  &:active {
+    transform: scale(0.97);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
 `;
 
 const primaryStyles = css`
@@ -28,10 +38,6 @@ const primaryStyles = css`
     color: var(--color-white);
     border-color: var(--color-white);
   }
-
-  &:active {
-    transform: translateY(0);
-  }
 `;
 
 const outlineStyles = css`
@@ -42,6 +48,7 @@ const outlineStyles = css`
   &:hover {
     border-color: var(--color-primary);
     color: var(--color-primary);
+    background: rgba(var(--color-primary-rgb, var(--color-primary)), 0.08);
   }
 `;
 
@@ -63,7 +70,7 @@ const primaryHoverTransparentStyles = css`
   }
 `;
 
-export const Button = styled.a`
+const buttonStyles = css`
   ${baseStyles}
   padding: var(--spacing-sm) var(--spacing-lg);
   font-size: 0.95rem;
@@ -78,6 +85,7 @@ export const Button = styled.a`
   ${({ $size }) =>
     $size === "sm" &&
     css`
+      min-height: 36px;
       padding: var(--spacing-xs) var(--spacing-md);
       font-size: 0.85rem;
 
@@ -90,20 +98,15 @@ export const Button = styled.a`
   @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
     font-size: 0.9rem;
     padding: var(--spacing-xs) var(--spacing-md);
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoint.xl2}) {
     justify-content: center;
+    width: 100%;
   }
 `;
 
-export const ScrollButton = styled(Link)`
-  ${baseStyles}
-  padding: 0.85rem 1.75rem;
-  font-size: 1rem;
-  ${primaryHoverTransparentStyles}
+export const Button = styled.a`
+  ${buttonStyles}
+`;
 
-  @media (max-width: ${({ theme }) => theme.breakpoint.xl2}) {
-    justify-content: center;
-  }
+export const ScrollButton = styled(Link)`
+  ${buttonStyles}
 `;
