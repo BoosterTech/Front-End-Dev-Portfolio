@@ -15,6 +15,11 @@ export const Backdrop = styled(motion.div)`
   background: rgb(var(--color-black-rgb) / 0.8);
   backdrop-filter: blur(6px);
   padding: var(--spacing-lg);
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
+    top: 0;
+    padding: 0;
+  }
 `;
 
 export const Modal = styled(motion.div)`
@@ -39,6 +44,14 @@ export const Modal = styled(motion.div)`
   &::-webkit-scrollbar-thumb {
     background: var(--color-border);
     border-radius: 4px;
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
+    max-width: 100%;
+    height: 100%;
+    max-height: none;
+    border-radius: 0;
+    border: none;
   }
 `;
 
@@ -80,6 +93,10 @@ export const ModalImage = styled.img`
   display: block;
   border-radius: var(--radius-xl) var(--radius-xl) 0 0;
   background: var(--color-terminal-bg);
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
+    border-radius: 0;
+  }
 
   @media (max-height: 500px) {
     max-height: 200px;
