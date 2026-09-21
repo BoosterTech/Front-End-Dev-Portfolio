@@ -1,7 +1,7 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import styled from "styled-components";
 
-export const ExploreSection = styled(motion.div)`
+export const ExploreSection = styled(m.div)`
   margin-top: var(--spacing-3xl);
   width: 100%;
   max-width: var(--container-max-width);
@@ -46,7 +46,7 @@ export const ExploreParagraph = styled.p`
   margin: 0;
 `;
 
-export const ExploreTrack = styled(motion.div)`
+export const ExploreTrack = styled(m.div)`
   display: flex;
   gap: var(--spacing-md);
   overflow-x: auto;
@@ -86,7 +86,7 @@ export const ExploreTrack = styled(motion.div)`
   }
 `;
 
-export const ExploreChip = styled(motion.div)`
+export const ExploreChip = styled(m.div)`
   flex: 0 0 auto;
   scroll-snap-align: start;
   width: clamp(120px, 38vw, 150px);
@@ -142,7 +142,7 @@ export const ExploreChipDescription = styled.span`
   }
 `;
 
-export const MoreChip = styled(motion.div)`
+export const MoreChip = styled(m.div)`
   flex: 0 0 auto;
   scroll-snap-align: start;
   width: clamp(120px, 38vw, 150px);

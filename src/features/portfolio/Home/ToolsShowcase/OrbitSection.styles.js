@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import styled, { css, keyframes } from "styled-components";
 
 const float = keyframes`
@@ -41,7 +41,7 @@ export const CenterWrapper = styled.div`
   pointer-events: none;
 `;
 
-export const CenterNode = styled(motion.div)`
+export const CenterNode = styled(m.div)`
   position: relative;
   z-index: 1;
   width: 100%;
@@ -90,7 +90,7 @@ export const TechCardFloat = styled.div`
   animation-delay: ${({ $delay }) => $delay}s;
 `;
 
-export const TechCard = styled(motion.div)`
+export const TechCard = styled(m.div)`
   width: 100%;
   height: 100%;
   border-radius: 18px;
@@ -177,7 +177,7 @@ export const MarqueeContent = styled.div`
   }
 `;
 
-export const MarqueeCard = styled(motion.div)`
+export const MarqueeCard = styled(m.div)`
   flex: 0 0 auto;
   width: 76px;
   height: 76px;

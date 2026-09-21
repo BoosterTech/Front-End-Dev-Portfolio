@@ -1,6 +1,6 @@
 import Card from "common/Card";
 import RichText from "common/RichText";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import styled from "styled-components";
 
 export const Wrapper = styled.article`
@@ -10,15 +10,21 @@ export const Wrapper = styled.article`
   align-items: center;
   padding: var(--spacing-3xl) 0;
   position: relative;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 950px;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.xl2}) {
     grid-template-columns: minmax(0, 1fr);
     gap: var(--spacing-2xl);
     padding: 10px 0 var(--spacing-2xl) 0;
   }
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
+    contain-intrinsic-size: auto 1470px;
+  }
 `;
 
-export const TerminalColumn = styled(motion.div)`
+export const TerminalColumn = styled(m.div)`
   min-width: 0;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.xl2}) {
@@ -26,7 +32,7 @@ export const TerminalColumn = styled(motion.div)`
   }
 `;
 
-export const ContentColumn = styled(motion.div)`
+export const ContentColumn = styled(m.div)`
   display: flex;
   flex-direction: column;
   gap: var(--spacing-lg);
@@ -93,7 +99,7 @@ export const FeaturesGrid = styled.div`
 export const FeatureCard = styled(Card).attrs({
   $glass: true,
   $hoverable: true,
-  as: motion.div,
+  as: m.div,
 })`
   min-width: 0;
 

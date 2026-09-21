@@ -4,7 +4,11 @@ import styled from "styled-components";
 export const Wrapper = styled.footer`
   position: relative;
   overflow: hidden;
-  background: linear-gradient(135deg, var(--color-footer-bg-start) 0%, var(--color-footer-bg-end) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--color-footer-bg-start) 0%,
+    var(--color-footer-bg-end) 100%
+  );
   animation: ${fadeIn} 0.8s ease-out;
 
   &::before {
@@ -24,6 +28,13 @@ export const Wrapper = styled.footer`
     );
     box-shadow: 0 0 20px rgba(var(--color-cyan-rgb), 0.6);
     z-index: 2;
+  }
+
+  content-visibility: auto;
+  contain-intrinsic-size: auto 240px;
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
+    contain-intrinsic-size: auto 280px;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -111,10 +122,22 @@ export const GridTexture = styled.div`
   pointer-events: none;
   background-image:
     linear-gradient(rgba(var(--color-cyan-rgb), 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(var(--color-cyan-rgb), 0.05) 1px, transparent 1px);
+    linear-gradient(
+      90deg,
+      rgba(var(--color-cyan-rgb), 0.05) 1px,
+      transparent 1px
+    );
   background-size: 52px 52px;
-  mask-image: linear-gradient(90deg, rgba(var(--color-black-rgb), 0.5) 0%, transparent 100%);
-  -webkit-mask-image: linear-gradient(90deg, rgba(var(--color-black-rgb), 0.5) 0%, transparent 100%);
+  mask-image: linear-gradient(
+    90deg,
+    rgba(var(--color-black-rgb), 0.5) 0%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    rgba(var(--color-black-rgb), 0.5) 0%,
+    transparent 100%
+  );
 `;
 
 export const Constellation = styled.div`
@@ -125,8 +148,20 @@ export const Constellation = styled.div`
   width: 50%;
   opacity: var(--color-footer-texture-opacity);
   pointer-events: none;
-  background-image: radial-gradient(circle, var(--color-cyan) 1px, transparent 1.5px);
+  background-image: radial-gradient(
+    circle,
+    var(--color-cyan) 1px,
+    transparent 1.5px
+  );
   background-size: 19px 19px;
-  mask-image: linear-gradient(270deg, rgba(var(--color-black-rgb), 0.4) 0%, transparent 100%);
-  -webkit-mask-image: linear-gradient(270deg, rgba(var(--color-black-rgb), 0.4) 0%, transparent 100%);
+  mask-image: linear-gradient(
+    270deg,
+    rgba(var(--color-black-rgb), 0.4) 0%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    270deg,
+    rgba(var(--color-black-rgb), 0.4) 0%,
+    transparent 100%
+  );
 `;

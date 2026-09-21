@@ -1,5 +1,5 @@
 import { fadeInUp, float, gradientShift, waveHand } from "common/animations";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import styled from "styled-components";
 
 export const Wrapper = styled.section`
@@ -8,10 +8,13 @@ export const Wrapper = styled.section`
   border-radius: var(--radius-xl);
   position: relative;
   overflow: hidden;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 960px;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
     margin: var(--spacing-2xl) 0;
     padding: 10px var(--spacing-lg) var(--spacing-2xl) var(--spacing-lg);
+    contain-intrinsic-size: auto 480px;
   }
 `;
 
@@ -58,7 +61,7 @@ export const Header = styled.h2`
   }
 `;
 
-export const DragLayer = styled(motion.div)`
+export const DragLayer = styled(m.div)`
   width: 100%;
   touch-action: pan-y;
 `;

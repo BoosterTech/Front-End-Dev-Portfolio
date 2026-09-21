@@ -1,9 +1,9 @@
 import { gradientShift } from "common/animations";
 import Card from "common/Card";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import styled from "styled-components";
 
-export const ToolsShowcaseWrapper = styled(motion.section)`
+export const ToolsShowcaseWrapper = styled(m.section)`
   width: 100%;
   padding: var(--spacing-3xl) 0;
   background: transparent;
@@ -101,7 +101,7 @@ export const FeatureGrid = styled.div`
 export const FeatureCard = styled(Card).attrs({
   $glass: true,
   $hoverable: true,
-  as: motion.div,
+  as: m.div,
 })`
   align-items: center;
   min-width: 0;
