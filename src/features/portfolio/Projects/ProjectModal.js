@@ -1,5 +1,6 @@
 import { useLanguage } from "common/LanguageProvider";
 import { useEffect } from "react";
+import { createPortal } from "react-dom";
 import { FaExternalLinkAlt, FaGithub, FaTimes } from "react-icons/fa";
 
 import {
@@ -11,6 +12,7 @@ import {
   ModalContent,
   ModalDescription,
   ModalImage,
+  ModalImageWrapper,
   ModalTechBadge,
   ModalTechBadges,
   ModalTitle,
@@ -37,7 +39,7 @@ const ProjectModal = ({ project, onClose }) => {
 
   if (!project) return null;
 
-  return (
+  return createPortal(
     <Backdrop
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
@@ -58,10 +60,12 @@ const ProjectModal = ({ project, onClose }) => {
         <CloseButton onClick={onClose} aria-label="Close">
           <FaTimes />
         </CloseButton>
-        <ModalImage
-          src={project.imageURL}
-          alt={`${project.title[language]} project screenshot`}
-        />
+        <ModalImageWrapper>
+          <ModalImage
+            src={project.imageURL}
+            alt={`${project.title[language]} project screenshot`}
+          />
+        </ModalImageWrapper>
         <ModalContent>
           <ModalTitle>{project.title[language]}</ModalTitle>
           <ModalDescription
@@ -99,7 +103,8 @@ const ProjectModal = ({ project, onClose }) => {
           </ModalCTAContainer>
         </ModalContent>
       </Modal>
-    </Backdrop>
+    </Backdrop>,
+    document.body
   );
 };
 

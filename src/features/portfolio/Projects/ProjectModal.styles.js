@@ -1,14 +1,14 @@
 import { Button } from "common/Button";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import styled, { css } from "styled-components";
 
-export const Backdrop = styled(motion.div)`
+export const Backdrop = styled(m.div)`
   position: fixed;
-  top: var(--navbar-height);
+  top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 1000;
+  z-index: 1100;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -17,16 +17,15 @@ export const Backdrop = styled(motion.div)`
   padding: var(--spacing-lg);
 
   @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
-    top: 0;
     padding: 0;
   }
 `;
 
-export const Modal = styled(motion.div)`
+export const Modal = styled(m.div)`
   position: relative;
   width: 100%;
   max-width: 900px;
-  max-height: calc(90vh - var(--navbar-height));
+  max-height: 90vh;
   overflow-y: auto;
   border-radius: var(--radius-xl);
   background: var(--color-surface);
@@ -82,6 +81,41 @@ export const CloseButton = styled.button`
   svg {
     width: 18px;
     height: 18px;
+  }
+`;
+
+export const ModalImageWrapper = styled.div`
+  position: relative;
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 72px;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    &::before {
+      left: 0;
+      background: linear-gradient(
+        90deg,
+        rgb(var(--color-black-rgb) / 0.55) 0%,
+        transparent 100%
+      );
+    }
+
+    &::after {
+      right: 0;
+      background: linear-gradient(
+        -90deg,
+        rgb(var(--color-black-rgb) / 0.55) 0%,
+        transparent 100%
+      );
+    }
   }
 `;
 

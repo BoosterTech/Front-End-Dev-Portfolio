@@ -1,8 +1,8 @@
 import { Button } from "common/Button";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import styled, { css } from "styled-components";
 
-export const Slide = styled(motion.div)`
+export const Slide = styled(m.div)`
   position: relative;
   flex: 0 0 var(--card-width);
   aspect-ratio: 16 / 10;
@@ -62,7 +62,7 @@ export const SlideImage = styled.img`
   pointer-events: none;
 `;
 
-export const Overlay = styled(motion.div)`
+export const Overlay = styled(m.div)`
   position: absolute;
   bottom: 0;
   left: 0;
