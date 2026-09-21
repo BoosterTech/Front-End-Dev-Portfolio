@@ -3,6 +3,7 @@
 **Date:** 2026-09-02
 **Branch:** `feature/ui-refresh`
 **Source:** UI polish session + proportionality audit
+**Status:** P0 ✅ complete · P1 ✅ core items done (2 conditional) · P2 partially done
 
 ---
 
@@ -12,39 +13,40 @@
 - About/Journey: scroll reveals, mobile editorial rows, pill/heading/paragraph metric parity with ToolsShowcase, terminal `object-position: left top` fix, `aria-hidden` on decorative terminal
 - Projects: mobile CTAs removed (modal holds links), swipe → framer-motion physics drag (elastic + velocity + click suppression), arrows hidden ≤md, one-row faded badges, softer active glow
 - Global: `gradientShift 15s` unified across all header accent words, button metrics unified
-- Commits: `32c41f4` nav, `7844715` tools-showcase, `a7fa4dc` about, `39d0685` hero, `d9d2d38` theme
-- **Uncommitted:** Projects carousel refinements (drag, badges, scrim) — commit as `feat(projects):`
+- Commits: `32c41f4` nav, `7844715` tools-showcase, `a7fa4dc` about, `39d0685` hero, `d9d2d38` theme, `e5aec0b` projects carousel, `16cbe37` this plan
 
 ---
 
-## P0 — Gate integrity (do first)
+## P0 — Gate integrity ✅ ALL DONE
 
-| # | Task | Effort | Why |
-|---|------|--------|-----|
-| 1 | Fix `Navigation.test.js` (5 fails — tests set `window.innerWidth`, component uses `matchMedia`; mock `matchMedia` in test) | M | Red suite teaches AI agents failure is normal |
-| 2 | Fix `CarouselSlide.test.js` (3 fails — missing required `onExpand` prop in test) | S | Same |
-| 3 | Fix remaining `check:colors` violations in `ProjectModal.styles.js` (`rgba(0,0,0,0.8)`, `rgba(0,0,0,0.5)`) → `rgba(var(--color-black-rgb), …)` | XS | Zero-tolerance gate or no gate |
-| 4 | Delete `SkillsetContainer/` + its test — dead code, zero importers | XS | Dead code is a template agents copy |
-| 5 | Commit pending Projects changes as `feat(projects): physics drag carousel and mobile card polish` | XS | Tree should be clean |
+| #   | Task                                                                                          | Status | Commit    |
+| --- | --------------------------------------------------------------------------------------------- | ------ | --------- |
+| 1   | Fix `Navigation.test.js` (matchMedia + duplicate-render queries → testid-scoped)              | ✅     | `dcfdeed` |
+| 2   | Fix `CarouselSlide.test.js` (missing `onExpand`; now covers active→expand + inactive→onClick) | ✅     | `dcfdeed` |
+| 3   | Fix `check:colors` violations in `ProjectModal.styles.js` → `rgb(var(--color-black-rgb) / …)` | ✅     | `0ee1935` |
+| 4   | Delete `SkillsetContainer/` + test + orphaned `content/skillsets` + typedefs (−561 lines)     | ✅     | `a42600b` |
+| 5   | Commit pending Projects changes                                                               | ✅     | `e5aec0b` |
 
-## P1 — AI-readiness (30-day)
+**Result:** 9 suites / 28 tests green, `check:colors` zero violations.
 
-| # | Task | Effort | Why |
-|---|------|--------|-----|
-| 6 | Create `AGENTS.md`: breakpoints (`lg` = mobile boundary), token rules (no hardcoded colors), transient `$` props, rail/section-intro patterns, verification commands | S | Single highest-leverage AI guardrail |
-| 7 | Extract shared `HorizontalRail`/mask-fade pattern — marquee, explore track, badge row are 3 independent copies | M | Prevents copy #4 |
-| 8 | Extract `SectionIntro` (label pill + heading + description) — manually aligned today, will drift again | S | Freeze the pattern |
-| 9 | Move ToolsShowcase copy into `translations.js` — only section with hardcoded English | S–M | i18n consistency |
-| 10 | Light-theme the terminal tokens (`--color-terminal-bg`, `--color-code-*`) and delete `code_terminal_light_theme.webp` + `object-position` band-aid | S | Removes the square-image-over-DOM hack, ~43 KB |
+## P1 — AI-readiness
+
+| #   | Task                                                                                              | Status                                                | Commit    |
+| --- | ------------------------------------------------------------------------------------------------- | ----------------------------------------------------- | --------- |
+| 6   | `AGENTS.md` conventions contract                                                                  | ✅                                                    | `b629f4e` |
+| 7   | Extract shared `HorizontalRail`/mask-fade pattern                                                 | ⏸️ conditional — extract only when a 4th rail appears | —         |
+| 8   | Extract `SectionIntro` (label + heading + description)                                            | ⏸️ conditional — same trigger                         | —         |
+| 9   | Move ToolsShowcase copy into `translations.js` (all strings incl. aria-labels, EN/PL/ES)          | ✅                                                    | `3e00775` |
+| 10  | Light-theme terminal tokens; delete `code_terminal_light_theme.webp` + `object-position` band-aid | 🔲 open — do when touching CodeTerminal next          | —         |
 
 ## P2 — Hygiene
 
-| # | Task | Effort |
-|---|------|--------|
-| 11 | Remove `console.log` in `src/index.js` (or gate behind env check) | XS |
-| 12 | Consolidate `plan/` into one living doc — 7 overlapping files, unclear which is truth | S |
-| 13 | Optional: co-locate `GradientHeading`, `RichText`, `StarField`, `Main` (1 consumer each) or leave — cosmetic | XS |
-| 14 | Optional: `Tile/` vs `CarouselSlide/` coexistence — verify both are actually used | XS |
+| #   | Task                                                                                                | Status                                                              |
+| --- | --------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| 11  | `console.log` in `src/index.js`                                                                     | ✅ resolved — was only a CRA boilerplate comment, no actual logging |
+| 12  | Consolidate `plan/` into one living doc                                                             | 🔲 open — optional                                                  |
+| 13  | Co-locate single-consumer `common/` components (`GradientHeading`, `RichText`, `StarField`, `Main`) | 🔲 open — optional/cosmetic                                         |
+| 14  | Verify `Tile/` vs `CarouselSlide/` coexistence                                                      | 🔲 open — optional                                                  |
 
 ## Explicitly deferred (premature)
 
