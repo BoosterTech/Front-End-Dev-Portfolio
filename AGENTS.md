@@ -16,7 +16,8 @@ auth, no database, no state library. Keep it that way.
   Do not add a common/ component for a single consumer.
 - `src/content/` — all user-facing copy (`translations.js`, `projects.js`)
 - Styles live in a co-located `styled.js` (or `<Name>.styles.js`) per component folder
-- `plan/` — architecture and roadmap docs; `architecture-playbook.md` is the source of truth
+- `plan/` — architecture and roadmap docs; `architecture-playbook.md` is the source of truth,
+  `premium-ux-followup-plan.md` tracks active work, `plan/archive/` holds superseded plans
 
 ## Hard rules (CI-enforced)
 
