@@ -66,7 +66,7 @@ const Projects = ({ id }) => {
           rel="noopener noreferrer"
           aria-label="Visit my GitHub profile"
         >
-          <ProjectIcon src={gitHubIcon} alt="GitHub Icon" />
+          <ProjectIcon src={gitHubIcon} alt="GitHub" />
         </a>
         <Header>Projects</Header>
       </TitleWrapper>

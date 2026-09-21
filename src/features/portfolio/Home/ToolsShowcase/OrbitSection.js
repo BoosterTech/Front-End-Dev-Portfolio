@@ -247,7 +247,7 @@ export const OrbitSection = ({
                 {typeof tech.icon === "string" ? (
                   <img
                     src={tech.icon}
-                    alt={tech.name}
+                    alt={tech.isCenter ? "" : tech.name}
                     width={tech.iconWidth}
                     height={tech.iconHeight}
                     loading="lazy"

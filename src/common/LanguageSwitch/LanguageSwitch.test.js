@@ -19,7 +19,7 @@ describe("LanguageSwitch", () => {
 
     expect(screen.getByTestId("language")).toHaveTextContent("English");
 
-    fireEvent.click(screen.getByAltText("Polish"));
+    fireEvent.click(screen.getByText("Polish"));
 
     expect(screen.getByTestId("language")).toHaveTextContent("Polish");
   });
@@ -34,7 +34,7 @@ describe("LanguageSwitch", () => {
 
     expect(screen.getByTestId("language")).toHaveTextContent("English");
 
-    fireEvent.click(screen.getByAltText("Spanish"));
+    fireEvent.click(screen.getByText("Spanish"));
 
     expect(screen.getByTestId("language")).toHaveTextContent("Spanish");
   });

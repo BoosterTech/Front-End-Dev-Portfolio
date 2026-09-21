@@ -65,7 +65,7 @@ export const LanguageSwitch = ({ onOpen }) => {
             role="option"
             aria-selected={language === lang.name}
           >
-            <img src={lang.flag} alt={lang.name} />
+            <img src={lang.flag} alt="" />
             {lang.name}
           </DropdownItem>
         ))}

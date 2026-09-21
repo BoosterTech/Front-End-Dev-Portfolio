@@ -77,12 +77,13 @@ const Home = ({ id }) => {
           <ProfileImage
             className="light"
             src={lightProfileImage}
-            alt="profile_image"
+            alt="Portrait of Dariusz Podczasik"
           />
           <ProfileImage
             className="dark"
             src={profileImage}
-            alt="profile_image"
+            alt=""
+            aria-hidden="true"
           />
         </ImageContainer>
       </ContentImageContainer>
