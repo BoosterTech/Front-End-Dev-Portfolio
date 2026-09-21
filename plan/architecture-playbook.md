@@ -235,7 +235,7 @@ When adding or changing anything, prefer the following order:
 
 ### Decision: `test:coverage` with a 70% threshold
 
-- **What:** `package.json` has a `test:coverage` script (`react-scripts test --coverage --watchAll=false`) and a `jest.coverageThreshold` of 70% across branches, functions, lines, and statements. The project has 9 test suites with 28 tests covering Navigation, LanguageSwitch, Tile, Contact, RichText, ComingSoonProject, CarouselSlide, translations parity, and the App smoke test.
+- **What:** `package.json` has a `test:coverage` script (`react-scripts test --coverage --watchAll=false`) and a `jest.coverageThreshold` of 70% across branches, functions, lines, and statements. The project has 8 test suites with 24 tests covering Navigation, LanguageSwitch, Contact, RichText, ComingSoonProject, CarouselSlide, translations parity, and the App smoke test.
 - **Why:** A 70% floor forces test coverage growth alongside new code. The previous 50% threshold was too lenient to catch regressions.
 - **Trade-offs:** 70% is still not 100%; some branches in OrbitSection and Projects/index.js remain uncovered. Full coverage is not the goal for a static portfolio.
 - **Future guidance:** Re-run `npm run test:coverage` after any new component or test. Raise the threshold only when the new value is stable across several runs.

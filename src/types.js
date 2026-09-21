@@ -54,17 +54,3 @@
  * @typedef {Object} GeneralState
  * @property {boolean} isContactVisible
  */
-
-/**
- * @typedef {Object} TileProps
- * @property {LocalizedText} title
- * @property {LocalizedText} description
- * @property {string} imageURL
- * @property {string} GitHubPagesURL
- * @property {string} GitHubRepoURL
- * @property {boolean} [border]
- * @property {LocalizedText} [GitHubPagesURLTag]
- * @property {LocalizedText} [GitHubRepoURLTag]
- * @property {number} index
- * @property {string} [available]
- */
