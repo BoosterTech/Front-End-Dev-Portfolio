@@ -85,7 +85,7 @@ describe("CarouselSlide", () => {
       />
     );
 
-    expect(screen.getByText("Coming Soon")).toBeInTheDocument();
+    expect(screen.getByAltText("Coming Soon")).toBeInTheDocument();
   });
 
   it("calls onExpand when active slide is clicked", () => {

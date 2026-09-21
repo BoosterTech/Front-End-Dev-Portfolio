@@ -41,18 +41,17 @@ const CarouselSlide = ({ project, isActive, position, onClick, onExpand }) => {
         height={PROJECT_IMAGE_HEIGHT}
         loading="lazy"
       />
-      <Overlay
-        $comingSoon={project.variant === "comingSoon"}
-        initial={false}
-        animate={{
-          y: isActive ? 0 : "100%",
-        }}
-        transition={{
-          duration: 0.35,
-          ease: [0.4, 0, 0.2, 1],
-        }}
-      >
-        {project.variant !== "comingSoon" && (
+      {project.variant !== "comingSoon" && (
+        <Overlay
+          initial={false}
+          animate={{
+            y: isActive ? 0 : "100%",
+          }}
+          transition={{
+            duration: 0.35,
+            ease: [0.4, 0, 0.2, 1],
+          }}
+        >
           <BottomBar>
             <BottomRow>
               {project.technologies?.length > 0 && (
@@ -92,10 +91,13 @@ const CarouselSlide = ({ project, isActive, position, onClick, onExpand }) => {
               </CTAContainer>
             </BottomRow>
           </BottomBar>
-        )}
-      </Overlay>
+        </Overlay>
+      )}
       {project.variant === "comingSoon" && (
-        <ComingSoonBadge>Coming Soon</ComingSoonBadge>
+        <ComingSoonBadge
+          src={`${process.env.PUBLIC_URL}/coming_soon_icon.png`}
+          alt="Coming Soon"
+        />
       )}
     </Slide>
   );

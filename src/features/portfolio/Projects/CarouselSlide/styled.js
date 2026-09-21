@@ -69,10 +69,7 @@ export const Overlay = styled(motion.div)`
   right: 0;
   display: flex;
   align-items: flex-end;
-  background: ${({ $comingSoon }) =>
-    $comingSoon
-      ? "var(--color-black)"
-      : "linear-gradient(180deg, transparent 0%, var(--color-surface) 40%)"};
+  background: linear-gradient(180deg, transparent 0%, var(--color-surface) 40%);
 
   @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
     padding: 0 var(--spacing-sm) var(--spacing-sm);
@@ -180,22 +177,12 @@ export const CTAButton = styled(Button)`
   }
 `;
 
-export const ComingSoonBadge = styled.span`
+export const ComingSoonBadge = styled.img`
   position: absolute;
-  top: var(--spacing-md);
-  right: var(--spacing-md);
-  padding: var(--spacing-xs) var(--spacing-sm);
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: var(--color-white);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  background: linear-gradient(
-    135deg,
-    var(--color-primary),
-    var(--color-accent)
-  );
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-md);
+  bottom: -34px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 150px;
   z-index: 3;
+  filter: drop-shadow(0 2px 6px rgb(var(--color-black-rgb) / 0.45));
 `;
