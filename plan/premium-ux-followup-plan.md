@@ -41,12 +41,12 @@
 
 ## P2 — Hygiene
 
-| #   | Task                                                                                                | Status                                                              |
-| --- | --------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| 11  | `console.log` in `src/index.js`                                                                     | ✅ resolved — was only a CRA boilerplate comment, no actual logging |
-| 12  | Consolidate `plan/` into one living doc                                                             | 🔲 open — optional                                                  |
-| 13  | Co-locate single-consumer `common/` components (`GradientHeading`, `RichText`, `StarField`, `Main`) | 🔲 open — optional/cosmetic                                         |
-| 14  | Verify `Tile/` vs `CarouselSlide/` coexistence                                                      | 🔲 open — optional                                                  |
+| #   | Task                                                                                                                                                                 | Status                                                              |
+| --- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| 11  | `console.log` in `src/index.js`                                                                                                                                      | ✅ resolved — was only a CRA boilerplate comment, no actual logging |
+| 12  | Consolidate `plan/` — 5 superseded docs moved to `plan/archive/`                                                                                                     | ✅ `1223a4e`                                                        |
+| 13  | Co-locate single-consumer `common/` components — GradientHeading→About; RichText kept (2nd consumer restored via styled(RichText)); StarField/Main stay as app-shell | ✅ pending commit                                                   |
+| 14  | Verify `Tile/` vs `CarouselSlide/` coexistence — Tile was dead, deleted                                                                                              | ✅ `ab669d1`                                                        |
 
 ## Explicitly deferred (premature)
 

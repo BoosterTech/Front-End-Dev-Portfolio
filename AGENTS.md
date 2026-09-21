@@ -12,8 +12,9 @@ auth, no database, no state library. Keep it that way.
 ## Structure
 
 - `src/features/portfolio/<Section>/` — feature folders (Home, About, Projects, Contact)
-- `src/common/` — shared primitives only (Button, Card, Navigation, GradientHeading, …).
-  Do not add a common/ component for a single consumer.
+- `src/common/` — shared primitives only (Button, Card, Navigation, RichText, …).
+  Do not add a common/ component for a single consumer; app-shell components
+  (`StarField`, `Main`) are the exception — they serve `App.js`.
 - `src/content/` — all user-facing copy (`translations.js`, `projects.js`)
 - Styles live in a co-located `styled.js` (or `<Name>.styles.js`) per component folder
 - `plan/` — architecture and roadmap docs; `architecture-playbook.md` is the source of truth,
@@ -39,7 +40,7 @@ auth, no database, no state library. Keep it that way.
   section layouts; `xl2` (1100px) is the nav compact boundary. Don't invent others.
 - Media queries go at the end of a styled block, mobile-first ordering
 - Accent text uses the shared animated gradient: `gradientShift 15s ease-in-out infinite`,
-  `background-size: 200% 200%` — see `common/GradientHeading`
+  `background-size: 200% 200%` — see `features/portfolio/About/GradientHeading`
 - Horizontal overflow rails use the mask-fade pattern (`overflow-x: auto` +
   `mask-image: linear-gradient(...)` edge fades) — copy an existing rail (marquee,
   explore track, badge row) rather than inventing a fourth variant

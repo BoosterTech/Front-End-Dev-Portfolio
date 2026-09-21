@@ -1,4 +1,5 @@
 import Card from "common/Card";
+import RichText from "common/RichText";
 import { motion } from "framer-motion";
 import styled from "styled-components";
 
@@ -63,7 +64,7 @@ export const GradientHeadingPart = styled.span`
   display: inline-block;
 `;
 
-export const JourneyParagraph = styled.div`
+export const JourneyParagraph = styled(RichText)`
   font-size: clamp(1rem, 1.4vw, 1.2rem);
   line-height: 1.6;
   color: var(--color-text-secondary);

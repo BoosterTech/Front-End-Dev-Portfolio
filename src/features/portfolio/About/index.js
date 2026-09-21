@@ -1,4 +1,3 @@
-import GradientHeading from "common/GradientHeading";
 import useContent from "common/useContent";
 import {
   FaBookOpen,
@@ -9,6 +8,7 @@ import {
 } from "react-icons/fa";
 
 import CodeTerminal from "./CodeTerminal";
+import GradientHeading from "./GradientHeading";
 import {
   Wrapper,
   TerminalColumn,
@@ -58,9 +58,7 @@ const About = ({ id }) => {
             {about.journeyHeader.split(" ").slice(2).join(" ")}
           </GradientHeadingPart>
         </GradientHeading>
-        <JourneyParagraph
-          dangerouslySetInnerHTML={{ __html: about.journeyParagraph }}
-        />
+        <JourneyParagraph html={about.journeyParagraph} />
         <FeaturesGrid>
           {about.journeyFeatures.map((feature, index) => {
             const Icon = featureIcons[index] ?? FaLightbulb;
