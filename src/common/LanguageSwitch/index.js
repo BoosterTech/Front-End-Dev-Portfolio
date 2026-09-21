@@ -1,7 +1,7 @@
 import { useLanguage } from "common/LanguageProvider";
 import IRLIcon from "images/englishIcon.webp";
-import PLIcon from "images/PolandIcon.png";
-import ESPIcon from "images/SpainIcon.png";
+import PLIcon from "images/PolandIcon.webp";
+import ESPIcon from "images/SpainIcon.webp";
 import { useEffect, useRef, useState } from "react";
 import { FaGlobe } from "react-icons/fa";
 

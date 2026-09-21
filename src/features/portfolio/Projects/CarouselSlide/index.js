@@ -95,7 +95,7 @@ const CarouselSlide = ({ project, isActive, position, onClick, onExpand }) => {
       )}
       {project.variant === "comingSoon" && (
         <ComingSoonBadge
-          src={`${process.env.PUBLIC_URL}/coming_soon_icon.png`}
+          src={`${process.env.PUBLIC_URL}/coming_soon_icon.webp`}
           alt="Coming Soon"
         />
       )}

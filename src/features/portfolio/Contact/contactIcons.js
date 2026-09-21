@@ -1,13 +1,13 @@
-import emailIcon from "images/emailIcon.png";
-import gitHubIcon from "images/gitHubIcon.png";
-import linkedInIcon from "images/linkedInIcon.png";
-import whatsAppIcon from "images/whatsappIcon.png";
+import emailIcon from "images/emailIcon.webp";
+import gitHubIcon from "images/gitHubIcon.webp";
+import linkedInIcon from "images/linkedInIcon.webp";
+import whatsAppIcon from "images/whatsappIcon.webp";
 
 export const icons = [
   {
     iconURL: whatsAppIcon,
-    iconWidth: 256,
-    iconHeight: 256,
+    iconWidth: 72,
+    iconHeight: 72,
     id: "whatsApp",
     link: "https://wa.me/003530862013944",
     name: "WhatsApp",
@@ -16,8 +16,8 @@ export const icons = [
   },
   {
     iconURL: gitHubIcon,
-    iconWidth: 560,
-    iconHeight: 560,
+    iconWidth: 72,
+    iconHeight: 72,
     id: "gitHub",
     link: "https://github.com/BoosterTech",
     name: "GitHub",
@@ -26,8 +26,8 @@ export const icons = [
   },
   {
     iconURL: linkedInIcon,
-    iconWidth: 256,
-    iconHeight: 256,
+    iconWidth: 72,
+    iconHeight: 72,
     id: "linkedIn",
     link: "https://www.linkedin.com/in/Dariusz-Podczasik",
     name: "LinkedIn",
@@ -36,8 +36,8 @@ export const icons = [
   },
   {
     iconURL: emailIcon,
-    iconWidth: 224,
-    iconHeight: 225,
+    iconWidth: 72,
+    iconHeight: 72,
     id: "email",
     link: "mailto:boostertech@mail.com",
     name: "Email",

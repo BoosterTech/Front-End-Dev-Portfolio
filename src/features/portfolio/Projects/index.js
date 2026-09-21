@@ -1,6 +1,6 @@
 import projects from "content/projects";
 import { AnimatePresence } from "framer-motion";
-import gitHubIcon from "images/gitHubIcon.png";
+import gitHubIcon from "images/gitHubIcon.webp";
 import { useEffect, useRef, useState } from "react";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 

@@ -1,13 +1,13 @@
 import useContent from "common/useContent";
-import nextIcon from "images/nextIcon.png";
-import reactIcon from "images/reactIcon.png";
-import reactQueryIcon from "images/reactQueryIcon.png";
-import reduxIcon from "images/reduxIcon.png";
-import reduxToolkitIcon from "images/reduxToolkitIcon.jpg";
-import styledComponentsIcon from "images/styledComponentsIcon.jpg";
-import supabaseIcon from "images/supabaseIcon.png";
-import typeScriptIcon from "images/typeScriptIcon.png";
-import vercelIcon from "images/vercelIcon.png";
+import nextIcon from "images/nextIcon.webp";
+import reactIcon from "images/reactIcon.webp";
+import reactQueryIcon from "images/reactQueryIcon.webp";
+import reduxIcon from "images/reduxIcon.webp";
+import reduxToolkitIcon from "images/reduxToolkitIcon.webp";
+import styledComponentsIcon from "images/styledComponentsIcon.webp";
+import supabaseIcon from "images/supabaseIcon.webp";
+import typeScriptIcon from "images/typeScriptIcon.webp";
+import vercelIcon from "images/vercelIcon.webp";
 import {
   FaBolt,
   FaExpandArrowsAlt,
@@ -58,57 +58,57 @@ const orbitTechnologies = [
     id: "react",
     name: "React",
     icon: reactIcon,
-    iconWidth: 259,
-    iconHeight: 194,
+    iconWidth: 160,
+    iconHeight: 120,
   },
   {
     id: "typescript",
     name: "TypeScript",
     icon: typeScriptIcon,
-    iconWidth: 225,
-    iconHeight: 225,
+    iconWidth: 160,
+    iconHeight: 160,
   },
   {
     id: "redux",
     name: "Redux",
     icon: reduxIcon,
-    iconWidth: 384,
-    iconHeight: 192,
+    iconWidth: 160,
+    iconHeight: 80,
   },
   {
     id: "redux-toolkit",
     name: "Redux Toolkit",
     icon: reduxToolkitIcon,
-    iconWidth: 384,
-    iconHeight: 216,
+    iconWidth: 160,
+    iconHeight: 90,
   },
   {
     id: "styled",
     name: "Styled Components",
     icon: styledComponentsIcon,
-    iconWidth: 225,
-    iconHeight: 225,
+    iconWidth: 160,
+    iconHeight: 160,
   },
   {
     id: "supabase",
     name: "Supabase",
     icon: supabaseIcon,
-    iconWidth: 384,
-    iconHeight: 188,
+    iconWidth: 160,
+    iconHeight: 78,
   },
   {
     id: "react-query",
     name: "React Query",
     icon: reactQueryIcon,
-    iconWidth: 513,
-    iconHeight: 326,
+    iconWidth: 160,
+    iconHeight: 102,
   },
   {
     id: "vercel",
     name: "Vercel",
     icon: vercelIcon,
-    iconWidth: 900,
-    iconHeight: 500,
+    iconWidth: 160,
+    iconHeight: 89,
   },
 ];
 
@@ -157,8 +157,8 @@ export const ToolsShowcase = () => {
           <OrbitSection
             technologies={orbitTechnologies}
             centerIcon={nextIcon}
-            centerIconWidth={512}
-            centerIconHeight={309}
+            centerIconWidth={160}
+            centerIconHeight={97}
             centerLabel="Next.js"
           />
         </OrbitSectionWrapper>
