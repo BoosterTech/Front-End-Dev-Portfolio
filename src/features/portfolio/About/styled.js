@@ -145,27 +145,10 @@ export const FeatureDescription = styled.p`
 export const CodeTerminalWindow = styled.div`
   position: relative;
   background: var(--color-terminal-bg);
-  border: 1px solid rgba(var(--color-white-rgb), 0.1);
+  border: 1px solid var(--color-terminal-border);
   border-radius: var(--radius-xl);
-  box-shadow: 0 24px 60px rgba(var(--color-black-rgb), 0.5);
+  box-shadow: 0 24px 60px var(--color-terminal-shadow);
   overflow: hidden;
-`;
-
-export const TerminalImage = styled.img`
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: left top;
-  border-radius: inherit;
-  transition: opacity 0.4s ease;
-
-  html[data-theme="dark"] & {
-    opacity: 0;
-  }
 `;
 
 export const CodeTerminalHeader = styled.div`
@@ -173,8 +156,8 @@ export const CodeTerminalHeader = styled.div`
   align-items: center;
   gap: var(--spacing-md);
   padding: 14px 18px;
-  background: rgba(var(--color-white-rgb), 0.03);
-  border-bottom: 1px solid rgba(var(--color-white-rgb), 0.08);
+  background: var(--color-terminal-header-bg);
+  border-bottom: 1px solid var(--color-terminal-border);
 `;
 
 export const CodeDots = styled.div`

@@ -37,7 +37,7 @@
 | 7   | Extract shared `HorizontalRail`/mask-fade pattern                                                 | ⏸️ conditional — extract only when a 4th rail appears | —         |
 | 8   | Extract `SectionIntro` (label + heading + description)                                            | ⏸️ conditional — same trigger                         | —         |
 | 9   | Move ToolsShowcase copy into `translations.js` (all strings incl. aria-labels, EN/PL/ES)          | ✅                                                    | `3e00775` |
-| 10  | Light-theme terminal tokens; delete `code_terminal_light_theme.webp` + `object-position` band-aid | 🔲 open — do when touching CodeTerminal next          | —         |
+| 10  | Light-theme terminal tokens; delete `code_terminal_light_theme.webp` + `object-position` band-aid | ✅ done — uncommitted                                 | pending   |
 
 ## P2 — Hygiene
 

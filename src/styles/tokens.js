@@ -49,18 +49,21 @@ export const tokens = css`
     /* Component tokens */
     --color-tooltip: rgba(40, 142, 221, 0.95);
     --color-tooltip-rgb: 40, 142, 221;
-    --color-terminal-bg: #0b1220;
+    --color-terminal-bg: #f6f8fa;
+    --color-terminal-header-bg: rgba(0, 0, 0, 0.04);
+    --color-terminal-border: rgba(0, 0, 0, 0.1);
+    --color-terminal-shadow: rgba(0, 0, 0, 0.15);
     --color-code-red: #ff5f56;
     --color-code-yellow: #ffbd2e;
     --color-code-green: #27c93f;
-    --color-code-text: #abb2bf;
-    --color-code-comment: #5c6370;
-    --color-code-keyword: #c678dd;
-    --color-code-type: #e5c07b;
-    --color-code-string: #98c379;
-    --color-code-property: #e06c75;
-    --color-code-boolean: #56b6c2;
-    --color-code-variable: #61afef;
+    --color-code-text: #24292f;
+    --color-code-comment: #6e7781;
+    --color-code-keyword: #cf222e;
+    --color-code-type: #953800;
+    --color-code-string: #0a3069;
+    --color-code-property: #0550ae;
+    --color-code-boolean: #0550ae;
+    --color-code-variable: #e36209;
     --color-sun-orange: #ffb347;
     --color-sun-yellow: #ffcc33;
     --color-sun-yellow-rgb: 255, 204, 51;
@@ -99,12 +102,12 @@ export const tokens = css`
 
     /* Shadows */
     --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-      0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-      0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
-      0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    --shadow-md:
+      0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg:
+      0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-xl:
+      0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 
     /* Transitions */
     --transition-fast: 150ms ease-in-out;
@@ -140,5 +143,19 @@ export const tokens = css`
     --color-footer-bg-end: var(--color-navy);
     --color-footer-border: rgba(var(--color-white-rgb), 0.06);
     --color-footer-texture-opacity: 0.4;
+
+    /* Code terminal dark palette */
+    --color-terminal-bg: #0b1220;
+    --color-terminal-header-bg: rgba(255, 255, 255, 0.03);
+    --color-terminal-border: rgba(255, 255, 255, 0.1);
+    --color-terminal-shadow: rgba(0, 0, 0, 0.5);
+    --color-code-text: #abb2bf;
+    --color-code-comment: #5c6370;
+    --color-code-keyword: #c678dd;
+    --color-code-type: #e5c07b;
+    --color-code-string: #98c379;
+    --color-code-property: #e06c75;
+    --color-code-boolean: #56b6c2;
+    --color-code-variable: #61afef;
   }
 `;
