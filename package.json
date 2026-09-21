@@ -14,8 +14,7 @@
     "react-icons": "5.0.1",
     "react-scripts": "5.0.1",
     "react-scroll": "1.9.0",
-    "styled-components": "6.1.8",
-    "web-vitals": "2.1.4"
+    "styled-components": "6.1.8"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -23,7 +22,7 @@
     "test": "react-scripts test",
     "test:coverage": "react-scripts test --coverage --watchAll=false",
     "eject": "react-scripts eject",
-    "predeploy": "npm run build",
+    "predeploy": "npm run build && node scripts/remove-maps.js",
     "deploy": "gh-pages -d build",
     "size-check": "node scripts/check-file-size.js",
     "lint": "eslint src",
@@ -31,7 +30,7 @@
     "bundle:check": "node scripts/bundle-size.js",
     "check:colors": "node scripts/check-hardcoded-colors.js",
     "check:circular": "node scripts/check-circular.js",
-    "lighthouse:check": "npx --yes cross-env PUBLIC_URL=/ npm run build && npx --yes @lhci/cli autorun",
+    "lighthouse:check": "npx --yes cross-env PUBLIC_URL=. npm run build && npx --yes @lhci/cli autorun",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui"
   },

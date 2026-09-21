@@ -26,3 +26,8 @@ yarn-error.log*
 # pnpm (project uses npm)
 pnpm-lock.yaml
 pnpm-workspace.yaml
+
+# lighthouse artifacts
+/.lighthouseci
+localhost--*.report.html
+localhost--*.report.json
