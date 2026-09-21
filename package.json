@@ -33,8 +33,7 @@
     "check:circular": "node scripts/check-circular.js",
     "lighthouse:check": "npx --yes cross-env PUBLIC_URL=/ npm run build && npx --yes @lhci/cli autorun",
     "test:e2e": "playwright test",
-    "test:e2e:ui": "playwright test --ui",
-    "optimize:images": "node scripts/convert-images.js"
+    "test:e2e:ui": "playwright test --ui"
   },
   "eslintConfig": {
     "extends": [
