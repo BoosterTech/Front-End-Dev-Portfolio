@@ -12,8 +12,41 @@ A Software Engineer focused on building modern web applications and AI-powered S
       viewMyWork: "View My Work",
       downloadCV: "Download CV",
       cvUrl: "#",
-      skillsetHeader: "Technology Stack",
+      skillsetHeader: "My Technology Stack",
       learnNextHeader: "Currently Exploring",
+      toolsShowcase: {
+        titlePlain: "Build with the",
+        titleAccent: "Best Tools",
+        description:
+          "I craft fast, scalable, and modern web applications using a powerful ecosystem of cutting-edge technologies.",
+        features: [
+          { title: "Performance Optimized", subtitle: "Fast loads" },
+          { title: "Scalable Architecture", subtitle: "Grows cleanly" },
+          { title: "Developer Experience", subtitle: "Clean APIs" },
+          { title: "Modern UI/UX", subtitle: "Polished interfaces" },
+        ],
+        exploreParagraph:
+          "Leveling up my skills and building the future, one line at a time.",
+        exploreAriaLabel: "Technologies currently exploring",
+        exploreItems: [
+          {
+            name: "Artificial Intelligence",
+            description: "Building AI-powered features",
+          },
+          { name: "Stripe", description: "Payment infrastructure" },
+          {
+            name: "AI-Directed Engineering",
+            description: "AI-assisted development",
+          },
+          {
+            name: "Framer Motion",
+            description: "Production-ready animations",
+          },
+          { name: "SaaS Architecture", description: "Scalable SaaS patterns" },
+        ],
+        moreTitle: "And More...",
+        moreSubtitle: "Always learning.",
+      },
     },
     about: {
       journeyLabel: "MY JOURNEY",
@@ -62,8 +95,50 @@ A Software Engineer focused on building modern web applications and AI-powered S
       viewMyWork: "Zobacz Projekty",
       downloadCV: "Pobierz CV",
       cvUrl: "#",
-      skillsetHeader: "Technologie",
+      skillsetHeader: "Mój Stack Technologiczny",
       learnNextHeader: "Aktualnie Rozwijam",
+      toolsShowcase: {
+        titlePlain: "Tworzę z",
+        titleAccent: "Najlepszymi Narzędziami",
+        description:
+          "Buduję szybkie, skalowalne i nowoczesne aplikacje internetowe, oparte na ekosystemie najnowocześniejszych technologii.",
+        features: [
+          {
+            title: "Zoptymalizowana Wydajność",
+            subtitle: "Szybkie ładowanie",
+          },
+          {
+            title: "Skalowalna Architektura",
+            subtitle: "Rośnie bez problemów",
+          },
+          { title: "Developer Experience", subtitle: "Czyste API" },
+          { title: "Nowoczesny UI/UX", subtitle: "Dopracowane interfejsy" },
+        ],
+        exploreParagraph:
+          "Rozwijam umiejętności i buduję przyszłość — linijka po linijce.",
+        exploreAriaLabel: "Technologie, które aktualnie rozwijam",
+        exploreItems: [
+          {
+            name: "Sztuczna Inteligencja",
+            description: "Buduję funkcje oparte na AI",
+          },
+          { name: "Stripe", description: "Infrastruktura płatności" },
+          {
+            name: "AI-Directed Engineering",
+            description: "Development wspomagany AI",
+          },
+          {
+            name: "Framer Motion",
+            description: "Animacje gotowe do produkcji",
+          },
+          {
+            name: "Architektura SaaS",
+            description: "Skalowalne wzorce SaaS",
+          },
+        ],
+        moreTitle: "I Więcej...",
+        moreSubtitle: "Zawsze się uczę.",
+      },
     },
     about: {
       journeyLabel: "MOJA DROGA",
@@ -112,8 +187,44 @@ A Software Engineer focused on building modern web applications and AI-powered S
       viewMyWork: "Ver Proyectos",
       downloadCV: "Descargar CV",
       cvUrl: "#",
-      skillsetHeader: "Tecnologías",
+      skillsetHeader: "Mi Stack Tecnológico",
       learnNextHeader: "Aprendiendo Actualmente",
+      toolsShowcase: {
+        titlePlain: "Construyo con",
+        titleAccent: "las Mejores Herramientas",
+        description:
+          "Creo aplicaciones web rápidas, escalables y modernas usando un potente ecosistema de tecnologías de vanguardia.",
+        features: [
+          { title: "Rendimiento Optimizado", subtitle: "Cargas rápidas" },
+          { title: "Arquitectura Escalable", subtitle: "Crece sin problemas" },
+          { title: "Experiencia de Desarrollo", subtitle: "APIs limpias" },
+          { title: "UI/UX Moderno", subtitle: "Interfaces pulidas" },
+        ],
+        exploreParagraph:
+          "Subiendo de nivel y construyendo el futuro, una línea a la vez.",
+        exploreAriaLabel: "Tecnologías que estoy explorando",
+        exploreItems: [
+          {
+            name: "Inteligencia Artificial",
+            description: "Funciones impulsadas por IA",
+          },
+          { name: "Stripe", description: "Infraestructura de pagos" },
+          {
+            name: "AI-Directed Engineering",
+            description: "Desarrollo asistido por IA",
+          },
+          {
+            name: "Framer Motion",
+            description: "Animaciones listas para producción",
+          },
+          {
+            name: "Arquitectura SaaS",
+            description: "Patrones SaaS escalables",
+          },
+        ],
+        moreTitle: "Y Más...",
+        moreSubtitle: "Siempre aprendiendo.",
+      },
     },
     about: {
       journeyLabel: "MI VIAJE",

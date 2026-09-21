@@ -1,3 +1,4 @@
+import useContent from "common/useContent";
 import nextIcon from "images/nextIcon.png";
 import reactIcon from "images/reactIcon.png";
 import reactQueryIcon from "images/reactQueryIcon.png";
@@ -63,47 +64,19 @@ const orbitTechnologies = [
   { id: "vercel", name: "Vercel", icon: vercelIcon },
 ];
 
-const exploreItems = [
-  {
-    name: "Artificial Intelligence",
-    icon: <FaBrain />,
-    description: "Building AI-powered features",
-  },
-  { name: "Stripe", icon: <SiStripe />, description: "Payment infrastructure" },
-  {
-    name: "AI-Directed Engineering",
-    icon: <FaRobot />,
-    description: "AI-assisted development",
-  },
-  {
-    name: "Framer Motion",
-    icon: <SiFramer />,
-    description: "Production-ready animations",
-  },
-  {
-    name: "SaaS Architecture",
-    icon: <FaSitemap />,
-    description: "Scalable SaaS patterns",
-  },
+const exploreIcons = [
+  <FaBrain />,
+  <SiStripe />,
+  <FaRobot />,
+  <SiFramer />,
+  <FaSitemap />,
 ];
 
-const features = [
-  { icon: <FaBolt />, title: "Performance Optimized", subtitle: "Fast loads" },
-  {
-    icon: <FaExpandArrowsAlt />,
-    title: "Scalable Architecture",
-    subtitle: "Grows cleanly",
-  },
-  {
-    icon: <FaLaptopCode />,
-    title: "Developer Experience",
-    subtitle: "Clean APIs",
-  },
-  {
-    icon: <FaPaintBrush />,
-    title: "Modern UI/UX",
-    subtitle: "Polished interfaces",
-  },
+const featureIcons = [
+  <FaBolt />,
+  <FaExpandArrowsAlt />,
+  <FaLaptopCode />,
+  <FaPaintBrush />,
 ];
 
 const container = {
@@ -121,6 +94,9 @@ const item = {
 };
 
 export const ToolsShowcase = () => {
+  const { home } = useContent();
+  const showcase = home.toolsShowcase;
+
   return (
     <ToolsShowcaseWrapper
       initial="hidden"
@@ -139,26 +115,25 @@ export const ToolsShowcase = () => {
         <ShowcaseContent>
           <SectionLabel variants={item}>
             <FaStar />
-            MY TECHNOLOGY STACK
+            {home.skillsetHeader}
           </SectionLabel>
           <SectionTitle variants={item}>
-            <PlainTitlePart>Build with the</PlainTitlePart>{" "}
-            <GradientWord>Best Tools</GradientWord>
+            <PlainTitlePart>{showcase.titlePlain}</PlainTitlePart>{" "}
+            <GradientWord>{showcase.titleAccent}</GradientWord>
           </SectionTitle>
           <SectionDescription variants={item}>
-            I craft fast, scalable, and modern web applications using a powerful
-            ecosystem of cutting-edge technologies.
+            {showcase.description}
           </SectionDescription>
 
           <FeatureGrid>
-            {features.map((feature, index) => (
+            {showcase.features.map((feature, index) => (
               <FeatureCard
                 key={index}
                 variants={item}
                 whileHover={{ scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
-                <FeatureIcon>{feature.icon}</FeatureIcon>
+                <FeatureIcon>{featureIcons[index]}</FeatureIcon>
                 <FeatureText>
                   <FeatureTitle>{feature.title}</FeatureTitle>
                   <FeatureSubtitle>{feature.subtitle}</FeatureSubtitle>
@@ -173,18 +148,16 @@ export const ToolsShowcase = () => {
         <ExploreHeader>
           <ExploreLabel>
             <FaEllipsisH />
-            CURRENTLY EXPLORING
+            {home.learnNextHeader}
           </ExploreLabel>
-          <ExploreParagraph>
-            Leveling up my skills and building the future, one line at a time.
-          </ExploreParagraph>
+          <ExploreParagraph>{showcase.exploreParagraph}</ExploreParagraph>
         </ExploreHeader>
         <ExploreTrack
           role="region"
-          aria-label="Technologies currently exploring"
+          aria-label={showcase.exploreAriaLabel}
           tabIndex={0}
         >
-          {exploreItems.map((item, index) => (
+          {showcase.exploreItems.map((item, index) => (
             <ExploreChip
               key={item.name}
               initial={{ opacity: 0, y: 10 }}
@@ -194,7 +167,7 @@ export const ToolsShowcase = () => {
               whileHover={{ scale: 1.02 }}
             >
               <ExploreChipHeader>
-                {item.icon}
+                {exploreIcons[index]}
                 {item.name}
               </ExploreChipHeader>
               <ExploreChipDescription>
@@ -206,13 +179,13 @@ export const ToolsShowcase = () => {
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.1 + exploreItems.length * 0.05 }}
+            transition={{ delay: 0.1 + showcase.exploreItems.length * 0.05 }}
           >
             <MoreChipHeader>
               <FaEllipsisH />
-              And More...
+              {showcase.moreTitle}
             </MoreChipHeader>
-            <MoreChipDescription>Always learning.</MoreChipDescription>
+            <MoreChipDescription>{showcase.moreSubtitle}</MoreChipDescription>
           </MoreChip>
         </ExploreTrack>
       </ExploreSection>
