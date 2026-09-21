@@ -33,7 +33,7 @@ Check out my portfolio: [Derek.dev](https://boostertech.github.io/Front-End-Dev-
 - **Image Optimization**: sharp (PNG/JPG → WebP), `loading="lazy"` on below-the-fold images
 - **E2E Testing**: Playwright (5 tests: scroll nav, language switch, dark mode, carousel next/prev, carousel dot-click)
 - **Quality & CI**: ESLint, Prettier, Jest, Playwright, GitHub Actions
-- **Build-time Guardrails**: `size-check`, `format:check`, `lint`, `bundle:check`, `depcheck`, `test:coverage`, `lighthouse:check`, `check:colors`, `check:circular`, `test:e2e`, `optimize:images`
+- **Build-time Guardrails**: `size-check`, `format:check`, `lint`, `bundle:check`, `test:coverage`, `lighthouse:check`, `check:colors`, `check:circular`, `test:e2e`
 
 ---
 
@@ -49,7 +49,8 @@ Check out my portfolio: [Derek.dev](https://boostertech.github.io/Front-End-Dev-
 - Circular-dependency guard: `npm run check:circular` (via `madge`) runs in CI and fails the build if any import cycles are introduced.
 - Bundle-impact gate: PR template requires `npm run build && npm run bundle:check` and confirmation that no chunk exceeds the 350 KB gzipped budget.
 - Fixed section slugs: `home`, `about`, `projects`, `contact` are used for `react-scroll` anchors in all languages.
-- Quality gates: `npm run test:coverage` enforces a 70% Jest coverage threshold, `npm run test:e2e` runs 5 Playwright E2E tests (scroll, language switch, dark mode, carousel next/prev, carousel dot-click) in CI, and `npm run lighthouse:check` audits the build for LCP <= 2.5 s and CLS <= 0.1 (now a blocking CI step).
+- Quality gates: `npm run test:coverage` enforces a 70% Jest coverage threshold, `npm run test:e2e` runs 5 Playwright E2E tests (scroll, language switch, dark mode, carousel next/prev, carousel dot-click) in CI, and `npm run lighthouse:check` audits the production build against the LCP/CLS budgets in `.lighthouserc.js`.
+- Performance: Framer Motion loads via `LazyMotion` with an async `domMax` feature bundle (use `m.*`, never `motion.*`); below-fold sections use `content-visibility: auto` with measured `contain-intrinsic-size`; all raster assets are WebP sized ~2x their max render size; sourcemaps are stripped at deploy time by `scripts/remove-maps.js`. See `plan/performance-optimization-plan.md`.
 
 ---
 

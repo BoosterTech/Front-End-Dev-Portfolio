@@ -45,6 +45,20 @@ auth, no database, no state library. Keep it that way.
   `mask-image: linear-gradient(...)` edge fades) — copy an existing rail (marquee,
   explore track, badge row) rather than inventing a fourth variant
 - Respect `prefers-reduced-motion` for animation
+- Framer Motion: app is wrapped in `LazyMotion` with an async `domMax` feature
+  bundle (`src/index.js`). Always use `m.*` components — never `motion.*`, which
+  would re-pull the full feature set into the critical path. Drag/layout/in-view
+  features are all covered by `domMax`; don't switch to `domAnimation` (carousel
+  needs `drag`)
+- Below-fold section roots carry `content-visibility: auto` + `contain-intrinsic-size`
+  measured from the real build (Playwright) — when changing section layouts,
+  re-measure and update the intrinsic sizes or react-scroll anchors drift
+- Raster images: WebP only, sized ~2x their max render dimensions; keep
+  `width`/`height` attrs in sync with intrinsic dims (CLS guard)
+- No webfonts via CSS `@import` inside `createGlobalStyle` — styled-components
+  can't hoist it and browsers ignore it. (Measured: a real Inter `<link>` cost
+  ~1s LCP under throttle → rejected; system stack is intentional)
+- No `web-vitals`/RUM wiring — the dep was removed; don't re-add without a sink
 - Lazy-loaded images must declare intrinsic `width`/`height` attributes (CLS audit).
   Dims live in the data layer: `iconWidth`/`iconHeight` fields on icon objects,
   shared `PROJECT_IMAGE_WIDTH`/`PROJECT_IMAGE_HEIGHT` in `content/projects.js`
@@ -77,6 +91,7 @@ npm run check:colors
 npm run check:circular
 npm run size-check
 npm run build       # before shipping UI changes
+npm run lighthouse:check  # perf gate: LCP/CLS budgets in .lighthouserc.js
 ```
 
 ## Commits
