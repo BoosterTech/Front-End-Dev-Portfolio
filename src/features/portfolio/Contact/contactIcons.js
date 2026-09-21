@@ -6,8 +6,8 @@ import whatsAppIcon from "images/whatsappIcon.png";
 export const icons = [
   {
     iconURL: whatsAppIcon,
-    iconWidth: 480,
-    iconHeight: 480,
+    iconWidth: 256,
+    iconHeight: 256,
     id: "whatsApp",
     link: "https://wa.me/003530862013944",
     name: "WhatsApp",
@@ -26,8 +26,8 @@ export const icons = [
   },
   {
     iconURL: linkedInIcon,
-    iconWidth: 1024,
-    iconHeight: 1024,
+    iconWidth: 256,
+    iconHeight: 256,
     id: "linkedIn",
     link: "https://www.linkedin.com/in/Dariusz-Podczasik",
     name: "LinkedIn",
