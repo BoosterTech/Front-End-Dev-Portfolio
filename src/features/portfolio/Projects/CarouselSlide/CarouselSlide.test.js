@@ -65,11 +65,11 @@ describe("CarouselSlide", () => {
       />
     );
 
-    expect(screen.getByText("Live Demo").closest("a")).toHaveAttribute(
+    expect(screen.getByRole("link", { name: "Live Demo" })).toHaveAttribute(
       "href",
       "https://example.com"
     );
-    expect(screen.getByText("GitHub").closest("a")).toHaveAttribute(
+    expect(screen.getByRole("link", { name: "GitHub" })).toHaveAttribute(
       "href",
       "https://github.com/example/repo"
     );
@@ -88,14 +88,31 @@ describe("CarouselSlide", () => {
     expect(screen.getByText("Coming Soon")).toBeInTheDocument();
   });
 
-  it("calls onClick when slide is clicked", () => {
-    const onClick = jest.fn();
+  it("calls onExpand when active slide is clicked", () => {
+    const onExpand = jest.fn();
     renderWithProviders(
       <CarouselSlide
         project={baseProject}
         isActive={true}
         position="center"
+        onClick={() => {}}
+        onExpand={onExpand}
+      />
+    );
+
+    fireEvent.click(screen.getByLabelText("Test Project"));
+    expect(onExpand).toHaveBeenCalledTimes(1);
+  });
+
+  it("calls onClick when inactive slide is clicked", () => {
+    const onClick = jest.fn();
+    renderWithProviders(
+      <CarouselSlide
+        project={baseProject}
+        isActive={false}
+        position="left"
         onClick={onClick}
+        onExpand={() => {}}
       />
     );
 
@@ -103,48 +120,52 @@ describe("CarouselSlide", () => {
     expect(onClick).toHaveBeenCalledTimes(1);
   });
 
-  it("calls onClick when Enter key is pressed", () => {
-    const onClick = jest.fn();
+  it("calls onExpand when Enter key is pressed on active slide", () => {
+    const onExpand = jest.fn();
     renderWithProviders(
       <CarouselSlide
         project={baseProject}
         isActive={true}
         position="center"
-        onClick={onClick}
+        onClick={() => {}}
+        onExpand={onExpand}
       />
     );
 
     fireEvent.keyDown(screen.getByLabelText("Test Project"), {
       key: "Enter",
     });
-    expect(onClick).toHaveBeenCalledTimes(1);
+    expect(onExpand).toHaveBeenCalledTimes(1);
   });
 
-  it("calls onClick when Space key is pressed", () => {
-    const onClick = jest.fn();
+  it("calls onExpand when Space key is pressed on active slide", () => {
+    const onExpand = jest.fn();
     renderWithProviders(
       <CarouselSlide
         project={baseProject}
         isActive={true}
         position="center"
-        onClick={onClick}
+        onClick={() => {}}
+        onExpand={onExpand}
       />
     );
 
     fireEvent.keyDown(screen.getByLabelText("Test Project"), {
       key: " ",
     });
-    expect(onClick).toHaveBeenCalledTimes(1);
+    expect(onExpand).toHaveBeenCalledTimes(1);
   });
 
-  it("does not call onClick for other keys", () => {
+  it("does not call onClick or onExpand for other keys", () => {
     const onClick = jest.fn();
+    const onExpand = jest.fn();
     renderWithProviders(
       <CarouselSlide
         project={baseProject}
         isActive={true}
         position="center"
         onClick={onClick}
+        onExpand={onExpand}
       />
     );
 
@@ -152,5 +173,6 @@ describe("CarouselSlide", () => {
       key: "Escape",
     });
     expect(onClick).not.toHaveBeenCalled();
+    expect(onExpand).not.toHaveBeenCalled();
   });
 });

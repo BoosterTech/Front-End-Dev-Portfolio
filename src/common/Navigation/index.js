@@ -26,7 +26,9 @@ const Navigation = () => {
   const { isContactVisible } = useContactVisibility();
 
   const [isCompact, setIsCompact] = useState(
-    () => typeof window !== "undefined" && window.matchMedia(`(max-width: ${1100 - 1}px)`).matches
+    () =>
+      typeof window !== "undefined" &&
+      window.matchMedia(`(max-width: ${1100 - 1}px)`).matches
   );
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navRef = useRef(null);
@@ -75,7 +77,10 @@ const Navigation = () => {
 
     const updateNavHeight = () => {
       const height = nav.offsetHeight;
-      document.documentElement.style.setProperty("--nav-height-actual", `${height}px`);
+      document.documentElement.style.setProperty(
+        "--nav-height-actual",
+        `${height}px`
+      );
     };
 
     updateNavHeight();
@@ -151,7 +156,11 @@ const Navigation = () => {
   };
 
   return (
-    <StyledList ref={navRef} className={hidden ? "nav-hidden" : ""} aria-label="Main navigation">
+    <StyledList
+      ref={navRef}
+      className={hidden ? "nav-hidden" : ""}
+      aria-label="Main navigation"
+    >
       <TopRow>
         <LanguageSwitch onOpen={() => setIsMenuOpen(false)} />
         <DarkModeToggle />
@@ -171,7 +180,7 @@ const Navigation = () => {
         </DevWrapper>
       </Link>
 
-      <MenuContainer>
+      <MenuContainer data-testid="desktop-menu">
         {menuItems[language].map((item, index) => {
           const isContact = index === menuItems[language].length - 1;
           const forceActive = isContact && isContactVisible;
@@ -180,6 +189,7 @@ const Navigation = () => {
               activeClass="active"
               className={forceActive ? "active" : undefined}
               $isContactVisible={getActiveClass(index)}
+              data-testid={`nav-link-${item.slug}`}
               to={item.slug}
               spy={true}
               smooth={true}
@@ -205,7 +215,10 @@ const Navigation = () => {
         className={isMenuOpen ? "open" : ""}
         onClick={() => setIsMenuOpen(false)}
       />
-      <MobileMenuPanel className={isMenuOpen ? "open" : ""}>
+      <MobileMenuPanel
+        className={isMenuOpen ? "open" : ""}
+        data-testid="mobile-menu"
+      >
         {menuItems[language].map((item, index) => {
           const isContact = index === menuItems[language].length - 1;
           const forceActive = isContact && isContactVisible;
