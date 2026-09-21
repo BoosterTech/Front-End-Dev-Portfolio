@@ -4,17 +4,19 @@ import { renderWithProviders } from "test-utils";
 
 describe("RichText", () => {
   it("renders HTML content", () => {
-    renderWithProviders(<RichText html="<p>Hello <strong>world</strong></p>" />);
+    renderWithProviders(
+      <RichText html="<p>Hello <strong>world</strong></p>" />
+    );
 
     expect(screen.getByText("world")).toBeInTheDocument();
     expect(screen.getByText("world").tagName).toBe("STRONG");
   });
 
   it("applies className", () => {
-    const { container } = renderWithProviders(
+    renderWithProviders(
       <RichText html="<p>Test</p>" className="custom-class" />
     );
 
-    expect(container.firstChild).toHaveClass("custom-class");
+    expect(screen.getByTestId("rich-text")).toHaveClass("custom-class");
   });
 });
