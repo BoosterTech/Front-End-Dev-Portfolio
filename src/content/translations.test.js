@@ -1,10 +1,4 @@
 import projects from "./projects";
-import {
-  skillDescriptions,
-  skillsets,
-  toLearn,
-  toLearnDescriptions,
-} from "./skillsets";
 import { translations } from "./translations";
 
 describe("content language parity", () => {
@@ -12,13 +6,6 @@ describe("content language parity", () => {
 
   it("translations has English, Polish, and Spanish", () => {
     expect(expected).toEqual(["English", "Polish", "Spanish"]);
-  });
-
-  it("skillsets content uses the same languages as translations", () => {
-    expect(Object.keys(skillsets).sort()).toEqual(expected);
-    expect(Object.keys(skillDescriptions).sort()).toEqual(expected);
-    expect(Object.keys(toLearn).sort()).toEqual(expected);
-    expect(Object.keys(toLearnDescriptions).sort()).toEqual(expected);
   });
 
   it("projects use the same languages as translations", () => {

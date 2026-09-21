@@ -38,20 +38,6 @@
  */
 
 /**
- * @typedef {Object} SkillSet
- * @property {string[]} English
- * @property {string[]} Polish
- * @property {string[]} Spanish
- */
-
-/**
- * @typedef {Object} SkillDescriptions
- * @property {Object.<string, string>} English
- * @property {Object.<string, string>} Polish
- * @property {Object.<string, string>} Spanish
- */
-
-/**
  * @typedef {Object} TranslationSet
  * @property {Object} home
  * @property {Object} about
@@ -81,10 +67,4 @@
  * @property {LocalizedText} [GitHubRepoURLTag]
  * @property {number} index
  * @property {string} [available]
- */
-
-/**
- * @typedef {Object} SkillsetListProps
- * @property {SkillSet} skills
- * @property {SkillDescriptions} [descriptions]
  */
