@@ -1,12 +1,12 @@
-import currencyConverterImage from "images/CurrencycalculatorProject.webp";
-import eatNsplitmage from "images/EatNSplitProject.webp";
-import fastReactPizzaImage from "images/FastPizzaProject.webp";
-import movieBrowserImage from "images/MoviebrowserProject.webp";
-import paradiselodgeImage from "images/ParadiseLodgeProject.webp";
-import plasmaLibraryImage from "images/PlazmaLibraryProject.webp";
-import reactQuizImage from "images/ReactQuizProject.webp";
-import tasksListImage from "images/TaskListProject.webp";
-import wtmMusicAIImage from "images/WTMMusicProject.webp";
+import currencyConverterImage from "images/projects/CurrencycalculatorProject.webp";
+import eatNsplitmage from "images/projects/EatNSplitProject.webp";
+import fastReactPizzaImage from "images/projects/FastPizzaProject.webp";
+import movieBrowserImage from "images/projects/MoviebrowserProject.webp";
+import paradiselodgeImage from "images/projects/ParadiseLodgeProject.webp";
+import plasmaLibraryImage from "images/projects/PlasmaLibraryProject.webp";
+import reactQuizImage from "images/projects/ReactQuizProject.webp";
+import tasksListImage from "images/projects/TaskListProject.webp";
+import wtmMusicAIImage from "images/projects/WTMMusicProject.webp";
 
 export const PROJECT_IMAGE_WIDTH = 1200;
 export const PROJECT_IMAGE_HEIGHT = 675;
