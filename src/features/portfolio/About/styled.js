@@ -14,7 +14,7 @@ export const Wrapper = styled.article`
   @media (max-width: ${({ theme }) => theme.breakpoint.xl2}) {
     grid-template-columns: minmax(0, 1fr);
     gap: var(--spacing-2xl);
-    padding: var(--spacing-2xl) 0;
+    padding: 10px 0 var(--spacing-2xl) 0;
   }
 `;
 

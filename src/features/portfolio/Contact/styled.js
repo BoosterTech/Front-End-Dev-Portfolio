@@ -65,7 +65,7 @@ export const Wrapper = styled.section`
 
   @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
     margin: var(--spacing-xl) var(--spacing-md);
-    padding: var(--spacing-xl) var(--spacing-md);
+    padding: 48px var(--spacing-md) var(--spacing-xl);
     border-radius: 14px;
   }
 

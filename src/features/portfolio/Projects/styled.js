@@ -11,8 +11,7 @@ export const Wrapper = styled.section`
 
   @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
     margin: var(--spacing-2xl) 0;
-    padding: calc(var(--spacing-2xl) + 96px) var(--spacing-lg)
-      var(--spacing-2xl) var(--spacing-lg);
+    padding: 10px var(--spacing-lg) var(--spacing-2xl) var(--spacing-lg);
   }
 `;
 
