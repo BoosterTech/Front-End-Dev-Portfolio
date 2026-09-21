@@ -3,6 +3,7 @@ import { menuItems } from "common/Navigation/menuItems";
 import useContent from "common/useContent";
 import lightProfileImage from "images/light_theme_profile.webp";
 import profileImage from "images/profileImage.webp";
+import { useEffect, useState } from "react";
 import { FaArrowRight, FaDownload, FaStar } from "react-icons/fa";
 
 import {
@@ -24,9 +25,22 @@ import {
 } from "./homeStyles";
 import { ToolsShowcase } from "./ToolsShowcase";
 
+const getIsDark = () =>
+  document.documentElement.getAttribute("data-theme") === "dark";
+
 const Home = ({ id }) => {
   const { home } = useContent();
   const { language } = useLanguage();
+  const [isDark, setIsDark] = useState(getIsDark);
+
+  useEffect(() => {
+    const observer = new MutationObserver(() => setIsDark(getIsDark()));
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["data-theme"],
+    });
+    return () => observer.disconnect();
+  }, []);
 
   const headerWords = home.contentHeader.split(" ");
   const titleFirst = headerWords.slice(0, -1).join(" ");
@@ -75,15 +89,9 @@ const Home = ({ id }) => {
         </ContentContainer>
         <ImageContainer>
           <ProfileImage
-            className="light"
-            src={lightProfileImage}
+            src={isDark ? profileImage : lightProfileImage}
             alt="Portrait of Dariusz Podczasik"
-          />
-          <ProfileImage
-            className="dark"
-            src={profileImage}
-            alt=""
-            aria-hidden="true"
+            fetchpriority="high"
           />
         </ImageContainer>
       </ContentImageContainer>

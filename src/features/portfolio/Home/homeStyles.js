@@ -1,8 +1,4 @@
-import {
-  fadeInUp,
-  slideInLeft,
-  slideInRight,
-} from "common/animations";
+import { fadeInUp, slideInLeft, slideInRight } from "common/animations";
 import styled from "styled-components";
 import { keyframes } from "styled-components";
 
@@ -22,7 +18,8 @@ export const HomeWrapper = styled.section`
   padding: var(--nav-height-actual, var(--nav-height)) 0 var(--spacing-3xl) 0;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
-    padding: var(--nav-height-actual, var(--nav-height-mobile)) 0 var(--spacing-2xl) 0;
+    padding: var(--nav-height-actual, var(--nav-height-mobile)) 0
+      var(--spacing-2xl) 0;
   }
   width: 100%;
   animation: ${fadeInUp} 0.8s ease-out;
@@ -40,7 +37,9 @@ export const ContentImageContainer = styled.div`
   @media (max-width: ${({ theme }) => theme.breakpoint.xl2}) {
     grid-template-columns: 1fr;
     gap: var(--spacing-2xl);
-    min-height: calc(100vh - var(--nav-height-actual, var(--nav-height-mobile)));
+    min-height: calc(
+      100vh - var(--nav-height-actual, var(--nav-height-mobile))
+    );
     text-align: center;
     padding-top: var(--spacing-xl);
   }
@@ -135,19 +134,7 @@ export const ProfileImage = styled.img`
     0 2px 8px rgba(var(--color-black-rgb), 0.08);
   border-radius: inherit;
   border: 1px solid var(--color-primary);
-  transition: opacity 0.4s ease, transform var(--transition-normal);
-
-  &.dark {
-    opacity: 0;
-  }
-
-  html[data-theme="dark"] & {
-    &.dark {
-      opacity: 1;
-    }
-    &.light {
-      opacity: 0;
-    }
-  }
+  transition:
+    opacity 0.4s ease,
+    transform var(--transition-normal);
 `;
-
