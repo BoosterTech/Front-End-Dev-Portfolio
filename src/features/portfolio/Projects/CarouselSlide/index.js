@@ -1,19 +1,18 @@
 import { useLanguage } from "common/LanguageProvider";
-import { FaExpand, FaExternalLinkAlt, FaGithub } from "react-icons/fa";
+import { FaExternalLinkAlt, FaGithub } from "react-icons/fa";
 
 import {
   BottomBar,
+  BottomRow,
   CTAButton,
   CTAContainer,
   ComingSoonBadge,
-  ExpandHint,
   Overlay,
   Slide,
   SlideImage,
   TechBadge,
   TechBadges,
 } from "./styled";
-
 
 /** @param {{ project: import("../../../../types").Project; isActive: boolean; position: "left" | "center" | "right"; onClick: () => void; onExpand: () => void }} props */
 const CarouselSlide = ({ project, isActive, position, onClick, onExpand }) => {
@@ -52,48 +51,48 @@ const CarouselSlide = ({ project, isActive, position, onClick, onExpand }) => {
       >
         {project.variant !== "comingSoon" && (
           <BottomBar>
-            {project.technologies?.length > 0 && (
-              <TechBadges>
-                {project.technologies.map((tech) => (
-                  <TechBadge key={tech}>{tech}</TechBadge>
-                ))}
-              </TechBadges>
-            )}
-            <CTAContainer>
-              {project.GitHubPagesURL && (
-                <CTAButton
-                  href={project.GitHubPagesURL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  <FaExternalLinkAlt />
-                  {project.GitHubPagesURLTag?.[language] || "Live Demo"}
-                </CTAButton>
+            <BottomRow>
+              {project.technologies?.length > 0 && (
+                <TechBadges>
+                  {project.technologies.slice(0, 3).map((tech) => (
+                    <TechBadge key={tech}>{tech}</TechBadge>
+                  ))}
+                  {project.technologies.length > 3 && (
+                    <TechBadge>+{project.technologies.length - 3}</TechBadge>
+                  )}
+                </TechBadges>
               )}
-              {project.GitHubRepoURL && (
-                <CTAButton
-                  $secondary
-                  href={project.GitHubRepoURL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  <FaGithub />
-                  {project.GitHubRepoURLTag?.[language] || "GitHub"}
-                </CTAButton>
-              )}
-            </CTAContainer>
+              <CTAContainer>
+                {project.GitHubPagesURL && (
+                  <CTAButton
+                    href={project.GitHubPagesURL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <FaExternalLinkAlt />
+                    {project.GitHubPagesURLTag?.[language] || "Live Demo"}
+                  </CTAButton>
+                )}
+                {project.GitHubRepoURL && (
+                  <CTAButton
+                    $secondary
+                    href={project.GitHubRepoURL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <FaGithub />
+                    {project.GitHubRepoURLTag?.[language] || "GitHub"}
+                  </CTAButton>
+                )}
+              </CTAContainer>
+            </BottomRow>
           </BottomBar>
         )}
       </Overlay>
       {project.variant === "comingSoon" && (
         <ComingSoonBadge>Coming Soon</ComingSoonBadge>
-      )}
-      {isActive && project.variant !== "comingSoon" && (
-        <ExpandHint>
-          <FaExpand />
-        </ExpandHint>
       )}
     </Slide>
   );

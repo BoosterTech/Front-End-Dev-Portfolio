@@ -1,13 +1,14 @@
 import projects from "content/projects";
 import { AnimatePresence } from "framer-motion";
 import gitHubIcon from "images/gitHubIcon.png";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 
 import CarouselSlide from "./CarouselSlide";
 import ProjectModal from "./ProjectModal";
 import {
   CarouselButton,
+  DragLayer,
   Header,
   NavDot,
   NavDots,
@@ -21,12 +22,28 @@ import {
 const Projects = ({ id }) => {
   const [activeIndex, setActiveIndex] = useState(1);
   const [expandedProject, setExpandedProject] = useState(null);
+  const dragMoved = useRef(false);
 
   const handleSelect = (index) => setActiveIndex(index);
-  const handlePrev = () =>
-    setActiveIndex((prev) => Math.max(0, prev - 1));
+  const handlePrev = () => setActiveIndex((prev) => Math.max(0, prev - 1));
   const handleNext = () =>
     setActiveIndex((prev) => Math.min(projects.length - 1, prev + 1));
+
+  const handleDrag = (_, info) => {
+    if (Math.abs(info.offset.x) > 8) dragMoved.current = true;
+  };
+
+  const handleDragEnd = (_, info) => {
+    const { offset, velocity } = info;
+    if (offset.x < -60 || velocity.x < -400) {
+      handleNext();
+    } else if (offset.x > 60 || velocity.x > 400) {
+      handlePrev();
+    }
+    setTimeout(() => {
+      dragMoved.current = false;
+    }, 150);
+  };
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -63,27 +80,40 @@ const Projects = ({ id }) => {
             <FiChevronLeft />
           </CarouselButton>
         )}
-        <ProjectsTrack style={{ "--active-index": activeIndex }}>
-          {projects.map((project, index) => {
-            const position =
-              index === activeIndex
-                ? "center"
-                : index < activeIndex
-                ? "left"
-                : "right";
+        <DragLayer
+          drag="x"
+          dragConstraints={{ left: 0, right: 0 }}
+          dragElastic={0.15}
+          dragMomentum={false}
+          onDrag={handleDrag}
+          onDragEnd={handleDragEnd}
+        >
+          <ProjectsTrack style={{ "--active-index": activeIndex }}>
+            {projects.map((project, index) => {
+              const position =
+                index === activeIndex
+                  ? "center"
+                  : index < activeIndex
+                    ? "left"
+                    : "right";
 
-            return (
-              <CarouselSlide
-                key={project.title.English}
-                project={project}
-                isActive={index === activeIndex}
-                position={position}
-                onClick={() => handleSelect(index)}
-                onExpand={() => setExpandedProject(project)}
-              />
-            );
-          })}
-        </ProjectsTrack>
+              return (
+                <CarouselSlide
+                  key={project.title.English}
+                  project={project}
+                  isActive={index === activeIndex}
+                  position={position}
+                  onClick={() => {
+                    if (!dragMoved.current) handleSelect(index);
+                  }}
+                  onExpand={() => {
+                    if (!dragMoved.current) setExpandedProject(project);
+                  }}
+                />
+              );
+            })}
+          </ProjectsTrack>
+        </DragLayer>
         {activeIndex < projects.length - 1 && (
           <CarouselButton onClick={handleNext} aria-label="Next project">
             <FiChevronRight />

@@ -1,4 +1,5 @@
 import { fadeInUp, float, gradientShift, waveHand } from "common/animations";
+import { motion } from "framer-motion";
 import styled from "styled-components";
 
 export const Wrapper = styled.section`
@@ -58,6 +59,11 @@ export const Header = styled.h2`
   }
 `;
 
+export const DragLayer = styled(motion.div)`
+  width: 100%;
+  touch-action: pan-y;
+`;
+
 export const ProjectsWrapper = styled.div`
   position: relative;
   width: 100%;
@@ -105,7 +111,7 @@ export const ProjectsTrack = styled.div`
   transition: transform 0.5s ease;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
-    --card-width: 86%;
+    --card-width: 82%;
     --card-gap: 3%;
   }
 `;
@@ -141,13 +147,7 @@ export const CarouselButton = styled.button`
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
-    width: 36px;
-    height: 36px;
-
-    svg {
-      width: 18px;
-      height: 18px;
-    }
+    display: none;
   }
 `;
 

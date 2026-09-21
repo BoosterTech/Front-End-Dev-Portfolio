@@ -25,22 +25,24 @@ export const Slide = styled(motion.div)`
       ? css`
           z-index: 2;
           border-color: var(--color-primary);
-          box-shadow: 0 0 28px rgba(var(--color-primary-rgb), 0.3);
+          box-shadow: 0 8px 24px rgba(var(--color-primary-rgb), 0.18);
         `
       : css`
           transform: perspective(1200px)
-            ${$position === "left"
-              ? "rotateY(-14deg)"
-              : $position === "right"
-              ? "rotateY(14deg)"
-              : "scale(0.92)"}
+            ${
+              $position === "left"
+                ? "rotateY(-14deg)"
+                : $position === "right"
+                  ? "rotateY(14deg)"
+                  : "scale(0.92)"
+            }
             scale(0.88);
           transform-origin: ${
             $position === "left"
               ? "right center"
               : $position === "right"
-              ? "left center"
-              : "center"
+                ? "left center"
+                : "center"
           };
           opacity: 0.5;
           filter: brightness(0.72);
@@ -66,9 +68,11 @@ export const Overlay = styled(motion.div)`
   left: 0;
   right: 0;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   background: ${({ $comingSoon }) =>
-    $comingSoon ? "#000000" : "var(--color-surface)"};
+    $comingSoon
+      ? "var(--color-black)"
+      : "linear-gradient(180deg, transparent 0%, var(--color-surface) 40%)"};
 
   @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
     padding: 0 var(--spacing-sm) var(--spacing-sm);
@@ -79,33 +83,47 @@ export const BottomBar = styled.div`
   position: relative;
   z-index: 1;
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-start;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  width: 100%;
+  padding: var(--spacing-xs) var(--spacing-sm) var(--spacing-xxs);
+  background: transparent;
+`;
+
+export const BottomRow = styled.div`
+  display: flex;
   align-items: center;
   gap: var(--spacing-md);
-  width: 100%;
-  padding: var(--spacing-sm) var(--spacing-md);
-  background: transparent;
-
-  @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
-    padding: var(--spacing-sm) var(--spacing-md);
-  }
+  min-width: 0;
 `;
 
 export const TechBadges = styled.div`
   position: relative;
   z-index: 1;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  overflow: hidden;
+  min-width: 0;
   gap: var(--spacing-xs);
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    rgba(var(--color-black-rgb), 1) 88%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    90deg,
+    rgba(var(--color-black-rgb), 1) 88%,
+    transparent
+  );
 `;
 
 export const TechBadge = styled.span`
   display: inline-flex;
   align-items: center;
+  flex-shrink: 0;
+  white-space: nowrap;
   padding: var(--spacing-xxs) var(--spacing-sm);
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   font-weight: 600;
   color: var(--color-text-primary);
   background: rgba(var(--color-text-primary-rgb), 0.08);
@@ -121,6 +139,10 @@ export const CTAContainer = styled.div`
   flex-wrap: wrap;
   gap: var(--spacing-sm);
   margin-left: auto;
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
+    display: none;
+  }
 `;
 
 export const CTAButton = styled(Button)`
@@ -176,33 +198,4 @@ export const ComingSoonBadge = styled.span`
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-md);
   z-index: 3;
-`;
-
-export const ExpandHint = styled.div`
-  position: absolute;
-  top: var(--spacing-md);
-  left: var(--spacing-md);
-  z-index: 3;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: rgba(var(--color-surface-rgb), 0.9);
-  border: 1px solid var(--color-border);
-  color: var(--color-text-primary);
-  backdrop-filter: blur(8px);
-  opacity: 0;
-  transition: opacity var(--transition-normal);
-  pointer-events: none;
-
-  ${Slide}:hover & {
-    opacity: 1;
-  }
-
-  svg {
-    width: 16px;
-    height: 16px;
-  }
 `;
