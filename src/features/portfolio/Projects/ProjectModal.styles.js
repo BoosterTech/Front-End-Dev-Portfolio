@@ -12,7 +12,7 @@ export const Backdrop = styled(motion.div)`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgb(var(--color-black-rgb) / 0.8);
   backdrop-filter: blur(6px);
   padding: var(--spacing-lg);
 `;
@@ -26,7 +26,7 @@ export const Modal = styled(motion.div)`
   border-radius: var(--radius-xl);
   background: var(--color-surface);
   border: 1px solid var(--color-border);
-  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 24px 80px rgb(var(--color-black-rgb) / 0.5);
 
   &::-webkit-scrollbar {
     width: 8px;
