@@ -73,7 +73,7 @@ This document records the major architectural decisions in the `feature/ui-refre
 
 ### Decision: Store multi-language content in JS modules rather than JSON or an i18n library
 
-- **What:** English, Polish, and Spanish copy lives in `src/content/translations.js`. Skill data was moved to `src/content/skillsets.js`. Project data was moved to `src/content/projects.js` after adding `jsconfig.json` with `baseUrl: "src"`; image imports use `src`-relative `images/...` paths. Menu items remain in `src/common/Navigation/menuItems.js`.
+- **What:** English, Polish, and Spanish copy lives in `src/content/translations.js` (including `home.toolsShowcase` for the technology section). Project data lives in `src/content/projects.js`; `jsconfig.json` sets `baseUrl: "src"` so image imports use `src`-relative `images/...` paths. Menu items remain in `src/common/Navigation/menuItems.js`. (`src/content/skillsets/` was deleted with the unmounted `SkillsetContainer` in `a42600b`.)
 - **Why:** No extra i18n dependency is needed; content can contain HTML strings and be co-located with the consuming feature; imports are static and simple.
 - **Trade-offs:** No fallback language chain, no runtime language lazy-loading, and content is bundled into the JavaScript. Adding a language requires updating every content file.
 - **Future guidance:** If a CMS or more languages are added, migrate to a `src/locales/` JSON structure or introduce `react-i18next`. Until then, keep content objects isomorphic across all three languages.
@@ -114,8 +114,8 @@ This document records the major architectural decisions in the `feature/ui-refre
 
 ### Decision: Split content files by language once they exceed the 300-line budget
 
-- **What:** `src/content/skillsets.js` was split into `src/content/skillsets/{en,pl,es}.js` with an `index.js` aggregator. `src/content/projects.js` (380 lines) is kept as a single module and listed in `scripts/check-file-size.js` as a size-check exclusion.
-- **Why:** `skillsets.js` was ~740 lines and hard to review; per-language files make diffs readable and `translations.test.js` still enforces language parity. `projects.js` is a list of objects with per-language fields, so a language split would force awkward re-composition; keeping it whole is acceptable while it stays under 450 lines.
+- **What:** `src/content/skillsets/{en,pl,es}.js` was deleted along with the dead `SkillsetContainer` (`a42600b`); its copy now lives in `translations.js` under `home.toolsShowcase`. `src/content/projects.js` (~390 lines) is kept as a single module and is the only file listed in `scripts/check-file-size.js` exclusions.
+- **Why:** `projects.js` is a list of objects with per-language fields, so a language split would force awkward re-composition; keeping it whole is acceptable while it stays under 450 lines.
 - **Trade-offs:** Splitting adds an aggregator and more files, but reduces the blast radius of content edits. Exclusions must be revisited as files grow.
 - **Future guidance:** Any content file that exceeds 300 lines and does not gain clarity from a language split should either be split or added to `check-file-size.js` exclusions with a documented trigger (e.g., "re-evaluate at 450 lines"). Content parity tests must always pass after a split.
 
@@ -235,8 +235,8 @@ When adding or changing anything, prefer the following order:
 
 ### Decision: `test:coverage` with a 70% threshold
 
-- **What:** `package.json` has a `test:coverage` script (`react-scripts test --coverage --watchAll=false`) and a `jest.coverageThreshold` of 70% across branches, functions, lines, and statements. The project has 10 test suites with 32 tests covering Navigation, LanguageSwitch, Tile, Contact, RichText, SkillsetContainer, ComingSoonProject, CarouselSlide, translations, and App smoke test. Current coverage: 89.96% statements / 78.21% branches / 85.77% functions / 91.45% lines.
-- **Why:** A 70% floor forces test coverage growth alongside new code. The previous 50% threshold was too lenient to catch regressions. 20 new tests were added for previously untested components (RichText, SkillsetContainer, ComingSoonProject, CarouselSlide) and for Navigation compact mode.
+- **What:** `package.json` has a `test:coverage` script (`react-scripts test --coverage --watchAll=false`) and a `jest.coverageThreshold` of 70% across branches, functions, lines, and statements. The project has 9 test suites with 28 tests covering Navigation, LanguageSwitch, Tile, Contact, RichText, ComingSoonProject, CarouselSlide, translations parity, and the App smoke test.
+- **Why:** A 70% floor forces test coverage growth alongside new code. The previous 50% threshold was too lenient to catch regressions.
 - **Trade-offs:** 70% is still not 100%; some branches in OrbitSection and Projects/index.js remain uncovered. Full coverage is not the goal for a static portfolio.
 - **Future guidance:** Re-run `npm run test:coverage` after any new component or test. Raise the threshold only when the new value is stable across several runs.
 
@@ -317,7 +317,7 @@ When adding or changing anything, prefer the following order:
 - Fixed `public/index.html` metadata and added Open Graph tags.
 - Created `src/common/RichText` to centralize raw HTML rendering.
 - `npm run build` passes cleanly after all changes.
-- The size-check currently excludes `projects.js` (data module, not logic) and `OrbitSection.js` (complex orbit layout). `ToolsShowcase/styled.js` was deleted (barrel re-export removed) and `skillsets.js` was split into per-language files.
+- The size-check currently excludes only `projects.js` (data module, not logic). `ToolsShowcase/styled.js` was deleted (barrel re-export removed).
 - Added `.eslintrc.js` (extending `react-app` with `import/order` as error and `import/no-relative-parent-imports` as warn until Week 2) and `.prettierrc`.
 - Added `npm run lint` and `npm run format:check` to the CI pipeline. `npm run lint` now passes with 44 warnings for `import/no-relative-parent-imports`; `npm run format:check` passes after formatting.
 - Added `scripts/bundle-size.js` and `npm run bundle:check` to the CI pipeline. The main JS chunk is currently `185.33 KB` with a `350 KB` budget.
@@ -342,5 +342,14 @@ When adding or changing anything, prefer the following order:
 - Simplified `OrbitSection` by removing the `BreathingRing` pulse and reducing orbit dimensions so the `MY TECHNOLOGY STACK` text fits without cropping; kept `LinesSvg` connecting lines and removed the `ToolsShowcaseWrapper` top/bottom section borders.
 - Redesigned the `About` section with a two-column layout: a `CodeTerminal` component showing the "From Embedded to Full-Stack" class on the left and a `MY JOURNEY` content panel with a gradient heading, journey paragraph, and four feature cards on the right.
 - Completed Week 1 of the 30-day cleanup: moved `StarField` and `Main` out of `src/GlobalStyles.js` into `src/common/StarField/` and `src/common/Main/`, made `StarField` deterministic with a seeded pseudo-random generator, and split `translations` out of `src/themes.js` by introducing `src/common/useContent.js`.
-- `src/themes.js` now exports only the `breakpoint` map; all localized copy is read through `useContent` in `About`, `Contact`, `Footer`, `Home`, and `SkillsetContainer`.
+- `src/themes.js` now exports only the `breakpoint` map; all localized copy is read through `useContent` in `About`, `Contact`, `Footer`, `Home`, and `ToolsShowcase`.
 - `npm run lint`, `npm run size-check`, and `npm test` pass after the Week 1 boundary cleanup.
+
+### 2026-09-21 — Gate integrity + AI-readiness pass
+
+- Fixed stale test suites: `Navigation.test.js` now scopes queries via `desktop-menu`/`mobile-menu`/`nav-link-*` testids and mocks `matchMedia`; `CarouselSlide.test.js` updated to the active→`onExpand` / inactive→`onClick` contract. Suite green: 9 suites / 28 tests.
+- `check:colors` now reports zero violations; `ProjectModal.styles.js` uses `rgb(var(--color-black-rgb) / …)`.
+- Deleted dead `SkillsetContainer/` component + test, orphaned `src/content/skillsets/` module, and the `SkillSet`/`SkillDescriptions`/`SkillsetListProps` typedefs (−561 lines).
+- Added `AGENTS.md` conventions contract (breakpoints, token rules, rail patterns, testing hooks, verification commands).
+- Localized all ToolsShowcase copy into `home.toolsShowcase` translations (EN/PL/ES), reusing `skillsetHeader`/`learnNextHeader`; icons remain index-mapped in the component.
+- README refreshed: real project list with live URLs, current exploring items, corrected architecture notes.

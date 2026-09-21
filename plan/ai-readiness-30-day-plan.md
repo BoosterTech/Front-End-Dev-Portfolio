@@ -1,9 +1,13 @@
 # 30-Day AI Readiness & Proportionality Plan — Derek.dev
 
+> **Status:** Completed/superseded. Active work is tracked in `plan/premium-ux-followup-plan.md`.
+
 ## Objective
+
 Make the portfolio codebase safe for AI-led changes while keeping the architecture proportional to a one-person static site. This plan is derived from the Architecture Proportionality & AI Readiness Audit.
 
 ## Principles
+
 - Do not add enterprise architecture to a personal portfolio.
 - Only add protections whose long-term value exceeds their maintenance cost.
 - Prefer mechanical guardrails (CI, lint, tests, types) over human discipline.
@@ -11,9 +15,11 @@ Make the portfolio codebase safe for AI-led changes while keeping the architectu
 ## Week 1 — CI guardrails and conventions
 
 ### Goals
+
 Stop accidental drift before it lands in `main`.
 
 ### Tasks
+
 1. [x] Run the existing `size-check` in CI.
    - File: `.github/workflows/ci.yml`
    - Added step: `run: npm run size-check`
@@ -31,10 +37,12 @@ Stop accidental drift before it lands in `main`.
    - Current build: main chunk `185.33 KB` (below the `350 KB` threshold); small chunk `1.77 KB`.
 
 ### Definition of done
+
 - `npm run size-check`, `npm test`, `npm run build` all fail PRs when they fail.
 - No new code with mixed `../..` and `src/` import styles can be merged.
 
 ### Status after implementation
+
 - `npm run size-check` runs in CI and exits 1 on oversized files.
 - `npm run test` runs in CI after the size-check.
 - `npm run lint` passes with 44 warnings for `import/no-relative-parent-imports`; `import/order` is now green.
@@ -49,9 +57,11 @@ Stop accidental drift before it lands in `main`.
 ## Week 2 — Type contracts and import rules
 
 ### Goals
+
 Give AI a machine-readable specification for component and content shapes.
 
 ### Tasks
+
 1. [x] Add JSDoc or TypeScript type contracts for high-touch shapes.
    - Created `src/types.js` with `Project`, `SkillSet`, `SkillDescriptions`, `TranslationSet`, `LanguageState`, `GeneralState`, `TileProps`, `SkillsetListProps`.
    - Annotated `projects.js`, `skillsets.js`, `translations.js`, `languageSlice.js`, and `generalSlice.js` with `@type`.
@@ -70,15 +80,18 @@ Give AI a machine-readable specification for component and content shapes.
    - `npm run lint` and `npm run build` pass.
 
 ### Definition of done
+
 - `npm run build` and `npm test` pass.
 - Every component that receives content has a documented prop contract.
 
 ## Week 3 — Content validation and data hardening
 
 ### Goals
+
 Ensure multi-language data cannot break between language switches.
 
 ### Tasks
+
 1. [x] Add a content-key parity test.
    - Created `src/content/translations.test.js` with tests for `translations`, `skillsets`, `skillDescriptions`, `toLearn`, `toLearnDescriptions`, and `projects`.
    - Asserts all content files use `English`, `Polish`, and `Spanish` consistently.
@@ -94,6 +107,7 @@ Ensure multi-language data cannot break between language switches.
    - Decision: keep `framer-motion`.
 
 ### Definition of done
+
 - [x] A CI test fails if any language is missing a key present in another language.
 - [x] Content files are under the 300-line limit or explicitly excluded with a documented reason.
 - `framer-motion` is verified and kept.
@@ -101,9 +115,11 @@ Ensure multi-language data cannot break between language switches.
 ## Week 4 — Component tests and documentation refresh
 
 ### Goals
+
 Prove the site still works after automated changes.
 
 ### Tasks
+
 1. [x] Add one test per major section.
    - `Navigation.test.js`: renders English, Polish, and Spanish menu items; highlights the contact link when `isContactVisible` is true.
    - `LanguageSwitch.test.js`: clicking the Polish and Spanish flags updates the language via React Context.
@@ -118,6 +134,7 @@ Prove the site still works after automated changes.
    - Recorded the CI, type, import, content-validation, and testing decisions in the appendix.
 
 ### Definition of done
+
 - [x] `npm test` runs at least one meaningful test per section.
 - [x] `README.md` reflects the current tech stack and conventions.
 - [x] `plan/architecture-playbook.md` reflects the current architecture and conventions.
@@ -141,4 +158,5 @@ Prove the site still works after automated changes.
 - [x] Architecture playbook and README are current.
 
 ## Why this matters
+
 Once these guardrails are in place, an AI agent can generate 80–90% of future code without silently breaking translations, section IDs, import paths, or bundle performance. The cost is low because all changes are mechanical, not architectural.

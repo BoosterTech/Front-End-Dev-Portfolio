@@ -1,5 +1,7 @@
 # 30-Day Architecture Stabilization Plan
 
+> **Status:** Completed/superseded. Active work is tracked in `plan/premium-ux-followup-plan.md`.
+
 Stabilize the portfolio codebase for AI-generated contributions by removing dead code, separating data from UI, adding a build gate, and simplifying imports.
 
 ## Week 1 — Cleanup

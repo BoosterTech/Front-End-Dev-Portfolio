@@ -1,5 +1,7 @@
 # 30-Day Post-Audit Cleanup Plan
 
+> **Status:** Completed/superseded. Active work is tracked in `plan/premium-ux-followup-plan.md`.
+
 ## Objective
 
 Apply the highest-ROI fixes from the Architecture Proportionality & AI Readiness Audit to keep the Derek.dev portfolio clean, safe for AI-led changes, and proportional to a one-person static site.

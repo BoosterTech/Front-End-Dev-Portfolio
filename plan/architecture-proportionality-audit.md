@@ -1,10 +1,12 @@
 # Architecture Proportionality & AI Readiness Audit
 
-**Date:** 2026-09-02 (updated 2026-09-02)
+**Date:** 2026-09-02 (updated 2026-09-21)
 **Scope:** Entire `Front-End-Dev-Portfolio` codebase
 **Objective:** Maximize long-term maintainability while minimizing unnecessary complexity, with emphasis on AI coding readiness.
 
 > **Changelog:**
+>
+> - 2026-09-21: Gate-integrity & AI-readiness pass completed. Fixed stale `Navigation`/`CarouselSlide` test suites (matchMedia mock, testid-scoped queries, `onExpand` contract) — 9 suites / 28 tests green. `check:colors` now reports zero violations (`ProjectModal` black-rgb tokens). Deleted dead `SkillsetContainer` + `content/skillsets/` + stale typedefs (−561 lines). Added `AGENTS.md` conventions contract. Localized all ToolsShowcase copy into `home.toolsShowcase` (EN/PL/ES).
 > - 2026-09-02: Contact section light-mode refresh completed. Added 6 theme-aware contact tokens to `tokens.js`, swapped hardcoded `rgba()` values in `Contact/styled.js` for token references, fixed GitHub accent from `#f8fafc` to `#64748b`. Lint, color check, and build all pass. Bundle: 185.92 KB (+91 B).
 > - 2026-09-02: Dead code cleanup & CI guard extension completed. Deleted `src/slices/` (71 lines), `orbitDecorations.js` (194 lines), 5 dead exports from `homeStyles.js` (~80 lines). Extended `check-hardcoded-colors.js` to scan all `.js`/`.jsx` files with allowlist; fixed 15 hardcoded colors across 8 files. Extracted `DarkModeToggle` styled components to `styled.js`. Added 2 Playwright carousel tests. Deduplicated `Tile/index.js` even/odd JSX (68 lines → 38 lines). Lint, colors, circular deps, build all pass. Bundle: 184.74 KB (−1.18 KB).
 > - 2026-09-02: Final audit items completed. Consolidated 4 button patterns (`ViewMyWorkButton`, `DownloadCVButton`, `ProjectLink`, `CTAButton`) into shared `common/Button` with `$variant` prop. Replaced `getComputedStyle` in Navigation with `matchMedia` for responsive icon/text switching. Added 20 new unit tests (RichText, SkillsetContainer, ComingSoonProject, CarouselSlide, Navigation compact mode); raised coverage threshold from 50% to 70%. Coverage: 89.96% stmt / 78.21% branch / 85.77% func / 91.45% lines. All CI checks pass. Bundle: 184.92 KB.
@@ -17,15 +19,15 @@
 
 ## 1. Product Classification
 
-| Attribute | Value |
-|-----------|-------|
-| **Product** | Personal portfolio website (static SPA) |
-| **Deployment** | GitHub Pages — `boostertech.github.io/Front-End-Dev-Portfolio/` |
-| **Team size** | 1 developer (solo, AI-assisted) |
-| **Maturity** | MVP (polished) |
-| **Backend** | None |
-| **Auth** | None |
-| **Database** | None |
+| Attribute         | Value                                                                                                 |
+| ----------------- | ----------------------------------------------------------------------------------------------------- |
+| **Product**       | Personal portfolio website (static SPA)                                                               |
+| **Deployment**    | GitHub Pages — `boostertech.github.io/Front-End-Dev-Portfolio/`                                       |
+| **Team size**     | 1 developer (solo, AI-assisted)                                                                       |
+| **Maturity**      | MVP (polished)                                                                                        |
+| **Backend**       | None                                                                                                  |
+| **Auth**          | None                                                                                                  |
+| **Database**      | None                                                                                                  |
 | **Core features** | Scroll navigation, 3-language i18n, dark/light theme, project carousel, tools showcase, contact tiles |
 
 ---
@@ -46,33 +48,33 @@
 
 ### Weaknesses
 
-| # | Weakness | Evidence | Status |
-|---|----------|----------|--------|
-| 1 | **Dead Redux code** | `src/slices/` (3 files, 71 lines) never imported. | ✅ Fixed — deleted |
-| 2 | **Dead styled exports** | `homeStyles.js` had 5 unused exports (~80 lines). `orbitDecorations.js` had 11 unused exports (~194 lines). | ✅ Fixed — deleted |
-| 3 | **`ProjectLink` is `styled.button` used as anchor** | `Tile/styled.js:143` — already `styled.a`, not `styled.button`. | ✅ N/A — false alarm |
-| 4 | **Hardcoded colors bypass guard** | `check-hardcoded-colors.js` only scanned `styled.js` files. 15 hardcoded colors found across 8 files. | ✅ Fixed — script extended, all colors tokenized |
-| 5 | **`getComputedStyle` in render** | `Navigation/index.js:20-25` read `--breakpoint-xl2` from DOM during every render. | ✅ Fixed — replaced with `matchMedia` |
-| 6 | **Inconsistent button patterns** | `ProjectLink`, `CTAButton`, `DownloadCVButton`, `ViewMyWorkButton` — 4 different implementations. | ✅ Fixed — consolidated into `common/Button` |
-| 7 | **`DarkModeToggle` inline styles** | 5 styled components defined inline in `index.js` (105 lines) instead of separate `styled.js`. | ✅ Fixed — extracted to `styled.js` |
-| 8 | **Duplicated Tile JSX** | `Tile/index.js` lines 39-72 and 74-107 were nearly identical even/odd layouts (68 lines duplicated). | ✅ Fixed — single render path |
-| 9 | **Low test coverage** | Was 50% threshold, 6 test files. Now 70% threshold, 10 test files, 32 tests. | ✅ Fixed — threshold raised, 20 new tests added |
-| 10 | **Barrel re-exports** | `Home/styled.js` does `export * from "./homeStyles"; export * from "./heroStyles"` — hides source, hurts tree-shaking. | ✅ Fixed — imports point directly to source files |
+| #   | Weakness                                            | Evidence                                                                                                               | Status                                            |
+| --- | --------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------- |
+| 1   | **Dead Redux code**                                 | `src/slices/` (3 files, 71 lines) never imported.                                                                      | ✅ Fixed — deleted                                |
+| 2   | **Dead styled exports**                             | `homeStyles.js` had 5 unused exports (~80 lines). `orbitDecorations.js` had 11 unused exports (~194 lines).            | ✅ Fixed — deleted                                |
+| 3   | **`ProjectLink` is `styled.button` used as anchor** | `Tile/styled.js:143` — already `styled.a`, not `styled.button`.                                                        | ✅ N/A — false alarm                              |
+| 4   | **Hardcoded colors bypass guard**                   | `check-hardcoded-colors.js` only scanned `styled.js` files. 15 hardcoded colors found across 8 files.                  | ✅ Fixed — script extended, all colors tokenized  |
+| 5   | **`getComputedStyle` in render**                    | `Navigation/index.js:20-25` read `--breakpoint-xl2` from DOM during every render.                                      | ✅ Fixed — replaced with `matchMedia`             |
+| 6   | **Inconsistent button patterns**                    | `ProjectLink`, `CTAButton`, `DownloadCVButton`, `ViewMyWorkButton` — 4 different implementations.                      | ✅ Fixed — consolidated into `common/Button`      |
+| 7   | **`DarkModeToggle` inline styles**                  | 5 styled components defined inline in `index.js` (105 lines) instead of separate `styled.js`.                          | ✅ Fixed — extracted to `styled.js`               |
+| 8   | **Duplicated Tile JSX**                             | `Tile/index.js` lines 39-72 and 74-107 were nearly identical even/odd layouts (68 lines duplicated).                   | ✅ Fixed — single render path                     |
+| 9   | **Low test coverage**                               | Was 50% threshold, 6 test files. Now 70% threshold, 10 test files, 32 tests.                                           | ✅ Fixed — threshold raised, 20 new tests added   |
+| 10  | **Barrel re-exports**                               | `Home/styled.js` does `export * from "./homeStyles"; export * from "./heroStyles"` — hides source, hurts tree-shaking. | ✅ Fixed — imports point directly to source files |
 
 ---
 
 ## 3. AI Coding Readiness Scores
 
-| Risk | Score | Notes |
-|------|-------|-------|
-| Architectural drift | 9/10 | Dead code eliminated, button patterns consolidated. |
-| Code duplication | 9/10 | Tile JSX deduplicated. No major duplication remains. |
-| Inconsistent patterns | 9/10 | DarkModeToggle + Button convention established. Single button primitive. |
-| Cross-domain violations | 3/10 | Feature boundaries are clear, import rules enforced. |
-| Tight coupling | 5/10 | `getComputedStyle` replaced with `matchMedia`. Improved. |
-| Large unmaintainable modules | 7/10 | `homeStyles.js` reduced to 149 lines. Well under limit. |
-| God objects | 2/10 | None. Components are small and focused. |
-| Accidental complexity | 9/10 | All dead code removed (~345 lines). |
+| Risk                         | Score | Notes                                                                    |
+| ---------------------------- | ----- | ------------------------------------------------------------------------ |
+| Architectural drift          | 9/10  | Dead code eliminated, button patterns consolidated.                      |
+| Code duplication             | 9/10  | Tile JSX deduplicated. No major duplication remains.                     |
+| Inconsistent patterns        | 9/10  | DarkModeToggle + Button convention established. Single button primitive. |
+| Cross-domain violations      | 3/10  | Feature boundaries are clear, import rules enforced.                     |
+| Tight coupling               | 5/10  | `getComputedStyle` replaced with `matchMedia`. Improved.                 |
+| Large unmaintainable modules | 7/10  | `homeStyles.js` reduced to 149 lines. Well under limit.                  |
+| God objects                  | 2/10  | None. Components are small and focused.                                  |
+| Accidental complexity        | 9/10  | All dead code removed (~345 lines).                                      |
 
 **Overall AI-readiness: 85/100** (+20 from all cleanup)
 
@@ -80,16 +82,16 @@
 
 ## 4. Architecture Maturity Scores
 
-| Dimension | Score |
-|-----------|-------|
-| Simplicity | 90/100 |
-| Maintainability | 85/100 |
-| Modularity | 87/100 |
-| Scalability | 62/100 |
-| Reliability | 78/100 |
-| AI-readiness | 85/100 |
-| Governance | 85/100 |
-| **Overall** | **82/100** |
+| Dimension       | Score      |
+| --------------- | ---------- |
+| Simplicity      | 90/100     |
+| Maintainability | 85/100     |
+| Modularity      | 87/100     |
+| Scalability     | 62/100     |
+| Reliability     | 78/100     |
+| AI-readiness    | 85/100     |
+| Governance      | 85/100     |
+| **Overall**     | **82/100** |
 
 ---
 
@@ -99,12 +101,12 @@ No enterprise patterns or excessive abstractions detected. The architecture is p
 
 **Dead code removed (not overengineering, was maintenance debt):**
 
-| Item | Lines | Status |
-|------|-------|--------|
-| `src/slices/` (store.js, generalSlice.js, languageSlice.js) | 71 | ✅ Deleted |
-| `src/features/portfolio/Home/ToolsShowcase/orbitDecorations.js` | 194 | ✅ Deleted |
-| Dead exports in `homeStyles.js` (TechStackSpan, HeaderImage, HeaderParagraph, TechStackContainer, TechStackItem) | ~80 | ✅ Removed |
-| **Total dead code removed** | **~345** | **✅ Done** |
+| Item                                                                                                             | Lines    | Status      |
+| ---------------------------------------------------------------------------------------------------------------- | -------- | ----------- |
+| `src/slices/` (store.js, generalSlice.js, languageSlice.js)                                                      | 71       | ✅ Deleted  |
+| `src/features/portfolio/Home/ToolsShowcase/orbitDecorations.js`                                                  | 194      | ✅ Deleted  |
+| Dead exports in `homeStyles.js` (TechStackSpan, HeaderImage, HeaderParagraph, TechStackContainer, TechStackItem) | ~80      | ✅ Removed  |
+| **Total dead code removed**                                                                                      | **~345** | **✅ Done** |
 
 ---
 
@@ -149,24 +151,24 @@ No enterprise patterns or excessive abstractions detected. The architecture is p
 
 ### Completed
 
-| # | Task | Effort | Status |
-|---|------|--------|--------|
-| ✅ | **Contact section light-mode refresh** — Added theme-aware contact tokens to `tokens.js`, swapped hardcoded `rgba()` in `Contact/styled.js`, fixed GitHub accent in `contactIcons.js` | 20 min | **Done** — lint, colors, build pass |
-| ✅ | **Delete `src/slices/`** and remove `@reduxjs/toolkit` from devDependencies | 10 min | **Done** — 71 lines removed |
-| ✅ | **Delete `orbitDecorations.js`** and remove 5 dead exports from `homeStyles.js` | 15 min | **Done** — ~274 lines removed |
-| ~~3~~ | ~~**Fix `ProjectLink`**~~ — Already `styled.a`, not `styled.button`. No action needed. | ~~5 min~~ | ~~N/A~~ |
-| ✅ | **Extend `check-hardcoded-colors.js`** to scan all `.js`/`.jsx` files, not just `styled.js` | 30 min | **Done** — 15 colors fixed across 8 files, allowlist added |
-| ✅ | **Extract `DarkModeToggle`** styled components to `styled.js` | 20 min | **Done** — 5 components extracted |
-| ✅ | **Add 2 Playwright tests** for carousel navigation and dot selection | 1 hr | **Done** — 2 E2E tests added |
-| ✅ | **Deduplicate `Tile/index.js`** even/odd JSX into single render path | 30 min | **Done** — 68 lines → 38 lines, CSS handles alternation |
+| #     | Task                                                                                                                                                                                  | Effort    | Status                                                     |
+| ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- | ---------------------------------------------------------- |
+| ✅    | **Contact section light-mode refresh** — Added theme-aware contact tokens to `tokens.js`, swapped hardcoded `rgba()` in `Contact/styled.js`, fixed GitHub accent in `contactIcons.js` | 20 min    | **Done** — lint, colors, build pass                        |
+| ✅    | **Delete `src/slices/`** and remove `@reduxjs/toolkit` from devDependencies                                                                                                           | 10 min    | **Done** — 71 lines removed                                |
+| ✅    | **Delete `orbitDecorations.js`** and remove 5 dead exports from `homeStyles.js`                                                                                                       | 15 min    | **Done** — ~274 lines removed                              |
+| ~~3~~ | ~~**Fix `ProjectLink`**~~ — Already `styled.a`, not `styled.button`. No action needed.                                                                                                | ~~5 min~~ | ~~N/A~~                                                    |
+| ✅    | **Extend `check-hardcoded-colors.js`** to scan all `.js`/`.jsx` files, not just `styled.js`                                                                                           | 30 min    | **Done** — 15 colors fixed across 8 files, allowlist added |
+| ✅    | **Extract `DarkModeToggle`** styled components to `styled.js`                                                                                                                         | 20 min    | **Done** — 5 components extracted                          |
+| ✅    | **Add 2 Playwright tests** for carousel navigation and dot selection                                                                                                                  | 1 hr      | **Done** — 2 E2E tests added                               |
+| ✅    | **Deduplicate `Tile/index.js`** even/odd JSX into single render path                                                                                                                  | 30 min    | **Done** — 68 lines → 38 lines, CSS handles alternation    |
 
 ### Remaining — All items complete ✅
 
-| # | Task | Effort | Status |
-|---|------|--------|--------|
-| ✅ | **Consolidate button patterns** into shared `common/Button` with `$variant` prop | 2-3 hrs | **Done** — 4 button patterns → 1 shared primitive |
-| ✅ | **Replace `getComputedStyle`** in Navigation with `matchMedia` | 30 min | **Done** — no more DOM coupling during render |
-| ✅ | **Raise test coverage threshold** from 50% to 70% | 3-4 hrs | **Done** — 20 new tests, coverage: 90% stmt / 78% branch |
+| #   | Task                                                                             | Effort  | Status                                                   |
+| --- | -------------------------------------------------------------------------------- | ------- | -------------------------------------------------------- |
+| ✅  | **Consolidate button patterns** into shared `common/Button` with `$variant` prop | 2-3 hrs | **Done** — 4 button patterns → 1 shared primitive        |
+| ✅  | **Replace `getComputedStyle`** in Navigation with `matchMedia`                   | 30 min  | **Done** — no more DOM coupling during render            |
+| ✅  | **Raise test coverage threshold** from 50% to 70%                                | 3-4 hrs | **Done** — 20 new tests, coverage: 90% stmt / 78% branch |
 
 ---
 
@@ -197,23 +199,23 @@ All 10 identified weaknesses have been resolved. The codebase is clean, consiste
 
 ## 9. Evidence Index
 
-| Finding | File(s) |
-|---------|---------|
-| Dead Redux code | `src/slices/` — ✅ Deleted |
-| Dead orbit decorations | `orbitDecorations.js` — ✅ Deleted, `OrbitSectionWrapper` moved to `showcaseLayout.js` |
-| Dead home style exports | `homeStyles.js` — ✅ 5 exports removed, file now 149 lines |
-| ProjectLink as button | `Tile/styled.js:143` — ✅ N/A, already `styled.a` |
-| Hardcoded SVG colors | `OrbitSection.js:95,115` — ✅ Replaced with `var(--color-cyan)` / `var(--color-cyan-light)` |
-| Hardcoded border color | `Projects/styled.js:68` — ✅ Replaced with `var(--color-white)` |
-| Inconsistent button patterns | `common/Button/` — ✅ 4 patterns consolidated into 1 shared primitive |
-| getComputedStyle in render | `src/common/Navigation/index.js` — ✅ Replaced with `matchMedia` |
-| DarkModeToggle inline styles | `src/common/DarkModeToggle/` — ✅ Extracted to `styled.js` |
-| Tile JSX duplication | `src/features/portfolio/Projects/Tile/index.js` — ✅ Deduplicated |
-| Color guard scope | `scripts/check-hardcoded-colors.js` — ✅ Extended to all `.js`/`.jsx` files |
-| Barrel re-exports | `Home/styled.js`, `ToolsShowcase/styled.js` — ✅ Deleted; imports point directly to source files |
-| Image optimization | `scripts/convert-images.js` — ✅ 18 images converted to WebP, ~94 MB unused images deleted |
-| Accessibility | `LanguageProvider`, `Projects/index.js`, `DarkModeToggle`, `LanguageSwitch`, `ComingSoonProject` — ✅ ARIA roles, keyboard nav, dynamic `<html lang>` |
-| E2E in CI | `.github/workflows/ci.yml` — ✅ Playwright browsers installed, `test:e2e` runs after build |
-| CI pipeline | `.github/workflows/ci.yml` |
-| Architecture playbook | `plan/architecture-playbook.md` |
-| PR template | `.github/pull_request_template.md` |
+| Finding                      | File(s)                                                                                                                                               |
+| ---------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Dead Redux code              | `src/slices/` — ✅ Deleted                                                                                                                            |
+| Dead orbit decorations       | `orbitDecorations.js` — ✅ Deleted, `OrbitSectionWrapper` moved to `showcaseLayout.js`                                                                |
+| Dead home style exports      | `homeStyles.js` — ✅ 5 exports removed, file now 149 lines                                                                                            |
+| ProjectLink as button        | `Tile/styled.js:143` — ✅ N/A, already `styled.a`                                                                                                     |
+| Hardcoded SVG colors         | `OrbitSection.js:95,115` — ✅ Replaced with `var(--color-cyan)` / `var(--color-cyan-light)`                                                           |
+| Hardcoded border color       | `Projects/styled.js:68` — ✅ Replaced with `var(--color-white)`                                                                                       |
+| Inconsistent button patterns | `common/Button/` — ✅ 4 patterns consolidated into 1 shared primitive                                                                                 |
+| getComputedStyle in render   | `src/common/Navigation/index.js` — ✅ Replaced with `matchMedia`                                                                                      |
+| DarkModeToggle inline styles | `src/common/DarkModeToggle/` — ✅ Extracted to `styled.js`                                                                                            |
+| Tile JSX duplication         | `src/features/portfolio/Projects/Tile/index.js` — ✅ Deduplicated                                                                                     |
+| Color guard scope            | `scripts/check-hardcoded-colors.js` — ✅ Extended to all `.js`/`.jsx` files                                                                           |
+| Barrel re-exports            | `Home/styled.js`, `ToolsShowcase/styled.js` — ✅ Deleted; imports point directly to source files                                                      |
+| Image optimization           | `scripts/convert-images.js` — ✅ 18 images converted to WebP, ~94 MB unused images deleted                                                            |
+| Accessibility                | `LanguageProvider`, `Projects/index.js`, `DarkModeToggle`, `LanguageSwitch`, `ComingSoonProject` — ✅ ARIA roles, keyboard nav, dynamic `<html lang>` |
+| E2E in CI                    | `.github/workflows/ci.yml` — ✅ Playwright browsers installed, `test:e2e` runs after build                                                            |
+| CI pipeline                  | `.github/workflows/ci.yml`                                                                                                                            |
+| Architecture playbook        | `plan/architecture-playbook.md`                                                                                                                       |
+| PR template                  | `.github/pull_request_template.md`                                                                                                                    |

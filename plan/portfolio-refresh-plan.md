@@ -1,5 +1,7 @@
 # Portfolio Refresh Plan
 
+> **Status:** Completed/superseded. Active work is tracked in `plan/premium-ux-followup-plan.md`.
+
 ## 0. Status
 
 The original UI-refresh items and the 30-day architecture stabilization plan (`plan/next-30-days-a29356.md`) are complete. `npm run build` and `npm test` pass cleanly, and the `feature/ui-refresh` branch contains the finalized cleanup.
@@ -7,8 +9,10 @@ The original UI-refresh items and the 30-day architecture stabilization plan (`p
 ## 1. Project Understanding
 
 ### What it is
+
 A single-page, multi-language (EN/PL/ES) personal portfolio for **Dariusz Podczasik** (`Derek.dev`).  
 It is a scrollable React app with:
+
 - Smooth section navigation (`react-scroll`)
 - Dark/light mode toggle
 - Language switch
@@ -16,6 +20,7 @@ It is a scrollable React app with:
 - Contact links
 
 ### Purpose
+
 - Present the author's frontend skills and finished projects.
 - Provide a simple way to switch languages and theme.
 - Host a static, GitHub Pages-friendly site.
@@ -135,22 +140,25 @@ Front-End-Dev-Portfolio/
 
 ## 6. Update Status
 
-### Quick wins 
+### Quick wins
+
 - [x] **Remove dead code / unused imports**
   - `src/App.js` — removed `ScrollWatcher` import and commented usage.
   - `src/common/DarkModeToggle/index.js` — removed `slideToggle` keyframes.
   - `src/features/portfolio/Footer/index.js` — removed unused `ref` parameter.
 - [x] **Fix ESLint warnings** so build runs clean.
 
-### Structural improvements 
+### Structural improvements
+
 - [x] **Centralize animations**  
-  Created `src/common/animations.js`; `Navigation`, `Home`, `About`, `Projects`, `Contact`, `Footer`, and `ComingSoonProject` now import shared keyframes.
+      Created `src/common/animations.js`; `Navigation`, `Home`, `About`, `Projects`, `Contact`, `Footer`, and `ComingSoonProject` now import shared keyframes.
 - [x] **Unify the theme system**  
-  Removed duplicated `color`/`spacing`/`radius`/`shadow`/`transition` maps from `src/themes.js`. Theme variables now live as CSS custom properties in `src/GlobalStyles.js`; `src/themes.js` only holds breakpoints and imports `translations`.
+      Removed duplicated `color`/`spacing`/`radius`/`shadow`/`transition` maps from `src/themes.js`. Theme variables now live as CSS custom properties in `src/GlobalStyles.js`; `src/themes.js` only holds breakpoints and imports `translations`.
 - [x] **Split content from design tokens**  
-  Moved EN/PL/ES text out of `src/themes.js` into `src/content/translations.js`.
+      Moved EN/PL/ES text out of `src/themes.js` into `src/content/translations.js`.
 
 ### Style fixes
+
 - [x] **Fix hardcoded / inconsistent styles (partial)**
   - [x] `SkillsetContainer` — uses `var(--color-border)`, `var(--color-primary)`, and theme spacing.
   - [x] `LanguageSwitch` — uses `var(--color-border)` / `var(--color-primary)` and `var(--transition-normal)`.
@@ -160,6 +168,7 @@ Front-End-Dev-Portfolio/
 - [x] **Refactor Projects special-case** — added `variant: "comingSoon"` to `projects.js` and checked it in `Projects/index.js`.
 
 ### Accessibility / metadata
+
 - [x] **Fix `public/index.html` metadata** — replaced invalid meta, added description and Open Graph tags.
 - [x] **Reduce `dangerouslySetInnerHTML` usage** — created `RichText` component and used it in `About` and `ComingSoonProject`.
 
