@@ -45,6 +45,10 @@ auth, no database, no state library. Keep it that way.
   `mask-image: linear-gradient(...)` edge fades) — copy an existing rail (marquee,
   explore track, badge row) rather than inventing a fourth variant
 - Respect `prefers-reduced-motion` for animation
+- Lazy-loaded images must declare intrinsic `width`/`height` attributes (CLS audit).
+  Dims live in the data layer: `iconWidth`/`iconHeight` fields on icon objects,
+  shared `PROJECT_IMAGE_WIDTH`/`PROJECT_IMAGE_HEIGHT` in `content/projects.js`
+  (all project screenshots are uniform 1200×675)
 
 ## i18n
 

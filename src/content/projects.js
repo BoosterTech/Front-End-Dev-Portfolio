@@ -8,6 +8,9 @@ import reactQuizImage from "images/ReactQuizProject.webp";
 import tasksListImage from "images/TaskListProject.webp";
 import wtmMusicAIImage from "images/WTMMusicProject.webp";
 
+export const PROJECT_IMAGE_WIDTH = 1200;
+export const PROJECT_IMAGE_HEIGHT = 675;
+
 /** @type {import("../types").Project[]} */
 const projects = [
   {

@@ -83,7 +83,13 @@ const Contact = ({ id }) => {
               <FiArrowUpRight />
             </Arrow>
             <IconFrame $id={icon.id} $accent={icon.accent}>
-              <img src={icon.iconURL} alt="" loading="lazy" />
+              <img
+                src={icon.iconURL}
+                alt=""
+                width={icon.iconWidth}
+                height={icon.iconHeight}
+                loading="lazy"
+              />
             </IconFrame>
             <ContactName>{icon.name}</ContactName>
             <ContactLabel>{icon.label}</ContactLabel>

@@ -54,14 +54,62 @@ import {
 } from "./showcaseLayout";
 
 const orbitTechnologies = [
-  { id: "react", name: "React", icon: reactIcon },
-  { id: "typescript", name: "TypeScript", icon: typeScriptIcon },
-  { id: "redux", name: "Redux", icon: reduxIcon },
-  { id: "redux-toolkit", name: "Redux Toolkit", icon: reduxToolkitIcon },
-  { id: "styled", name: "Styled Components", icon: styledComponentsIcon },
-  { id: "supabase", name: "Supabase", icon: supabaseIcon },
-  { id: "react-query", name: "React Query", icon: reactQueryIcon },
-  { id: "vercel", name: "Vercel", icon: vercelIcon },
+  {
+    id: "react",
+    name: "React",
+    icon: reactIcon,
+    iconWidth: 259,
+    iconHeight: 194,
+  },
+  {
+    id: "typescript",
+    name: "TypeScript",
+    icon: typeScriptIcon,
+    iconWidth: 225,
+    iconHeight: 225,
+  },
+  {
+    id: "redux",
+    name: "Redux",
+    icon: reduxIcon,
+    iconWidth: 1200,
+    iconHeight: 600,
+  },
+  {
+    id: "redux-toolkit",
+    name: "Redux Toolkit",
+    icon: reduxToolkitIcon,
+    iconWidth: 1200,
+    iconHeight: 674,
+  },
+  {
+    id: "styled",
+    name: "Styled Components",
+    icon: styledComponentsIcon,
+    iconWidth: 225,
+    iconHeight: 225,
+  },
+  {
+    id: "supabase",
+    name: "Supabase",
+    icon: supabaseIcon,
+    iconWidth: 613,
+    iconHeight: 300,
+  },
+  {
+    id: "react-query",
+    name: "React Query",
+    icon: reactQueryIcon,
+    iconWidth: 513,
+    iconHeight: 326,
+  },
+  {
+    id: "vercel",
+    name: "Vercel",
+    icon: vercelIcon,
+    iconWidth: 900,
+    iconHeight: 500,
+  },
 ];
 
 const exploreIcons = [
@@ -109,6 +157,8 @@ export const ToolsShowcase = () => {
           <OrbitSection
             technologies={orbitTechnologies}
             centerIcon={nextIcon}
+            centerIconWidth={512}
+            centerIconHeight={309}
             centerLabel="Next.js"
           />
         </OrbitSectionWrapper>

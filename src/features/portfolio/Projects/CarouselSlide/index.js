@@ -1,4 +1,5 @@
 import { useLanguage } from "common/LanguageProvider";
+import { PROJECT_IMAGE_HEIGHT, PROJECT_IMAGE_WIDTH } from "content/projects";
 import { FaExternalLinkAlt, FaGithub } from "react-icons/fa";
 
 import {
@@ -36,6 +37,8 @@ const CarouselSlide = ({ project, isActive, position, onClick, onExpand }) => {
       <SlideImage
         src={project.imageURL}
         alt={`${project.title[language]} project screenshot`}
+        width={PROJECT_IMAGE_WIDTH}
+        height={PROJECT_IMAGE_HEIGHT}
         loading="lazy"
       />
       <Overlay

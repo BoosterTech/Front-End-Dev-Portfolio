@@ -22,6 +22,8 @@ const MOBILE_MAX_WIDTH = parseInt(themes.breakpoint.lg, 10);
 export const OrbitSection = ({
   technologies,
   centerIcon,
+  centerIconWidth,
+  centerIconHeight,
   centerLabel = "Next.js",
 }) => {
   const windowWidth = useWindowWidth();
@@ -91,7 +93,14 @@ export const OrbitSection = ({
   }, [technologies, radius]);
 
   const marqueeItems = [
-    { id: "__center", name: centerLabel, icon: centerIcon, isCenter: true },
+    {
+      id: "__center",
+      name: centerLabel,
+      icon: centerIcon,
+      iconWidth: centerIconWidth,
+      iconHeight: centerIconHeight,
+      isCenter: true,
+    },
     ...technologies,
   ];
 
@@ -157,7 +166,13 @@ export const OrbitSection = ({
               transition={{ duration: 0.6, ease: "easeOut" }}
               whileHover={{ scale: 1.05 }}
             >
-              <img src={centerIcon} alt={centerLabel} loading="lazy" />
+              <img
+                src={centerIcon}
+                alt={centerLabel}
+                width={centerIconWidth}
+                height={centerIconHeight}
+                loading="lazy"
+              />
             </CenterNode>
           </CenterWrapper>
 
@@ -198,7 +213,13 @@ export const OrbitSection = ({
                     }}
                   >
                     {typeof tech.icon === "string" ? (
-                      <img src={tech.icon} alt={tech.name} loading="lazy" />
+                      <img
+                        src={tech.icon}
+                        alt={tech.name}
+                        width={tech.iconWidth}
+                        height={tech.iconHeight}
+                        loading="lazy"
+                      />
                     ) : (
                       tech.icon
                     )}
@@ -224,7 +245,13 @@ export const OrbitSection = ({
                 whileHover={{ scale: 1.05 }}
               >
                 {typeof tech.icon === "string" ? (
-                  <img src={tech.icon} alt={tech.name} loading="lazy" />
+                  <img
+                    src={tech.icon}
+                    alt={tech.name}
+                    width={tech.iconWidth}
+                    height={tech.iconHeight}
+                    loading="lazy"
+                  />
                 ) : (
                   tech.icon
                 )}
