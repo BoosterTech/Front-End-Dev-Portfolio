@@ -44,7 +44,7 @@ This document records the major architectural decisions in the `feature/ui-refre
 
 ### Decision: Add Playwright E2E tests for critical user paths
 
-- **What:** `playwright.config.js` runs Chromium against `http://localhost:3000`, with `e2e/portfolio.spec.js` covering 5 critical paths: `react-scroll` navigation to the About section, language switching to Polish, dark-mode toggling, carousel next-button navigation, and carousel dot-click navigation. `npm run test:e2e` and `npm run test:e2e:ui` are available in `package.json`. CI installs Playwright browsers and runs `test:e2e` after the build step.
+- **What:** `playwright.config.js` runs Chromium against `http://localhost:3100` (dedicated e2e port — 3000 belongs to the dev server), with `e2e/portfolio.spec.js` covering 5 critical paths: `react-scroll` navigation to the About section, language switching to Polish, dark-mode toggling, carousel next-button navigation, and carousel dot-click navigation. `npm run test:e2e` and `npm run test:e2e:ui` are available in `package.json`. CI installs Playwright browsers and runs `test:e2e` after the build step.
 - **Why:** These paths are the most likely to be silently broken by AI-led refactors: fixed slugs are tied to `react-scroll`, i18n is client-side, dark mode relies on `document.documentElement` manipulation, and the carousel depends on active-index state transitions. Playwright catches them faster than Jest alone.
 - **Trade-offs:** Playwright adds a dev dependency and a Chromium download; CI must build and serve the app before running tests. The `test:e2e` script assumes `build/` exists, so CI runs `npm run build` first. E2E adds ~30–60s to CI runtime.
 - **Future guidance:** Add more E2E scenarios only when they are cheaper to maintain in Playwright than in Jest. Keep the E2E suite under 60 seconds. Only Chromium is tested in CI (no Firefox/WebKit).
@@ -270,10 +270,10 @@ When adding or changing anything, prefer the following order:
 
 ### Decision: Run Playwright E2E tests in CI
 
-- **What:** `.github/workflows/ci.yml` installs Playwright Chromium browsers (`npx playwright install --with-deps chromium`) and runs `npm run test:e2e` after the build step. The Playwright config's `webServer` automatically serves the `build/` directory on port 3000 using `serve`.
+- **What:** `.github/workflows/ci.yml` installs Playwright Chromium browsers (`npx playwright install --with-deps chromium`) and runs `npm run test:e2e` after the build step. The Playwright config's `webServer` automatically serves the `build/` directory on port 3100 via `scripts/serve-e2e.js` — a zero-dep Node static server that strips the `/Front-End-Dev-Portfolio` GitHub Pages prefix so tests exercise the real prefixed production bundle.
 - **Why:** E2E tests existed but only ran locally. Without CI enforcement, regressions in scroll navigation, language switching, dark mode, and carousel behavior could merge undetected.
 - **Trade-offs:** E2E tests add ~30–60s to CI runtime. Only Chromium is tested (no Firefox/WebKit in CI). The `webServer` requires a production build first, which is already a CI step.
-- **Future guidance:** When adding new E2E tests, ensure they work with the `serve -s build` setup. Use `baseURL` (`http://localhost:3000`) for navigation. Avoid hardcoded timeouts where possible — use Playwright auto-waiting.
+- **Future guidance:** When adding new E2E tests, ensure they work with the `scripts/serve-e2e.js` setup (`npm run build` must run first). Use `baseURL` (`http://localhost:3100`) for navigation. Avoid hardcoded timeouts where possible — use Playwright auto-waiting.
 
 ### Decision: Accessibility — ARIA roles, keyboard navigation, dynamic `<html lang>`
 

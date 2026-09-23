@@ -85,7 +85,14 @@ reports the real LCP failure instead of NO_FCP.
 - **LCP delta:** none measurable under lab noise (render delay is mount-bound;
   see note below).
 
-### 2.2 Defer below-fold render cost — ✅ DONE (`content-visibility`)
+### 2.2 Defer below-fold render cost — ⛔ REVERTED (`content-visibility` removed)
+
+> **Superseded 2026-09:** this optimization caused verified first-click anchor
+> drift (~175–400px) — react-scroll measured while below-fold sections were
+> still intrinsic-size placeholders. Removed from all four section roots;
+> details in `plan/production-audit-remediation.md` (HIGH-003). Do not re-add.
+
+Original entry (kept for history):
 
 - **Done:** `content-visibility: auto` + measured `contain-intrinsic-size` on
   About, Projects, Contact, Footer section roots (desktop value + `lg` mobile
@@ -145,9 +152,13 @@ offset-accuracy risk plus Suspense complexity for ~200–300 ms potential gain).
 Desktop audit (manual, run from repo root after `npm run build`):
 
 ```
-npx --yes serve -s build -l 8367
-npx --yes lighthouse http://localhost:8367/ --preset=desktop --view
+node scripts/serve-e2e.js
+npx --yes lighthouse http://localhost:3100/ --preset=desktop --view
 ```
+
+(`serve -s build` alone does not work here — it has no path-prefix rewrite, so
+`/Front-End-Dev-Portfolio/…` asset requests fall back to index.html.
+`scripts/serve-e2e.js` serves `build/` on :3100 and strips the prefix.)
 
 (Kept as manual steps — npm scripts on Windows run via cmd.exe where shell
 job-control syntax is unreliable.)

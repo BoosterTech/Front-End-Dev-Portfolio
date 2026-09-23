@@ -50,11 +50,17 @@ auth, no database, no state library. Keep it that way.
   would re-pull the full feature set into the critical path. Drag/layout/in-view
   features are all covered by `domMax`; don't switch to `domAnimation` (carousel
   needs `drag`)
-- Below-fold section roots carry `content-visibility: auto` + `contain-intrinsic-size`
-  measured from the real build (Playwright) — when changing section layouts,
-  re-measure and update the intrinsic sizes or react-scroll anchors drift
+- No `content-visibility: auto` on section roots — it caused verified anchor drift:
+  react-scroll measured `getBoundingClientRect()` while below-fold sections were
+  still intrinsic-size placeholders, so the first nav click after reload landed
+  ~175–400px off (reproduced on the prod build). Removed 2026-01; do not re-add
+  without measuring first-click anchor accuracy
 - Raster images: WebP only, sized ~2x their max render dimensions; keep
   `width`/`height` attrs in sync with intrinsic dims (CLS guard)
+- LCP-critical images are media-scoped `<link rel="preload">`s in
+  `public/index.html` served from `public/` — the preload `href` and the
+  `<img>` `src` must resolve to the identical URL (both `PUBLIC_URL`-based)
+  or the browser fetches twice
 - No webfonts via CSS `@import` inside `createGlobalStyle` — styled-components
   can't hoist it and browsers ignore it. (Measured: a real Inter `<link>` cost
   ~1s LCP under throttle → rejected; system stack is intentional)
@@ -63,12 +69,38 @@ auth, no database, no state library. Keep it that way.
   Dims live in the data layer: `iconWidth`/`iconHeight` fields on icon objects,
   shared `PROJECT_IMAGE_WIDTH`/`PROJECT_IMAGE_HEIGHT` in `content/projects.js`
   (all project screenshots are uniform 1200×675)
+- No `scroll-behavior: smooth` on `html`/`body` — react-scroll owns all animated
+  scrolling; the CSS rule double-animates its per-frame `scrollTo` calls and makes
+  native `href` fallback clicks drift. Nothing else calls `scrollTo`/`scrollIntoView`.
+- Never put interactive elements (links, buttons) inside a `role="button"`/`tabIndex`
+  container — axe `nested-interactive`. Use a real `<button>` for the inner action
+  (see `CarouselSlide`'s `ExpandButton`).
+- Small icon buttons needing a ≥24px hit area: keep the visual size, expand the box
+  with `padding` + `background-clip: content-box` (see `NavDot` in Projects/styled.js).
+- Theme mode (`isDark`) is shared state: `ThemeModeProvider`/`useThemeMode` in
+  `src/common/ThemeModeProvider`. The provider owns `data-theme` on `<html>` and
+  `localStorage.theme` — components must never read or write the DOM attr
+  directly (the old `MutationObserver` in Home was removed for exactly this).
+  `public/index.html` carries an inline bootstrap that applies `data-theme`
+  before first paint — keep it in sync with the provider's init logic.
+
+## Navigation
+
+- react-scroll `Link`s must always carry `href="#<slug>"` — without it they render
+  `<a>` with no href: unfocusable by keyboard, invisible as links to screen
+  readers and crawlers. `handleClick` calls `preventDefault`, so the hash never
+  jumps natively; smooth scroll still applies.
 
 ## i18n
 
 - Every UI string goes through `content/translations.js` — English, Polish, Spanish
-  required for every key (`translations.test.js` enforces parity)
+  required for every key (`translations.test.js` enforces parity). This includes
+  headings, aria-labels, and alt text — nothing user-facing is hardcoded
+- Scroll targets always use `menuItems` `slug`, never the translated `name`
+  (names differ per language; slugs are fixed)
 - Components read copy via `useContent()`; no hardcoded user-facing text
+- `language` persists to `localStorage.language` (validated against `LANG_MAP`);
+  tests rely on `localStorage.clear()` in `setupTests.js` `beforeEach`
 
 ## Testing
 
@@ -80,6 +112,11 @@ auth, no database, no state library. Keep it that way.
   `querySelector`. Scope duplicate markup with `data-testid` (see `Navigation/index.js`
   `desktop-menu`/`mobile-menu`/`nav-link-*` hooks)
 - Remember: components may render both desktop and mobile structures; scope queries
+- E2E: `npm run test:e2e` needs `npm run build` first. Playwright's `webServer`
+  runs `scripts/serve-e2e.js` on port 3100 (dedicated — 3000 is the dev
+  server); it serves `build/` and strips the `/Front-End-Dev-Portfolio`
+  prefix. Do not substitute `serve -s build` — it has no prefix rewrite, so
+  asset requests fall back to `index.html` and the app never mounts
 
 ## Verify before committing
 
@@ -91,6 +128,7 @@ npm run check:colors
 npm run check:circular
 npm run size-check
 npm run build       # before shipping UI changes
+npm run test:e2e    # needs the build above; serves it via scripts/serve-e2e.js
 npm run lighthouse:check  # perf gate: LCP/CLS budgets in .lighthouserc.js
 ```
 
