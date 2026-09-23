@@ -8,7 +8,7 @@ module.exports = defineConfig({
   workers: process.env.CI ? 1 : undefined,
   reporter: "list",
   use: {
-    baseURL: "http://localhost:3000",
+    baseURL: "http://localhost:3100",
     trace: "on-first-retry",
   },
   projects: [
@@ -18,8 +18,8 @@ module.exports = defineConfig({
     },
   ],
   webServer: {
-    command: "npx --yes serve -s build -l 3000",
-    url: "http://localhost:3000",
+    command: "node scripts/serve-e2e.js",
+    url: "http://localhost:3100",
     reuseExistingServer: !process.env.CI,
     timeout: 120 * 1000,
   },

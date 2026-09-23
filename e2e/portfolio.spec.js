@@ -3,7 +3,7 @@ const { test, expect } = require("@playwright/test");
 test.describe("Portfolio E2E", () => {
   test("navigates to About via scroll", async ({ page }) => {
     await page.goto("/");
-    await page.locator('a[href="#about"]').click();
+    await page.locator('[data-testid="nav-link-about"]').click();
     await page.waitForTimeout(1000);
     const aboutTop = await page.evaluate(() => {
       const el = document.getElementById("about");
@@ -15,9 +15,14 @@ test.describe("Portfolio E2E", () => {
 
   test("switches language to Polish", async ({ page }) => {
     await page.goto("/");
-    await page.locator('img[alt="Polish"]').click();
-    await expect(page.locator('a[href="#about"]')).toHaveText("O mnie");
-    await expect(page.locator('a[href="#home"]')).toHaveText("Strona główna");
+    await page.locator('[aria-label="Select language"]').click();
+    await page.getByRole("option", { name: "Polish" }).click();
+    await expect(
+      page.locator('[data-testid="nav-link-about"]')
+    ).toHaveText("O mnie");
+    await expect(
+      page.locator('[data-testid="nav-link-home"]')
+    ).toHaveText("Strona główna");
   });
 
   test("toggles dark mode", async ({ page }) => {
@@ -37,7 +42,7 @@ test.describe("Portfolio E2E", () => {
 
   test("carousel navigates to next project via arrow button", async ({ page }) => {
     await page.goto("/");
-    await page.locator('a[href="#projects"]').click();
+    await page.locator('[data-testid="nav-link-projects"]').click();
     await page.waitForTimeout(1000);
 
     const activeDot = page.locator('[aria-label="Go to project 2"]');
@@ -58,7 +63,7 @@ test.describe("Portfolio E2E", () => {
 
   test("carousel navigates to specific project via dot click", async ({ page }) => {
     await page.goto("/");
-    await page.locator('a[href="#projects"]').click();
+    await page.locator('[data-testid="nav-link-projects"]').click();
     await page.waitForTimeout(1000);
 
     const thirdDot = page.locator('[aria-label="Go to project 3"]');
