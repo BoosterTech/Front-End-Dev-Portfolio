@@ -11,7 +11,12 @@ const baseStyles = css`
   text-decoration: none;
   cursor: pointer;
   border-radius: var(--radius-md);
-  transition: color var(--transition-normal), background var(--transition-normal), border-color var(--transition-normal), box-shadow var(--transition-normal), transform var(--transition-normal);
+  transition:
+    color var(--transition-normal),
+    background var(--transition-normal),
+    border-color var(--transition-normal),
+    box-shadow var(--transition-normal),
+    transform var(--transition-normal);
 
   &:active {
     transform: scale(0.97);
@@ -79,8 +84,8 @@ const buttonStyles = css`
     $variant === "primary"
       ? primaryStyles
       : $variant === "outline"
-      ? outlineStyles
-      : primaryHoverTransparentStyles}
+        ? outlineStyles
+        : primaryHoverTransparentStyles}
 
   ${({ $size }) =>
     $size === "sm" &&
