@@ -2,9 +2,12 @@ import { useContactVisibility } from "common/ContactVisibilityProvider";
 import DarkModeToggle from "common/DarkModeToggle";
 import { useLanguage } from "common/LanguageProvider";
 import { LanguageSwitch } from "common/LanguageSwitch";
+import useContent from "common/useContent";
+import { useMediaQuery } from "common/useMediaQuery";
 import { useEffect, useRef, useState } from "react";
 import { FaEnvelope, FaHome, FaProjectDiagram, FaUser } from "react-icons/fa";
 import { Link } from "react-scroll";
+import { themes } from "themes";
 
 import { HamburgerIcon } from "./HamburgerIcon";
 import { menuItems } from "./menuItems";
@@ -21,25 +24,27 @@ import {
   TopRow,
 } from "./styled";
 
+const COMPACT_MAX_PX = parseInt(themes.breakpoint.xl2, 10) - 1;
+const DESKTOP_MIN_PX = parseInt(themes.breakpoint.lg, 10);
+
 const Navigation = () => {
-  const { language, setLanguage } = useLanguage();
+  const { language } = useLanguage();
+  const { nav } = useContent();
   const { isContactVisible } = useContactVisibility();
 
-  const [isCompact, setIsCompact] = useState(
-    () =>
-      typeof window !== "undefined" &&
-      window.matchMedia(`(max-width: ${1100 - 1}px)`).matches
-  );
+  const isCompact = useMediaQuery(`(max-width: ${COMPACT_MAX_PX}px)`);
+  const isMobile = useMediaQuery(`(max-width: ${themes.breakpoint.md})`);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navRef = useRef(null);
   const [hidden, setHidden] = useState(false);
+  const touchStartY = useRef(0);
 
   useEffect(() => {
     let lastScrollY = window.scrollY;
     let ticking = false;
 
     const updateScroll = () => {
-      if (window.innerWidth >= 768) {
+      if (window.innerWidth >= DESKTOP_MIN_PX) {
         setHidden(false);
         ticking = false;
         return;
@@ -96,14 +101,7 @@ const Navigation = () => {
   }, []);
 
   useEffect(() => {
-    const mql = window.matchMedia(`(max-width: ${1100 - 1}px)`);
-    const handler = (e) => setIsCompact(e.matches);
-    mql.addEventListener("change", handler);
-    return () => mql.removeEventListener("change", handler);
-  }, []);
-
-  useEffect(() => {
-    const mql = window.matchMedia(`(min-width: 768px)`);
+    const mql = window.matchMedia(`(min-width: ${DESKTOP_MIN_PX}px)`);
     const handler = () => setIsMenuOpen(false);
     mql.addEventListener("change", handler);
     return () => mql.removeEventListener("change", handler);
@@ -124,8 +122,25 @@ const Navigation = () => {
   }, [isMenuOpen]);
 
   const handleClick = () => {
-    setLanguage("English");
+    setIsMenuOpen(false);
   };
+
+  const reloadTriggered = useRef(false);
+  const handlePullStart = (e) => {
+    touchStartY.current = e.touches[0].clientY;
+  };
+  const handlePullMove = (e) => {
+    if (
+      !reloadTriggered.current &&
+      e.touches[0].clientY - touchStartY.current > 70
+    ) {
+      reloadTriggered.current = true;
+      window.location.reload();
+    }
+  };
+
+  const getOffset = (item) =>
+    isMobile && item.offsetMobile != null ? item.offsetMobile : item.offset;
 
   const getActiveClass = (index) => {
     if (isContactVisible && menuItems[language].length - 1 === index)
@@ -159,7 +174,7 @@ const Navigation = () => {
     <StyledList
       ref={navRef}
       className={hidden ? "nav-hidden" : ""}
-      aria-label="Main navigation"
+      aria-label={nav.mainAriaLabel}
     >
       <TopRow>
         <LanguageSwitch onOpen={() => setIsMenuOpen(false)} />
@@ -167,6 +182,7 @@ const Navigation = () => {
       </TopRow>
       <Link
         activeClass="active"
+        href="#home"
         to={menuItems[language][0].slug}
         spy={true}
         smooth={true}
@@ -190,10 +206,11 @@ const Navigation = () => {
               className={forceActive ? "active" : undefined}
               $isContactVisible={getActiveClass(index)}
               data-testid={`nav-link-${item.slug}`}
+              href={`#${item.slug}`}
               to={item.slug}
               spy={true}
               smooth={true}
-              offset={item.offset}
+              offset={getOffset(item)}
               duration={700}
               key={index}
             >
@@ -206,7 +223,7 @@ const Navigation = () => {
       </MenuContainer>
       <HamburgerButton
         onClick={() => setIsMenuOpen(!isMenuOpen)}
-        aria-label="Toggle navigation menu"
+        aria-label={nav.menuToggleLabel}
         aria-expanded={isMenuOpen}
       >
         <HamburgerIcon $open={isMenuOpen} />
@@ -214,10 +231,14 @@ const Navigation = () => {
       <MobileMenuBackdrop
         className={isMenuOpen ? "open" : ""}
         onClick={() => setIsMenuOpen(false)}
+        onTouchStart={handlePullStart}
+        onTouchMove={handlePullMove}
       />
       <MobileMenuPanel
         className={isMenuOpen ? "open" : ""}
         data-testid="mobile-menu"
+        onTouchStart={handlePullStart}
+        onTouchMove={handlePullMove}
       >
         {menuItems[language].map((item, index) => {
           const isContact = index === menuItems[language].length - 1;
@@ -226,10 +247,11 @@ const Navigation = () => {
             <MobileNavItem
               activeClass="active"
               className={forceActive ? "active" : undefined}
+              href={`#${item.slug}`}
               to={item.slug}
               spy={true}
               smooth={true}
-              offset={item.offset}
+              offset={getOffset(item)}
               duration={700}
               key={index}
               onClick={() => setIsMenuOpen(false)}

@@ -47,9 +47,12 @@ export const TopRow = styled.div`
   }
 `;
 
-export const StyledListItem = styled.li`
+export const StyledListItem = styled.div`
   color: var(--color-text-primary);
-  transition: color var(--transition-fast), background-color var(--transition-fast), border-color var(--transition-fast);
+  transition:
+    color var(--transition-fast),
+    background-color var(--transition-fast),
+    border-color var(--transition-fast);
   border: 1px solid transparent;
   padding: var(--spacing-sm) var(--spacing-lg);
   border-radius: 20px;
@@ -167,7 +170,6 @@ export const MenuContainer = styled.div`
   @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
     display: none;
   }
-
 `;
 
 export const HamburgerButton = styled.button`
@@ -204,7 +206,9 @@ export const MobileMenuBackdrop = styled.div`
   background: rgba(var(--color-black-rgb), 0.4);
   opacity: 0;
   visibility: hidden;
-  transition: opacity var(--transition-normal), visibility var(--transition-normal);
+  transition:
+    opacity var(--transition-normal),
+    visibility var(--transition-normal);
   z-index: 1;
 
   &.open {
@@ -235,7 +239,10 @@ export const MobileMenuPanel = styled.div`
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transition: opacity var(--transition-normal), transform var(--transition-normal), visibility var(--transition-normal);
+  transition:
+    opacity var(--transition-normal),
+    transform var(--transition-normal),
+    visibility var(--transition-normal);
   z-index: 2;
 
   &.open {
@@ -262,7 +269,9 @@ export const MobileNavItem = styled(Link)`
   font-weight: 600;
   font-size: 1rem;
   min-height: 48px;
-  transition: color var(--transition-fast), background-color var(--transition-fast);
+  transition:
+    color var(--transition-fast),
+    background-color var(--transition-fast);
   white-space: nowrap;
 
   svg {
@@ -273,7 +282,11 @@ export const MobileNavItem = styled(Link)`
   }
 
   &.active {
-    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+    background: linear-gradient(
+      135deg,
+      var(--color-primary),
+      var(--color-accent)
+    );
     color: var(--color-white);
 
     svg {

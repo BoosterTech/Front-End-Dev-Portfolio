@@ -15,7 +15,9 @@ const Line = styled.span`
   background: currentColor;
   border-radius: 2px;
   transform-origin: center;
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+  transition:
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.3s ease;
 
   &:nth-child(1) {
     transform: translateY(-7px);
@@ -40,4 +42,3 @@ export const HamburgerIcon = ({ $open }) => (
     <Line $open={$open} />
   </Wrapper>
 );
-
