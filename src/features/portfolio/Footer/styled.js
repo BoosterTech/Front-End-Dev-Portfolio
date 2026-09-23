@@ -30,13 +30,6 @@ export const Wrapper = styled.footer`
     z-index: 2;
   }
 
-  content-visibility: auto;
-  contain-intrinsic-size: auto 240px;
-
-  @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
-    contain-intrinsic-size: auto 280px;
-  }
-
   @media (prefers-reduced-motion: reduce) {
     animation: none;
   }

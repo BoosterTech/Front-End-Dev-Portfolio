@@ -19,8 +19,6 @@ export const Wrapper = styled.section`
     inset 0 1px 0 rgba(var(--color-white-rgb), 0.06);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  content-visibility: auto;
-  contain-intrinsic-size: auto 480px;
   position: relative;
   overflow: hidden;
   z-index: 1;
@@ -63,7 +61,6 @@ export const Wrapper = styled.section`
   @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
     margin: var(--spacing-2xl) var(--spacing-lg);
     padding: var(--spacing-2xl) var(--spacing-lg);
-    contain-intrinsic-size: auto 960px;
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.md}) {

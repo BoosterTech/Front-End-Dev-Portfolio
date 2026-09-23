@@ -10,17 +10,11 @@ export const Wrapper = styled.article`
   align-items: center;
   padding: var(--spacing-3xl) 0;
   position: relative;
-  content-visibility: auto;
-  contain-intrinsic-size: auto 950px;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.xl2}) {
     grid-template-columns: minmax(0, 1fr);
     gap: var(--spacing-2xl);
     padding: 10px 0 var(--spacing-2xl) 0;
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
-    contain-intrinsic-size: auto 1470px;
   }
 `;
 
