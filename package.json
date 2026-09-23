@@ -4,11 +4,7 @@
   "homepage": "https://boostertech.github.io/Front-End-Dev-Portfolio/",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "5.17.0",
-    "@testing-library/react": "13.4.0",
-    "@testing-library/user-event": "13.5.0",
     "framer-motion": "12.43.0",
-    "gh-pages": "6.1.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "5.0.1",
@@ -75,7 +71,10 @@
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "7.21.11",
     "@playwright/test": "1.62.1",
-    "madge": "8.0.0",
-    "sharp": "^0.35.4"
+    "@testing-library/jest-dom": "5.17.0",
+    "@testing-library/react": "13.4.0",
+    "@testing-library/user-event": "13.5.0",
+    "gh-pages": "6.1.1",
+    "madge": "8.0.0"
   }
 }
