@@ -8,13 +8,10 @@ export const Wrapper = styled.section`
   border-radius: var(--radius-xl);
   position: relative;
   overflow: hidden;
-  content-visibility: auto;
-  contain-intrinsic-size: auto 960px;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
     margin: var(--spacing-2xl) 0;
     padding: 10px var(--spacing-lg) var(--spacing-2xl) var(--spacing-lg);
-    contain-intrinsic-size: auto 480px;
   }
 `;
 
@@ -22,7 +19,7 @@ export const TitleWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--spacing-md);
+  gap: var(--spacing-xs);
   margin-bottom: var(--spacing-xl);
   animation: ${fadeInUp} 0.8s ease-out;
 
@@ -40,6 +37,7 @@ export const Header = styled.h2`
   line-height: 1.2;
   position: relative;
   padding-bottom: 0.3em;
+  padding-left: 16px;
   background: linear-gradient(
     135deg,
     var(--color-text-primary) 0%,
@@ -56,14 +54,28 @@ export const Header = styled.h2`
     animation: ${waveHand} 4s infinite;
   }
 
-  @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
-    font-size: clamp(2rem, 8vw, 2.5rem);
+  @media (max-width: ${({ theme }) => theme.breakpoint.xl}) {
+    padding-left: 13px;
   }
 `;
 
 export const DragLayer = styled(m.div)`
   width: 100%;
   touch-action: pan-y;
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent,
+    rgba(var(--color-black-rgb), 1) 12%,
+    rgba(var(--color-black-rgb), 1) 88%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent,
+    rgba(var(--color-black-rgb), 1) 12%,
+    rgba(var(--color-black-rgb), 1) 88%,
+    transparent
+  );
 `;
 
 export const ProjectsWrapper = styled.div`
@@ -77,10 +89,11 @@ export const ProjectsWrapper = styled.div`
 `;
 
 export const ProjectIcon = styled.img`
-  width: 100px;
-  height: 100px;
+  width: 70px;
+  height: 70px;
+  margin-bottom: calc(-4 * var(--spacing-sm));
   border-radius: 50%;
-  border: 4px solid var(--color-primary);
+  border: 2px solid var(--color-primary);
   box-shadow: var(--shadow-lg);
   animation: ${float} 3s ease-in-out infinite;
   transition: transform var(--transition-normal);
@@ -90,8 +103,9 @@ export const ProjectIcon = styled.img`
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.xl}) {
-    width: 80px;
-    height: 80px;
+    width: 70px;
+    height: 70px;
+    margin-bottom: calc(-3 * var(--spacing-sm));
   }
 `;
 
@@ -121,7 +135,8 @@ export const ProjectsTrack = styled.div`
 export const CarouselButton = styled.button`
   position: absolute;
   top: 50%;
-  ${({ $left }) => ($left ? "left: var(--spacing-md)" : "right: var(--spacing-md)")};
+  ${({ $left }) =>
+    $left ? "left: var(--spacing-md)" : "right: var(--spacing-md)"};
   transform: translateY(-50%);
   z-index: 10;
   display: flex;
@@ -161,11 +176,12 @@ export const NavDots = styled.div`
 `;
 
 export const NavDot = styled.button`
-  width: 10px;
-  height: 10px;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
   border: none;
-  padding: 0;
+  padding: 7px;
+  background-clip: content-box;
   cursor: pointer;
   background: ${({ $active }) =>
     $active ? "var(--color-primary)" : "var(--color-border)"};

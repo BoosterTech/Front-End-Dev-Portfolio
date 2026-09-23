@@ -38,10 +38,12 @@ describe("CarouselSlide", () => {
     expect(
       screen.getByAltText("Test Project project screenshot")
     ).toBeInTheDocument();
-    expect(screen.getByLabelText("Test Project")).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: "Test Project" })
+    ).toBeInTheDocument();
   });
 
-  it("renders technology badges", () => {
+  it("does not render technology badges (stack lives in the modal)", () => {
     renderWithProviders(
       <CarouselSlide
         project={baseProject}
@@ -51,8 +53,8 @@ describe("CarouselSlide", () => {
       />
     );
 
-    expect(screen.getByText("React")).toBeInTheDocument();
-    expect(screen.getByText("CSS")).toBeInTheDocument();
+    expect(screen.queryByText("React")).not.toBeInTheDocument();
+    expect(screen.queryByText("CSS")).not.toBeInTheDocument();
   });
 
   it("renders CTA links with correct hrefs", () => {
@@ -100,7 +102,7 @@ describe("CarouselSlide", () => {
       />
     );
 
-    fireEvent.click(screen.getByLabelText("Test Project"));
+    fireEvent.click(screen.getByAltText("Test Project project screenshot"));
     expect(onExpand).toHaveBeenCalledTimes(1);
   });
 
@@ -116,11 +118,11 @@ describe("CarouselSlide", () => {
       />
     );
 
-    fireEvent.click(screen.getByLabelText("Test Project"));
+    fireEvent.click(screen.getByAltText("Test Project project screenshot"));
     expect(onClick).toHaveBeenCalledTimes(1);
   });
 
-  it("calls onExpand when Enter key is pressed on active slide", () => {
+  it("calls onExpand when the details button is activated", () => {
     const onExpand = jest.fn();
     renderWithProviders(
       <CarouselSlide
@@ -132,47 +134,23 @@ describe("CarouselSlide", () => {
       />
     );
 
-    fireEvent.keyDown(screen.getByLabelText("Test Project"), {
-      key: "Enter",
-    });
+    fireEvent.click(screen.getByRole("button", { name: "Test Project" }));
     expect(onExpand).toHaveBeenCalledTimes(1);
   });
 
-  it("calls onExpand when Space key is pressed on active slide", () => {
-    const onExpand = jest.fn();
+  it("does not render a details button on inactive slides", () => {
     renderWithProviders(
       <CarouselSlide
         project={baseProject}
-        isActive={true}
-        position="center"
+        isActive={false}
+        position="left"
         onClick={() => {}}
-        onExpand={onExpand}
+        onExpand={() => {}}
       />
     );
 
-    fireEvent.keyDown(screen.getByLabelText("Test Project"), {
-      key: " ",
-    });
-    expect(onExpand).toHaveBeenCalledTimes(1);
-  });
-
-  it("does not call onClick or onExpand for other keys", () => {
-    const onClick = jest.fn();
-    const onExpand = jest.fn();
-    renderWithProviders(
-      <CarouselSlide
-        project={baseProject}
-        isActive={true}
-        position="center"
-        onClick={onClick}
-        onExpand={onExpand}
-      />
-    );
-
-    fireEvent.keyDown(screen.getByLabelText("Test Project"), {
-      key: "Escape",
-    });
-    expect(onClick).not.toHaveBeenCalled();
-    expect(onExpand).not.toHaveBeenCalled();
+    expect(
+      screen.queryByRole("button", { name: "Test Project" })
+    ).not.toBeInTheDocument();
   });
 });

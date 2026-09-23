@@ -26,11 +26,25 @@ export const Modal = styled(m.div)`
   width: 100%;
   max-width: 900px;
   max-height: 90vh;
-  overflow-y: auto;
+  overflow: hidden;
   border-radius: var(--radius-xl);
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   box-shadow: 0 24px 80px rgb(var(--color-black-rgb) / 0.5);
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
+    max-width: 100%;
+    height: 100%;
+    max-height: none;
+    border-radius: 0;
+    border: none;
+  }
+`;
+
+export const ModalScroll = styled.div`
+  overflow-y: auto;
+  max-height: 90vh;
+  height: 100%;
 
   &::-webkit-scrollbar {
     width: 8px;
@@ -46,11 +60,7 @@ export const Modal = styled(m.div)`
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
-    max-width: 100%;
-    height: 100%;
     max-height: none;
-    border-radius: 0;
-    border: none;
   }
 `;
 
@@ -169,6 +179,19 @@ export const ModalDescription = styled.div`
   p:last-child {
     margin-bottom: 0;
   }
+
+  ul {
+    margin: 0;
+    padding-left: var(--spacing-lg);
+  }
+
+  li {
+    margin-bottom: var(--spacing-xs);
+  }
+
+  li:last-child {
+    margin-bottom: 0;
+  }
 `;
 
 export const ModalTechBadges = styled.div`
@@ -198,7 +221,8 @@ export const ModalCTAContainer = styled.div`
 `;
 
 export const ModalCTAButton = styled(Button)`
-  padding: var(--spacing-sm) var(--spacing-lg);
+  min-height: 36px;
+  padding: var(--spacing-xs) var(--spacing-md);
   font-size: 0.9rem;
   transition: all 0.3s ease;
 

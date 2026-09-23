@@ -49,7 +49,7 @@ export const Slide = styled(m.div)`
         `}
 
   @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 16 / 9;
   }
 `;
 
@@ -72,7 +72,7 @@ export const Overlay = styled(m.div)`
   background: linear-gradient(180deg, transparent 0%, var(--color-surface) 40%);
 
   @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
-    padding: 0 var(--spacing-sm) var(--spacing-sm);
+    display: none;
   }
 `;
 
@@ -81,10 +81,16 @@ export const BottomBar = styled.div`
   z-index: 1;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: var(--spacing-xs);
   width: 100%;
-  padding: var(--spacing-xs) var(--spacing-sm) var(--spacing-xxs);
+  padding: clamp(4px, 1.2cqw, var(--spacing-sm));
   background: transparent;
+  container-type: inline-size;
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
+    padding-bottom: var(--spacing-xs);
+  }
 `;
 
 export const BottomRow = styled.div`
@@ -94,47 +100,13 @@ export const BottomRow = styled.div`
   min-width: 0;
 `;
 
-export const TechBadges = styled.div`
-  position: relative;
-  z-index: 1;
-  display: flex;
-  flex-wrap: nowrap;
-  overflow: hidden;
-  min-width: 0;
-  gap: var(--spacing-xs);
-  -webkit-mask-image: linear-gradient(
-    90deg,
-    rgba(var(--color-black-rgb), 1) 88%,
-    transparent
-  );
-  mask-image: linear-gradient(
-    90deg,
-    rgba(var(--color-black-rgb), 1) 88%,
-    transparent
-  );
-`;
-
-export const TechBadge = styled.span`
-  display: inline-flex;
-  align-items: center;
-  flex-shrink: 0;
-  white-space: nowrap;
-  padding: var(--spacing-xxs) var(--spacing-sm);
-  font-size: 0.7rem;
-  font-weight: 600;
-  color: var(--color-text-primary);
-  background: rgba(var(--color-text-primary-rgb), 0.08);
-  border: 1px solid rgba(var(--color-text-primary-rgb), 0.18);
-  border-radius: var(--radius-md);
-  backdrop-filter: blur(4px);
-`;
-
 export const CTAContainer = styled.div`
   position: relative;
   z-index: 1;
   display: flex;
   flex-wrap: wrap;
-  gap: var(--spacing-sm);
+  align-items: center;
+  gap: clamp(4px, 1cqw, var(--spacing-sm));
   margin-left: auto;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
@@ -143,8 +115,11 @@ export const CTAContainer = styled.div`
 `;
 
 export const CTAButton = styled(Button)`
-  padding: var(--spacing-sm) var(--spacing-md);
-  font-size: 0.85rem;
+  min-height: 0;
+  height: clamp(22px, 4.5cqw, 34px);
+  padding: clamp(0px, 0.5cqw, var(--spacing-xs))
+    clamp(6px, 1.6cqw, var(--spacing-sm));
+  font-size: clamp(0.65rem, 1.8cqw, 0.85rem);
   transition: all 0.3s ease;
 
   ${({ $secondary }) =>
@@ -172,8 +147,48 @@ export const CTAButton = styled(Button)`
         `}
 
   svg {
+    width: clamp(11px, 2cqw, 14px);
+    height: clamp(11px, 2cqw, 14px);
+  }
+`;
+
+export const ExpandButton = styled.button`
+  position: absolute;
+  top: var(--spacing-sm);
+  right: var(--spacing-sm);
+  z-index: 4;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border);
+  background: rgb(var(--color-surface-rgb) / 0.85);
+  color: var(--color-text-primary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    background var(--transition-fast),
+    color var(--transition-fast),
+    border-color var(--transition-fast);
+
+  &:hover {
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+
+  svg {
     width: 14px;
     height: 14px;
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
+    display: none;
   }
 `;
 

@@ -1,6 +1,6 @@
 import { useLanguage } from "common/LanguageProvider";
 import { PROJECT_IMAGE_HEIGHT, PROJECT_IMAGE_WIDTH } from "content/projects";
-import { FaExternalLinkAlt, FaGithub } from "react-icons/fa";
+import { FaExpandArrowsAlt, FaExternalLinkAlt, FaGithub } from "react-icons/fa";
 
 import {
   BottomBar,
@@ -8,11 +8,10 @@ import {
   CTAButton,
   CTAContainer,
   ComingSoonBadge,
+  ExpandButton,
   Overlay,
   Slide,
   SlideImage,
-  TechBadge,
-  TechBadges,
 } from "./styled";
 
 /** @param {{ project: import("../../../../types").Project; isActive: boolean; position: "left" | "center" | "right"; onClick: () => void; onExpand: () => void }} props */
@@ -24,15 +23,6 @@ const CarouselSlide = ({ project, isActive, position, onClick, onExpand }) => {
       $isActive={isActive}
       $position={position}
       onClick={isActive ? onExpand : onClick}
-      role="button"
-      tabIndex={0}
-      aria-label={project.title[language]}
-      onKeyDown={(e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          isActive ? onExpand() : onClick();
-        }
-      }}
     >
       <SlideImage
         src={project.imageURL}
@@ -41,6 +31,17 @@ const CarouselSlide = ({ project, isActive, position, onClick, onExpand }) => {
         height={PROJECT_IMAGE_HEIGHT}
         loading="lazy"
       />
+      {isActive && project.variant !== "comingSoon" && (
+        <ExpandButton
+          onClick={(e) => {
+            e.stopPropagation();
+            onExpand();
+          }}
+          aria-label={project.title[language]}
+        >
+          <FaExpandArrowsAlt />
+        </ExpandButton>
+      )}
       {project.variant !== "comingSoon" && (
         <Overlay
           initial={false}
@@ -54,16 +55,6 @@ const CarouselSlide = ({ project, isActive, position, onClick, onExpand }) => {
         >
           <BottomBar>
             <BottomRow>
-              {project.technologies?.length > 0 && (
-                <TechBadges>
-                  {project.technologies.slice(0, 3).map((tech) => (
-                    <TechBadge key={tech}>{tech}</TechBadge>
-                  ))}
-                  {project.technologies.length > 3 && (
-                    <TechBadge>+{project.technologies.length - 3}</TechBadge>
-                  )}
-                </TechBadges>
-              )}
               <CTAContainer>
                 {project.GitHubPagesURL && (
                   <CTAButton

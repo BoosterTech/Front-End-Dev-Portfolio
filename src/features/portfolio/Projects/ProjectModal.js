@@ -1,4 +1,5 @@
 import { useLanguage } from "common/LanguageProvider";
+import useContent from "common/useContent";
 import { useEffect } from "react";
 import { createPortal } from "react-dom";
 import { FaExternalLinkAlt, FaGithub, FaTimes } from "react-icons/fa";
@@ -13,6 +14,7 @@ import {
   ModalDescription,
   ModalImage,
   ModalImageWrapper,
+  ModalScroll,
   ModalTechBadge,
   ModalTechBadges,
   ModalTitle,
@@ -21,6 +23,7 @@ import {
 /** @param {{ project: import("../../../types").Project | null; onClose: () => void }} props */
 const ProjectModal = ({ project, onClose }) => {
   const { language } = useLanguage();
+  const { projects: projectsContent } = useContent();
 
   useEffect(() => {
     if (!project) return;
@@ -57,51 +60,55 @@ const ProjectModal = ({ project, onClose }) => {
         transition={{ type: "spring", stiffness: 300, damping: 30 }}
         onClick={(e) => e.stopPropagation()}
       >
-        <CloseButton onClick={onClose} aria-label="Close">
+        <CloseButton onClick={onClose} aria-label={projectsContent.closeLabel}>
           <FaTimes />
         </CloseButton>
-        <ModalImageWrapper>
-          <ModalImage
-            src={project.imageURL}
-            alt={`${project.title[language]} project screenshot`}
-          />
-        </ModalImageWrapper>
-        <ModalContent>
-          <ModalTitle>{project.title[language]}</ModalTitle>
-          <ModalDescription
-            dangerouslySetInnerHTML={{ __html: project.description[language] }}
-          />
-          {project.technologies?.length > 0 && (
-            <ModalTechBadges>
-              {project.technologies.map((tech) => (
-                <ModalTechBadge key={tech}>{tech}</ModalTechBadge>
-              ))}
-            </ModalTechBadges>
-          )}
-          <ModalCTAContainer>
-            {project.GitHubPagesURL && (
-              <ModalCTAButton
-                href={project.GitHubPagesURL}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaExternalLinkAlt />
-                {project.GitHubPagesURLTag?.[language] || "Live Demo"}
-              </ModalCTAButton>
+        <ModalScroll>
+          <ModalImageWrapper>
+            <ModalImage
+              src={project.imageURL}
+              alt={`${project.title[language]} project screenshot`}
+            />
+          </ModalImageWrapper>
+          <ModalContent>
+            <ModalTitle>{project.title[language]}</ModalTitle>
+            <ModalDescription
+              dangerouslySetInnerHTML={{
+                __html: project.description[language],
+              }}
+            />
+            {project.technologies?.length > 0 && (
+              <ModalTechBadges>
+                {project.technologies.map((tech) => (
+                  <ModalTechBadge key={tech}>{tech}</ModalTechBadge>
+                ))}
+              </ModalTechBadges>
             )}
-            {project.GitHubRepoURL && (
-              <ModalCTAButton
-                $secondary
-                href={project.GitHubRepoURL}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaGithub />
-                {project.GitHubRepoURLTag?.[language] || "GitHub"}
-              </ModalCTAButton>
-            )}
-          </ModalCTAContainer>
-        </ModalContent>
+            <ModalCTAContainer>
+              {project.GitHubPagesURL && (
+                <ModalCTAButton
+                  href={project.GitHubPagesURL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FaExternalLinkAlt />
+                  {project.GitHubPagesURLTag?.[language] || "Live Demo"}
+                </ModalCTAButton>
+              )}
+              {project.GitHubRepoURL && (
+                <ModalCTAButton
+                  $secondary
+                  href={project.GitHubRepoURL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FaGithub />
+                  {project.GitHubRepoURLTag?.[language] || "GitHub"}
+                </ModalCTAButton>
+              )}
+            </ModalCTAContainer>
+          </ModalContent>
+        </ModalScroll>
       </Modal>
     </Backdrop>,
     document.body
