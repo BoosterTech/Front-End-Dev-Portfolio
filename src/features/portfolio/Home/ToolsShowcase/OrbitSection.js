@@ -243,9 +243,9 @@ export const OrbitSection = ({
                 key={`${copy}-${tech.id || tech.name}`}
                 aria-hidden={copy === 1 || undefined}
                 $isCircleCard={
-                  !tech.isCenter && CIRCLE_CARD_IDS.includes(tech.id)
+                  tech.isCenter || CIRCLE_CARD_IDS.includes(tech.id)
                 }
-                $isPadded={PADDED_CARD_IDS.includes(tech.id)}
+                $isPadded={tech.isCenter || PADDED_CARD_IDS.includes(tech.id)}
                 $hasLabel={tech.showLabel}
                 whileHover={{ scale: 1.15 }}
               >
@@ -259,9 +259,6 @@ export const OrbitSection = ({
                   />
                 ) : (
                   tech.icon
-                )}
-                {tech.isCenter && (
-                  <TechName $fontSize={11}>{tech.name}</TechName>
                 )}
                 {tech.showLabel && (
                   <TechName $fontSize={12} $onLight>
