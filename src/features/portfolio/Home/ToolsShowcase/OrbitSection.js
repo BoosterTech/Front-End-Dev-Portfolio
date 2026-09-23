@@ -35,7 +35,6 @@ export const OrbitSection = ({
     "vercel",
     "supabase",
     "react-query",
-    "redux-toolkit",
     "styled",
   ];
   const PADDED_CARD_IDS = [
@@ -43,7 +42,6 @@ export const OrbitSection = ({
     "vercel",
     "supabase",
     "styled",
-    "redux-toolkit",
     "react-query",
   ];
   const orbitRef = useRef(null);
@@ -201,10 +199,11 @@ export const OrbitSection = ({
                   <TechCard
                     $isCircleCard={CIRCLE_CARD_IDS.includes(tech.id)}
                     $isPadded={PADDED_CARD_IDS.includes(tech.id)}
+                    $hasLabel={tech.showLabel}
                     initial={{ opacity: 0, scale: 0 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
-                    whileHover={{ scale: 1.08 }}
+                    whileHover={{ scale: 1.35 }}
                     transition={{
                       duration: 0.5,
                       delay: 0.3 + index * 0.06,
@@ -222,6 +221,11 @@ export const OrbitSection = ({
                       />
                     ) : (
                       tech.icon
+                    )}
+                    {tech.showLabel && (
+                      <TechName $fontSize={13} $onLight>
+                        {tech.name}
+                      </TechName>
                     )}
                   </TechCard>
                 </TechCardFloat>
@@ -242,12 +246,13 @@ export const OrbitSection = ({
                   !tech.isCenter && CIRCLE_CARD_IDS.includes(tech.id)
                 }
                 $isPadded={PADDED_CARD_IDS.includes(tech.id)}
-                whileHover={{ scale: 1.05 }}
+                $hasLabel={tech.showLabel}
+                whileHover={{ scale: 1.15 }}
               >
                 {typeof tech.icon === "string" ? (
                   <img
                     src={tech.icon}
-                    alt={tech.isCenter ? "" : tech.name}
+                    alt={tech.isCenter || tech.showLabel ? "" : tech.name}
                     width={tech.iconWidth}
                     height={tech.iconHeight}
                     loading="lazy"
@@ -257,6 +262,11 @@ export const OrbitSection = ({
                 )}
                 {tech.isCenter && (
                   <TechName $fontSize={11}>{tech.name}</TechName>
+                )}
+                {tech.showLabel && (
+                  <TechName $fontSize={12} $onLight>
+                    {tech.name}
+                  </TechName>
                 )}
               </MarqueeCard>
             ))

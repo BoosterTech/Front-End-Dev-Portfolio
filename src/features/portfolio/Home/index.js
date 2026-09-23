@@ -1,10 +1,10 @@
 import { useLanguage } from "common/LanguageProvider";
 import { menuItems } from "common/Navigation/menuItems";
+import { useThemeMode } from "common/ThemeModeProvider";
 import useContent from "common/useContent";
-import lightProfileImage from "images/light_theme_profile.webp";
-import profileImage from "images/profileImage.webp";
-import { useEffect, useState } from "react";
-import { FaArrowRight, FaDownload, FaStar } from "react-icons/fa";
+import { useMediaQuery } from "common/useMediaQuery";
+import { FaArrowRight, FaFileAlt, FaStar } from "react-icons/fa";
+import { themes } from "themes";
 
 import {
   WelcomeLabel,
@@ -25,27 +25,23 @@ import {
 } from "./homeStyles";
 import { ToolsShowcase } from "./ToolsShowcase";
 
-const getIsDark = () =>
-  document.documentElement.getAttribute("data-theme") === "dark";
+const profileImage = `${process.env.PUBLIC_URL}/profileImage.webp`;
+const lightProfileImage = `${process.env.PUBLIC_URL}/light_theme_profile.webp`;
 
 const Home = ({ id }) => {
   const { home } = useContent();
   const { language } = useLanguage();
-  const [isDark, setIsDark] = useState(getIsDark);
-
-  useEffect(() => {
-    const observer = new MutationObserver(() => setIsDark(getIsDark()));
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ["data-theme"],
-    });
-    return () => observer.disconnect();
-  }, []);
+  const { isDark } = useThemeMode();
 
   const headerWords = home.contentHeader.split(" ");
   const titleFirst = headerWords.slice(0, -1).join(" ");
   const titleLast = headerWords[headerWords.length - 1];
   const projectsItem = menuItems[language][2];
+  const isMobile = useMediaQuery(`(max-width: ${themes.breakpoint.md})`);
+  const projectsOffset =
+    isMobile && projectsItem.offsetMobile != null
+      ? projectsItem.offsetMobile
+      : projectsItem.offset;
 
   return (
     <HomeWrapper id={id}>
@@ -56,8 +52,7 @@ const Home = ({ id }) => {
             {home.welcomeLabel}
           </WelcomeLabel>
           <HeroTitle>
-            {titleFirst}
-            <GradientText>{titleLast}</GradientText>
+            {titleFirst} <GradientText>{titleLast}</GradientText>
           </HeroTitle>
           <TechStackText>
             {home.contentHeaderTechStack}{" "}
@@ -67,10 +62,11 @@ const Home = ({ id }) => {
           <HeroDescription>{home.headerParagraph}</HeroDescription>
           <ButtonsContainer>
             <ViewMyWorkButton
-              to={projectsItem.name.toLowerCase()}
+              to={projectsItem.slug}
+              href={`#${projectsItem.slug}`}
               spy={true}
               smooth={true}
-              offset={projectsItem.offset}
+              offset={projectsOffset}
               duration={700}
             >
               {home.viewMyWork}
@@ -82,15 +78,17 @@ const Home = ({ id }) => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              {home.downloadCV}
-              <FaDownload />
+              {home.viewCV}
+              <FaFileAlt />
             </DownloadCVButton>
           </ButtonsContainer>
         </ContentContainer>
         <ImageContainer>
           <ProfileImage
             src={isDark ? profileImage : lightProfileImage}
-            alt="Portrait of Dariusz Podczasik"
+            alt={home.portraitAlt}
+            width={640}
+            height={640}
             fetchpriority="high"
           />
         </ImageContainer>

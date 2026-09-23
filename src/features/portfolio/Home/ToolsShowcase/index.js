@@ -1,11 +1,10 @@
 import useContent from "common/useContent";
 import nextIcon from "images/nextIcon.webp";
-import reactIcon from "images/reactIcon.webp";
+import reactIcon from "images/React_wordmark_light.svg";
 import reactQueryIcon from "images/reactQueryIcon.webp";
-import reduxIcon from "images/reduxIcon.webp";
-import reduxToolkitIcon from "images/reduxToolkitIcon.webp";
-import styledComponentsIcon from "images/styledComponentsIcon.webp";
-import supabaseIcon from "images/supabaseIcon.webp";
+import reduxIcon from "images/redux.svg";
+import styledComponentsIcon from "images/styledcomponents.svg";
+import supabaseIcon from "images/Supabase_wordmark_light.svg";
 import typeScriptIcon from "images/typeScriptIcon.webp";
 import vercelIcon from "images/vercelIcon.webp";
 import {
@@ -58,8 +57,8 @@ const orbitTechnologies = [
     id: "react",
     name: "React",
     icon: reactIcon,
-    iconWidth: 160,
-    iconHeight: 120,
+    iconWidth: 600,
+    iconHeight: 180,
   },
   {
     id: "typescript",
@@ -72,29 +71,23 @@ const orbitTechnologies = [
     id: "redux",
     name: "Redux",
     icon: reduxIcon,
-    iconWidth: 160,
-    iconHeight: 80,
-  },
-  {
-    id: "redux-toolkit",
-    name: "Redux Toolkit",
-    icon: reduxToolkitIcon,
-    iconWidth: 160,
-    iconHeight: 90,
+    iconWidth: 800,
+    iconHeight: 800,
+    showLabel: true,
   },
   {
     id: "styled",
     name: "Styled Components",
     icon: styledComponentsIcon,
-    iconWidth: 160,
-    iconHeight: 160,
+    iconWidth: 318,
+    iconHeight: 318,
   },
   {
     id: "supabase",
     name: "Supabase",
     icon: supabaseIcon,
-    iconWidth: 160,
-    iconHeight: 78,
+    iconWidth: 581,
+    iconHeight: 113,
   },
   {
     id: "react-query",
@@ -114,9 +107,9 @@ const orbitTechnologies = [
 
 const exploreIcons = [
   <FaBrain />,
-  <SiStripe />,
+  <SiStripe aria-hidden="true" />,
   <FaRobot />,
-  <SiFramer />,
+  <SiFramer aria-hidden="true" />,
   <FaSitemap />,
 ];
 
@@ -180,7 +173,6 @@ export const ToolsShowcase = () => {
               <FeatureCard
                 key={index}
                 variants={item}
-                whileHover={{ scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
                 <FeatureIcon>{featureIcons[index]}</FeatureIcon>

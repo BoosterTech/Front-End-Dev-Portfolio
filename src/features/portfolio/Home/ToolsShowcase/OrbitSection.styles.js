@@ -109,8 +109,8 @@ export const TechCard = styled(m.div)`
     object-fit: contain;
   }
 
-  ${({ $isCircleCard, $isPadded }) =>
-    $isCircleCard &&
+  ${({ $isCircleCard, $isPadded, $hasLabel }) =>
+    ($isCircleCard || $hasLabel) &&
     css`
       border-radius: 50%;
       background: var(--color-white);
@@ -119,13 +119,29 @@ export const TechCard = styled(m.div)`
         0 0 0 1px rgba(var(--color-cyan-rgb), 0.25),
         0 6px 18px var(--color-shadow);
       padding: ${$isPadded ? "10px" : "0"};
+
+      ${
+        $hasLabel &&
+        css`
+          flex-direction: row;
+          gap: 4px;
+          white-space: nowrap;
+
+          img {
+            width: auto;
+            height: 28%;
+            flex-shrink: 0;
+          }
+        `
+      }
     `}
 `;
 
 export const TechName = styled.span`
   font-size: ${({ $fontSize }) => $fontSize}px;
   font-weight: 700;
-  color: var(--color-text-primary);
+  color: ${({ $onLight }) =>
+    $onLight ? "var(--color-black)" : "var(--color-text-primary)"};
   text-align: center;
   line-height: 1.2;
 `;
@@ -198,8 +214,8 @@ export const MarqueeCard = styled(m.div)`
     object-fit: contain;
   }
 
-  ${({ $isCircleCard, $isPadded }) =>
-    $isCircleCard &&
+  ${({ $isCircleCard, $isPadded, $hasLabel }) =>
+    ($isCircleCard || $hasLabel) &&
     css`
       border-radius: 50%;
       background: var(--color-white);
@@ -208,5 +224,20 @@ export const MarqueeCard = styled(m.div)`
         0 0 0 1px rgba(var(--color-cyan-rgb), 0.25),
         0 6px 18px var(--color-shadow);
       padding: ${$isPadded ? "8px" : "0"};
+
+      ${
+        $hasLabel &&
+        css`
+          flex-direction: row;
+          gap: 4px;
+          white-space: nowrap;
+
+          img {
+            flex: none;
+            width: auto;
+            height: 28%;
+          }
+        `
+      }
     `}
 `;

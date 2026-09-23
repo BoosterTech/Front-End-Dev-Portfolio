@@ -44,7 +44,6 @@ export const HeroTitle = styled.h1`
 
 export const GradientText = styled.span`
   display: inline;
-  margin-left: 0.18em;
   background: linear-gradient(
     135deg,
     var(--color-text-secondary) 0%,

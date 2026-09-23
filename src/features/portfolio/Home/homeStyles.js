@@ -27,7 +27,7 @@ export const HomeWrapper = styled.section`
 
 export const ContentImageContainer = styled.div`
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: minmax(0, 1fr) auto;
   gap: var(--spacing-3xl);
   align-items: center;
   align-content: center;
@@ -35,7 +35,7 @@ export const ContentImageContainer = styled.div`
   margin-bottom: var(--spacing-3xl);
 
   @media (max-width: ${({ theme }) => theme.breakpoint.xl2}) {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: var(--spacing-2xl);
     min-height: calc(
       100vh - var(--nav-height-actual, var(--nav-height-mobile))
@@ -50,6 +50,7 @@ export const ContentImageContainer = styled.div`
 `;
 
 export const ContentContainer = styled.div`
+  min-width: 0;
   animation: ${slideInLeft} 0.8s ease-out 0.2s both;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.xl2}) {
