@@ -1,3 +1,5 @@
+import { icons } from "features/portfolio/Contact/contactIcons";
+
 import projects from "./projects";
 import { translations } from "./translations";
 
@@ -27,5 +29,11 @@ describe("content language parity", () => {
     }
 
     expect([...languages].sort()).toEqual(expected);
+  });
+
+  it("contact icon labels use the same languages as translations", () => {
+    for (const icon of icons) {
+      expect(Object.keys(icon.label).sort()).toEqual(expected);
+    }
   });
 });

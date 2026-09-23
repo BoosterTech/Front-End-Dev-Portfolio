@@ -11,7 +11,11 @@ export const icons = [
     id: "whatsApp",
     link: "https://wa.me/003530862013944",
     name: "WhatsApp",
-    label: "Chat with me instantly",
+    label: {
+      English: "Chat with me instantly",
+      Polish: "Napisz do mnie od razu",
+      Spanish: "Escríbeme al instante",
+    },
     accent: "#25D366",
   },
   {
@@ -21,7 +25,11 @@ export const icons = [
     id: "gitHub",
     link: "https://github.com/BoosterTech",
     name: "GitHub",
-    label: "Check out my code",
+    label: {
+      English: "Check out my code",
+      Polish: "Zobacz mój kod",
+      Spanish: "Echa un vistazo a mi código",
+    },
     accent: "#64748b",
   },
   {
@@ -31,7 +39,11 @@ export const icons = [
     id: "linkedIn",
     link: "https://www.linkedin.com/in/Dariusz-Podczasik",
     name: "LinkedIn",
-    label: "Let's connect professionally",
+    label: {
+      English: "Let's connect professionally",
+      Polish: "Nawiążmy kontakt zawodowy",
+      Spanish: "Conectemos profesionalmente",
+    },
     accent: "#0A66C2",
   },
   {
@@ -41,7 +53,11 @@ export const icons = [
     id: "email",
     link: "mailto:boostertech@mail.com",
     name: "Email",
-    label: "Drop me a message",
+    label: {
+      English: "Drop me a message",
+      Polish: "Wyślij mi wiadomość",
+      Spanish: "Envíame un mensaje",
+    },
     accent: "#f59e0b",
   },
 ];

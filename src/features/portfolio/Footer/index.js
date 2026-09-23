@@ -1,3 +1,5 @@
+import useContent from "common/useContent";
+
 import {
   Brand,
   BrandColumn,
@@ -10,6 +12,7 @@ import {
 } from "./styled";
 
 const Footer = () => {
+  const { footer } = useContent();
   const currentYear = new Date().getFullYear();
 
   return (
@@ -19,10 +22,10 @@ const Footer = () => {
       <Container>
         <BrandColumn>
           <Brand>Derek.dev</Brand>
-          <Tagline>Engineering excellence through code and design.</Tagline>
+          <Tagline>{footer.tagline}</Tagline>
         </BrandColumn>
         <Copyright>
-          &copy; {currentYear} Derek.dev &middot; All rights reserved.
+          &copy; {currentYear} Derek.dev &middot; {footer.rightsReserved}
         </Copyright>
       </Container>
     </Wrapper>

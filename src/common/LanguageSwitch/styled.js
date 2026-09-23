@@ -54,7 +54,10 @@ export const Dropdown = styled.div`
   opacity: 0;
   visibility: hidden;
   transform: translateY(-4px);
-  transition: opacity var(--transition-fast), transform var(--transition-fast), visibility var(--transition-fast);
+  transition:
+    opacity var(--transition-fast),
+    transform var(--transition-fast),
+    visibility var(--transition-fast);
   z-index: 1001;
 
   &.open {

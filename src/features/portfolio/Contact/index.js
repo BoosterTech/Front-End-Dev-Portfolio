@@ -1,4 +1,5 @@
 import { useContactVisibility } from "common/ContactVisibilityProvider";
+import { useLanguage } from "common/LanguageProvider";
 import useContent from "common/useContent";
 import { useEffect, useRef } from "react";
 import { FiArrowUpRight } from "react-icons/fi";
@@ -19,6 +20,7 @@ import {
 
 const Contact = ({ id }) => {
   const { contact } = useContent();
+  const { language } = useLanguage();
   const contactRef = useRef(null);
 
   const { setContactVisibility } = useContactVisibility();
@@ -66,7 +68,7 @@ const Contact = ({ id }) => {
     <Wrapper id={id} ref={contactRef}>
       <Eyebrow aria-hidden="true" />
       <Header>
-        Let&apos;s <span>Connect</span>
+        {contact.headerPlain} <span>{contact.headerAccent}</span>
       </Header>
       <Subtitle>{contact.contactParagraph}</Subtitle>
       <CardsGrid>
@@ -77,7 +79,6 @@ const Contact = ({ id }) => {
             target="_blank"
             rel="noopener noreferrer"
             $accent={icon.accent}
-            aria-label={`Contact via ${icon.name}`}
           >
             <Arrow $accent={icon.accent} aria-hidden="true">
               <FiArrowUpRight />
@@ -92,7 +93,7 @@ const Contact = ({ id }) => {
               />
             </IconFrame>
             <ContactName>{icon.name}</ContactName>
-            <ContactLabel>{icon.label}</ContactLabel>
+            <ContactLabel>{icon.label[language]}</ContactLabel>
           </ContactTile>
         ))}
       </CardsGrid>

@@ -1,4 +1,4 @@
-import { createContext, useCallback, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 const LANG_MAP = { English: "en", Polish: "pl", Spanish: "es" };
 
@@ -7,20 +7,19 @@ const LanguageContext = createContext({
   setLanguage: () => {},
 });
 
-export const LanguageProvider = ({
-  children,
-  initialLanguage = "English",
-}) => {
-  const [language, setLanguage] = useState(initialLanguage);
+export const LanguageProvider = ({ children, initialLanguage = "English" }) => {
+  const [language, setLanguage] = useState(() => {
+    const stored = localStorage.getItem("language");
+    return LANG_MAP[stored] ? stored : initialLanguage;
+  });
 
   useEffect(() => {
     document.documentElement.lang = LANG_MAP[language] || "en";
+    localStorage.setItem("language", language);
   }, [language]);
 
-  const set = useCallback((value) => setLanguage(value), []);
-
   return (
-    <LanguageContext.Provider value={{ language, setLanguage: set }}>
+    <LanguageContext.Provider value={{ language, setLanguage }}>
       {children}
     </LanguageContext.Provider>
   );

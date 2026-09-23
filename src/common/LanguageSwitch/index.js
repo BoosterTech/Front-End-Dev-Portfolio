@@ -1,4 +1,5 @@
 import { useLanguage } from "common/LanguageProvider";
+import useContent from "common/useContent";
 import IRLIcon from "images/englishIcon.webp";
 import PLIcon from "images/PolandIcon.webp";
 import ESPIcon from "images/SpainIcon.webp";
@@ -15,6 +16,7 @@ const languages = [
 
 export const LanguageSwitch = ({ onOpen }) => {
   const { language, setLanguage } = useLanguage();
+  const { nav } = useContent();
   const [isOpen, setIsOpen] = useState(false);
   const ref = useRef(null);
 
@@ -47,10 +49,10 @@ export const LanguageSwitch = ({ onOpen }) => {
   };
 
   return (
-    <Wrapper ref={ref} role="group" aria-label="Language selector">
+    <Wrapper ref={ref} role="group" aria-label={nav.languageGroupLabel}>
       <GlobeButton
         onClick={toggle}
-        aria-label="Select language"
+        aria-label={nav.languageSelectLabel}
         aria-expanded={isOpen}
         aria-haspopup="listbox"
       >

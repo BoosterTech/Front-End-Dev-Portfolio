@@ -1,3 +1,6 @@
+import { useLanguage } from "common/LanguageProvider";
+import { menuItems } from "common/Navigation/menuItems";
+import useContent from "common/useContent";
 import projects from "content/projects";
 import { AnimatePresence } from "framer-motion";
 import gitHubIcon from "images/gitHubIcon.webp";
@@ -20,6 +23,8 @@ import {
 } from "./styled";
 
 const Projects = ({ id }) => {
+  const { projects: projectsContent } = useContent();
+  const { language } = useLanguage();
   const [activeIndex, setActiveIndex] = useState(1);
   const [expandedProject, setExpandedProject] = useState(null);
   const dragMoved = useRef(false);
@@ -64,18 +69,20 @@ const Projects = ({ id }) => {
           href="https://github.com/BoosterTech"
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="Visit my GitHub profile"
+          aria-label={projectsContent.githubProfileLabel}
         >
-          <ProjectIcon src={gitHubIcon} alt="GitHub" />
+          <ProjectIcon src={gitHubIcon} alt="" />
         </a>
-        <Header>Projects</Header>
+        <Header aria-label={menuItems[language][2].name}>
+          {projectsContent.header}
+        </Header>
       </TitleWrapper>
-      <ProjectsWrapper role="region" aria-label="Projects carousel">
+      <ProjectsWrapper role="region" aria-label={projectsContent.regionLabel}>
         {activeIndex > 0 && (
           <CarouselButton
             $left
             onClick={handlePrev}
-            aria-label="Previous project"
+            aria-label={projectsContent.previousLabel}
           >
             <FiChevronLeft />
           </CarouselButton>
@@ -115,7 +122,10 @@ const Projects = ({ id }) => {
           </ProjectsTrack>
         </DragLayer>
         {activeIndex < projects.length - 1 && (
-          <CarouselButton onClick={handleNext} aria-label="Next project">
+          <CarouselButton
+            onClick={handleNext}
+            aria-label={projectsContent.nextLabel}
+          >
             <FiChevronRight />
           </CarouselButton>
         )}
@@ -126,7 +136,7 @@ const Projects = ({ id }) => {
             key={index}
             $active={index === activeIndex}
             onClick={() => handleSelect(index)}
-            aria-label={`Go to project ${index + 1}`}
+            aria-label={`${projectsContent.goToLabel} ${index + 1}`}
             aria-current={index === activeIndex ? "true" : undefined}
           />
         ))}
