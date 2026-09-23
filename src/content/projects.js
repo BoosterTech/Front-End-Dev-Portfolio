@@ -22,21 +22,43 @@ const projects = [
     },
     available: "web",
     description: {
-      English: `<p>&nbsp&nbsp Welcome to WTM AI Music Generation!</p>
-              <p>WTM AI Music Generation is a cutting-edge platform for generating original music using artificial intelligence. Users can select genres, customize musical styles, and instantly create unique tracks powered by advanced AI models.</p>
-              <p>With an interactive interface, real-time audio visualization, and seamless playback controls, users can explore, save, and share their musical creations. The platform also features a library for recent tracks and favorites, making music discovery and management effortless.</p>
-              <p>Perfect for musicians, creators, and enthusiasts, WTM AI Music Generation transforms your ideas into music with just a few clicks.</p>`,
-      Polish: `<p>&nbsp&nbsp Witaj w WTM AI Music Generation!</p>
-             <p>WTM AI Music Generation to nowoczesna platforma do generowania oryginalnej muzyki za pomocą sztucznej inteligencji. Użytkownicy mogą wybierać gatunki, dostosowywać style muzyczne i natychmiast tworzyć unikalne utwory dzięki zaawansowanym modelom AI.</p>
-             <p>Dzięki interaktywnemu interfejsowi, wizualizacji dźwięku w czasie rzeczywistym i wygodnym kontrolom odtwarzania, użytkownicy mogą odkrywać, zapisywać i udostępniać swoje muzyczne kreacje. Platforma oferuje także bibliotekę ostatnich utworów i ulubionych, ułatwiając zarządzanie muzyką.</p>
-             <p>Idealna dla muzyków, twórców i entuzjastów – WTM AI Music Generation zamienia pomysły w muzykę w kilka kliknięć.</p>`,
-      Spanish: `<p>&nbsp&nbsp ¡Bienvenido a WTM AI Music Generation!</p>
-              <p>WTM AI Music Generation es una plataforma avanzada para generar música original utilizando inteligencia artificial. Los usuarios pueden elegir géneros, personalizar estilos musicales y crear pistas únicas al instante gracias a modelos de IA de última generación.</p>
-              <p>Con una interfaz interactiva, visualización de audio en tiempo real y controles de reproducción intuitivos, los usuarios pueden explorar, guardar y compartir sus creaciones musicales. La plataforma también incluye una biblioteca para pistas recientes y favoritas, facilitando la gestión y el descubrimiento musical.</p>
-              <p>Perfecta para músicos, creadores y entusiastas, WTM AI Music Generation convierte tus ideas en música con solo unos clics.</p>`,
+      English: `<p>WTM is a production-grade SaaS platform for generating and managing AI-generated music, built with Next.js 16, React 19, and TypeScript on managed cloud infrastructure.</p>
+              <p>Users queue generation jobs, monitor progress in real time, and manage their track library through a full-stack architecture designed for production workloads.</p>
+              <ul>
+                <li><strong>Async generation pipeline</strong> — BullMQ + Redis workers for long-running AI jobs</li>
+                <li><strong>Full-stack</strong> — Next.js App Router, React Server Components, Server Actions</li>
+                <li><strong>Auth & security</strong> — NextAuth, protected routes, Zod validation, access control</li>
+                <li><strong>Data</strong> — Supabase/PostgreSQL for users, metadata, and storage</li>
+                <li><strong>Observability</strong> — Sentry monitoring + Pino structured logging</li>
+              </ul>`,
+      Polish: `<p>WTM to platforma SaaS klasy produkcyjnej do generowania muzyki AI i zarządzania nią, zbudowana w Next.js 16, React 19 i TypeScript na zarządzanej infrastrukturze chmurowej.</p>
+             <p>Użytkownicy kolejkują zadania generowania, śledzą postęp w czasie rzeczywistym i zarządzają biblioteką utworów w architekturze full-stack zaprojektowanej pod realne obciążenia produkcyjne.</p>
+             <ul>
+               <li><strong>Asynchroniczny pipeline generowania</strong> — workery BullMQ + Redis do długotrwałych zadań AI</li>
+               <li><strong>Full-stack</strong> — Next.js App Router, React Server Components, Server Actions</li>
+               <li><strong>Uwierzytelnianie i bezpieczeństwo</strong> — NextAuth, chronione trasy, walidacja Zod, kontrola dostępu</li>
+               <li><strong>Dane</strong> — Supabase/PostgreSQL dla użytkowników, metadanych i plików</li>
+               <li><strong>Obserwowalność</strong> — monitoring Sentry + logi strukturalne Pino</li>
+             </ul>`,
+      Spanish: `<p>WTM es una plataforma SaaS de nivel producción para generar y gestionar música con IA, construida con Next.js 16, React 19 y TypeScript sobre infraestructura cloud gestionada.</p>
+              <p>Los usuarios encolan trabajos de generación, monitorizan el progreso en tiempo real y gestionan su biblioteca de pistas a través de una arquitectura full-stack diseñada para cargas de producción.</p>
+              <ul>
+                <li><strong>Pipeline de generación asíncrono</strong> — workers BullMQ + Redis para trabajos de IA de larga duración</li>
+                <li><strong>Full-stack</strong> — Next.js App Router, React Server Components, Server Actions</li>
+                <li><strong>Autenticación y seguridad</strong> — NextAuth, rutas protegidas, validación con Zod, control de acceso</li>
+                <li><strong>Datos</strong> — Supabase/PostgreSQL para usuarios, metadatos y almacenamiento</li>
+                <li><strong>Observabilidad</strong> — monitorización con Sentry + logs estructurados con Pino</li>
+              </ul>`,
     },
     imageURL: `${wtmMusicAIImage}`,
-    technologies: ["React", "Redux", "Styled Components"],
+    technologies: [
+      "Next.js",
+      "TypeScript",
+      "Supabase",
+      "PostgreSQL",
+      "BullMQ",
+      "Redis",
+    ],
     GitHubPagesURLTag: {
       English: "Go to the Website",
       Polish: "Przejdź do Strony",
@@ -61,22 +83,41 @@ const projects = [
     },
     available: "web",
     description: {
-      English: `<p>&nbsp&nbsp Welcome to The Paradise Lodge! </p>
-                <p>The Paradise Lodge is a luxury cabin booking platform designed for seamless exploration, reservation, and management of high-end stays. Users can browse stunning lodges, check real-time availability, and make secure bookings effortlessly.</p>
-                <p>With an intuitive interface and a robust booking management system, guests can modify reservations and personalize their experience with ease. Built for elegance and efficiency, The Paradise Lodge ensures a hassle-free gateway to luxury getaways.</p>
-                <p>Ideal for travelers seeking a perfect blend of nature and comfort, this platform makes booking a dream escape as simple as a few clicks.</p>`,
-      Polish: `<p>&nbsp&nbsp Witaj w The Paradise Lodge! </p>
-               <p>The Paradise Lodge to platforma rezerwacji luksusowych domków, zaprojektowana do łatwego przeglądania, rezerwowania i zarządzania pobytami w ekskluzywnych miejscach. Użytkownicy mogą przeglądać eleganckie domki, sprawdzać dostępność w czasie rzeczywistym i dokonywać bezpiecznych rezerwacji.</p>
-               <p>Dzięki intuicyjnemu interfejsowi i zaawansowanemu systemowi zarządzania rezerwacjami, goście mogą łatwo modyfikować swoje rezerwacje i dostosowywać pobyt do swoich potrzeb. The Paradise Lodge łączy nowoczesną technologię z luksusem, oferując bezproblemową organizację wymarzonych wakacji.</p>
-               <p>Idealna dla podróżników szukających połączenia komfortu i natury, ta platforma sprawia, że rezerwacja luksusowego wypoczynku jest łatwa jak kilka kliknięć.</p>`,
-      Spanish: `<p>&nbsp&nbsp ¡Bienvenido a The Paradise Lodge! </p>
-                <p>The Paradise Lodge es una plataforma de reservas de cabañas de lujo diseñada para explorar, reservar y gestionar estancias exclusivas de forma sencilla. Los usuarios pueden descubrir alojamientos impresionantes, verificar disponibilidad en tiempo real y realizar reservas seguras sin esfuerzo.</p>
-                <p>Con una interfaz intuitiva y un sólido sistema de gestión de reservas, los huéspedes pueden modificar sus reservas y personalizar su experiencia fácilmente. Diseñada para la comodidad y la eficiencia, The Paradise Lodge garantiza un acceso sin complicaciones a escapadas de lujo.</p>
-                <p>Ideal para viajeros que buscan la combinación perfecta entre naturaleza y confort, esta plataforma hace que reservar una escapada de ensueño sea tan fácil como unos pocos clics.</p>`,
+      English: `<p>Cabin booking platform built with Next.js App Router and Supabase. Users browse cabins, check real-time availability, and create and manage reservations through authenticated accounts.</p>
+                <ul>
+                  <li><strong>Full-stack</strong> — Next.js App Router and React Server Components</li>
+                  <li><strong>Authentication</strong> — NextAuth: sign-in, protected routes, per-user bookings</li>
+                  <li><strong>Data</strong> — Supabase/PostgreSQL for cabins, users, and reservations + image storage</li>
+                  <li><strong>Booking system</strong> — availability checking, reservation creation, guest management</li>
+                  <li><strong>UI</strong> — Tailwind CSS, desktop-optimised booking experience</li>
+                </ul>`,
+      Polish: `<p>Platforma rezerwacji domków zbudowana z Next.js App Router i Supabase. Użytkownicy przeglądają domki, sprawdzają dostępność w czasie rzeczywistym oraz tworzą i zarządzają rezerwacjami przez uwierzytelnione konta.</p>
+               <ul>
+                 <li><strong>Full-stack</strong> — Next.js App Router i React Server Components</li>
+                 <li><strong>Uwierzytelnianie</strong> — NextAuth: logowanie, chronione trasy, rezerwacje per użytkownik</li>
+                 <li><strong>Dane</strong> — Supabase/PostgreSQL dla domków, użytkowników i rezerwacji + przechowywanie zdjęć</li>
+                 <li><strong>System rezerwacji</strong> — sprawdzanie dostępności, tworzenie rezerwacji, zarządzanie gośćmi</li>
+                 <li><strong>Interfejs</strong> — Tailwind CSS, zoptymalizowany pod desktop</li>
+               </ul>`,
+      Spanish: `<p>Plataforma de reservas de cabañas construida con Next.js App Router y Supabase. Los usuarios exploran cabañas, verifican disponibilidad en tiempo real y crean y gestionan reservas mediante cuentas autenticadas.</p>
+                <ul>
+                  <li><strong>Full-stack</strong> — Next.js App Router y React Server Components</li>
+                  <li><strong>Autenticación</strong> — NextAuth: inicio de sesión, rutas protegidas, reservas por usuario</li>
+                  <li><strong>Datos</strong> — Supabase/PostgreSQL para cabañas, usuarios y reservas + almacenamiento de imágenes</li>
+                  <li><strong>Sistema de reservas</strong> — verificación de disponibilidad, creación de reservas, gestión de huéspedes</li>
+                  <li><strong>Interfaz</strong> — Tailwind CSS, experiencia optimizada para escritorio</li>
+                </ul>`,
     },
 
     imageURL: `${paradiselodgeImage}`,
-    technologies: ["React", "Next.js", "TypeScript", "Supabase"],
+    technologies: [
+      "Next.js",
+      "React",
+      "JavaScript",
+      "Supabase",
+      "NextAuth",
+      "Tailwind CSS",
+    ],
     GitHubPagesURLTag: {
       English: "Go to the Website",
       Polish: "Przejdź do Strony",
