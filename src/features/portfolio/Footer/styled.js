@@ -5,7 +5,7 @@ export const Wrapper = styled.footer`
   position: relative;
   overflow: hidden;
   background: linear-gradient(
-    135deg,
+    225deg,
     var(--color-footer-bg-start) 0%,
     var(--color-footer-bg-end) 100%
   );
@@ -38,7 +38,7 @@ export const Wrapper = styled.footer`
 export const Container = styled.div`
   max-width: var(--container-max-width);
   margin: 0 auto;
-  padding: var(--spacing-2xl) var(--spacing-xl);
+  padding: var(--spacing-sm) var(--spacing-xl);
   display: grid;
   grid-template-columns: 1fr;
   grid-template-areas:
@@ -62,6 +62,7 @@ export const Container = styled.div`
 export const BrandColumn = styled.div`
   grid-area: brand;
   text-align: left;
+  transform: translateY(4px);
 
   @media (max-width: ${({ theme }) => theme.breakpoint.sm}) {
     text-align: center;
@@ -69,7 +70,7 @@ export const BrandColumn = styled.div`
 `;
 
 export const Brand = styled.h2`
-  font-size: 1.75rem;
+  font-size: 1.1rem;
   font-weight: 800;
   color: var(--color-off-white);
   margin: 0 0 var(--spacing-xs) 0;
@@ -79,8 +80,8 @@ export const Brand = styled.h2`
   &::after {
     content: "";
     display: block;
-    width: 140px;
-    height: 3px;
+    width: 96px;
+    height: 2px;
     background: linear-gradient(
       90deg,
       var(--color-cyan) 0%,
@@ -94,7 +95,7 @@ export const Brand = styled.h2`
 `;
 
 export const Tagline = styled.p`
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   color: var(--color-slate);
   margin: 0;
   line-height: 1.5;
@@ -103,17 +104,17 @@ export const Tagline = styled.p`
 export const Copyright = styled.p`
   grid-area: copyright;
   color: var(--color-slate);
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   text-align: center;
-  margin: var(--spacing-lg) 0 0 0;
-  padding-top: var(--spacing-lg);
+  margin: var(--spacing-xs) 0 0 0;
+  padding-top: var(--spacing-xs);
   border-top: 1px solid var(--color-footer-border);
 `;
 
 export const GridTexture = styled.div`
   position: absolute;
   top: 0;
-  left: 0;
+  right: 0;
   bottom: 0;
   width: 50%;
   opacity: var(--color-footer-texture-opacity);
@@ -127,12 +128,12 @@ export const GridTexture = styled.div`
     );
   background-size: 52px 52px;
   mask-image: linear-gradient(
-    90deg,
+    270deg,
     rgba(var(--color-black-rgb), 0.5) 0%,
     transparent 100%
   );
   -webkit-mask-image: linear-gradient(
-    90deg,
+    270deg,
     rgba(var(--color-black-rgb), 0.5) 0%,
     transparent 100%
   );
@@ -141,7 +142,7 @@ export const GridTexture = styled.div`
 export const Constellation = styled.div`
   position: absolute;
   top: 0;
-  right: 0;
+  left: 0;
   bottom: 0;
   width: 50%;
   opacity: var(--color-footer-texture-opacity);
@@ -153,12 +154,12 @@ export const Constellation = styled.div`
   );
   background-size: 19px 19px;
   mask-image: linear-gradient(
-    270deg,
+    90deg,
     rgba(var(--color-black-rgb), 0.4) 0%,
     transparent 100%
   );
   -webkit-mask-image: linear-gradient(
-    270deg,
+    90deg,
     rgba(var(--color-black-rgb), 0.4) 0%,
     transparent 100%
   );

@@ -75,8 +75,8 @@ export const tokens = css`
     --color-hero-nav-bg: rgba(15, 23, 42, 0.7);
 
     /* Footer theme tokens (light mode defaults) */
-    --color-footer-bg-start: #f1f5f9;
-    --color-footer-bg-end: #e2e8f0;
+    --color-footer-bg-start: rgba(241, 245, 249, 0.75);
+    --color-footer-bg-end: rgba(226, 232, 240, 0.75);
     --color-footer-border: rgba(15, 23, 42, 0.08);
     --color-footer-texture-opacity: 0.25;
 
@@ -139,8 +139,8 @@ export const tokens = css`
     --color-contact-tile-bg: rgba(255, 255, 255, 0.04);
     --color-contact-tile-border: rgba(255, 255, 255, 0.08);
     --color-contact-shadow: rgba(0, 0, 0, 0.45);
-    --color-footer-bg-start: var(--color-deep-navy);
-    --color-footer-bg-end: var(--color-navy);
+    --color-footer-bg-start: rgba(2, 6, 23, 0.75);
+    --color-footer-bg-end: rgba(4, 17, 38, 0.75);
     --color-footer-border: rgba(var(--color-white-rgb), 0.06);
     --color-footer-texture-opacity: 0.4;
 
