@@ -79,12 +79,17 @@ export const Brand = styled.h2`
   &::after {
     content: "";
     display: block;
-    width: 110px;
+    width: 140px;
     height: 3px;
-    background: linear-gradient(90deg, var(--color-cyan), transparent);
+    background: linear-gradient(
+      90deg,
+      var(--color-cyan) 0%,
+      rgba(var(--color-cyan-rgb), 0.6) 45%,
+      rgba(var(--color-cyan-rgb), 0.25) 75%,
+      transparent 100%
+    );
     margin-top: var(--spacing-xs);
-    border-radius: 2px;
-    box-shadow: 0 0 12px var(--color-cyan);
+    clip-path: polygon(0 0, 100% 42%, 100% 58%, 0 100%);
   }
 `;
 
