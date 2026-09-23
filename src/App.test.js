@@ -1,5 +1,4 @@
 import { render, screen } from "@testing-library/react";
-import { ContactVisibilityProvider } from "common/ContactVisibilityProvider";
 import { LanguageProvider } from "common/LanguageProvider";
 import { ThemeModeProvider } from "common/ThemeModeProvider";
 import React from "react";
@@ -28,14 +27,12 @@ beforeEach(() => {
 const renderWithProviders = (component) => {
   return render(
     <LanguageProvider>
-      <ContactVisibilityProvider>
-        <ThemeModeProvider>
-          <ThemeProvider theme={themes}>
-            <GlobalStyles />
-            {component}
-          </ThemeProvider>
-        </ThemeModeProvider>
-      </ContactVisibilityProvider>
+      <ThemeModeProvider>
+        <ThemeProvider theme={themes}>
+          <GlobalStyles />
+          {component}
+        </ThemeProvider>
+      </ThemeModeProvider>
     </LanguageProvider>
   );
 };

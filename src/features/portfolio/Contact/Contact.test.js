@@ -1,43 +1,18 @@
 import { screen } from "@testing-library/react";
-import { useContactVisibility } from "common/ContactVisibilityProvider";
 import Contact from "features/portfolio/Contact";
 import { renderWithProviders } from "test-utils";
 
-const DisplayContactVisibility = () => {
-  const { isContactVisible } = useContactVisibility();
-  return (
-    <span data-testid="contact-visibility">
-      {isContactVisible ? "true" : "false"}
-    </span>
-  );
-};
-
-class MockIntersectionObserver {
-  constructor(callback) {
-    this.callback = callback;
-  }
-
-  observe(target) {
-    this.callback([{ target, isIntersecting: true }]);
-  }
-
-  unobserve() {}
-  disconnect() {}
-}
-
-beforeEach(() => {
-  global.IntersectionObserver = MockIntersectionObserver;
-});
+import { icons } from "./contactIcons";
 
 describe("Contact", () => {
-  it("sets contact visibility to true when intersecting", () => {
-    renderWithProviders(
-      <>
-        <Contact id="contact" />
-        <DisplayContactVisibility />
-      </>
-    );
+  it("renders a tile with external link for every contact channel", () => {
+    renderWithProviders(<Contact id="contact" />);
 
-    expect(screen.getByTestId("contact-visibility")).toHaveTextContent("true");
+    for (const icon of icons) {
+      const tile = screen.getByRole("link", { name: new RegExp(icon.name) });
+      expect(tile).toHaveAttribute("href", icon.link);
+      expect(tile).toHaveAttribute("target", "_blank");
+      expect(tile).toHaveAttribute("rel", expect.stringContaining("noopener"));
+    }
   });
 });

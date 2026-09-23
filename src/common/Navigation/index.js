@@ -1,9 +1,9 @@
-import { useContactVisibility } from "common/ContactVisibilityProvider";
 import DarkModeToggle from "common/DarkModeToggle";
 import { useLanguage } from "common/LanguageProvider";
 import { LanguageSwitch } from "common/LanguageSwitch";
 import useContent from "common/useContent";
 import { useMediaQuery } from "common/useMediaQuery";
+import { useScrollSpy } from "common/useScrollSpy";
 import { useEffect, useRef, useState } from "react";
 import { FaEnvelope, FaHome, FaProjectDiagram, FaUser } from "react-icons/fa";
 import { Link } from "react-scroll";
@@ -26,11 +26,12 @@ import {
 
 const COMPACT_MAX_PX = parseInt(themes.breakpoint.xl2, 10) - 1;
 const DESKTOP_MIN_PX = parseInt(themes.breakpoint.lg, 10);
+const SECTION_IDS = menuItems.English.map((item) => item.slug);
 
 const Navigation = () => {
   const { language } = useLanguage();
   const { nav } = useContent();
-  const { isContactVisible } = useContactVisibility();
+  const activeId = useScrollSpy(SECTION_IDS);
 
   const isCompact = useMediaQuery(`(max-width: ${COMPACT_MAX_PX}px)`);
   const isMobile = useMediaQuery(`(max-width: ${themes.breakpoint.md})`);
@@ -142,11 +143,6 @@ const Navigation = () => {
   const getOffset = (item) =>
     isMobile && item.offsetMobile != null ? item.offsetMobile : item.offset;
 
-  const getActiveClass = (index) => {
-    if (isContactVisible && menuItems[language].length - 1 === index)
-      return true;
-  };
-
   const getIcon = (item) => {
     switch (item) {
       case "Home":
@@ -181,10 +177,8 @@ const Navigation = () => {
         <DarkModeToggle />
       </TopRow>
       <Link
-        activeClass="active"
         href="#home"
         to={menuItems[language][0].slug}
-        spy={true}
         smooth={true}
         offset={menuItems[language][0].offset}
         duration={700}
@@ -198,17 +192,12 @@ const Navigation = () => {
 
       <MenuContainer data-testid="desktop-menu">
         {menuItems[language].map((item, index) => {
-          const isContact = index === menuItems[language].length - 1;
-          const forceActive = isContact && isContactVisible;
           return (
             <StyledScrollLink
-              activeClass="active"
-              className={forceActive ? "active" : undefined}
-              $isContactVisible={getActiveClass(index)}
+              className={activeId === item.slug ? "active" : undefined}
               data-testid={`nav-link-${item.slug}`}
               href={`#${item.slug}`}
               to={item.slug}
-              spy={true}
               smooth={true}
               offset={getOffset(item)}
               duration={700}
@@ -241,15 +230,11 @@ const Navigation = () => {
         onTouchMove={handlePullMove}
       >
         {menuItems[language].map((item, index) => {
-          const isContact = index === menuItems[language].length - 1;
-          const forceActive = isContact && isContactVisible;
           return (
             <MobileNavItem
-              activeClass="active"
-              className={forceActive ? "active" : undefined}
+              className={activeId === item.slug ? "active" : undefined}
               href={`#${item.slug}`}
               to={item.slug}
-              spy={true}
               smooth={true}
               offset={getOffset(item)}
               duration={700}

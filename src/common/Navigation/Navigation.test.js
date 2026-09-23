@@ -1,4 +1,4 @@
-import { screen, within } from "@testing-library/react";
+import { act, screen, within } from "@testing-library/react";
 import Navigation from "common/Navigation";
 import { menuItems } from "common/Navigation/menuItems";
 import { renderWithProviders } from "test-utils";
@@ -47,13 +47,37 @@ describe("Navigation", () => {
     }
   });
 
-  it("highlights the contact item when contact is visible", () => {
-    renderWithProviders(<Navigation />, { initialIsContactVisible: true });
+  it("highlights the section intersecting the spy band", () => {
+    const OriginalObserver = global.IntersectionObserver;
+    let observerCallback;
+    global.IntersectionObserver = class {
+      constructor(callback) {
+        observerCallback = callback;
+      }
+      observe() {}
+      unobserve() {}
+      disconnect() {}
+    };
 
-    const contactSlug = menuItems.English[menuItems.English.length - 1].slug;
-    const contactLink = desktopMenu().getByTestId(`nav-link-${contactSlug}`);
+    try {
+      renderWithProviders(
+        <>
+          <Navigation />
+          <div id="about" />
+        </>
+      );
 
-    expect(contactLink).toHaveClass("active");
+      act(() => {
+        observerCallback([{ target: { id: "about" }, isIntersecting: true }]);
+      });
+
+      expect(desktopMenu().getByTestId("nav-link-about")).toHaveClass("active");
+      expect(desktopMenu().getByTestId("nav-link-contact")).not.toHaveClass(
+        "active"
+      );
+    } finally {
+      global.IntersectionObserver = OriginalObserver;
+    }
   });
 
   it("renders icons instead of text in compact mode", () => {

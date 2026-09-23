@@ -52,5 +52,4 @@
 
 /**
  * @typedef {Object} GeneralState
- * @property {boolean} isContactVisible
  */

@@ -1,7 +1,5 @@
-import { useContactVisibility } from "common/ContactVisibilityProvider";
 import { useLanguage } from "common/LanguageProvider";
 import useContent from "common/useContent";
-import { useEffect, useRef } from "react";
 import { FiArrowUpRight } from "react-icons/fi";
 
 import { icons } from "./contactIcons";
@@ -21,51 +19,9 @@ import {
 const Contact = ({ id }) => {
   const { contact } = useContent();
   const { language } = useLanguage();
-  const contactRef = useRef(null);
-
-  const { setContactVisibility } = useContactVisibility();
-
-  useEffect(() => {
-    const currentRef = contactRef.current;
-
-    let observer;
-    if (typeof IntersectionObserver !== "undefined" && currentRef) {
-      observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach(({ isIntersecting }) => {
-            if (isIntersecting) {
-              setContactVisibility(true);
-            } else {
-              setContactVisibility(false);
-            }
-          });
-        },
-        { threshold: 0 }
-      );
-
-      observer.observe(currentRef);
-    }
-
-    const handleScroll = () => {
-      if (
-        window.innerHeight + window.scrollY >=
-        document.body.offsetHeight - 2
-      ) {
-        setContactVisibility(true);
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      if (observer && currentRef) {
-        observer.unobserve(currentRef);
-      }
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [setContactVisibility]);
 
   return (
-    <Wrapper id={id} ref={contactRef}>
+    <Wrapper id={id}>
       <Eyebrow aria-hidden="true" />
       <Header>
         {contact.headerPlain} <span>{contact.headerAccent}</span>
