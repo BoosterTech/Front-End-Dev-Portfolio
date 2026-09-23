@@ -15,7 +15,9 @@ const Sun = styled.div`
   height: 12px;
   border-radius: 50%;
   background: currentColor;
-  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+  transition:
+    transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.3s ease;
 
   &::before {
     content: "";
@@ -29,7 +31,9 @@ const Sun = styled.div`
     border-top-color: transparent;
     border-bottom-color: transparent;
     border-left-color: transparent;
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+    transition:
+      transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+      opacity 0.3s ease;
     transform: rotate(0deg);
   }
 
@@ -46,11 +50,11 @@ const Moon = styled.div`
   box-shadow: inset 5px -2px 0 0 currentColor;
   transform: scale(0);
   opacity: 0;
-  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+  transition:
+    transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.3s ease;
 
-  ${({ $isDark }) =>
-    $isDark &&
-    "transform: scale(1); opacity: 1;"}
+  ${({ $isDark }) => $isDark && "transform: scale(1); opacity: 1;"}
 `;
 
 export const ThemeIcon = ({ $isDark }) => (

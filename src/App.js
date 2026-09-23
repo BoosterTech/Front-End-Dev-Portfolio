@@ -1,5 +1,4 @@
 import { useLanguage } from "common/LanguageProvider";
-import { ThemeProvider } from "styled-components";
 
 import Main from "./common/Main";
 import Navigation from "./common/Navigation";
@@ -10,13 +9,12 @@ import Contact from "./features/portfolio/Contact";
 import Footer from "./features/portfolio/Footer";
 import Home from "./features/portfolio/Home";
 import Projects from "./features/portfolio/Projects";
-import { themes } from "./themes";
 
 const App = () => {
   const { language } = useLanguage();
 
   return (
-    <ThemeProvider theme={themes}>
+    <>
       <StarField />
       <Navigation />
       <Main>
@@ -26,7 +24,7 @@ const App = () => {
         <Contact id={menuItems[language][3].slug} />
       </Main>
       <Footer />
-    </ThemeProvider>
+    </>
   );
 };
 

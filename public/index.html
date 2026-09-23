@@ -1,15 +1,27 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/icon.webp" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script>
+      (function () {
+        var saved = localStorage.getItem("theme");
+        var dark =
+          saved === "dark" ||
+          (!saved && window.matchMedia("(prefers-color-scheme: dark)").matches);
+        if (dark) document.documentElement.setAttribute("data-theme", "dark");
+      })();
+    </script>
     <meta name="theme-color" content="#000000" />
     <meta
       name="description"
       content="Dariusz Podczasik — Front-End Developer portfolio. React, Redux, styled-components. Building responsive, user-friendly web applications."
     />
-    <meta property="og:title" content="Dariusz Podczasik — Front-End Developer" />
+    <meta
+      property="og:title"
+      content="Dariusz Podczasik — Front-End Developer"
+    />
     <meta
       property="og:description"
       content="Portfolio of a React Front-End Developer based in Trim, Ireland."
@@ -25,6 +37,20 @@
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <link
+      rel="preload"
+      as="image"
+      href="%PUBLIC_URL%/profileImage.webp"
+      type="image/webp"
+      media="(prefers-color-scheme: dark)"
+    />
+    <link
+      rel="preload"
+      as="image"
+      href="%PUBLIC_URL%/light_theme_profile.webp"
+      type="image/webp"
+      media="(prefers-color-scheme: light)"
+    />
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.

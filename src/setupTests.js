@@ -26,6 +26,7 @@ global.IntersectionObserver = MockIntersectionObserver;
 global.ResizeObserver = MockResizeObserver;
 
 beforeEach(() => {
+  localStorage.clear();
   Object.defineProperty(window, "matchMedia", {
     writable: true,
     value: jest.fn().mockImplementation((query) => ({
