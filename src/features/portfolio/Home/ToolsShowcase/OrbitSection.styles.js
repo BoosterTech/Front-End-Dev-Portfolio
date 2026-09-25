@@ -183,9 +183,12 @@ export const MarqueeContent = styled.div`
   gap: var(--spacing-md);
   width: max-content;
   animation: ${marqueeScroll} 28s linear infinite;
+  animation-play-state: ${({ $paused }) => ($paused ? "paused" : "running")};
 
-  &:hover {
-    animation-play-state: paused;
+  @media (hover: hover) {
+    &:hover {
+      animation-play-state: paused;
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {

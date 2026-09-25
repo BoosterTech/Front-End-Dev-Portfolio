@@ -143,7 +143,7 @@ export const ToolsShowcase = () => {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
-      variants={container}
+      $variants={container}
     >
       <ShowcaseGrid>
         <OrbitSectionWrapper>
@@ -156,23 +156,21 @@ export const ToolsShowcase = () => {
           />
         </OrbitSectionWrapper>
         <ShowcaseContent>
-          <SectionLabel variants={item}>
+          <SectionLabel>
             <FaStar />
             {home.skillsetHeader}
           </SectionLabel>
-          <SectionTitle variants={item}>
+          <SectionTitle>
             <PlainTitlePart>{showcase.titlePlain}</PlainTitlePart>{" "}
             <GradientWord>{showcase.titleAccent}</GradientWord>
           </SectionTitle>
-          <SectionDescription variants={item}>
-            {showcase.description}
-          </SectionDescription>
+          <SectionDescription>{showcase.description}</SectionDescription>
 
           <FeatureGrid>
             {showcase.features.map((feature, index) => (
               <FeatureCard
                 key={index}
-                variants={item}
+                $variants={item}
                 transition={{ type: "spring", stiffness: 300 }}
               >
                 <FeatureIcon>{featureIcons[index]}</FeatureIcon>
@@ -186,7 +184,7 @@ export const ToolsShowcase = () => {
         </ShowcaseContent>
       </ShowcaseGrid>
 
-      <ExploreSection variants={item}>
+      <ExploreSection $variants={item}>
         <ExploreHeader>
           <ExploreLabel>
             <FaEllipsisH />

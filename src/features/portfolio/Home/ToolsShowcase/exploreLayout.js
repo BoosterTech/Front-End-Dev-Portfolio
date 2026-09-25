@@ -1,7 +1,9 @@
 import { m } from "framer-motion";
 import styled from "styled-components";
 
-export const ExploreSection = styled(m.div)`
+export const ExploreSection = styled(m.div).attrs(({ $variants }) => ({
+  variants: $variants,
+}))`
   margin-top: var(--spacing-3xl);
   width: 100%;
   max-width: var(--container-max-width);
@@ -31,12 +33,16 @@ export const ExploreHeader = styled.div`
 export const ExploreLabel = styled.span`
   display: flex;
   align-items: center;
-  gap: var(--spacing-sm);
+  gap: var(--spacing-xs);
   font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--color-primary);
+
+  svg {
+    transform: translateY(3px);
+  }
 `;
 
 export const ExploreParagraph = styled.p`
@@ -172,7 +178,7 @@ export const MoreChipHeader = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: var(--spacing-sm);
+  gap: var(--spacing-xs);
   font-size: 0.78rem;
   font-weight: 700;
 
@@ -180,6 +186,7 @@ export const MoreChipHeader = styled.div`
     color: var(--color-primary);
     font-size: 1.4rem;
     flex-shrink: 0;
+    transform: translateY(3px);
   }
 `;
 

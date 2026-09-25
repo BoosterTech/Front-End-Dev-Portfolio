@@ -1,4 +1,5 @@
-import { useLayoutEffect, useMemo, useRef, useState } from "react";
+import { useMediaQuery } from "common/useMediaQuery";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { themes } from "themes";
 
 import { getOrbitDimensions } from "./getOrbitDimensions";
@@ -27,6 +28,7 @@ export const OrbitSection = ({
   centerLabel = "Next.js",
 }) => {
   const windowWidth = useWindowWidth();
+  const canHover = useMediaQuery("(hover: hover)");
   const isMobile = windowWidth <= MOBILE_MAX_WIDTH;
   const CIRCLE_CARD_IDS = [
     "redux",
@@ -46,6 +48,27 @@ export const OrbitSection = ({
   ];
   const orbitRef = useRef(null);
   const [availableSize, setAvailableSize] = useState(Number.MAX_SAFE_INTEGER);
+  const [marqueePaused, setMarqueePaused] = useState(false);
+  const resumeTimer = useRef(null);
+  const marqueeTrackRef = useRef(null);
+
+  const handleMarqueeTap = () => {
+    clearTimeout(resumeTimer.current);
+    if (marqueePaused) return setMarqueePaused(false);
+    setMarqueePaused(true);
+    resumeTimer.current = setTimeout(() => setMarqueePaused(false), 4000);
+  };
+
+  useEffect(() => () => clearTimeout(resumeTimer.current), []);
+
+  useEffect(() => {
+    if (!marqueePaused) return undefined;
+    const resume = (e) => {
+      if (!marqueeTrackRef.current?.contains(e.target)) setMarqueePaused(false);
+    };
+    window.addEventListener("pointerdown", resume);
+    return () => window.removeEventListener("pointerdown", resume);
+  }, [marqueePaused]);
 
   const {
     radius: baseRadius,
@@ -63,7 +86,7 @@ export const OrbitSection = ({
   const radius = (containerSize - cardWidth - 40) / 2;
   const center = containerSize / 2;
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const parent = orbitRef.current?.parentElement;
     if (!parent) return;
 
@@ -84,9 +107,7 @@ export const OrbitSection = ({
     const angleStep = (Math.PI * 2) / totalItems;
     return technologies.map((_, index) => {
       const angle = index * angleStep - Math.PI / 2;
-      const x = Math.cos(angle) * radius;
-      const y = Math.sin(angle) * radius;
-      return { x, y };
+      return { x: Math.cos(angle) * radius, y: Math.sin(angle) * radius };
     });
   }, [technologies, radius]);
 
@@ -169,7 +190,6 @@ export const OrbitSection = ({
                 alt={centerLabel}
                 width={centerIconWidth}
                 height={centerIconHeight}
-                loading="lazy"
               />
             </CenterNode>
           </CenterWrapper>
@@ -217,7 +237,6 @@ export const OrbitSection = ({
                         alt={tech.name}
                         width={tech.iconWidth}
                         height={tech.iconHeight}
-                        loading="lazy"
                       />
                     ) : (
                       tech.icon
@@ -235,41 +254,42 @@ export const OrbitSection = ({
         </OrbitContainer>
       )}
 
-      <MarqueeTrack>
-        <MarqueeContent>
-          {[0, 1].map((copy) =>
-            marqueeItems.map((tech) => (
-              <MarqueeCard
-                key={`${copy}-${tech.id || tech.name}`}
-                aria-hidden={copy === 1 || undefined}
-                $isCircleCard={
-                  tech.isCenter || CIRCLE_CARD_IDS.includes(tech.id)
-                }
-                $isPadded={tech.isCenter || PADDED_CARD_IDS.includes(tech.id)}
-                $hasLabel={tech.showLabel}
-                whileHover={{ scale: 1.15 }}
-              >
-                {typeof tech.icon === "string" ? (
-                  <img
-                    src={tech.icon}
-                    alt={tech.isCenter || tech.showLabel ? "" : tech.name}
-                    width={tech.iconWidth}
-                    height={tech.iconHeight}
-                    loading="lazy"
-                  />
-                ) : (
-                  tech.icon
-                )}
-                {tech.showLabel && (
-                  <TechName $fontSize={12} $onLight>
-                    {tech.name}
-                  </TechName>
-                )}
-              </MarqueeCard>
-            ))
-          )}
-        </MarqueeContent>
-      </MarqueeTrack>
+      {isMobile && (
+        <MarqueeTrack ref={marqueeTrackRef}>
+          <MarqueeContent $paused={marqueePaused} onClick={handleMarqueeTap}>
+            {[0, 1].map((copy) =>
+              marqueeItems.map((tech) => (
+                <MarqueeCard
+                  key={`${copy}-${tech.id || tech.name}`}
+                  aria-hidden={copy === 1 || undefined}
+                  $isCircleCard={
+                    tech.isCenter || CIRCLE_CARD_IDS.includes(tech.id)
+                  }
+                  $isPadded={tech.isCenter || PADDED_CARD_IDS.includes(tech.id)}
+                  $hasLabel={tech.showLabel}
+                  whileHover={canHover ? { scale: 1.15 } : undefined}
+                >
+                  {typeof tech.icon === "string" ? (
+                    <img
+                      src={tech.icon}
+                      alt={tech.isCenter || tech.showLabel ? "" : tech.name}
+                      width={tech.iconWidth}
+                      height={tech.iconHeight}
+                    />
+                  ) : (
+                    tech.icon
+                  )}
+                  {tech.showLabel && (
+                    <TechName $fontSize={12} $onLight>
+                      {tech.name}
+                    </TechName>
+                  )}
+                </MarqueeCard>
+              ))
+            )}
+          </MarqueeContent>
+        </MarqueeTrack>
+      )}
     </>
   );
 };

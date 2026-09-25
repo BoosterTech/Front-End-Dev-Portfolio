@@ -28,30 +28,33 @@ const Contact = ({ id }) => {
       </Header>
       <Subtitle>{contact.contactParagraph}</Subtitle>
       <CardsGrid>
-        {icons.map((icon) => (
-          <ContactTile
-            key={icon.id}
-            href={icon.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            $accent={icon.accent}
-          >
-            <Arrow $accent={icon.accent} aria-hidden="true">
-              <FiArrowUpRight />
-            </Arrow>
-            <IconFrame $id={icon.id} $accent={icon.accent}>
-              <img
-                src={icon.iconURL}
-                alt=""
-                width={icon.iconWidth}
-                height={icon.iconHeight}
-                loading="lazy"
-              />
-            </IconFrame>
-            <ContactName>{icon.name}</ContactName>
-            <ContactLabel>{icon.label[language]}</ContactLabel>
-          </ContactTile>
-        ))}
+        {icons.map((icon) => {
+          const isExternal = !icon.link.startsWith("mailto:");
+          return (
+            <ContactTile
+              key={icon.id}
+              href={icon.link}
+              target={isExternal ? "_blank" : undefined}
+              rel={isExternal ? "noopener noreferrer" : undefined}
+              $accent={icon.accent}
+            >
+              <Arrow $accent={icon.accent} aria-hidden="true">
+                <FiArrowUpRight />
+              </Arrow>
+              <IconFrame $id={icon.id} $accent={icon.accent}>
+                <img
+                  src={icon.iconURL}
+                  alt=""
+                  width={icon.iconWidth}
+                  height={icon.iconHeight}
+                  loading="lazy"
+                />
+              </IconFrame>
+              <ContactName>{icon.name}</ContactName>
+              <ContactLabel>{icon.label[language]}</ContactLabel>
+            </ContactTile>
+          );
+        })}
       </CardsGrid>
     </Wrapper>
   );

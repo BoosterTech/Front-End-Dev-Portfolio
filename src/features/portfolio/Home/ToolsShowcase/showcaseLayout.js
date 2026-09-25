@@ -3,7 +3,9 @@ import Card from "common/Card";
 import { m } from "framer-motion";
 import styled from "styled-components";
 
-export const ToolsShowcaseWrapper = styled(m.section)`
+export const ToolsShowcaseWrapper = styled(m.section).attrs(
+  ({ $variants }) => ({ variants: $variants })
+)`
   width: 100%;
   padding: var(--spacing-3xl) 0;
   background: transparent;
@@ -98,11 +100,12 @@ export const FeatureGrid = styled.div`
   }
 `;
 
-export const FeatureCard = styled(Card).attrs({
+export const FeatureCard = styled(Card).attrs(({ $variants }) => ({
+  variants: $variants,
   $glass: true,
   $hoverable: true,
   as: m.div,
-})`
+}))`
   align-items: center;
   min-width: 0;
 

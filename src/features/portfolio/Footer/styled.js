@@ -39,6 +39,7 @@ export const Container = styled.div`
   max-width: var(--container-max-width);
   margin: 0 auto;
   padding: var(--spacing-sm) var(--spacing-xl);
+  padding-bottom: calc(var(--spacing-sm) + env(safe-area-inset-bottom, 0px));
   display: grid;
   grid-template-columns: 1fr;
   grid-template-areas:

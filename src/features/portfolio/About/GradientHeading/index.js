@@ -1,4 +1,4 @@
-import { gradientShift, waveHand } from "common/animations";
+import { forcedColorsText, gradientShift, waveHand } from "common/animations";
 import styled from "styled-components";
 
 const GradientHeading = styled.h1`
@@ -20,6 +20,7 @@ const GradientHeading = styled.h1`
   -webkit-text-fill-color: transparent;
   background-size: 200% 200%;
   animation: ${gradientShift} 15s ease-in-out infinite;
+  ${forcedColorsText}
 
   &:hover img {
     animation: ${waveHand} 4s infinite;

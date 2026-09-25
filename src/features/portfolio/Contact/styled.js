@@ -1,4 +1,4 @@
-import { fadeInUp, gradientShift } from "common/animations";
+import { fadeInUp, forcedColorsText, gradientShift } from "common/animations";
 import Card from "common/Card";
 import styled from "styled-components";
 
@@ -127,6 +127,7 @@ export const Header = styled.h2`
     -webkit-text-fill-color: transparent;
     background-size: 200% 200%;
     animation: ${gradientShift} 15s ease-in-out infinite;
+    ${forcedColorsText}
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.md}) {

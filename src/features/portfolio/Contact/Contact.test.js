@@ -10,9 +10,12 @@ describe("Contact", () => {
 
     for (const icon of icons) {
       const tile = screen.getByRole("link", { name: new RegExp(icon.name) });
+      const isExternal = !icon.link.startsWith("mailto:");
       expect(tile).toHaveAttribute("href", icon.link);
-      expect(tile).toHaveAttribute("target", "_blank");
-      expect(tile).toHaveAttribute("rel", expect.stringContaining("noopener"));
+      expect(tile.getAttribute("target")).toBe(isExternal ? "_blank" : null);
+      expect(tile.getAttribute("rel")).toBe(
+        isExternal ? "noopener noreferrer" : null
+      );
     }
   });
 });

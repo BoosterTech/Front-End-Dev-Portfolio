@@ -1,5 +1,9 @@
+import { themes } from "themes";
+
+const COMPACT_MAX_PX = parseInt(themes.breakpoint.xl, 10);
+
 export const getOrbitDimensions = (width) => {
-  if (width < 1024) {
+  if (width < COMPACT_MAX_PX) {
     return {
       radius: 150,
       cardWidth: 88,
