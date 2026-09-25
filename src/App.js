@@ -1,7 +1,6 @@
 import { useLanguage } from "common/LanguageProvider";
 import { useEffect } from "react";
 
-import LaunchIntro from "./common/LaunchIntro";
 import Main from "./common/Main";
 import Navigation from "./common/Navigation";
 import { menuItems } from "./common/Navigation/menuItems";
@@ -26,7 +25,6 @@ const App = () => {
 
   return (
     <>
-      <LaunchIntro />
       <StarField />
       <Navigation />
       <Main>
