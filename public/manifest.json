@@ -1,15 +1,16 @@
 {
-  "short_name": "Portfolio",
-  "name": "Front-end Developer Portfolio",
+  "short_name": "Derek.dev",
+  "name": "Derek.dev — Software Engineer Portfolio",
   "icons": [
     {
       "src": "icon.webp",
       "sizes": "256x256",
-      "type": "image/webp"
+      "type": "image/webp",
+      "purpose": "any maskable"
     }
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "transparent"
+  "theme_color": "#0a0f1c",
+  "background_color": "#0a0f1c"
 }

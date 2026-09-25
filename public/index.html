@@ -11,46 +11,74 @@
           saved === "dark" ||
           (!saved && window.matchMedia("(prefers-color-scheme: dark)").matches);
         if (dark) document.documentElement.setAttribute("data-theme", "dark");
+        var link = document.createElement("link");
+        link.rel = "preload";
+        link.as = "image";
+        link.type = "image/webp";
+        link.href =
+          "%PUBLIC_URL%/" +
+          (dark ? "profileImage.webp" : "light_theme_profile.webp");
+        link.setAttribute("fetchpriority", "high");
+        document.head.appendChild(link);
       })();
     </script>
-    <meta name="theme-color" content="#000000" />
+    <meta
+      name="theme-color"
+      media="(prefers-color-scheme: light)"
+      content="#ffffff"
+    />
+    <meta
+      name="theme-color"
+      media="(prefers-color-scheme: dark)"
+      content="#0a0f1c"
+    />
     <meta
       name="description"
-      content="Dariusz Podczasik — Front-End Developer portfolio. React, Redux, styled-components. Building responsive, user-friendly web applications."
+      content="Dariusz Podczasik — Software Engineer. AI-directed engineering, React, Next.js, TypeScript — production SaaS and modern web applications."
     />
-    <meta
-      property="og:title"
-      content="Dariusz Podczasik — Front-End Developer"
-    />
+    <meta property="og:title" content="Dariusz Podczasik — Software Engineer" />
     <meta
       property="og:description"
-      content="Portfolio of a React Front-End Developer based in Trim, Ireland."
+      content="AI-directed engineering and modern web applications — Trim, Ireland."
     />
     <meta property="og:type" content="website" />
     <meta
       property="og:url"
-      content="https://boostertech.github.io/Front-End-Dev-Portfolio/"
+      content="https://boostertech.github.io/Software_Engineer_Portfolio/"
     />
-    <!-- <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" /> -->
+    <meta
+      property="og:image"
+      content="https://boostertech.github.io/Software_Engineer_Portfolio/profileImage.webp"
+    />
+    <meta property="og:image:width" content="640" />
+    <meta property="og:image:height" content="640" />
+    <meta
+      property="og:image:alt"
+      content="Portrait of Dariusz Podczasik, Software Engineer"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Dariusz Podczasik — Software Engineer"
+    />
+    <meta
+      name="twitter:description"
+      content="AI-directed engineering and modern web applications — Trim, Ireland."
+    />
+    <meta
+      name="twitter:image"
+      content="https://boostertech.github.io/Software_Engineer_Portfolio/profileImage.webp"
+    />
+    <link
+      rel="canonical"
+      href="https://boostertech.github.io/Software_Engineer_Portfolio/"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/apple-touch-icon.png" />
     <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <link
-      rel="preload"
-      as="image"
-      href="%PUBLIC_URL%/profileImage.webp"
-      type="image/webp"
-      media="(prefers-color-scheme: dark)"
-    />
-    <link
-      rel="preload"
-      as="image"
-      href="%PUBLIC_URL%/light_theme_profile.webp"
-      type="image/webp"
-      media="(prefers-color-scheme: light)"
-    />
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
