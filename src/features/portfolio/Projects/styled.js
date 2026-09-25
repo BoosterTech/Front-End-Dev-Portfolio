@@ -61,6 +61,15 @@ export const Header = styled.h2`
   @media (max-width: ${({ theme }) => theme.breakpoint.xl}) {
     padding-left: 13px;
   }
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
+    transform: ${({ $lang }) =>
+      $lang === "Polish"
+        ? "translateX(1px)"
+        : $lang === "English"
+          ? "translateX(-3px)"
+          : "none"};
+  }
 `;
 
 export const DragLayer = styled(m.div)`
