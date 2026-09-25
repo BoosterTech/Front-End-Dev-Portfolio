@@ -6,54 +6,23 @@ import { PortraitPlayButton, PortraitVideo } from "./homeStyles";
 
 const TALKING_PORTRAIT_SRC = `${process.env.PUBLIC_URL}/talking-portrait/profile-dark-en.mp4`;
 
-const DECODING_INFO = {
-  type: "file",
-  audio: {
-    contentType: 'audio/mp4; codecs="mp4a.40.2"',
-    channels: "2",
-    bitrate: 83000,
-    samplerate: 32000,
-  },
-  video: {
-    contentType: 'video/mp4; codecs="avc1.4d401f"',
-    width: 480,
-    height: 480,
-    bitrate: 156000,
-    framerate: 24,
-  },
-};
-
 /**
  * Click-to-play AI talking portrait. Opt-in only — the clip lazy-loads on tap,
  * plays once over the still photo, then swaps back on `ended`. The generated
  * clip's last frame matches the portrait, so the return is seamless.
  *
- * The control is withheld only when MediaCapabilities reports the decoder
- * can't play this clip smoothly — the still portrait is the fallback.
- *
- * @param {{ poster: string }} props - theme-matched still shown as video poster
+ * @param {{ poster: string, onPlayingChange?: (playing: boolean) => void }} props
  */
-const TalkingPortrait = ({ poster }) => {
+const TalkingPortrait = ({ poster, onPlayingChange }) => {
   const { home } = useContent();
   const [status, setStatus] = useState("idle");
-  const [capable, setCapable] = useState(true);
   const loading = status === "loading";
+  const updateStatus = (next) => {
+    setStatus(next);
+    onPlayingChange?.(next === "playing");
+  };
 
-  useEffect(() => {
-    if (!navigator.mediaCapabilities?.decodingInfo) return;
-    let cancelled = false;
-    navigator.mediaCapabilities
-      .decodingInfo(DECODING_INFO)
-      .then((info) => {
-        if (!cancelled && (!info.supported || !info.smooth)) setCapable(false);
-      })
-      .catch(() => {});
-    return () => {
-      cancelled = true;
-    };
-  }, []);
-
-  if (!capable) return null;
+  useEffect(() => () => onPlayingChange?.(false), [onPlayingChange]);
 
   return (
     <>
@@ -66,15 +35,15 @@ const TalkingPortrait = ({ poster }) => {
           playsInline
           preload="none"
           aria-label={home.hearMeLabel}
-          onPlaying={() => setStatus("playing")}
-          onEnded={() => setStatus("idle")}
-          onError={() => setStatus("idle")}
-          onClick={() => setStatus("idle")}
+          onPlaying={() => updateStatus("playing")}
+          onEnded={() => updateStatus("idle")}
+          onError={() => updateStatus("idle")}
+          onClick={() => updateStatus("idle")}
         />
       )}
       {status !== "playing" && (
         <PortraitPlayButton
-          onClick={() => setStatus("loading")}
+          onClick={() => updateStatus("loading")}
           aria-label={home.hearMeLabel}
           aria-busy={loading}
           disabled={loading}

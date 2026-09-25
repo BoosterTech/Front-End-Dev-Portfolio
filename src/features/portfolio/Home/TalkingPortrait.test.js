@@ -1,4 +1,4 @@
-import { fireEvent, screen, waitFor } from "@testing-library/react";
+import { fireEvent, screen } from "@testing-library/react";
 import Home from "features/portfolio/Home";
 import { renderWithProviders } from "test-utils";
 
@@ -47,31 +47,5 @@ describe("TalkingPortrait", () => {
     expect(
       screen.queryByRole("button", { name: /hear me/i })
     ).not.toBeInTheDocument();
-  });
-
-  it("hides the control when the decoder reports non-smooth playback", async () => {
-    Object.defineProperty(window.navigator, "mediaCapabilities", {
-      value: {
-        decodingInfo: async () => ({
-          supported: true,
-          smooth: false,
-          powerEfficient: false,
-        }),
-      },
-      configurable: true,
-    });
-
-    renderWithProviders(<Home id="home" />, {
-      initialLanguage: "English",
-      initialIsDark: true,
-    });
-
-    await waitFor(() =>
-      expect(
-        screen.queryByRole("button", { name: /hear me/i })
-      ).not.toBeInTheDocument()
-    );
-
-    delete window.navigator.mediaCapabilities;
   });
 });
