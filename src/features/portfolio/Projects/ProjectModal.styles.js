@@ -24,7 +24,7 @@ export const Backdrop = styled(m.div)`
 export const Modal = styled(m.div)`
   position: relative;
   width: 100%;
-  max-width: 900px;
+  max-width: 800px;
   max-height: 90vh;
   overflow: hidden;
   border-radius: var(--radius-xl);
@@ -43,6 +43,9 @@ export const Modal = styled(m.div)`
 
 export const ModalScroll = styled.div`
   overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  touch-action: pan-y;
   max-height: 90vh;
   height: 100%;
 
@@ -58,16 +61,13 @@ export const ModalScroll = styled.div`
     background: var(--color-border);
     border-radius: 4px;
   }
-
   @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
     max-height: none;
   }
 `;
 
-export const CloseButton = styled.button`
+const modalButtonChrome = css`
   position: absolute;
-  top: var(--spacing-md);
-  right: var(--spacing-md);
   z-index: 10;
   display: flex;
   align-items: center;
@@ -79,7 +79,10 @@ export const CloseButton = styled.button`
   background: rgba(var(--color-surface-rgb), 0.9);
   color: var(--color-text-primary);
   cursor: pointer;
-  transition: all var(--transition-fast);
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    color var(--transition-fast);
   backdrop-filter: blur(8px);
 
   &:hover {
@@ -94,8 +97,36 @@ export const CloseButton = styled.button`
   }
 `;
 
+export const CloseButton = styled.button`
+  ${modalButtonChrome}
+  top: max(var(--spacing-md), env(safe-area-inset-top, 0px));
+  right: max(var(--spacing-md), env(safe-area-inset-right, 0px));
+`;
+
+export const ModalNavButton = styled.button`
+  ${modalButtonChrome}
+  top: 50%;
+  transform: translateY(-50%);
+  ${({ $left }) =>
+    $left ? "left: var(--spacing-md);" : "right: var(--spacing-md);"}
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
+    display: none;
+  }
+`;
+
+export const ModalSwap = styled(m.div)`
+  position: relative;
+  overflow: clip;
+`;
+
+export const ModalBody = styled(m.div)`
+  background: var(--color-surface);
+`;
+
 export const ModalImageWrapper = styled.div`
   position: relative;
+  border-bottom: 1px solid var(--color-border);
 
   @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
     &::before,
@@ -131,12 +162,19 @@ export const ModalImageWrapper = styled.div`
 
 export const ModalImage = styled.img`
   width: 100%;
+  height: auto;
   max-height: 450px;
   object-fit: contain;
   object-position: top center;
   display: block;
   border-radius: var(--radius-xl) var(--radius-xl) 0 0;
   background: var(--color-terminal-bg);
+  opacity: ${({ $loaded }) => ($loaded ? 1 : 0)};
+  transition: opacity 0.3s ease;
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
     border-radius: 0;
@@ -224,7 +262,10 @@ export const ModalCTAButton = styled(Button)`
   min-height: 36px;
   padding: var(--spacing-xs) var(--spacing-md);
   font-size: 0.9rem;
-  transition: all 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    color 0.3s ease;
 
   ${({ $secondary }) =>
     $secondary

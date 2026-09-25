@@ -26,8 +26,34 @@ const Projects = ({ id }) => {
   const { projects: projectsContent } = useContent();
   const { language } = useLanguage();
   const [activeIndex, setActiveIndex] = useState(1);
-  const [expandedProject, setExpandedProject] = useState(null);
+  const [expandedIndex, setExpandedIndex] = useState(null);
+  const expandedProject =
+    expandedIndex !== null ? projects[expandedIndex] : null;
   const dragMoved = useRef(false);
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    if (navigator.connection?.saveData) return;
+    const el = sectionRef.current;
+    if (!el || typeof IntersectionObserver === "undefined") return;
+
+    const prefetch = () =>
+      projects.forEach((p) => {
+        if (p.modalImageURL) new Image().src = p.modalImageURL;
+      });
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (!entries.some((e) => e.isIntersecting)) return;
+        observer.disconnect();
+        if ("requestIdleCallback" in window) requestIdleCallback(prefetch);
+        else prefetch();
+      },
+      { rootMargin: "600px 0px" }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   const handleSelect = (index) => setActiveIndex(index);
   const handlePrev = () => setActiveIndex((prev) => Math.max(0, prev - 1));
@@ -40,30 +66,31 @@ const Projects = ({ id }) => {
 
   const handleDragEnd = (_, info) => {
     const { offset, velocity } = info;
-    if (offset.x < -60 || velocity.x < -400) {
-      handleNext();
-    } else if (offset.x > 60 || velocity.x > 400) {
-      handlePrev();
+    if (Math.abs(offset.x) > Math.abs(offset.y)) {
+      if (offset.x < -60 || velocity.x < -400) {
+        handleNext();
+      } else if (offset.x > 60 || velocity.x > 400) {
+        handlePrev();
+      }
     }
     setTimeout(() => {
       dragMoved.current = false;
     }, 150);
   };
 
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (e.key === "ArrowLeft" && activeIndex > 0) {
-        handlePrev();
-      } else if (e.key === "ArrowRight" && activeIndex < projects.length - 1) {
-        handleNext();
-      }
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [activeIndex]);
+  const handleKeyDown = (e) => {
+    if (expandedIndex !== null) return;
+    if (e.key === "ArrowLeft" && activeIndex > 0) {
+      e.preventDefault();
+      handlePrev();
+    } else if (e.key === "ArrowRight" && activeIndex < projects.length - 1) {
+      e.preventDefault();
+      handleNext();
+    }
+  };
 
   return (
-    <Wrapper id={id}>
+    <Wrapper id={id} ref={sectionRef}>
       <TitleWrapper>
         <a
           href="https://github.com/BoosterTech"
@@ -73,11 +100,15 @@ const Projects = ({ id }) => {
         >
           <ProjectIcon src={gitHubIcon} alt="" />
         </a>
-        <Header aria-label={menuItems[language][2].name}>
+        <Header $lang={language} aria-label={menuItems[language][2].name}>
           {projectsContent.header}
         </Header>
       </TitleWrapper>
-      <ProjectsWrapper role="region" aria-label={projectsContent.regionLabel}>
+      <ProjectsWrapper
+        role="region"
+        aria-label={projectsContent.regionLabel}
+        onKeyDown={handleKeyDown}
+      >
         {activeIndex > 0 && (
           <CarouselButton
             $left
@@ -89,6 +120,7 @@ const Projects = ({ id }) => {
         )}
         <DragLayer
           drag="x"
+          dragDirectionLock
           dragConstraints={{ left: 0, right: 0 }}
           dragElastic={0.15}
           dragMomentum={false}
@@ -114,7 +146,7 @@ const Projects = ({ id }) => {
                     if (!dragMoved.current) handleSelect(index);
                   }}
                   onExpand={() => {
-                    if (!dragMoved.current) setExpandedProject(project);
+                    if (!dragMoved.current) setExpandedIndex(index);
                   }}
                 />
               );
@@ -145,7 +177,13 @@ const Projects = ({ id }) => {
         {expandedProject && (
           <ProjectModal
             project={expandedProject}
-            onClose={() => setExpandedProject(null)}
+            onClose={() => setExpandedIndex(null)}
+            onPrev={() => setExpandedIndex((i) => Math.max(0, i - 1))}
+            onNext={() =>
+              setExpandedIndex((i) => Math.min(projects.length - 1, i + 1))
+            }
+            hasPrev={expandedIndex > 0}
+            hasNext={expandedIndex < projects.length - 1}
           />
         )}
       </AnimatePresence>

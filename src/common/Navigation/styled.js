@@ -1,4 +1,5 @@
-import { fadeIn } from "common/animations";
+import { fadeIn, forcedColorsText, gradientShift } from "common/animations";
+import { m } from "framer-motion";
 import { Link } from "react-scroll";
 import styled from "styled-components";
 
@@ -82,30 +83,31 @@ export const StyledScrollLink = styled(Link)`
 
   &.active ${StyledListItem} {
     color: var(--color-white);
-    background: linear-gradient(
-      135deg,
-      var(--color-primary),
-      var(--color-accent)
-    );
-    border-color: var(--color-primary);
-
-    svg {
-      color: var(--color-primary);
-    }
-
-    @media (max-width: ${({ theme }) => theme.breakpoint.xl2}) {
-      background: none;
-      background-color: transparent;
-      color: var(--color-primary);
-      border-color: var(--color-primary);
-      border-radius: 50px;
-      svg {
-        color: var(--color-primary);
-      }
-    }
   }
+`;
 
-  /* Contact item active styles now apply to all active menu items */
+export const ActivePill = styled(m.span)`
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: 20px;
+  border: 1px solid var(--color-primary);
+  background: linear-gradient(
+    135deg,
+    var(--color-primary),
+    var(--color-accent)
+  );
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.xl2}) {
+    border-radius: 50%;
+  }
+`;
+
+export const ItemLabel = styled.span`
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
 `;
 
 export const DevWrapper = styled.div`
@@ -130,20 +132,11 @@ export const DevWrapper = styled.div`
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-size: 200% 200%;
-  animation: gradientShift 3s ease-in-out infinite;
+  animation: ${gradientShift} 15s ease-in-out infinite;
+  ${forcedColorsText}
   z-index: 10;
   display: flex;
   flex-wrap: nowrap;
-
-  @keyframes gradientShift {
-    0%,
-    100% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-  }
 
   &:hover {
     filter: brightness(1.1);
@@ -202,7 +195,7 @@ export const MobileMenuBackdrop = styled.div`
   top: 100%;
   left: 0;
   width: 100%;
-  height: calc(100vh - 100%);
+  height: calc(100vh - var(--navbar-height));
   background: rgba(var(--color-black-rgb), 0.4);
   opacity: 0;
   visibility: hidden;

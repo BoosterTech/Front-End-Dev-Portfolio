@@ -1,4 +1,9 @@
-import { fadeInUp, float, gradientShift, waveHand } from "common/animations";
+import {
+  fadeInUp,
+  float,
+  forcedColorsText,
+  gradientShift,
+} from "common/animations";
 import { m } from "framer-motion";
 import styled from "styled-components";
 
@@ -38,6 +43,8 @@ export const Header = styled.h2`
   position: relative;
   padding-bottom: 0.3em;
   padding-left: 16px;
+  transform: ${({ $lang }) =>
+    $lang === "Polish" ? "translateX(6px)" : "none"};
   background: linear-gradient(
     135deg,
     var(--color-text-primary) 0%,
@@ -49,10 +56,7 @@ export const Header = styled.h2`
   -webkit-text-fill-color: transparent;
   background-size: 200% 200%;
   animation: ${gradientShift} 15s ease-in-out infinite;
-
-  &:hover img {
-    animation: ${waveHand} 4s infinite;
-  }
+  ${forcedColorsText}
 
   @media (max-width: ${({ theme }) => theme.breakpoint.xl}) {
     padding-left: 13px;
@@ -62,6 +66,7 @@ export const Header = styled.h2`
 export const DragLayer = styled(m.div)`
   width: 100%;
   touch-action: pan-y;
+  will-change: transform;
   -webkit-mask-image: linear-gradient(
     90deg,
     transparent,
@@ -76,6 +81,11 @@ export const DragLayer = styled(m.div)`
     rgba(var(--color-black-rgb), 1) 88%,
     transparent
   );
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
 `;
 
 export const ProjectsWrapper = styled.div`
@@ -127,7 +137,7 @@ export const ProjectsTrack = styled.div`
   transition: transform 0.5s ease;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
-    --card-width: 82%;
+    --card-width: 80%;
     --card-gap: 3%;
   }
 `;

@@ -36,10 +36,10 @@ describe("CarouselSlide", () => {
     );
 
     expect(
-      screen.getByAltText("Test Project project screenshot")
+      screen.getByAltText("Test Project — project screenshot")
     ).toBeInTheDocument();
     expect(
-      screen.getByRole("button", { name: "Test Project" })
+      screen.getByRole("button", { name: "Expand Test Project" })
     ).toBeInTheDocument();
   });
 
@@ -87,7 +87,7 @@ describe("CarouselSlide", () => {
       />
     );
 
-    expect(screen.getByAltText("Coming Soon")).toBeInTheDocument();
+    expect(screen.getByText("Coming soon")).toBeInTheDocument();
   });
 
   it("calls onExpand when active slide is clicked", () => {
@@ -102,7 +102,7 @@ describe("CarouselSlide", () => {
       />
     );
 
-    fireEvent.click(screen.getByAltText("Test Project project screenshot"));
+    fireEvent.click(screen.getByAltText("Test Project — project screenshot"));
     expect(onExpand).toHaveBeenCalledTimes(1);
   });
 
@@ -118,7 +118,7 @@ describe("CarouselSlide", () => {
       />
     );
 
-    fireEvent.click(screen.getByAltText("Test Project project screenshot"));
+    fireEvent.click(screen.getByAltText("Test Project — project screenshot"));
     expect(onClick).toHaveBeenCalledTimes(1);
   });
 
@@ -134,7 +134,9 @@ describe("CarouselSlide", () => {
       />
     );
 
-    fireEvent.click(screen.getByRole("button", { name: "Test Project" }));
+    fireEvent.click(
+      screen.getByRole("button", { name: "Expand Test Project" })
+    );
     expect(onExpand).toHaveBeenCalledTimes(1);
   });
 
@@ -150,7 +152,37 @@ describe("CarouselSlide", () => {
     );
 
     expect(
-      screen.queryByRole("button", { name: "Test Project" })
+      screen.queryByRole("button", { name: "Expand Test Project" })
     ).not.toBeInTheDocument();
+  });
+
+  it("exposes the slide as a labelled group", () => {
+    renderWithProviders(
+      <CarouselSlide
+        project={baseProject}
+        isActive={false}
+        position="left"
+        onClick={() => {}}
+        onExpand={() => {}}
+      />
+    );
+
+    expect(
+      screen.getByRole("group", { name: "Test Project" })
+    ).toBeInTheDocument();
+  });
+
+  it("keeps CTA links out of the tab order on inactive slides", () => {
+    renderWithProviders(
+      <CarouselSlide
+        project={baseProject}
+        isActive={false}
+        position="left"
+        onClick={() => {}}
+        onExpand={() => {}}
+      />
+    );
+
+    expect(screen.queryByRole("link")).not.toBeInTheDocument();
   });
 });

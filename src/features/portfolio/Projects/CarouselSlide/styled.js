@@ -191,13 +191,3 @@ export const ExpandButton = styled.button`
     display: none;
   }
 `;
-
-export const ComingSoonBadge = styled.img`
-  position: absolute;
-  bottom: -34px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 150px;
-  z-index: 3;
-  filter: drop-shadow(0 2px 6px rgb(var(--color-black-rgb) / 0.45));
-`;

@@ -19,6 +19,8 @@ export const LanguageSwitch = ({ onOpen }) => {
   const { nav } = useContent();
   const [isOpen, setIsOpen] = useState(false);
   const ref = useRef(null);
+  const globeRef = useRef(null);
+  const itemRefs = useRef([]);
 
   useEffect(() => {
     const handleClickOutside = (e) => {
@@ -48,10 +50,46 @@ export const LanguageSwitch = ({ onOpen }) => {
     setIsOpen(false);
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === "Escape" && isOpen) {
+      e.preventDefault();
+      setIsOpen(false);
+      globeRef.current?.focus();
+    }
+  };
+
+  const handleItemKeyDown = (e, index) => {
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      itemRefs.current[(index + 1) % languages.length]?.focus();
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      itemRefs.current[
+        (index - 1 + languages.length) % languages.length
+      ]?.focus();
+    }
+  };
+
+  const handleGlobeKeyDown = (e) => {
+    if (e.key === "ArrowDown" && !isOpen) {
+      e.preventDefault();
+      setIsOpen(true);
+      if (onOpen) onOpen();
+      requestAnimationFrame(() => itemRefs.current[0]?.focus());
+    }
+  };
+
   return (
-    <Wrapper ref={ref} role="group" aria-label={nav.languageGroupLabel}>
+    <Wrapper
+      ref={ref}
+      role="group"
+      aria-label={nav.languageGroupLabel}
+      onKeyDown={handleKeyDown}
+    >
       <GlobeButton
+        ref={globeRef}
         onClick={toggle}
+        onKeyDown={handleGlobeKeyDown}
         aria-label={nav.languageSelectLabel}
         aria-expanded={isOpen}
         aria-haspopup="listbox"
@@ -59,11 +97,15 @@ export const LanguageSwitch = ({ onOpen }) => {
         <FaGlobe />
       </GlobeButton>
       <Dropdown className={isOpen ? "open" : ""} role="listbox">
-        {languages.map((lang) => (
+        {languages.map((lang, index) => (
           <DropdownItem
             key={lang.name}
+            ref={(el) => {
+              itemRefs.current[index] = el;
+            }}
             $isActive={language === lang.name}
             onClick={() => handleSelect(lang.name)}
+            onKeyDown={(e) => handleItemKeyDown(e, index)}
             role="option"
             aria-selected={language === lang.name}
           >

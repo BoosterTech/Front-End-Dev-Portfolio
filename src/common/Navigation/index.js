@@ -4,6 +4,7 @@ import { LanguageSwitch } from "common/LanguageSwitch";
 import useContent from "common/useContent";
 import { useMediaQuery } from "common/useMediaQuery";
 import { useScrollSpy } from "common/useScrollSpy";
+import { useReducedMotion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { FaEnvelope, FaHome, FaProjectDiagram, FaUser } from "react-icons/fa";
 import { Link } from "react-scroll";
@@ -12,8 +13,10 @@ import { themes } from "themes";
 import { HamburgerIcon } from "./HamburgerIcon";
 import { menuItems } from "./menuItems";
 import {
+  ActivePill,
   DevWrapper,
   HamburgerButton,
+  ItemLabel,
   MenuContainer,
   MobileMenuBackdrop,
   MobileNavItem,
@@ -32,19 +35,23 @@ const Navigation = () => {
   const { language } = useLanguage();
   const { nav } = useContent();
   const activeId = useScrollSpy(SECTION_IDS);
+  const shouldReduceMotion = useReducedMotion();
 
   const isCompact = useMediaQuery(`(max-width: ${COMPACT_MAX_PX}px)`);
   const isMobile = useMediaQuery(`(max-width: ${themes.breakpoint.md})`);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navRef = useRef(null);
   const [hidden, setHidden] = useState(false);
-  const touchStartY = useRef(0);
 
   useEffect(() => {
     let lastScrollY = window.scrollY;
     let ticking = false;
 
     const updateScroll = () => {
+      if (document.body.style.position === "fixed") {
+        ticking = false;
+        return;
+      }
       if (window.innerWidth >= DESKTOP_MIN_PX) {
         setHidden(false);
         ticking = false;
@@ -126,40 +133,18 @@ const Navigation = () => {
     setIsMenuOpen(false);
   };
 
-  const reloadTriggered = useRef(false);
-  const handlePullStart = (e) => {
-    touchStartY.current = e.touches[0].clientY;
-  };
-  const handlePullMove = (e) => {
-    if (
-      !reloadTriggered.current &&
-      e.touches[0].clientY - touchStartY.current > 70
-    ) {
-      reloadTriggered.current = true;
-      window.location.reload();
-    }
-  };
-
   const getOffset = (item) =>
     isMobile && item.offsetMobile != null ? item.offsetMobile : item.offset;
 
   const getIcon = (item) => {
     switch (item) {
-      case "Home":
-      case "Strona główna":
-      case "Inicio":
+      case "home":
         return <FaHome />;
-      case "About me":
-      case "O mnie":
-      case "Acerca de":
+      case "about":
         return <FaUser />;
-      case "Projects":
-      case "Projekty":
-      case "Proyectos":
+      case "projects":
         return <FaProjectDiagram />;
-      case "Contact":
-      case "Kontakt":
-      case "Contacto":
+      case "contact":
         return <FaEnvelope />;
       default:
         return null;
@@ -204,7 +189,14 @@ const Navigation = () => {
               key={index}
             >
               <StyledListItem key={index}>
-                {isCompact ? getIcon(item.name) : item.name}
+                {activeId === item.slug && (
+                  <ActivePill
+                    layoutId={shouldReduceMotion ? undefined : "nav-pill"}
+                  />
+                )}
+                <ItemLabel>
+                  {isCompact ? getIcon(item.slug) : item.name}
+                </ItemLabel>
               </StyledListItem>
             </StyledScrollLink>
           );
@@ -220,14 +212,10 @@ const Navigation = () => {
       <MobileMenuBackdrop
         className={isMenuOpen ? "open" : ""}
         onClick={() => setIsMenuOpen(false)}
-        onTouchStart={handlePullStart}
-        onTouchMove={handlePullMove}
       />
       <MobileMenuPanel
         className={isMenuOpen ? "open" : ""}
         data-testid="mobile-menu"
-        onTouchStart={handlePullStart}
-        onTouchMove={handlePullMove}
       >
         {menuItems[language].map((item, index) => {
           return (
@@ -241,7 +229,7 @@ const Navigation = () => {
               key={index}
               onClick={() => setIsMenuOpen(false)}
             >
-              {getIcon(item.name)}
+              {getIcon(item.slug)}
               {item.name}
             </MobileNavItem>
           );

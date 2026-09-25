@@ -1,5 +1,7 @@
 import { useLanguage } from "common/LanguageProvider";
+import useContent from "common/useContent";
 import { PROJECT_IMAGE_HEIGHT, PROJECT_IMAGE_WIDTH } from "content/projects";
+import { ComingSoonBadge } from "features/portfolio/Projects/ComingSoonBadge.styles";
 import { FaExpandArrowsAlt, FaExternalLinkAlt, FaGithub } from "react-icons/fa";
 
 import {
@@ -7,7 +9,6 @@ import {
   BottomRow,
   CTAButton,
   CTAContainer,
-  ComingSoonBadge,
   ExpandButton,
   Overlay,
   Slide,
@@ -17,27 +18,44 @@ import {
 /** @param {{ project: import("../../../../types").Project; isActive: boolean; position: "left" | "center" | "right"; onClick: () => void; onExpand: () => void }} props */
 const CarouselSlide = ({ project, isActive, position, onClick, onExpand }) => {
   const { language } = useLanguage();
+  const { projects: projectsContent } = useContent();
+
+  const prefetchModalImage = () => {
+    const src = project.modalImageURL || project.imageURL;
+    if (src) new Image().src = src;
+  };
 
   return (
     <Slide
       $isActive={isActive}
       $position={position}
+      role="group"
+      aria-roledescription="slide"
+      aria-label={project.title[language]}
       onClick={isActive ? onExpand : onClick}
+      onMouseEnter={prefetchModalImage}
     >
       <SlideImage
         src={project.imageURL}
-        alt={`${project.title[language]} project screenshot`}
+        alt={projectsContent.screenshotAlt.replace(
+          "{title}",
+          project.title[language]
+        )}
         width={PROJECT_IMAGE_WIDTH}
         height={PROJECT_IMAGE_HEIGHT}
         loading="lazy"
       />
       {isActive && project.variant !== "comingSoon" && (
         <ExpandButton
+          onFocus={prefetchModalImage}
           onClick={(e) => {
             e.stopPropagation();
             onExpand();
           }}
-          aria-label={project.title[language]}
+          aria-label={projectsContent.expandLabel.replace(
+            "{title}",
+            project.title[language]
+          )}
         >
           <FaExpandArrowsAlt />
         </ExpandButton>
@@ -56,7 +74,7 @@ const CarouselSlide = ({ project, isActive, position, onClick, onExpand }) => {
           <BottomBar>
             <BottomRow>
               <CTAContainer>
-                {project.GitHubPagesURL && (
+                {isActive && project.GitHubPagesURL && (
                   <CTAButton
                     href={project.GitHubPagesURL}
                     target="_blank"
@@ -64,10 +82,11 @@ const CarouselSlide = ({ project, isActive, position, onClick, onExpand }) => {
                     onClick={(e) => e.stopPropagation()}
                   >
                     <FaExternalLinkAlt />
-                    {project.GitHubPagesURLTag?.[language] || "Live Demo"}
+                    {project.GitHubPagesURLTag?.[language] ||
+                      projectsContent.liveDemoLabel}
                   </CTAButton>
                 )}
-                {project.GitHubRepoURL && (
+                {isActive && project.GitHubRepoURL && (
                   <CTAButton
                     $secondary
                     href={project.GitHubRepoURL}
@@ -76,7 +95,8 @@ const CarouselSlide = ({ project, isActive, position, onClick, onExpand }) => {
                     onClick={(e) => e.stopPropagation()}
                   >
                     <FaGithub />
-                    {project.GitHubRepoURLTag?.[language] || "GitHub"}
+                    {project.GitHubRepoURLTag?.[language] ||
+                      projectsContent.repoLabel}
                   </CTAButton>
                 )}
               </CTAContainer>
@@ -85,10 +105,7 @@ const CarouselSlide = ({ project, isActive, position, onClick, onExpand }) => {
         </Overlay>
       )}
       {project.variant === "comingSoon" && (
-        <ComingSoonBadge
-          src={`${process.env.PUBLIC_URL}/coming_soon_icon.webp`}
-          alt="Coming Soon"
-        />
+        <ComingSoonBadge>{projectsContent.comingSoonLabel}</ComingSoonBadge>
       )}
     </Slide>
   );
