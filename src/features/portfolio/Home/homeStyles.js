@@ -172,6 +172,7 @@ export const PortraitVideo = styled.video`
   position: absolute;
   inset: 0;
   z-index: 3;
+  will-change: transform;
   width: 100%;
   height: 100%;
   object-fit: cover;
