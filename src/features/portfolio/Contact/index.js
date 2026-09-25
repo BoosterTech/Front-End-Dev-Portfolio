@@ -1,78 +1,63 @@
-import { icons } from "./contactIcons";
-import { ContactIconStyled, IconsWrapper, Header, Wrapper } from "./styled";
+import { useLanguage } from "common/LanguageProvider";
+import useContent from "common/useContent";
+import { FiArrowUpRight } from "react-icons/fi";
 
-import { useDispatch, useSelector } from "react-redux";
-import { selectLanguage } from "../../../Redux/languageSlice";
-import { useTheme } from "styled-components";
-import { useEffect, useRef } from "react";
-import { setContactVisibility } from "../../../Redux/generalSlice";
+import { icons } from "./contactIcons";
+import {
+  Arrow,
+  CardsGrid,
+  ContactLabel,
+  ContactName,
+  ContactTile,
+  Eyebrow,
+  Header,
+  IconFrame,
+  Subtitle,
+  Wrapper,
+} from "./styled";
 
 const Contact = ({ id }) => {
-  const language = useSelector(selectLanguage);
-  const theme = useTheme();
-  const contactRef = useRef("");
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    const currentRef = contactRef.current;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach(({ isIntersecting }) => {
-          if (isIntersecting) {
-            dispatch(setContactVisibility(true));
-          } else {
-            dispatch(setContactVisibility(false));
-          }
-        });
-      },
-      { threshold: 0 }
-    );
-
-    if (currentRef) {
-      observer.observe(currentRef);
-    }
-
-    const handleScroll = () => {
-      if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 2) {
-        dispatch(setContactVisibility(true));
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      if (currentRef) {
-        observer.unobserve(currentRef);
-      }
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [dispatch]);
+  const { contact } = useContent();
+  const { language } = useLanguage();
 
   return (
-    <Wrapper id={id} ref={contactRef}>
-      <Header>{theme[language].contact.contactParagraph}</Header>
-      <IconsWrapper>
-        {icons.map((icon, index) => (
-          <a
-            style={{ display: "flex" }}
-            key={icon.id}
-            href={icon.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`Contact via ${icon.name || 'social media'}`}
-          >
-            <ContactIconStyled 
-              src={icon.iconURL} 
-              alt={`${icon.name || 'Contact'} icon`}
-              index={index}
-            />
-          </a>
-        ))}
-      </IconsWrapper>
+    <Wrapper id={id}>
+      <Eyebrow aria-hidden="true" />
+      <Header>
+        {contact.headerPlain} <span>{contact.headerAccent}</span>
+      </Header>
+      <Subtitle>{contact.contactParagraph}</Subtitle>
+      <CardsGrid>
+        {icons.map((icon) => {
+          const isExternal = !icon.link.startsWith("mailto:");
+          return (
+            <ContactTile
+              key={icon.id}
+              href={icon.link}
+              target={isExternal ? "_blank" : undefined}
+              rel={isExternal ? "noopener noreferrer" : undefined}
+              $accent={icon.accent}
+            >
+              <Arrow $accent={icon.accent} aria-hidden="true">
+                <FiArrowUpRight />
+              </Arrow>
+              <IconFrame $id={icon.id} $accent={icon.accent}>
+                <img
+                  src={icon.iconURL}
+                  alt=""
+                  width={icon.iconWidth}
+                  height={icon.iconHeight}
+                  loading="lazy"
+                />
+              </IconFrame>
+              <ContactName>{icon.name}</ContactName>
+              <ContactLabel>{icon.label[language]}</ContactLabel>
+            </ContactTile>
+          );
+        })}
+      </CardsGrid>
     </Wrapper>
   );
 };
 
 export default Contact;
-

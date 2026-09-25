@@ -1,0 +1,50 @@
+# Talking Portrait — AI Lip-Sync Greeting
+
+## Idea
+
+Profile photo on the Home hero speaks a short scripted greeting, lip-synced via AI
+(HeyGen / D-ID / Hedra — feed it ~30s of real voice recording for best sync).
+
+## Script (~10s, approved)
+
+> "Hey — I'm Derek. I went from soldering embedded systems to shipping
+> production SaaS. This talking portrait? Also AI — that's kind of my thing.
+> Scroll down and see what I've built."
+
+Rationale: the self-reference doubles as a demo — AI-directed engineering is the
+brand, so the talking photo is proof of the thing being sold.
+
+## Requirements
+
+- Trigger: click/tap on portrait ("▶ hear me" affordance) — never autoplay.
+  Browsers block autoplay-with-audio; a silently mouthing face reads creepy.
+- Once per session, not a loop on every hover.
+- Keep under ~12s — lip-sync quality and uncanny-valley tolerance both degrade
+  with length.
+- Trilingual parity: site ships en/pl/es — either generate all three versions
+  or add localized captions. Polish/Spanish script needed at implementation time.
+- Accessibility: the play affordance must be a real `<button>` with a localized
+  aria-label via `translations.js`; clip is opt-in so reduced-motion is
+  inherently respected, but honor `prefers-reduced-motion` for any UI shimmer.
+- Theme: portrait swaps with `isDark` (`profileImage.webp` /
+  `light_theme_profile.webp`) — decide whether the talking clip is
+  theme-agnostic or needs two variants.
+
+## Status (implemented)
+
+- Tool: image-to-video playground (voice-identity reference audio + script in
+  prompt), not HeyGen/D-ID — lip-sync generated from prompt text.
+- Format: plain `<video>` click-to-play — mounts lazily on tap
+  (`preload="none"`, src only set after gesture), `autoPlay` + `playsInline`,
+  tap or `ended` swaps back to the still. Generated clip's last frame matches
+  the portrait for a seamless return.
+- Asset: `public/talking-portrait/profile-dark-en.mp4` (~3.8MB, 1:1).
+  Naming convention `profile-{theme}-{lang}.mp4` for future variants.
+- Shown only for `language === "English"` **and** dark theme — generate
+  `profile-light-en.mp4` / pl / es variants to widen coverage.
+- `serve-e2e.js` serves `.mp4` as `video/mp4`.
+
+## Open questions
+
+- pl/es clips or localized captions — currently English-only affordance.
+- WCAG: speech-only clip has no `<track>` captions; add if we keep it.

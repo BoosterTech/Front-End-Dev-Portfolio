@@ -1,101 +1,102 @@
+import { useLanguage } from "common/LanguageProvider";
+import { menuItems } from "common/Navigation/menuItems";
+import { useThemeMode } from "common/ThemeModeProvider";
+import useContent from "common/useContent";
+import { useMediaQuery } from "common/useMediaQuery";
+import { FaArrowRight, FaFileAlt, FaStar } from "react-icons/fa";
+import { themes } from "themes";
+
+import {
+  WelcomeLabel,
+  HeroTitle,
+  GradientText,
+  TechStackText,
+  HeroDescription,
+  ButtonsContainer,
+  ViewMyWorkButton,
+  DownloadCVButton,
+} from "./heroStyles";
 import {
   ContentImageContainer,
   HomeWrapper,
   ImageContainer,
   ContentContainer,
-  ContentHeader,
-  HeaderImage,
-  HeaderParagraph,
   ProfileImage,
-  TechStackContainer,
-  TechStackItem,
-  TechStackSpan,
-} from "./styled";
+} from "./homeStyles";
+import TalkingPortrait from "./TalkingPortrait";
+import { ToolsShowcase } from "./ToolsShowcase";
 
-import wavingHandImage from "../../../images/wavingHand.png";
-import profileImage from "../../../images/profileImage.png";
-import reactIcon from "../../../images/reactIcon.png";
-import reduxIcon from "../../../images/reduxIcon.png";
-import styledComponentsicon from "../../../images/styledComponentsIcon.jpg";
-import axiosIcon from "../../../images/axiosIcon.jpg";
-import reduxToolkitIcon from "../../../images/reduxToolkitIcon.jpg";
-import reactRouterIcon from "../../../images/reactRouterIcon.png";
-import supabaseIcon from  "../../../images/supabaseIcon.png";
-import nextIcon from "../../../images/nextIcon.png";
-import oAuthIcon from "../../../images/oAuthIcon.png";
-import reactQueryIcon from "../../../images/reactQueryIcon.png";
-import vercelIcon from "../../../images/vercelIcon.png";
-import jwtIcon from "../../../images/jwtIcon.png";
-import tailwindIcon from "../../../images/tailwindIcon.png";
-import typeScriptIcon from "../../../images/typeScriptIcon.png";
-
-import { SkillsetContainer } from "./SkillsetContainer";
-import { useTheme } from "styled-components";
-import React from "react";
-import { useSelector } from "react-redux";
-import { selectLanguage } from "../../../Redux/languageSlice";
+const profileImage = `${process.env.PUBLIC_URL}/profileImage.webp`;
+const lightProfileImage = `${process.env.PUBLIC_URL}/light_theme_profile.webp`;
 
 const Home = ({ id }) => {
-  const theme = useTheme();
-  const language = useSelector(selectLanguage);
+  const { home } = useContent();
+  const { language } = useLanguage();
+  const { isDark } = useThemeMode();
 
-  const techStackIcons = [
-    { src: reactIcon, name: "React" },
-    { src: reduxIcon, name: "Redux" },
-    { src: reduxToolkitIcon, name: "Redux Toolkit" },
-    { src: axiosIcon, name: "Axios" },
-    { src: reactRouterIcon, name: "React Router" },
-    { src: styledComponentsicon, name: "Styled Components" },
-    { src: nextIcon, name: "Next.js" },
-    { src: supabaseIcon, name: "Supabase" },
-    { src: oAuthIcon, name: "OAuth" },
-    { src: reactQueryIcon, name: "React Query" },
-    { src: vercelIcon, name: "Vercel" },
-    { src: jwtIcon, name: "JWT" },
-    { src: tailwindIcon, name: "Tailwind CSS" },
-    { src: typeScriptIcon, name: "TypeScript" },
-  ];
+  const headerWords = home.contentHeader.split(" ");
+  const titleFirst = headerWords.slice(0, -1).join(" ");
+  const titleLast = headerWords[headerWords.length - 1];
+  const projectsItem = menuItems[language][2];
+  const isMobile = useMediaQuery(`(max-width: ${themes.breakpoint.md})`);
+  const projectsOffset =
+    isMobile && projectsItem.offsetMobile != null
+      ? projectsItem.offsetMobile
+      : projectsItem.offset;
 
   return (
     <HomeWrapper id={id}>
       <ContentImageContainer>
         <ContentContainer>
-          <ContentHeader>
-            {theme[language].home.contentHeader
-              .split("\n")
-              .map((line, index) => (
-                <React.Fragment key={index}>{line}</React.Fragment>
-              ))}
-            <TechStackSpan>
-              {theme[language].home.contentHeaderTechStack}
-            </TechStackSpan>
-            <HeaderImage src={wavingHandImage} alt="Waving hand emoji" />
-          </ContentHeader>
-          <HeaderParagraph>
-            {theme[language].home.headerParagraph}
-          </HeaderParagraph>
+          <WelcomeLabel>
+            <FaStar />
+            {home.welcomeLabel}
+          </WelcomeLabel>
+          <HeroTitle>
+            {titleFirst} <GradientText>{titleLast}</GradientText>
+          </HeroTitle>
+          <TechStackText>{home.contentHeaderTechStack}</TechStackText>
+
+          <HeroDescription>{home.headerParagraph}</HeroDescription>
+          <ButtonsContainer>
+            <ViewMyWorkButton
+              to={projectsItem.slug}
+              href={`#${projectsItem.slug}`}
+              smooth={true}
+              offset={projectsOffset}
+              duration={700}
+            >
+              {home.viewMyWork}
+              <FaArrowRight />
+            </ViewMyWorkButton>
+            <DownloadCVButton
+              $variant="outline"
+              href={home.cvUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {home.viewCV}
+              <FaFileAlt />
+            </DownloadCVButton>
+          </ButtonsContainer>
         </ContentContainer>
         <ImageContainer>
-          <ProfileImage src={profileImage} alt="Dariusz Podczasik - Front-End Developer" />
+          <ProfileImage
+            ref={(el) => el?.setAttribute("fetchpriority", "high")}
+            src={isDark ? profileImage : lightProfileImage}
+            alt={home.portraitAlt}
+            width={640}
+            height={640}
+          />
+          {language === "English" && isDark && (
+            <TalkingPortrait poster={profileImage} />
+          )}
         </ImageContainer>
       </ContentImageContainer>
 
-      <TechStackContainer>
-        {techStackIcons.map((item, index) => (
-          <TechStackItem 
-            key={index} 
-            src={item.src} 
-            alt={item.name}
-            title={item.name}
-            index={index}
-          />
-        ))}
-      </TechStackContainer>
-
-      <SkillsetContainer />
+      <ToolsShowcase />
     </HomeWrapper>
   );
 };
 
 export default Home;
-

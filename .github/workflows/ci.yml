@@ -1,0 +1,47 @@
+name: CI
+
+on:
+  push:
+    branches: [main, feature/ui-refresh]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - run: npm ci
+
+      - run: npx --yes depcheck@1.4.7
+
+      - run: npm run check:circular
+
+      - run: npm run size-check
+
+      - run: npm run test:coverage
+
+      - run: npm run lint
+
+      - run: npm run format:check
+
+      - run: npm run check:colors
+
+      - run: npm run build
+
+      - run: npm run bundle:check
+
+      - run: npm run lighthouse:check
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Run E2E tests
+        run: npm run test:e2e

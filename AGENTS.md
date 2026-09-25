@@ -1,0 +1,164 @@
+# AGENTS.md
+
+Conventions contract for AI agents and contributors working in this repository.
+Read this before generating code.
+
+## What this is
+
+Personal portfolio SPA ("Derek.dev") — React 18, Create React App, styled-components,
+Framer Motion. Static site deployed to GitHub Pages. No backend, no API layer, no
+auth, no database, no state library. Keep it that way.
+
+## Structure
+
+- `src/features/portfolio/<Section>/` — feature folders (Home, About, Projects, Contact)
+- `src/common/` — shared primitives only (Button, Card, Navigation, RichText, …).
+  Do not add a common/ component for a single consumer; app-shell components
+  (`StarField`, `Main`) are the exception — they serve `App.js`.
+- `src/content/` — all user-facing copy (`translations/` per language, `projects.js`)
+- Styles live in a co-located `styled.js` (or `<Name>.styles.js`) per component folder
+- `plan/` — architecture and roadmap docs; `architecture-playbook.md` is the source of truth,
+  `premium-ux-followup-plan.md` tracks active work, `plan/archive/` holds superseded plans
+
+## Hard rules (CI-enforced)
+
+1. **No hardcoded colors in `src/` JS.** No hex, `rgb()/rgba()` with literals, or bare
+   `white`/`black`. Use `var(--color-*)`; for alpha use `rgb(var(--color-*-rgb) / <a>)`.
+   Allowlist: `styles/tokens.js`, `contactIcons.js`, `common/animations.js`.
+   Verified by `npm run check:colors`.
+2. **300-line cap per source file.** `projects.js` is exempt (data). `npm run size-check`.
+3. **No circular imports.** `npm run check:circular`.
+4. **Import order + absolute imports.** `baseUrl: src`; never `../` parent imports.
+5. **Tests must stay green.** `npm run test:coverage` (CI=true) — 70% floor on
+   branches/functions/lines/statements, enforced in CI (`ci.yml`).
+
+## Styling conventions
+
+- styled-components v6: transient props always (`$active`, not `active`)
+- Theme values via CSS custom properties from `src/styles/tokens.js`; never hardcode
+  spacing, radius, z-index, or breakpoints
+- Breakpoints from `src/themes.js`: `lg` (768px) is THE mobile/desktop boundary for
+  section layouts; `xl2` (1100px) is the nav compact boundary. Don't invent others.
+- Media queries go at the end of a styled block, mobile-first ordering
+- Accent text uses the shared animated gradient: `gradientShift 15s ease-in-out infinite`,
+  `background-size: 200% 200%` — see `features/portfolio/About/GradientHeading`
+- Horizontal overflow rails use the mask-fade pattern (`overflow-x: auto` +
+  `mask-image: linear-gradient(...)` edge fades) — copy an existing rail (marquee,
+  explore track, badge row) rather than inventing a fourth variant
+- Respect `prefers-reduced-motion` for animation
+- Framer Motion: app is wrapped in `LazyMotion` with an async `domMax` feature
+  bundle (`src/index.js`). Always use `m.*` components — never `motion.*`, which
+  would re-pull the full feature set into the critical path. Drag/layout/in-view
+  features are all covered by `domMax`; don't switch to `domAnimation` (carousel
+  needs `drag`)
+- No `content-visibility: auto` on section roots — it caused verified anchor drift:
+  react-scroll measured `getBoundingClientRect()` while below-fold sections were
+  still intrinsic-size placeholders, so the first nav click after reload landed
+  ~175–400px off (reproduced on the prod build). Removed 2026-01; do not re-add
+  without measuring first-click anchor accuracy
+- Raster images: WebP only, sized ~2x their max render dimensions; keep
+  `width`/`height` attrs in sync with intrinsic dims (CLS guard)
+- LCP-critical images are preloaded by the inline theme-bootstrap script in
+  `public/index.html` — media-scoped `<link rel="preload">`s can't see
+  `localStorage.theme`, so the script injects the `<link>` for whichever
+  portrait the resolved theme will render (prevents unused-preload fetches
+  when the saved theme differs from `prefers-color-scheme`). The preload
+  `href` and the `<img>` `src` must resolve to the identical URL (both
+  `PUBLIC_URL`-based) or the browser fetches twice
+- No webfonts via CSS `@import` inside `createGlobalStyle` — styled-components
+  can't hoist it and browsers ignore it. (Measured: a real Inter `<link>` cost
+  ~1s LCP under throttle → rejected; system stack is intentional)
+- No `web-vitals`/RUM wiring — the dep was removed; don't re-add without a sink
+- Lazy-loaded images must declare intrinsic `width`/`height` attributes (CLS audit).
+  Dims live in the data layer: `iconWidth`/`iconHeight` fields on icon objects,
+  shared `PROJECT_IMAGE_WIDTH`/`PROJECT_IMAGE_HEIGHT` in `content/projects.js`
+  (all project screenshots are uniform 1200×675)
+- No `scroll-behavior: smooth` on `html`/`body` — react-scroll owns all animated
+  scrolling; the CSS rule double-animates its per-frame `scrollTo` calls and makes
+  native `href` fallback clicks drift. Sole exception: `App.js` calls
+  `scrollIntoView()` once on mount to honor a URL `#hash` present at load time
+  (the browser's own fragment scroll runs before React renders); it's instant,
+  not animated, and `scroll-padding-top` on `html` supplies the navbar offset.
+- Never put interactive elements (links, buttons) inside a `role="button"`/`tabIndex`
+  container — axe `nested-interactive`. Use a real `<button>` for the inner action
+  (see `CarouselSlide`'s `ExpandButton`).
+- Small icon buttons needing a ≥24px hit area: keep the visual size, expand the box
+  with `padding` + `background-clip: content-box` (see `NavDot` in Projects/styled.js).
+- Theme mode (`isDark`) is shared state: `ThemeModeProvider`/`useThemeMode` in
+  `src/common/ThemeModeProvider`. The provider owns `data-theme` on `<html>` and
+  `localStorage.theme` — components must never read or write the DOM attr
+  directly (the old `MutationObserver` in Home was removed for exactly this).
+  `public/index.html` carries an inline bootstrap that applies `data-theme`
+  before first paint — keep it in sync with the provider's init logic.
+
+## Navigation
+
+- react-scroll `Link`s must always carry `href="#<slug>"` — without it they render
+  `<a>` with no href: unfocusable by keyboard, invisible as links to screen
+  readers and crawlers. `handleClick` calls `preventDefault`, so the hash never
+  jumps natively; smooth scroll still applies.
+
+## i18n
+
+- Every UI string goes through `content/translations/` — English, Polish, Spanish
+  required for every key (`translations.test.js` enforces parity). This includes
+  headings, aria-labels, and alt text — nothing user-facing is hardcoded
+- Scroll targets always use `menuItems` `slug`, never the translated `name`
+  (names differ per language; slugs are fixed)
+- Components read copy via `useContent()`; no hardcoded user-facing text
+- `language` persists to `localStorage.language` (validated against `LANG_MAP`);
+  tests rely on `localStorage.clear()` in `setupTests.js` `beforeEach`
+
+## Testing
+
+- React Testing Library + `renderWithProviders` from `src/test-utils.js`
+  (options: `initialLanguage`, `initialIsDark`)
+- `setupTests.js` mocks `matchMedia` (default `matches: false`), `IntersectionObserver`,
+  `ResizeObserver` — override per-test via `Object.defineProperty(window, "matchMedia", …)`
+- `testing-library/no-node-access` is enforced: no `.closest()`, `.parentElement`,
+  `querySelector`. Scope duplicate markup with `data-testid` (see `Navigation/index.js`
+  `desktop-menu`/`mobile-menu`/`nav-link-*`, `ProjectModal`'s `project-modal-backdrop`)
+- Remember: components may render both desktop and mobile structures; scope queries
+- jsdom has no layout scrolling: stub `window.scrollTo` and
+  `HTMLElement.prototype.scrollTo` in `beforeEach` when testing scroll-lock code
+  (see `ProjectModal.test.js`). `useWindowWidth` listens on rAF-throttled `resize` —
+  drive it with `Object.defineProperty(window, "innerWidth", …)` + `waitFor`
+- E2E: `npm run test:e2e` needs `npm run build` first. Playwright's `webServer`
+  runs `scripts/serve-e2e.js` on port 3100 (dedicated — 3000 is the dev
+  server); it serves `build/` and strips the `/Software_Engineer_Portfolio`
+  prefix. Do not substitute `serve -s build` — it has no prefix rewrite, so
+  asset requests fall back to `index.html` and the app never mounts
+
+## Verify before committing
+
+```
+npm run test:coverage  # CI=true, all green + 70% floors
+npm run lint
+npm run format:check
+npm run check:colors
+npm run check:circular
+npm run size-check
+npm run build       # before shipping UI changes
+npm run test:e2e    # needs the build above; serves it via scripts/serve-e2e.js
+npm run lighthouse:check  # perf gate: LCP/CLS budgets in .lighthouserc.js
+```
+
+## Dependency installs
+
+- `.npmrc` sets `legacy-peer-deps=true` — required: react-scripts 5's
+  `peerOptional typescript@^4` conflicts with madge's `peerOptional ^5.4.4`
+  (no single version satisfies both). `typescript@5.9.3` is a pinned devDep —
+  keep it root-hoisted: madge's `detective-typescript` `require()`s it.
+- Quality-gate tools are pinned devDeps (`prettier`, `@lhci/cli`, `cross-env`);
+  `depcheck` stays CI-only via `npx --yes depcheck@<pinned>` in `ci.yml`.
+
+## Commits
+
+- Conventional Commits, atomic scope (`feat(nav):`, `test:`, `chore:`, `style(theme):`)
+- Never commit build output, `.env*`, or editor files
+
+## Do NOT add
+
+- TypeScript migration, state libraries, backend/API layers, routers, monorepo tooling,
+  pre-commit hooks, visual regression infra, ESLint boundary plugins — all premature
+  for a 6.9K-line static portfolio. See `plan/architecture-proportionality-audit.md`.
