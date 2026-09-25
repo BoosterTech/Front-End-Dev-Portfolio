@@ -1,11 +1,11 @@
 // Minimal static server for Playwright e2e: serves build/ at the root and strips
 // the GitHub Pages path prefix, so tests exercise the real production bundle.
-const http = require("http");
 const fs = require("fs");
+const http = require("http");
 const path = require("path");
 
 const ROOT = path.join(__dirname, "..", "build");
-const PREFIX = "/Front-End-Dev-Portfolio";
+const PREFIX = "/Software_Engineer_Portfolio";
 const PORT = Number(process.env.PORT) || 3100;
 
 const MIME = {
@@ -20,6 +20,7 @@ const MIME = {
   ".svg": "image/svg+xml",
   ".ico": "image/x-icon",
   ".pdf": "application/pdf",
+  ".mp4": "video/mp4",
   ".txt": "text/plain",
 };
 

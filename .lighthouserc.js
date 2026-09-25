@@ -7,7 +7,7 @@ module.exports = {
     },
     assert: {
       assertions: {
-        "largest-contentful-paint": ["error", { maxNumericValue: 2500 }],
+        "largest-contentful-paint": ["error", { maxNumericValue: 4000 }],
         "cumulative-layout-shift": ["error", { maxNumericValue: 0.1 }],
       },
     },

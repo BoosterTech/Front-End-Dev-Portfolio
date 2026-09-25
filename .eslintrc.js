@@ -16,4 +16,15 @@ module.exports = {
     ],
     "import/no-relative-parent-imports": "error",
   },
+  overrides: [
+    {
+      // Playwright specs use page.getByRole, not RTL queries
+      files: ["e2e/**/*.js"],
+      rules: {
+        "testing-library/prefer-screen-queries": "off",
+        "testing-library/no-await-sync-queries": "off",
+        "testing-library/no-node-access": "off",
+      },
+    },
+  ],
 };

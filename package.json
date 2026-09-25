@@ -1,7 +1,7 @@
 {
   "name": "front-end-portfolio",
   "version": "0.1.0",
-  "homepage": "https://boostertech.github.io/Front-End-Dev-Portfolio/",
+  "homepage": "https://boostertech.github.io/Software_Engineer_Portfolio/",
   "private": true,
   "dependencies": {
     "framer-motion": "12.43.0",
@@ -22,11 +22,11 @@
     "deploy": "gh-pages -d build",
     "size-check": "node scripts/check-file-size.js",
     "lint": "eslint src",
-    "format:check": "npx --yes prettier --check src",
+    "format:check": "prettier --check src",
     "bundle:check": "node scripts/bundle-size.js",
     "check:colors": "node scripts/check-hardcoded-colors.js",
     "check:circular": "node scripts/check-circular.js",
-    "lighthouse:check": "npx --yes cross-env PUBLIC_URL=. npm run build && npx --yes @lhci/cli autorun",
+    "lighthouse:check": "cross-env PUBLIC_URL=. npm run build && lhci autorun",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui"
   },
@@ -70,11 +70,15 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "7.21.11",
+    "@lhci/cli": "0.15.1",
     "@playwright/test": "1.62.1",
     "@testing-library/jest-dom": "5.17.0",
     "@testing-library/react": "13.4.0",
     "@testing-library/user-event": "13.5.0",
+    "cross-env": "10.1.0",
     "gh-pages": "6.1.1",
-    "madge": "8.0.0"
+    "madge": "8.0.0",
+    "prettier": "3.9.8",
+    "typescript": "5.9.3"
   }
 }

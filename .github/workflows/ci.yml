@@ -20,13 +20,13 @@ jobs:
 
       - run: npm ci
 
-      - run: npx --yes depcheck
+      - run: npx --yes depcheck@1.4.7
 
       - run: npm run check:circular
 
       - run: npm run size-check
 
-      - run: npm run test
+      - run: npm run test:coverage
 
       - run: npm run lint
 

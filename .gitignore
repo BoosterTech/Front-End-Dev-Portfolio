@@ -31,3 +31,8 @@ pnpm-workspace.yaml
 /.lighthouseci
 localhost--*.report.html
 localhost--*.report.json
+# lhci autorun dumps its run manifest at repo root
+/manifest.json
+
+# one-off measurement scratch scripts
+/*-tmp.js
