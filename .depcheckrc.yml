@@ -1,0 +1,16 @@
+# depcheck config — read automatically by `npx depcheck` in CI
+ignores:
+  # used in the lighthouse:check script; depcheck can't see env-wrapped bins
+  - cross-env
+  # silences react-scripts 5's babel warning; not imported in source
+  - "@babel/plugin-proposal-private-property-in-object"
+  # transitive via react-scripts, consumed by .eslintrc.js "extends"
+  - eslint-config-react-app
+  # baseUrl: src path aliases — directories under src/, not npm packages
+  - common
+  - styles
+  - themes
+  - content
+  - features
+  - test-utils
+  - images
