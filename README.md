@@ -1,12 +1,12 @@
 # Derek.dev - Portfolio Website 🌐
 
-Welcome to my portfolio website! I'm **Dariusz Podczasik**, a passionate **Front-End Developer** specializing in **React** and **Next.js**. Based in Trim, Ireland, I build dynamic, responsive, and user-friendly web applications with a focus on great UX/UI design.
+Welcome to my portfolio website! I'm **Dariusz Podczasik**, a passionate **Software Engineer** specializing in **React** and **Next.js**. Based in Trim, Ireland, I build dynamic, responsive, and user-friendly web applications with a focus on great UX/UI design.
 
 ---
 
 ## 🚀 Live Website
 
-Check out my portfolio: [Derek.dev](https://boostertech.github.io/Front-End-Dev-Portfolio/)
+Check out my portfolio: [Derek.dev](https://boostertech.github.io/Software_Engineer_Portfolio/)
 
 ---
 
@@ -24,7 +24,7 @@ Check out my portfolio: [Derek.dev](https://boostertech.github.io/Front-End-Dev-
 ## 🛠️ Technologies Used
 
 - **Front-End**: React 18, React DOM
-- **State Management**: React Context (`LanguageProvider`, `ContactVisibilityProvider`)
+- **State Management**: React Context (`LanguageProvider`, `ThemeModeProvider`)
 - **Styling**: styled-components, CSS custom properties, CSS Grid, CSS Flexbox, keyframe animations
 - **Navigation**: react-scroll
 - **Icons**: react-icons
@@ -42,14 +42,14 @@ Check out my portfolio: [Derek.dev](https://boostertech.github.io/Front-End-Dev-
 - Decisions are recorded in `plan/architecture-playbook.md`.
 - Active work is tracked in `plan/premium-ux-followup-plan.md`; contributor/agent conventions live in `AGENTS.md`.
 - Recent boundary cleanup: `StarField` and `Main` are now standalone `src/common/` components, `src/themes.js` contains only breakpoints, and components read localized copy through `src/common/useContent.js`.
-- **State management**: language and `isContactVisible` are handled by `LanguageProvider` and `ContactVisibilityProvider` in `src/common/`; `@reduxjs/toolkit` and `react-redux` were removed.
+- **State management**: language and theme mode (`isDark`) are handled by `LanguageProvider` and `ThemeModeProvider` in `src/common/`; `@reduxjs/toolkit` and `react-redux` were removed.
 - Shared primitives: `src/common/Card` provides `$glass`, `$bordered`, and `$hoverable` variants and is now used by `About` feature cards, `Contact` tiles, `Footer` social links, `Projects` tiles, and `ToolsShowcase` feature cards.
-- Content: all UI copy lives in `src/content/translations.js` (English/Polish/Spanish parity enforced by `translations.test.js`), including `home.toolsShowcase` for the technology section; `projects.js` remains a single module under the size-check exclusion.
+- Content: all UI copy lives in `src/content/translations/` (English/Polish/Spanish parity enforced by `translations.test.js`), including `home.toolsShowcase` for the technology section; `projects.js` remains a single module under the size-check exclusion.
 - Color-token guard: `npm run check:colors` runs in CI and fails the build if any hardcoded colors are found in any `src/**/*.js` or `src/**/*.jsx` file (with an allowlist for `tokens.js`, `contactIcons.js`, and `animations.js`).
 - Circular-dependency guard: `npm run check:circular` (via `madge`) runs in CI and fails the build if any import cycles are introduced.
 - Bundle-impact gate: PR template requires `npm run build && npm run bundle:check` and confirmation that no chunk exceeds the 350 KB gzipped budget.
 - Fixed section slugs: `home`, `about`, `projects`, `contact` are used for `react-scroll` anchors in all languages.
-- Quality gates: `npm run test:coverage` enforces a 70% Jest coverage threshold, `npm run test:e2e` runs 5 Playwright E2E tests (scroll, language switch, dark mode, carousel next/prev, carousel dot-click) against the production `build/` served on port 3100 by `scripts/serve-e2e.js` (requires `npm run build` first), and `npm run lighthouse:check` audits the production build against the LCP/CLS budgets in `.lighthouserc.js`.
+- Quality gates: `npm run test:coverage` enforces the 70% Jest coverage thresholds in CI (58 tests across 11 suites), `npm run test:e2e` runs 5 Playwright E2E tests (scroll, language switch, dark mode, carousel next/prev, carousel dot-click) against the production `build/` served on port 3100 by `scripts/serve-e2e.js` (requires `npm run build` first), and `npm run lighthouse:check` audits the production build against the LCP/CLS budgets in `.lighthouserc.js`.
 - Performance: Framer Motion loads via `LazyMotion` with an async `domMax` feature bundle (use `m.*`, never `motion.*`); the hero portrait is media-scoped preloaded in `public/index.html`; all raster assets are WebP sized ~2x their max render size; sourcemaps are stripped at deploy time by `scripts/remove-maps.js`. (`content-visibility` on section roots was removed — it caused verified first-click anchor drift.) See `plan/performance-optimization-plan.md`.
 
 ---

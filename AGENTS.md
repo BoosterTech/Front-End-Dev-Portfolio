@@ -15,7 +15,7 @@ auth, no database, no state library. Keep it that way.
 - `src/common/` — shared primitives only (Button, Card, Navigation, RichText, …).
   Do not add a common/ component for a single consumer; app-shell components
   (`StarField`, `Main`) are the exception — they serve `App.js`.
-- `src/content/` — all user-facing copy (`translations.js`, `projects.js`)
+- `src/content/` — all user-facing copy (`translations/` per language, `projects.js`)
 - Styles live in a co-located `styled.js` (or `<Name>.styles.js`) per component folder
 - `plan/` — architecture and roadmap docs; `architecture-playbook.md` is the source of truth,
   `premium-ux-followup-plan.md` tracks active work, `plan/archive/` holds superseded plans
@@ -29,7 +29,8 @@ auth, no database, no state library. Keep it that way.
 2. **300-line cap per source file.** `projects.js` is exempt (data). `npm run size-check`.
 3. **No circular imports.** `npm run check:circular`.
 4. **Import order + absolute imports.** `baseUrl: src`; never `../` parent imports.
-5. **Tests must stay green.** `npm test` (CI=true). Coverage floor: 70%.
+5. **Tests must stay green.** `npm run test:coverage` (CI=true) — 70% floor on
+   branches/functions/lines/statements, enforced in CI (`ci.yml`).
 
 ## Styling conventions
 
@@ -57,10 +58,13 @@ auth, no database, no state library. Keep it that way.
   without measuring first-click anchor accuracy
 - Raster images: WebP only, sized ~2x their max render dimensions; keep
   `width`/`height` attrs in sync with intrinsic dims (CLS guard)
-- LCP-critical images are media-scoped `<link rel="preload">`s in
-  `public/index.html` served from `public/` — the preload `href` and the
-  `<img>` `src` must resolve to the identical URL (both `PUBLIC_URL`-based)
-  or the browser fetches twice
+- LCP-critical images are preloaded by the inline theme-bootstrap script in
+  `public/index.html` — media-scoped `<link rel="preload">`s can't see
+  `localStorage.theme`, so the script injects the `<link>` for whichever
+  portrait the resolved theme will render (prevents unused-preload fetches
+  when the saved theme differs from `prefers-color-scheme`). The preload
+  `href` and the `<img>` `src` must resolve to the identical URL (both
+  `PUBLIC_URL`-based) or the browser fetches twice
 - No webfonts via CSS `@import` inside `createGlobalStyle` — styled-components
   can't hoist it and browsers ignore it. (Measured: a real Inter `<link>` cost
   ~1s LCP under throttle → rejected; system stack is intentional)
@@ -71,7 +75,10 @@ auth, no database, no state library. Keep it that way.
   (all project screenshots are uniform 1200×675)
 - No `scroll-behavior: smooth` on `html`/`body` — react-scroll owns all animated
   scrolling; the CSS rule double-animates its per-frame `scrollTo` calls and makes
-  native `href` fallback clicks drift. Nothing else calls `scrollTo`/`scrollIntoView`.
+  native `href` fallback clicks drift. Sole exception: `App.js` calls
+  `scrollIntoView()` once on mount to honor a URL `#hash` present at load time
+  (the browser's own fragment scroll runs before React renders); it's instant,
+  not animated, and `scroll-padding-top` on `html` supplies the navbar offset.
 - Never put interactive elements (links, buttons) inside a `role="button"`/`tabIndex`
   container — axe `nested-interactive`. Use a real `<button>` for the inner action
   (see `CarouselSlide`'s `ExpandButton`).
@@ -93,7 +100,7 @@ auth, no database, no state library. Keep it that way.
 
 ## i18n
 
-- Every UI string goes through `content/translations.js` — English, Polish, Spanish
+- Every UI string goes through `content/translations/` — English, Polish, Spanish
   required for every key (`translations.test.js` enforces parity). This includes
   headings, aria-labels, and alt text — nothing user-facing is hardcoded
 - Scroll targets always use `menuItems` `slug`, never the translated `name`
@@ -105,23 +112,27 @@ auth, no database, no state library. Keep it that way.
 ## Testing
 
 - React Testing Library + `renderWithProviders` from `src/test-utils.js`
-  (options: `initialLanguage`, `initialIsContactVisible`)
+  (options: `initialLanguage`, `initialIsDark`)
 - `setupTests.js` mocks `matchMedia` (default `matches: false`), `IntersectionObserver`,
   `ResizeObserver` — override per-test via `Object.defineProperty(window, "matchMedia", …)`
 - `testing-library/no-node-access` is enforced: no `.closest()`, `.parentElement`,
   `querySelector`. Scope duplicate markup with `data-testid` (see `Navigation/index.js`
-  `desktop-menu`/`mobile-menu`/`nav-link-*` hooks)
+  `desktop-menu`/`mobile-menu`/`nav-link-*`, `ProjectModal`'s `project-modal-backdrop`)
 - Remember: components may render both desktop and mobile structures; scope queries
+- jsdom has no layout scrolling: stub `window.scrollTo` and
+  `HTMLElement.prototype.scrollTo` in `beforeEach` when testing scroll-lock code
+  (see `ProjectModal.test.js`). `useWindowWidth` listens on rAF-throttled `resize` —
+  drive it with `Object.defineProperty(window, "innerWidth", …)` + `waitFor`
 - E2E: `npm run test:e2e` needs `npm run build` first. Playwright's `webServer`
   runs `scripts/serve-e2e.js` on port 3100 (dedicated — 3000 is the dev
-  server); it serves `build/` and strips the `/Front-End-Dev-Portfolio`
+  server); it serves `build/` and strips the `/Software_Engineer_Portfolio`
   prefix. Do not substitute `serve -s build` — it has no prefix rewrite, so
   asset requests fall back to `index.html` and the app never mounts
 
 ## Verify before committing
 
 ```
-npm test            # CI=true, all green
+npm run test:coverage  # CI=true, all green + 70% floors
 npm run lint
 npm run format:check
 npm run check:colors
@@ -131,6 +142,15 @@ npm run build       # before shipping UI changes
 npm run test:e2e    # needs the build above; serves it via scripts/serve-e2e.js
 npm run lighthouse:check  # perf gate: LCP/CLS budgets in .lighthouserc.js
 ```
+
+## Dependency installs
+
+- `.npmrc` sets `legacy-peer-deps=true` — required: react-scripts 5's
+  `peerOptional typescript@^4` conflicts with madge's `peerOptional ^5.4.4`
+  (no single version satisfies both). `typescript@5.9.3` is a pinned devDep —
+  keep it root-hoisted: madge's `detective-typescript` `require()`s it.
+- Quality-gate tools are pinned devDeps (`prettier`, `@lhci/cli`, `cross-env`);
+  `depcheck` stays CI-only via `npx --yes depcheck@<pinned>` in `ci.yml`.
 
 ## Commits
 
