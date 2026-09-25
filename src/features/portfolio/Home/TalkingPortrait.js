@@ -23,38 +23,24 @@ const DECODING_INFO = {
   },
 };
 
-const isConstrainedConnection = () => {
-  const c = navigator.connection;
-  return Boolean(
-    c && (c.saveData || ["slow-2g", "2g"].includes(c.effectiveType))
-  );
-};
-
 /**
  * Click-to-play AI talking portrait. Opt-in only — the clip lazy-loads on tap,
  * plays once over the still photo, then swaps back on `ended`. The generated
  * clip's last frame matches the portrait, so the return is seamless.
  *
- * The control is withheld on constrained connections (Save-Data / 2G) and on
- * devices whose decoder can't play the clip smoothly per MediaCapabilities —
- * the still portrait is always the fallback.
+ * The control is withheld only when MediaCapabilities reports the decoder
+ * can't play this clip smoothly — the still portrait is the fallback.
  *
- * @param {{ poster: string, onPlayingChange?: (playing: boolean) => void }} props
+ * @param {{ poster: string }} props - theme-matched still shown as video poster
  */
-const TalkingPortrait = ({ poster, onPlayingChange }) => {
+const TalkingPortrait = ({ poster }) => {
   const { home } = useContent();
   const [status, setStatus] = useState("idle");
-  const [capable, setCapable] = useState(() => !isConstrainedConnection());
+  const [capable, setCapable] = useState(true);
   const loading = status === "loading";
-  const updateStatus = (next) => {
-    setStatus(next);
-    onPlayingChange?.(next === "playing");
-  };
-
-  useEffect(() => () => onPlayingChange?.(false), [onPlayingChange]);
 
   useEffect(() => {
-    if (!capable || !navigator.mediaCapabilities?.decodingInfo) return;
+    if (!navigator.mediaCapabilities?.decodingInfo) return;
     let cancelled = false;
     navigator.mediaCapabilities
       .decodingInfo(DECODING_INFO)
@@ -65,7 +51,7 @@ const TalkingPortrait = ({ poster, onPlayingChange }) => {
     return () => {
       cancelled = true;
     };
-  }, [capable]);
+  }, []);
 
   if (!capable) return null;
 
@@ -80,15 +66,15 @@ const TalkingPortrait = ({ poster, onPlayingChange }) => {
           playsInline
           preload="none"
           aria-label={home.hearMeLabel}
-          onPlaying={() => updateStatus("playing")}
-          onEnded={() => updateStatus("idle")}
-          onError={() => updateStatus("idle")}
-          onClick={() => updateStatus("idle")}
+          onPlaying={() => setStatus("playing")}
+          onEnded={() => setStatus("idle")}
+          onError={() => setStatus("idle")}
+          onClick={() => setStatus("idle")}
         />
       )}
       {status !== "playing" && (
         <PortraitPlayButton
-          onClick={() => updateStatus("loading")}
+          onClick={() => setStatus("loading")}
           aria-label={home.hearMeLabel}
           aria-busy={loading}
           disabled={loading}

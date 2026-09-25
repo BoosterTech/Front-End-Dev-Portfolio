@@ -49,24 +49,6 @@ describe("TalkingPortrait", () => {
     ).not.toBeInTheDocument();
   });
 
-  it("does not render on Save-Data connections", () => {
-    Object.defineProperty(window.navigator, "connection", {
-      value: { saveData: true },
-      configurable: true,
-    });
-
-    renderWithProviders(<Home id="home" />, {
-      initialLanguage: "English",
-      initialIsDark: true,
-    });
-
-    expect(
-      screen.queryByRole("button", { name: /hear me/i })
-    ).not.toBeInTheDocument();
-
-    delete window.navigator.connection;
-  });
-
   it("hides the control when the decoder reports non-smooth playback", async () => {
     Object.defineProperty(window.navigator, "mediaCapabilities", {
       value: {

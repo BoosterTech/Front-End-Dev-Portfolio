@@ -3,7 +3,6 @@ import { menuItems } from "common/Navigation/menuItems";
 import { useThemeMode } from "common/ThemeModeProvider";
 import useContent from "common/useContent";
 import { useMediaQuery } from "common/useMediaQuery";
-import { useState } from "react";
 import { FaArrowRight, FaFileAlt, FaStar } from "react-icons/fa";
 import { themes } from "themes";
 
@@ -34,7 +33,6 @@ const Home = ({ id }) => {
   const { home } = useContent();
   const { language } = useLanguage();
   const { isDark } = useThemeMode();
-  const [portraitPlaying, setPortraitPlaying] = useState(false);
 
   const headerWords = home.contentHeader.split(" ");
   const titleFirst = headerWords.slice(0, -1).join(" ");
@@ -82,7 +80,7 @@ const Home = ({ id }) => {
             </DownloadCVButton>
           </ButtonsContainer>
         </ContentContainer>
-        <ImageContainer $videoPlaying={portraitPlaying}>
+        <ImageContainer>
           <ProfileImage
             ref={(el) => el?.setAttribute("fetchpriority", "high")}
             src={isDark ? profileImage : lightProfileImage}
@@ -91,10 +89,7 @@ const Home = ({ id }) => {
             height={640}
           />
           {language === "English" && isDark && (
-            <TalkingPortrait
-              poster={profileImage}
-              onPlayingChange={setPortraitPlaying}
-            />
+            <TalkingPortrait poster={profileImage} />
           )}
         </ImageContainer>
       </ContentImageContainer>
