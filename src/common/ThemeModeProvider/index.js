@@ -5,6 +5,7 @@ import {
   useEffect,
   useState,
 } from "react";
+import { themeBackground } from "styles/tokens";
 
 const ThemeModeContext = createContext({
   isDark: false,
@@ -27,6 +28,10 @@ export const ThemeModeProvider = ({ children, initialIsDark }) => {
       document.documentElement.removeAttribute("data-theme");
       localStorage.setItem("theme", "light");
     }
+    const themeColor = themeBackground[isDark ? "dark" : "light"];
+    document
+      .querySelectorAll('meta[name="theme-color"]')
+      .forEach((meta) => meta.setAttribute("content", themeColor));
   }, [isDark]);
 
   const toggleTheme = useCallback(() => setIsDark((prev) => !prev), []);

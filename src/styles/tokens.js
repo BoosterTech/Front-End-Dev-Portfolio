@@ -1,5 +1,13 @@
 import { css } from "styled-components";
 
+// JS mirror of the resolved --color-background per theme — used by
+// ThemeModeProvider to set the theme-color meta without a getComputedStyle
+// layout read. Keep in sync with the CSS vars interpolated below.
+export const themeBackground = {
+  light: "#ffffff",
+  dark: "#0a0f1c",
+};
+
 export const tokens = css`
   :root {
     /* Light theme colors */
@@ -7,7 +15,7 @@ export const tokens = css`
     --color-primary-hover: #1d4ed8;
     --color-secondary: #64748b;
     --color-accent: #06b6d4;
-    --color-background: #ffffff;
+    --color-background: ${themeBackground.light};
     --color-surface: #f8fafc;
     --color-surface-rgb: 248, 250, 252;
     --color-text-primary: #0f172a;
@@ -21,7 +29,7 @@ export const tokens = css`
     --color-dark-primary-hover: #1e6fd6;
     --color-dark-secondary: #94a3b8;
     --color-dark-accent: #22d3ee;
-    --color-dark-background: #0a0f1c;
+    --color-dark-background: ${themeBackground.dark};
     --color-dark-surface: rgba(17, 24, 39, 0.8);
     --color-dark-text-primary: #ffffff;
     --color-dark-text-secondary: #94a3b8;

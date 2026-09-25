@@ -1,9 +1,13 @@
-import slowEntry from "common/slowEntry";
 import { css } from "styled-components";
+import { themes } from "themes";
 
 export const base = css`
   html {
     box-sizing: border-box;
+    scrollbar-gutter: stable;
+    scroll-padding-top: calc(var(--navbar-height) + var(--spacing-md));
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-secondary) var(--color-surface);
   }
 
   *,
@@ -33,9 +37,9 @@ export const base = css`
     max-width: 100%;
     margin: 0;
     padding: 0;
-    animation: ${slowEntry} 0.6s ease-out;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    -webkit-tap-highlight-color: transparent;
   }
 
   body::before {
@@ -44,9 +48,10 @@ export const base = css`
     top: 0;
     left: 0;
     right: 0;
-    bottom: 0;
+    height: 100vh;
+    height: 100lvh;
     background-image: url(${process.env.PUBLIC_URL}/backgroundLight.webp);
-    background-size: 100% 100%;
+    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     z-index: -1;
@@ -56,7 +61,7 @@ export const base = css`
     background-image: url(${process.env.PUBLIC_URL}/backgroundDark.webp);
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: ${themes.breakpoint.lg}) {
     body::before {
       background-image: url(${process.env.PUBLIC_URL}/backgroundLightMobile.webp);
     }
@@ -122,21 +127,6 @@ export const base = css`
     height: auto;
   }
 
-  /* Utility classes */
-  .container {
-    max-width: var(--container-max-width);
-    margin: 0 auto;
-    padding: 0 var(--spacing-lg);
-  }
-
-  .section-padding {
-    padding: var(--spacing-3xl) 0;
-  }
-
-  .text-center {
-    text-align: center;
-  }
-
   .sr-only {
     position: absolute;
     width: 1px;
@@ -167,7 +157,7 @@ export const base = css`
     background: var(--color-primary);
   }
 
-  @media (max-width: 1024px) {
+  @media (max-width: ${themes.breakpoint.xl}) {
     /* Hide scrollbar for tablets and mobile devices */
     ::-webkit-scrollbar {
       display: none;
@@ -175,6 +165,7 @@ export const base = css`
       background: transparent;
     }
 
+    html,
     * {
       scrollbar-width: none;
       -ms-overflow-style: none;
