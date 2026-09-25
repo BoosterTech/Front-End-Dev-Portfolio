@@ -6,7 +6,7 @@ import {
   spin,
 } from "common/animations";
 import styled from "styled-components";
-import { keyframes } from "styled-components";
+import { css, keyframes } from "styled-components";
 
 const imageBorderAnimation = keyframes`
    0%{
@@ -125,6 +125,16 @@ export const ImageContainer = styled.div`
     width: 190px;
     height: 190px;
   }
+
+  ${({ $videoPlaying }) =>
+    $videoPlaying &&
+    css`
+      animation-play-state: paused, paused;
+
+      &::before {
+        animation-play-state: paused;
+      }
+    `}
 `;
 
 export const ProfileImage = styled.img`
