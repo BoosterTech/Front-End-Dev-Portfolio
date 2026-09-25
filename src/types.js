@@ -26,6 +26,7 @@
  * @property {LocalizedText} title
  * @property {LocalizedText} description
  * @property {string} imageURL
+ * @property {string} [modalImageURL]
  * @property {string} GitHubPagesURL
  * @property {string} GitHubRepoURL
  * @property {LocalizedText} [GitHubPagesURLTag]

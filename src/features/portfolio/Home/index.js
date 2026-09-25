@@ -23,6 +23,7 @@ import {
   ContentContainer,
   ProfileImage,
 } from "./homeStyles";
+import TalkingPortrait from "./TalkingPortrait";
 import { ToolsShowcase } from "./ToolsShowcase";
 
 const profileImage = `${process.env.PUBLIC_URL}/profileImage.webp`;
@@ -54,17 +55,13 @@ const Home = ({ id }) => {
           <HeroTitle>
             {titleFirst} <GradientText>{titleLast}</GradientText>
           </HeroTitle>
-          <TechStackText>
-            {home.contentHeaderTechStack}{" "}
-            {/* <HeaderImage src={wavingHandImage} alt="Waving hand emoji" /> */}
-          </TechStackText>
+          <TechStackText>{home.contentHeaderTechStack}</TechStackText>
 
           <HeroDescription>{home.headerParagraph}</HeroDescription>
           <ButtonsContainer>
             <ViewMyWorkButton
               to={projectsItem.slug}
               href={`#${projectsItem.slug}`}
-              spy={true}
               smooth={true}
               offset={projectsOffset}
               duration={700}
@@ -85,12 +82,15 @@ const Home = ({ id }) => {
         </ContentContainer>
         <ImageContainer>
           <ProfileImage
+            ref={(el) => el?.setAttribute("fetchpriority", "high")}
             src={isDark ? profileImage : lightProfileImage}
             alt={home.portraitAlt}
             width={640}
             height={640}
-            fetchpriority="high"
           />
+          {language === "English" && isDark && (
+            <TalkingPortrait poster={profileImage} />
+          )}
         </ImageContainer>
       </ContentImageContainer>
 

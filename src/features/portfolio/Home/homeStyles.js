@@ -1,4 +1,10 @@
-import { fadeInUp, slideInLeft, slideInRight } from "common/animations";
+import {
+  fadeIn,
+  fadeInUp,
+  slideInLeft,
+  slideInRight,
+  spin,
+} from "common/animations";
 import styled from "styled-components";
 import { keyframes } from "styled-components";
 
@@ -138,4 +144,105 @@ export const ProfileImage = styled.img`
   transition:
     opacity 0.4s ease,
     transform var(--transition-normal);
+`;
+
+const portraitPulse = keyframes`
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  40%,
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+`;
+
+export const PortraitVideo = styled.video`
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+  border: 1px solid var(--color-primary);
+  cursor: pointer;
+  animation: ${fadeIn} 0.3s ease-out;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+`;
+
+export const PortraitPlayButton = styled.button`
+  position: absolute;
+  right: var(--spacing-sm);
+  bottom: var(--spacing-sm);
+  z-index: 4;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border);
+  background: rgb(var(--color-surface-rgb) / 0.85);
+  color: var(--color-white);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast);
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    border: 2px solid rgba(var(--color-primary-rgb), 0.6);
+    animation: ${portraitPulse} 6s ease-out infinite;
+    pointer-events: none;
+  }
+
+  &:hover {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    cursor: wait;
+  }
+
+  svg {
+    width: 14px;
+    height: 14px;
+    margin-left: 2px;
+  }
+
+  .spinner {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 2px solid var(--color-border);
+    border-top-color: var(--color-primary);
+    animation: ${spin} 0.8s linear infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &::after {
+      animation: none;
+      opacity: 0;
+    }
+
+    .spinner {
+      animation-duration: 1.6s;
+    }
+  }
 `;

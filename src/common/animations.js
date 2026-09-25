@@ -1,4 +1,15 @@
-import { keyframes } from "styled-components";
+import { css, keyframes } from "styled-components";
+
+// Keeps gradient-clipped text readable in Windows forced-colors mode,
+// where -webkit-text-fill-color: transparent would otherwise hide it.
+export const forcedColorsText = css`
+  @media (forced-colors: active) {
+    forced-color-adjust: none;
+    background: none;
+    color: CanvasText;
+    -webkit-text-fill-color: CanvasText;
+  }
+`;
 
 export const gradientShift = keyframes`
   0%, 100% {
@@ -34,7 +45,7 @@ export const fadeInUp = keyframes`
   }
 `;
 
-export const fadeInLeft = keyframes`
+export const slideInLeft = keyframes`
   from {
     opacity: 0;
     transform: translateX(-50px);
@@ -45,7 +56,7 @@ export const fadeInLeft = keyframes`
   }
 `;
 
-export const fadeInRight = keyframes`
+export const slideInRight = keyframes`
   from {
     opacity: 0;
     transform: translateX(50px);
@@ -55,9 +66,6 @@ export const fadeInRight = keyframes`
     transform: translateX(0);
   }
 `;
-
-export { fadeInLeft as slideInLeft };
-export { fadeInRight as slideInRight };
 
 export const spin = keyframes`
   from {
@@ -77,40 +85,11 @@ export const float = keyframes`
   }
 `;
 
-export const floatAbout = keyframes`
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-`;
-
 export const fadeIn = keyframes`
   from {
     opacity: 0;
   }
   to {
     opacity: 1;
-  }
-`;
-
-export const slideFromLeft = keyframes`
-  from {
-    transform: translateX(-100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-`;
-
-export const pulse = keyframes`
-  0%, 100% {
-    box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.4);
-  }
-  50% {
-    box-shadow: 0 0 0 10px rgba(37, 99, 235, 0);
   }
 `;

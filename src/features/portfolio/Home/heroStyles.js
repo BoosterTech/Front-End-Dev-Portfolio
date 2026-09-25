@@ -1,4 +1,4 @@
-import { gradientShift } from "common/animations";
+import { forcedColorsText, gradientShift } from "common/animations";
 import { ScrollButton, Button } from "common/Button";
 import styled from "styled-components";
 
@@ -25,6 +25,7 @@ export const WelcomeLabel = styled.span`
   border: 1px solid var(--color-border);
   border-radius: 50px;
   margin-bottom: var(--spacing-md);
+  ${forcedColorsText}
 
   svg {
     color: var(--color-primary);
@@ -55,6 +56,7 @@ export const GradientText = styled.span`
   -webkit-text-fill-color: transparent;
   background-size: 200% 200%;
   animation: ${gradientShift} 15s ease-in-out infinite;
+  ${forcedColorsText}
 `;
 
 export const TechStackText = styled.p`

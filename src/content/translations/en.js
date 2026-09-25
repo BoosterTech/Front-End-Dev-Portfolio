@@ -10,8 +10,9 @@ Hi, I'm Dariusz Podczasik.
 A Software Engineer focused on building modern web applications and AI-powered SaaS products.`,
     viewMyWork: "View My Work",
     viewCV: "View CV",
-    cvUrl: `${process.env.PUBLIC_URL}/CV.pdf`,
+    cvUrl: `${process.env.PUBLIC_URL}/cv.html`,
     portraitAlt: "Portrait of Dariusz Podczasik",
+    hearMeLabel: "Hear me — play a short video greeting",
     skillsetHeader: "My Technology Stack",
     learnNextHeader: "Currently Exploring",
     toolsShowcase: {
@@ -44,7 +45,7 @@ A Software Engineer focused on building modern web applications and AI-powered S
         },
         { name: "SaaS Architecture", description: "Scalable SaaS patterns" },
       ],
-      moreTitle: "And More...",
+      moreTitle: "And More",
       moreSubtitle: "Always learning.",
     },
   },
@@ -52,7 +53,7 @@ A Software Engineer focused on building modern web applications and AI-powered S
     journeyLabel: "MY JOURNEY",
     journeyHeader: "From Embedded to Full-Stack",
     journeyParagraph: `
-<p>Hi, I'm Derek. My journey began with electronics, embedded systems, C++, and OpenGL before evolving into modern web development. Today I build production-ready applications using React, Next.js, TypeScript, and Supabase. I combine solid software engineering principles with AI-assisted workflows to create scalable, impactful solutions.</p>
+<p>My journey began with electronics, embedded systems, C++, and OpenGL before evolving into modern web development. Today I build production-ready applications using React, Next.js, TypeScript, and Supabase. I combine solid software engineering principles with AI-assisted workflows to create scalable, impactful solutions.</p>
       `,
     journeyFeatures: [
       {
@@ -101,5 +102,10 @@ A Software Engineer focused on building modern web applications and AI-powered S
     goToLabel: "Go to project",
     githubProfileLabel: "Visit my GitHub profile",
     closeLabel: "Close",
+    comingSoonLabel: "Coming soon",
+    expandLabel: "Expand {title}",
+    liveDemoLabel: "Live Demo",
+    repoLabel: "GitHub",
+    screenshotAlt: "{title} — project screenshot",
   },
 };

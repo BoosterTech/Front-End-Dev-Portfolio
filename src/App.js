@@ -1,5 +1,7 @@
 import { useLanguage } from "common/LanguageProvider";
+import { useEffect } from "react";
 
+import LaunchIntro from "./common/LaunchIntro";
 import Main from "./common/Main";
 import Navigation from "./common/Navigation";
 import { menuItems } from "./common/Navigation/menuItems";
@@ -13,8 +15,18 @@ import Projects from "./features/portfolio/Projects";
 const App = () => {
   const { language } = useLanguage();
 
+  useEffect(() => {
+    const id = window.location.hash.slice(1);
+    if (!id) return undefined;
+    const scroll = () => document.getElementById(id)?.scrollIntoView();
+    if (document.readyState === "complete") scroll();
+    else window.addEventListener("load", scroll, { once: true });
+    return () => window.removeEventListener("load", scroll);
+  }, []);
+
   return (
     <>
+      <LaunchIntro />
       <StarField />
       <Navigation />
       <Main>

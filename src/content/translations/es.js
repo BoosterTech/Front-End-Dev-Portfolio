@@ -9,8 +9,9 @@ export const es = {
       "Hola, soy Dariusz Podczasik. Ingeniero de software especializado en aplicaciones web modernas y productos SaaS impulsados por IA.",
     viewMyWork: "Ver proyectos",
     viewCV: "Ver CV",
-    cvUrl: `${process.env.PUBLIC_URL}/CV.pdf`,
+    cvUrl: `${process.env.PUBLIC_URL}/cv.html`,
     portraitAlt: "Retrato de Dariusz Podczasik",
+    hearMeLabel: "Escúchame — reproducir un breve saludo en video",
     skillsetHeader: "Mi stack tecnológico",
     learnNextHeader: "Actualmente aprendiendo",
     toolsShowcase: {
@@ -46,7 +47,7 @@ export const es = {
           description: "Patrones SaaS escalables",
         },
       ],
-      moreTitle: "Y más...",
+      moreTitle: "Y más",
       moreSubtitle: "Siempre aprendiendo.",
     },
   },
@@ -54,7 +55,7 @@ export const es = {
     journeyLabel: "MI VIAJE",
     journeyHeader: "De embedded a full-stack",
     journeyParagraph: `
-<p>Hola, soy Derek. Mi viaje comenzó con electrónica, sistemas embebidos, C++ y OpenGL, antes de evolucionar hacia el desarrollo web moderno. Hoy construyo aplicaciones listas para producción con React, Next.js, TypeScript y Supabase. Combino principios sólidos de ingeniería de software con flujos asistidos por IA para crear soluciones escalables e impactantes.</p>
+<p>Mi viaje comenzó con electrónica, sistemas embebidos, C++ y OpenGL, antes de evolucionar hacia el desarrollo web moderno. Hoy construyo aplicaciones listas para producción con React, Next.js, TypeScript y Supabase. Combino principios sólidos de ingeniería de software con flujos asistidos por IA para crear soluciones escalables e impactantes.</p>
       `,
     journeyFeatures: [
       {
@@ -103,5 +104,10 @@ export const es = {
     goToLabel: "Ir al proyecto",
     githubProfileLabel: "Visita mi perfil de GitHub",
     closeLabel: "Cerrar",
+    comingSoonLabel: "Próximamente",
+    expandLabel: "Expandir {title}",
+    liveDemoLabel: "Demo en vivo",
+    repoLabel: "GitHub",
+    screenshotAlt: "{title} — captura de pantalla del proyecto",
   },
 };

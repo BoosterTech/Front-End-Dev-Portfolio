@@ -9,8 +9,9 @@ export const pl = {
       "Cześć, jestem Dariusz Podczasik. Inżynier oprogramowania specjalizujący się w tworzeniu nowoczesnych aplikacji internetowych i produktów AI SaaS.",
     viewMyWork: "Zobacz projekty",
     viewCV: "Zobacz CV",
-    cvUrl: `${process.env.PUBLIC_URL}/CV.pdf`,
+    cvUrl: `${process.env.PUBLIC_URL}/cv.html`,
     portraitAlt: "Portret Dariusza Podczasika",
+    hearMeLabel: "Posłuchaj mnie — odtwórz krótkie wideo powitalne",
     skillsetHeader: "Mój stack technologiczny",
     learnNextHeader: "Aktualnie rozwijam",
     toolsShowcase: {
@@ -52,7 +53,7 @@ export const pl = {
           description: "Skalowalne wzorce SaaS",
         },
       ],
-      moreTitle: "I więcej...",
+      moreTitle: "I więcej",
       moreSubtitle: "Ciągle się uczę.",
     },
   },
@@ -60,7 +61,7 @@ export const pl = {
     journeyLabel: "MOJA DROGA",
     journeyHeader: "Od embedded do full-stack",
     journeyParagraph: `
-<p>Cześć, jestem Derek. Moja droga zaczęła się od elektroniki, systemów wbudowanych, C++ i OpenGL, zanim przerodziła się w nowoczesny rozwój webowy. Dziś buduję aplikacje produkcyjne z React, Next.js, TypeScript i Supabase. Łączę solidne fundamenty inżynierii oprogramowania ze wsparciem AI, tworząc skalowalne, wartościowe rozwiązania.</p>
+<p>Moja droga zaczęła się od elektroniki, systemów wbudowanych, C++ i OpenGL, zanim przerodziła się w nowoczesny rozwój webowy. Dziś buduję aplikacje produkcyjne z React, Next.js, TypeScript i Supabase. Łączę solidne fundamenty inżynierii oprogramowania ze wsparciem AI, tworząc skalowalne, wartościowe rozwiązania.</p>
       `,
     journeyFeatures: [
       {
@@ -109,5 +110,10 @@ export const pl = {
     goToLabel: "Przejdź do projektu",
     githubProfileLabel: "Odwiedź mój profil GitHub",
     closeLabel: "Zamknij",
+    comingSoonLabel: "Wkrótce",
+    expandLabel: "Rozwiń {title}",
+    liveDemoLabel: "Demo na żywo",
+    repoLabel: "GitHub",
+    screenshotAlt: "{title} — zrzut ekranu projektu",
   },
 };

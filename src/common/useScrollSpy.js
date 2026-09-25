@@ -32,6 +32,9 @@ export const useScrollSpy = (sectionIds) => {
     // The last section can be too short to reach the band — force it active
     // once the page is scrolled to the bottom.
     const handleScroll = () => {
+      // Ignore synthetic scrolls while a modal has the body locked —
+      // scrollHeight collapses to viewport height and falsifies the check.
+      if (document.body.style.position === "fixed") return;
       if (
         window.innerHeight + window.scrollY >=
         document.documentElement.scrollHeight - 2
