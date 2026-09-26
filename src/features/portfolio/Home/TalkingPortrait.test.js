@@ -3,49 +3,78 @@ import Home from "features/portfolio/Home";
 import { renderWithProviders } from "test-utils";
 
 describe("TalkingPortrait", () => {
-  it("renders a localized play button and lazy-loads the clip on tap", () => {
+  let playSpy;
+  let pauseSpy;
+
+  beforeEach(() => {
+    playSpy = jest
+      .spyOn(window.HTMLMediaElement.prototype, "play")
+      .mockResolvedValue(undefined);
+    pauseSpy = jest
+      .spyOn(window.HTMLMediaElement.prototype, "pause")
+      .mockImplementation(() => {});
+  });
+
+  afterEach(() => {
+    playSpy.mockRestore();
+    pauseSpy.mockRestore();
+  });
+
+  it("preloads paused on the first frame and plays on tap", () => {
     renderWithProviders(<Home id="home" />, {
       initialLanguage: "English",
       initialIsDark: true,
     });
 
     const button = screen.getByRole("button", { name: /hear me/i });
-    expect(
-      screen.queryByTestId("talking-portrait-video")
-    ).not.toBeInTheDocument();
+    const video = screen.getByTestId("talking-portrait-video");
+    expect(video).toHaveAttribute("src");
+    expect(video).toHaveAttribute("preload", "auto");
+    expect(video).not.toHaveAttribute("autoplay");
+    // still image stays mounted underneath as the flicker guard
+    expect(screen.getByAltText(/Portrait of Dariusz/i)).toBeInTheDocument();
 
     fireEvent.click(button);
-    const video = screen.getByTestId("talking-portrait-video");
-    expect(video).toHaveAttribute("preload", "none");
+    expect(playSpy).toHaveBeenCalled();
+
+    fireEvent(video, new Event("playing"));
+    expect(
+      screen.queryByRole("button", { name: /hear me/i })
+    ).not.toBeInTheDocument();
 
     fireEvent(video, new Event("ended"));
-    expect(
-      screen.queryByTestId("talking-portrait-video")
-    ).not.toBeInTheDocument();
+    expect(pauseSpy).toHaveBeenCalled();
+    expect(video.currentTime).toBe(0);
     expect(
       screen.getByRole("button", { name: /hear me/i })
     ).toBeInTheDocument();
   });
 
-  it("does not render without an English clip", () => {
+  it("renders the video with a localized button in Polish", () => {
     renderWithProviders(<Home id="home" />, {
       initialLanguage: "Polish",
       initialIsDark: true,
     });
 
     expect(
-      screen.queryByRole("button", { name: /posłuchaj/i })
-    ).not.toBeInTheDocument();
+      screen.getByRole("button", { name: /posłuchaj/i })
+    ).toBeInTheDocument();
+    expect(screen.getByTestId("talking-portrait-video")).toBeInTheDocument();
+    expect(
+      screen.getByAltText(/Portret Dariusza|Portrait/i)
+    ).toBeInTheDocument();
   });
 
-  it("does not render in light theme", () => {
+  it("renders in light theme too", () => {
     renderWithProviders(<Home id="home" />, {
       initialLanguage: "English",
       initialIsDark: false,
     });
 
     expect(
-      screen.queryByRole("button", { name: /hear me/i })
-    ).not.toBeInTheDocument();
+      screen.getByRole("button", { name: /hear me/i })
+    ).toBeInTheDocument();
+    expect(screen.getByTestId("talking-portrait-video")).toBeInTheDocument();
+    expect(screen.getByAltText(/Portrait of Dariusz/i)).toBeInTheDocument();
   });
 });

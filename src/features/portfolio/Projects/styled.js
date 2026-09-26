@@ -44,7 +44,11 @@ export const Header = styled.h2`
   padding-bottom: 0.3em;
   padding-left: 16px;
   transform: ${({ $lang }) =>
-    $lang === "Polish" ? "translateX(6px)" : "none"};
+    $lang === "English"
+      ? "translateX(0px)"
+      : $lang === "Polish"
+        ? "translateX(6px)"
+        : "none"};
   background: linear-gradient(
     135deg,
     var(--color-text-primary) 0%,
@@ -64,7 +68,11 @@ export const Header = styled.h2`
 
   @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
     transform: ${({ $lang }) =>
-      $lang === "Spanish" ? "none" : "translateX(1px)"};
+      $lang === "English"
+        ? "translateX(-3px)"
+        : $lang === "Polish"
+          ? "translateX(1px)"
+          : "none"};
   }
 `;
 
