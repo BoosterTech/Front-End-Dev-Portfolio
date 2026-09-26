@@ -187,4 +187,13 @@ export const base = css`
     background-color: var(--color-primary);
     color: var(--color-white);
   }
+
+  /* While the talking portrait plays, freeze every decorative animation
+     mid-pose — cumulative animation load starves the media pipeline into a
+     waiting-state stall on low-end Android (verified on-device). */
+  .portrait-playing *,
+  .portrait-playing *::before,
+  .portrait-playing *::after {
+    animation-play-state: paused !important;
+  }
 `;

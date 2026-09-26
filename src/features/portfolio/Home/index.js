@@ -88,9 +88,7 @@ const Home = ({ id }) => {
             width={640}
             height={640}
           />
-          {language === "English" && isDark && (
-            <TalkingPortrait poster={profileImage} />
-          )}
+          <TalkingPortrait poster={profileImage} />
         </ImageContainer>
       </ContentImageContainer>
 

@@ -1,10 +1,4 @@
-import {
-  fadeIn,
-  fadeInUp,
-  slideInLeft,
-  slideInRight,
-  spin,
-} from "common/animations";
+import { fadeInUp, slideInLeft, slideInRight, spin } from "common/animations";
 import styled from "styled-components";
 import { keyframes } from "styled-components";
 
@@ -165,13 +159,24 @@ export const PortraitVideo = styled.video`
   width: 100%;
   height: 100%;
   object-fit: cover;
+  /* No box-shadow here — ProfileImage underneath casts the identical glow;
+     a second stack would double the halo intensity. */
+  /* Inherits the blob's animated radius while idle (video is paused — the
+     re-clip is just paint). During playback .portrait-playing freezes the
+     parent animation mid-pose, giving this an effectively static clip —
+     which keeps the media pipeline fed on low-end Android (verified). */
   border-radius: inherit;
+  will-change: transform, opacity;
   border: 1px solid var(--color-primary);
   cursor: pointer;
-  animation: ${fadeIn} 0.3s ease-out;
+  /* The theme-matched ProfileImage stays the portrait's face while idle;
+     the clip fades in only for playback, then melts back to the still. */
+  opacity: ${(p) => (p.$active ? 1 : 0)};
+  pointer-events: ${(p) => (p.$active ? "auto" : "none")};
+  transition: opacity 0.35s ease;
 
   @media (prefers-reduced-motion: reduce) {
-    animation: none;
+    transition: none;
   }
 `;
 
